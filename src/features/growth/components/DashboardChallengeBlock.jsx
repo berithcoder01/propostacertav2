@@ -6,7 +6,7 @@ import StreakBadge from './StreakBadge'
 import ProgressCalendar from './ProgressCalendar'
 
 export default function DashboardChallengeBlock({ onNavigateToTask, onNavigateToOnboarding, onNavigateToStart }) {
-  const { challenge, todayTask, dayNumber, streak, loading, error, startChallenge } = useActiveChallenge()
+  const { challenge, todayTask, dayNumber, streak, loading, error, hasProfile, startChallenge } = useActiveChallenge()
   const [showCalendar, setShowCalendar] = useState(false)
 
   if (loading) {
@@ -41,14 +41,14 @@ export default function DashboardChallengeBlock({ onNavigateToTask, onNavigateTo
           <div className="flex-1">
             <h3 className="text-xl font-bold text-white mb-2">Desafio 30 Dias</h3>
             <p className="text-gray-300 mb-4">
-              Transforme seu neg\u00f3cio com tarefas pr\u00e1ticas de marketing. 
+              Transforme seu negócio com tarefas práticas de marketing. 
               30 dias para aumentar sua visibilidade e conquistar mais clientes.
             </p>
             <button
-              onClick={onNavigateToStart || onNavigateToOnboarding}
+              onClick={hasProfile ? onNavigateToStart : onNavigateToOnboarding}
               className="py-2.5 px-5 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-700 transition-colors flex items-center gap-2"
             >
-              Come\u00e7ar agora
+              {hasProfile ? 'Começar agora' : 'Configurar Perfil'}
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -69,7 +69,7 @@ export default function DashboardChallengeBlock({ onNavigateToTask, onNavigateTo
             <Trophy className="w-6 h-6 text-purple-500" />
           </div>
           <div className="flex-1">
-            <h3 className="text-xl font-bold text-white mb-2">Desafio Conclu\u00eddo! 🎉</h3>
+            <h3 className="text-xl font-bold text-white mb-2">Desafio Concluído! 🎉</h3>
             <div className="grid grid-cols-3 gap-4 mb-4">
               <div className="text-center">
                 <p className="text-2xl font-bold text-purple-400">{challenge.totalDone}</p>
@@ -81,14 +81,14 @@ export default function DashboardChallengeBlock({ onNavigateToTask, onNavigateTo
               </div>
               <div className="text-center">
                 <p className="text-2xl font-bold text-purple-400">{Math.round(challenge.completionPct)}%</p>
-                <p className="text-sm text-gray-400">Conclus\u00e3o</p>
+                <p className="text-sm text-gray-400">Conclusão</p>
               </div>
             </div>
             <button
               onClick={onNavigateToStart}
               className="py-2.5 px-5 rounded-xl bg-purple-600 text-white font-medium hover:bg-purple-700 transition-colors flex items-center gap-2"
             >
-              Iniciar pr\u00f3ximo ciclo
+              Iniciar próximo ciclo
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -120,7 +120,7 @@ export default function DashboardChallengeBlock({ onNavigateToTask, onNavigateTo
         {isTaskDone ? (
           <div className="flex items-center gap-3 mb-3">
             <CheckCircle className="w-5 h-5 text-emerald-500" />
-            <span className="text-emerald-400 font-medium">Tarefa do dia conclu\u00edda!</span>
+            <span className="text-emerald-400 font-medium">Tarefa do dia concluída!</span>
           </div>
         ) : isTaskSkipped ? (
           <div className="flex items-center gap-3 mb-3">

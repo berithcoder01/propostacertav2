@@ -8,6 +8,7 @@ export function useActiveChallenge() {
   const [dayNumber, setDayNumber] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [hasProfile, setHasProfile] = useState(false)
 
   const fetchActiveChallenge = useCallback(async () => {
     setLoading(true)
@@ -16,13 +17,15 @@ export function useActiveChallenge() {
       const response = await marketingApi.getActiveChallenge()
       if (response.success) {
         if (response.data) {
-          setChallenge(response.data.challenge)
-          setTodayTask(response.data.todayTask)
-          setDayNumber(response.data.dayNumber)
+          setChallenge(response.data.challenge || null)
+          setTodayTask(response.data.todayTask || null)
+          setDayNumber(response.data.dayNumber || null)
+          setHasProfile(response.data.hasProfile || false)
         } else {
           setChallenge(null)
           setTodayTask(null)
           setDayNumber(null)
+          setHasProfile(false)
         }
       } else {
         setError(response.error)
@@ -88,5 +91,5 @@ export function useActiveChallenge() {
     }
   }
 
-  return { challenge, todayTask, dayNumber, streak, loading, error, markDone, markSkipped, startChallenge, fetchActiveChallenge }
+  return { challenge, todayTask, dayNumber, streak, loading, error, hasProfile, markDone, markSkipped, startChallenge, fetchActiveChallenge }
 }
