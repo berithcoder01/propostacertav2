@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Proposta Comercial - PropostaCerta Clean Minimal</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700&display=swap');
+
+        :root {
+            --primary: var(--primary-color, #000000);
+            --secondary: var(--secondary-color, #666666);
+            --border: #E5E5E5;
+            --text: #1A1A1A;
+            --muted: #888888;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            line-height: 1.5;
+            background: #FFFFFF;
+        }
+
+        .container {
+            padding: 80px 70px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 120px;
+        }
+
+        .logo {
+            max-height: 45px;
+            filter: grayscale(100%);
+        }
+
+        .company-info {
+            text-align: right;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--muted);
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 200;
+            letter-spacing: -3px;
+            line-height: 0.9;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 40px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--secondary);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 40px;
+            margin-bottom: 80px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            margin-bottom: 100px;
+        }
+
+        .label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .content {
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        .section-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+            color: var(--muted);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+
+        th {
+            text-align: left;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        td {
+            padding: 25px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 1rem;
+        }
+
+        .total-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 40px;
+        }
+
+        .total-display {
+            text-align: right;
+        }
+
+        .total-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--muted);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .total-value {
+            font-size: 3.5rem;
+            font-weight: 200;
+            letter-spacing: -1px;
+            color: var(--primary);
+        }
+
+        .conditions-section {
+            margin-top: 120px;
+            padding-top: 60px;
+            border-top: 1px solid var(--border);
+        }
+
+        .conditions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+        }
+
+        .pix-minimal {
+            margin-top: 80px;
+            padding: 40px;
+            background: #F8F8F8;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .signature {
+            margin-top: 150px;
+            border-top: 1px solid var(--primary);
+            width: 250px;
+            padding-top: 15px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        footer {
+            margin-top: 100px;
+            font-size: 0.7rem;
+            color: var(--muted);
+            text-align: center;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="{{LOGO_URL}}" alt="Logo" class="logo">
+            <div class="company-info">
+                {{COMPANY_NAME}}<br>
+                {{COMPANY_WEBSITE}}
+            </div>
+        </header>
+
+        <div class="hero">
+            <h1>Proposta<br>Comercial</h1>
+            <div class="hero-meta">
+                <span>Ref. #{{PROPOSAL_NUM}}</span>
+                <span>Data. {{PROPOSAL_DATE}}</span>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div>
+                <span class="label">Destinatário</span>
+                <div class="content">
+                    <strong>{{CLIENT_NOME}}</strong><br>
+                    {{CLIENT_CONTATO}}<br>
+                    {{CLIENT_LOCAL}}
+                </div>
+            </div>
+            <div>
+                <span class="label">Prazos</span>
+                <div class="content">
+                    Validade: {{COND_VALIDADE}} dias<br>
+                    Execução: {{COND_PRAZO_EXEC}}
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <span class="label">Objetivo</span>
+            <div class="content" style="font-size: 1.3rem; font-weight: 200; line-height: 1.4;">
+                {{CLIENT_OBJETO}}
+            </div>
+        </div>
+
+        <div style="margin-top: 100px;">
+            <div class="section-title">Detalhamento</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Descrição dos Serviços</th>
+                        <th style="text-align: center; width: 100px;">Qtd</th>
+                        <th style="text-align: right; width: 200px;">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- ITEMS_START -->
+                    <!-- ITEMS_END -->
+                </tbody>
+            </table>
+            <div class="total-container">
+                <div class="total-display">
+                    <span class="total-label">Investimento Total</span>
+                    <div class="total-value">{{TOTAL_AMOUNT}}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- IF_PAGAMENTO -->
+        <div class="conditions-section">
+            <div class="section-title">Condições</div>
+            <div class="conditions-grid">
+                <div>
+                    <span class="label">Pagamento</span>
+                    <div class="content" style="font-size: 0.9rem;">
+                        {{COND_ENTRADA}}% de entrada em {{COND_PRAZO_ENTRADA}} dias.<br>
+                        Saldo remanescente via {{COND_FORMA_PAGAMENTO}}.
+                    </div>
+                </div>
+                <!-- IF_GARANTIA -->
+                <div>
+                    <span class="label">Garantia</span>
+                    <div class="content" style="font-size: 0.9rem;">
+                        {{COND_WARRANTY_PERIOD}} {{COND_WARRANTY_TYPE}} de cobertura técnica.<br>
+                        Garantia de qualidade assegurada.
+                    </div>
+                </div>
+                <!-- ENDIF_GARANTIA -->
+            </div>
+        </div>
+        <!-- ENDIF_PAGAMENTO -->
+
+        <!-- IF_PIX -->
+        <div class="pix-minimal">
+            <div>
+                <span class="label" style="margin-bottom: 5px;">Chave PIX</span>
+                <div style="font-family: monospace; font-size: 1.2rem; font-weight: 700;">{{PIX_KEY}}</div>
+            </div>
+            <div style="font-size: 0.7rem; color: var(--muted); text-align: right; text-transform: uppercase; letter-spacing: 1px;">
+                Pagamento instantâneo<br>processamento imediato
+            </div>
+        </div>
+        <!-- ENDIF_PIX -->
+
+        <!-- IF_OBS -->
+        <div style="margin-top: 60px;">
+            <span class="label">Notas Adicionais</span>
+            <div style="font-size: 0.85rem; color: var(--secondary); line-height: 1.8;">
+                {{COND_OBS}}
+            </div>
+        </div>
+        <!-- ENDIF_OBS -->
+
+        <div class="signature">
+            {{COMPANY_NAME}}
+        </div>
+
+        <footer>
+            {{COMPANY_PHONE}} | {{COMPANY_EMAIL}}<br>
+            {{COMPANY_ADDRESS}}
+        </footer>
+    </div>
+</body>
+</html>

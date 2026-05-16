@@ -1,0 +1,520 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  extensions = [vector]
+}
+
+// ─────────────────────────────────────────────
+// AUTENTICAÇÃO
+// ─────────────────────────────────────────────
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  companyId String?  @unique
+  company   Company? @relation(fields: [companyId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ─────────────────────────────────────────────
+// EMPRESA / PERFIL
+// ─────────────────────────────────────────────
+
+model Company {
+  id String @id @default(uuid())
+
+  // Dados da empresa
+  name             String
+  cnpj             String?
+  phone            String?
+  email            String?
+  website          String?
+  address          String?
+  city             String?
+  state            String?
+  cep              String?
+  logoUrl          String?
+  logoType          String?  // "generated" | "uploaded"
+  pixKey            String?  // Chave PIX para recebimento
+
+  segment    Segment   @default(OUTRO)
+  businessType BusinessType @default(SERVICE_ONLY)
+  subSegments String[] @default([])
+
+  // Identidade visual
+  primaryColor   String  @default("#1A5276")
+  secondaryColor String  @default("#E87722")
+  slogan         String?
+  footerText     String?
+
+  // Branding avançado (Fase 5A)
+  logoStyle         String?   // "minimalista" | "emblema" | "circular" | "texto"
+  logoIcon          String?   // Nome do ícone Lucide (ex: "Plug", "Palette")
+  logoIconColor     String?   // Cor do ícone
+  logoBackgroundStyle String? // "solid" | "gradient" | "pattern"
+  proposalTheme     String?   // "professional" | "modern" | "elegant" | "bold" | "minimal"
+  proposalAccent    String?   // Cor de destaque para propostas
+  proposalFont      String?   // "sans" | "serif" | "mono"
+
+  // Dados técnicos por segmento (CREA, ART, BDI etc.)
+  technicalData Json?
+
+  // Segmentos ativos da empresa (FASE 5)
+  activeSegments String[] @default(["SERVICOS"])
+  templateConfig Json?
+
+  // Preferências de proposta
+  showTaxes            Boolean @default(false)
+  showWarranties       Boolean @default(true)
+  showSpecialConditions Boolean @default(false)
+  specialConditionText String?
+  templateOnboardingDone Boolean @default(false)
+
+  // Defaults de condições comerciais
+  defaultDownPaymentPct  Float  @default(20)
+  defaultDownPaymentDays Int    @default(45)
+  defaultValidityDays    Int    @default(60)
+  defaultPaymentMethod   String @default("depósito bancário")
+  defaultWarrantyPeriod  Int    @default(5)
+  defaultWarrantyType    String @default("ANOS")
+  defaultExecutionPeriod String @default("")
+  defaultPenaltyPct      Float  @default(0.3)
+  defaultPenaltyCap      Float  @default(10)
+
+ // Relações
+    user       User?
+    clients    Client[]
+    catalog    CatalogItem[]
+    proposals      Proposal[]
+    templates      ProposalTemplate[]
+    reminders      Reminder[]
+    priceResearches PriceResearch[]
+    aiChats        AiChat[]
+    leads          Lead[]
+    subscription   Subscription?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Segment {
+  ELETRICA
+  CONSTRUCAO_CIVIL
+  HIDRAULICA
+  PINTURA
+  AR_CONDICIONADO
+  OUTRO
+}
+
+// ─────────────────────────────────────────────
+// TIPO DE NEGÓCIO (FASE 8)
+// ─────────────────────────────────────────────
+
+enum BusinessType {
+  SERVICE_ONLY
+  PRODUCT_ONLY
+  HYBRID
+}
+
+// ─────────────────────────────────────────────
+// PLANOS DE ASSINATURA
+// ─────────────────────────────────────────────
+
+enum PlanName {
+  FREE
+  PRO
+  ENTERPRISE
+}
+
+enum BillingCycle {
+  MONTHLY
+  ANNUAL
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  INACTIVE
+  TRIALING
+  PAST_DUE
+}
+
+model Plan {
+  id             String   @id @default(uuid())
+  name           PlanName @unique
+  price          Float    // 0 para free
+  billing        BillingCycle
+  features       Json     // lista de features habilitadas
+  maxProposals   Int
+  maxClients     Int
+  hasAi          Boolean  @default(false)
+  hasWhiteLabel  Boolean  @default(false)
+  stripePriceId  String?
+  subscriptions  Subscription[]
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Subscription {
+  id                String           @id @default(uuid())
+  companyId         String           @unique
+  company           Company          @relation(fields: [companyId], references: [id])
+  planId            String
+  plan              Plan             @relation(fields: [planId], references: [id])
+  status            SubscriptionStatus @default(TRIALING)
+  startsAt          DateTime
+  endsAt            DateTime?
+  stripeSubscriptionId String?
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+}
+
+// ─────────────────────────────────────────────
+// CATÁLOGO
+// ─────────────────────────────────────────────
+
+model CatalogItem {
+  id          String      @id @default(uuid())
+  companyId   String
+  company     Company     @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  code        String?
+  description String
+  unit        String      // PT, ML, M2, M3, UNID, HRS, VB, KG, CJ, MTS
+  category    ItemCategory @default(SERVICO)
+  defaultPrice Float?
+  notes       String?
+  active      Boolean     @default(true)
+
+  // Produto vs Serviço (FASE 5)
+  isProduct     Boolean  @default(false)
+  stockQuantity Int      @default(0)
+  minStock      Int      @default(5)
+  imageUrl      String?
+
+  // IA e precificação
+  embedding        Unsupported("vector(1536)")?
+  suggestedPrice   Float   @default(0)
+  priceUpdateCount Int     @default(0)
+
+  proposalItems ProposalItem[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum ItemCategory {
+  MATERIAL
+  SERVICO
+  EQUIPAMENTO
+  MAO_DE_OBRA
+}
+
+// ─────────────────────────────────────────────
+// CLIENTES
+// ─────────────────────────────────────────────
+
+model Client {
+  id        String  @id @default(uuid())
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  name     String
+  contact  String
+  role     String?
+  phone    String?
+  email    String?
+  location String  // endereço da obra / cidade
+  address  String? // endereço completo
+
+  proposals  Proposal[]
+  activities ClientActivity[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ClientActivity {
+  id        String   @id @default(uuid())
+  clientId  String
+  client    Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  type      String   // 'NOTE', 'CALL', 'EMAIL', 'MEETING'
+  content   String   // Nota ou descrição
+  createdAt DateTime @default(now())
+}
+
+// ─────────────────────────────────────────────
+// PROPOSTAS
+// ─────────────────────────────────────────────
+
+model Proposal {
+  id        String @id @default(uuid())
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  clientId  String?
+  client    Client? @relation(fields: [clientId], references: [id])
+  leadId    String?
+  lead      Lead?   @relation(fields: [leadId], references: [id])
+
+  templateId String?
+  template   ProposalTemplate? @relation(fields: [templateId], references: [id])
+
+  number  String         @unique
+  title   String?
+  object  String?
+  status  ProposalStatus @default(DRAFT)
+  total   Float          @default(0)
+
+  // Campos do cliente (snapshot no momento da criação)
+  clientName    String
+  clientContact String
+  clientRole    String?
+  clientLocation String
+  clientPhone   String?
+
+  // Dados específicos por segmento (ART, BDI, BTUs, etc.)
+  segmentData Json?
+
+  // Metadata livre para casos especiais
+  metadata Json?
+
+  items      ProposalItem[]
+  conditions CommercialConditions?
+
+  // Compartilhamento
+  shareToken     String?   @unique
+  shareExpiresAt DateTime?
+  viewCount      Int       @default(0)
+
+  acceptances ProposalAcceptance[]
+  statusLogs  ProposalStatusLog[]
+  reminders   Reminder[]
+  aiChats     AiChat[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum ProposalStatus {
+  DRAFT
+  SENT
+  APPROVED
+  REJECTED
+  EXPIRED
+}
+
+model ProposalAcceptance {
+  id         String   @id @default(uuid())
+  proposalId String
+  proposal   Proposal @relation(fields: [proposalId], references: [id], onDelete: Cascade)
+  name       String
+  ip         String
+  userAgent  String
+  acceptedAt DateTime @default(now())
+}
+
+model ProposalStatusLog {
+  id         String         @id @default(uuid())
+  proposalId String
+  proposal   Proposal       @relation(fields: [proposalId], references: [id], onDelete: Cascade)
+  fromStatus ProposalStatus
+  toStatus   ProposalStatus
+  changedAt  DateTime       @default(now())
+}
+
+model Reminder {
+  id         String   @id @default(uuid())
+  companyId  String
+  company    Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  proposalId String?
+  proposal   Proposal? @relation(fields: [proposalId], references: [id], onDelete: SetNull)
+  title      String
+  description String?
+  dueDate    DateTime
+  isCompleted Boolean @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model PriceResearch {
+  id          String   @id @default(uuid())
+  companyId   String
+  company     Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  query       String   // O que foi pesquisado
+  results     Json     // Resultados retornados pela IA
+  embedding   Unsupported("vector(1536)")?
+  createdAt   DateTime @default(now())
+}
+
+model AiChat {
+  id          String   @id @default(uuid())
+  companyId   String
+  company     Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  proposalId  String?
+  proposal    Proposal? @relation(fields: [proposalId], references: [id], onDelete: Cascade)
+  messages    Json     // Histórico de mensagens do chat
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ─────────────────────────────────────────────
+// BASE DE CONHECIMENTO RAG (FASE 8)
+// ─────────────────────────────────────────────
+
+model BusinessTypeKnowledge {
+  id          String        @id @default(uuid())
+  description String        @db.Text
+  businessType BusinessType
+  segment     Segment?
+  primaryIntention String?
+  primaryAction    String?
+  secondaryAction  String?
+  keywords    String[]
+  confidence  Float         @default(0.0)
+  embedding   Unsupported("vector(1536)")?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([businessType])
+  @@index([segment])
+}
+
+// ─────────────────────────────────────────────
+// LEADS (PROSPECÇÃO)
+// ─────────────────────────────────────────────
+
+model Lead {
+  id          String   @id @default(uuid())
+  companyId   String
+  company     Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  name        String
+  email       String?
+  phone       String?
+  whatsapp    String?
+  address     String?
+  city        String?
+  state       String?
+  lat         Float?
+  lng         Float?
+  segment     LeadSegment @default(RESIDENCIAL)
+  source      LeadSource  @default(MANUAL)
+  status      LeadStatus  @default(NEW)
+  distanceKm  Float?
+  metadata    Json?
+  notes       String?
+  contactHistory Json?
+
+  proposals   Proposal[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([companyId])
+  @@index([segment])
+  @@index([status])
+}
+
+enum LeadSegment {
+  RESIDENCIAL
+  COMERCIAL
+  INDUSTRIAL
+  CONDOMINIO
+}
+
+enum LeadSource {
+  GOOGLE_PLACES
+  OSM
+  SCRAPING
+  MANUAL
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  NEGOTIATING
+  DISCARDED
+  CONVERTED
+}
+
+model ProposalItem {
+  id         String  @id @default(uuid())
+  proposalId String
+  proposal   Proposal @relation(fields: [proposalId], references: [id], onDelete: Cascade)
+
+  catalogId  String?
+  catalog    CatalogItem? @relation(fields: [catalogId], references: [id])
+
+  label     String
+  unit      String
+  quantity  Float
+  unitPrice Float
+  subtotal  Float
+  notes     String?
+  category  ItemCategory @default(SERVICO)
+  isProduct Boolean      @default(false)
+  stockReserved Int      @default(0)
+
+  sortOrder Int @default(0)
+}
+
+model CommercialConditions {
+  id         String   @id @default(uuid())
+  proposalId String   @unique
+  proposal   Proposal @relation(fields: [proposalId], references: [id], onDelete: Cascade)
+
+  downPayment     Float
+  downPaymentDays Int
+  measurementDays Int
+  paymentNfDays   Int
+  validityDays    Int
+  executionPeriod String?
+  paymentTerms    String?
+  observations    String?
+
+  // Garantia
+  warrantyPeriod Int?    // Duração
+  warrantyType   String?  // DIAS | MESES | ANOS | PERSONALIZADO
+
+  // Penalidade contratual
+  penaltyPct      Float?  @default(0.1)
+  penaltyCap      Float?  @default(10)
+}
+
+// ─────────────────────────────────────────────
+// MODELOS DE PROPOSTA (FASE 11)
+// ─────────────────────────────────────────────
+
+enum ProposalLevel {
+  BASIC
+  CUSTOM
+}
+
+model ProposalTemplate {
+  id        String   @id @default(uuid())
+  companyId String
+  company   Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  name      String
+  isDefault Boolean  @default(false)
+  level     ProposalLevel @default(CUSTOM)
+
+  sections  Json
+  defaults  Json?
+  customFields Json?
+  wording   Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  proposals Proposal[]
+
+  @@index([companyId])
+}

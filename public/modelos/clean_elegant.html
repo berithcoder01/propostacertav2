@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta Comercial - PropostaCerta Clean Elegant</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Open+Sans:wght@300;400;600&display=swap");
+
+        :root {
+            --primary: var(--primary-color, #34495E); /* Dark Blue Grey */
+            --secondary: var(--secondary-color, #95A5A6); /* Silver */
+            --accent: #E74C3C; /* Alizarin */
+            --text-dark: #2C3E50;
+            --text-light: #7F8C8D;
+            --bg-light: #FDFEFE;
+            --white: #FFFFFF;
+            --border: #ECF0F1;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Open Sans", sans-serif;
+            color: var(--text-dark);
+            line-height: 1.7;
+            background-color: var(--bg-light);
+            -webkit-print-color-adjust: exact;
+        }
+
+        .page {
+            max-width: 850px;
+            margin: 40px auto;
+            background: var(--white);
+            padding: 60px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--primary);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 70px;
+        }
+
+        .logo-container img {
+            max-height: 60px;
+            filter: grayscale(100%);
+        }
+
+        .company-details {
+            text-align: right;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .company-details strong {
+            font-family: "Lora", serif;
+            font-size: 1.1rem;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .proposal-intro {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .proposal-intro h1 {
+            font-family: "Lora", serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            color: var(--primary);
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        .proposal-intro p {
+            font-size: 1rem;
+            color: var(--text-light);
+            letter-spacing: 1px;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .section-title {
+            font-family: "Lora", serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 60px 0 30px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px;
+            width: 60px;
+            height: 1px;
+            background: var(--secondary);
+        }
+
+        .client-info-block {
+            background: var(--bg-light);
+            padding: 30px;
+            border-left: 4px solid var(--accent);
+            margin-bottom: 50px;
+        }
+
+        .client-info-block h3 {
+            font-family: "Lora", serif;
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+
+        th {
+            background-color: var(--primary);
+            color: var(--white);
+            text-align: left;
+            padding: 15px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+        }
+
+        tr:nth-child(even) { background-color: var(--bg-light); }
+
+        .total-summary {
+            text-align: right;
+            margin-top: 30px;
+        }
+
+        .total-summary .label {
+            font-size: 1rem;
+            color: var(--text-light);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .total-summary .value {
+            font-family: "Lora", serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .conditions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .condition-card {
+            background: var(--bg-light);
+            padding: 25px;
+            border-left: 3px solid var(--secondary);
+        }
+
+        .condition-card h4 {
+            font-family: "Lora", serif;
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .pix-info {
+            background: #F0F8FF;
+            border: 1px solid #A7D9F7;
+            padding: 25px;
+            margin-top: 40px;
+            text-align: center;
+            border-radius: 5px;
+            color: var(--primary);
+        }
+
+        .pix-info strong {
+            font-family: "Open Sans", sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .signature-block {
+            margin-top: 100px;
+            text-align: center;
+        }
+
+        .signature-line {
+            border-top: 1px solid var(--text-dark);
+            width: 220px;
+            margin: 0 auto 10px;
+        }
+
+        .footer {
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <div class="logo-container">
+                <img src="{{LOGO_URL}}" alt="Logo Empresa">
+            </div>
+            <div class="company-details">
+                <strong>{{COMPANY_NAME}}</strong><br>
+                {{COMPANY_ADDRESS}}<br>
+                {{COMPANY_PHONE}} | {{COMPANY_EMAIL}}
+            </div>
+        </header>
+
+        <div class="proposal-intro">
+            <h1>Proposta Comercial</h1>
+            <p>Ref. #{{PROPOSAL_NUM}}</p>
+            <div class="meta-info">
+                <span>Data: {{PROPOSAL_DATE}}</span>
+                <span>Validade: {{COND_VALIDADE}} dias</span>
+            </div>
+        </div>
+
+        <div class="client-info-block">
+            <h3>Para:</h3>
+            <p><strong>{{CLIENT_NOME}}</strong></p>
+            <p>A/C: {{CLIENT_CONTATO}}</p>
+            <p>{{CLIENT_LOCAL}}</p>
+        </div>
+
+        <div class="section-title">Objeto da Proposta</div>
+        <p style="text-align: justify; margin-bottom: 40px; font-size: 1rem;">{{CLIENT_OBJETO}}</p>
+
+        <div class="section-title">Investimento Detalhado</div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 50px; text-align: center;">#</th>
+                    <th>Descrição do Item/Serviço</th>
+                    <th style="width: 60px; text-align: center;">Qtd</th>
+                    <th style="width: 120px; text-align: right;">Unitário</th>
+                    <th style="width: 120px; text-align: right;">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ITEMS_START -->
+                <!-- ITEMS_END -->
+            </tbody>
+        </table>
+
+        <div class="total-summary">
+            <span class="label">Valor Total do Investimento</span>
+            <span class="value">{{TOTAL_AMOUNT}}</span>
+        </div>
+
+        <!-- IF_PAGAMENTO -->
+        <div class="section-title">Condições Comerciais</div>
+        <div class="conditions-grid">
+            <div class="condition-card">
+                <h4>Forma de Pagamento</h4>
+                <p>Entrada de {{COND_ENTRADA}}% em {{COND_PRAZO_ENTRADA}} dias.</p>
+                <p>Saldo remanescente via {{COND_FORMA_PAGAMENTO}}.</p>
+            </div>
+            <!-- IF_GARANTIA -->
+            <div class="condition-card">
+                <h4>Garantia</h4>
+                <p>Garantia de {{COND_WARRANTY_PERIOD}} {{COND_WARRANTY_TYPE}} para os serviços e produtos.</p>
+            </div>
+            <!-- ENDIF_GARANTIA -->
+        </div>
+        <!-- ENDIF_PAGAMENTO -->
+
+        <!-- IF_OBS -->
+        <div class="section-title">Observações</div>
+        <p style="font-size: 0.9rem; margin-top: 20px;">{{COND_OBS}}</p>
+        <!-- ENDIF_OBS -->
+
+        <!-- IF_PIX -->
+        <div class="pix-info">
+            <p>Para pagamentos rápidos e eficientes, utilize a chave PIX:</p>
+            <strong>{{PIX_KEY}}</strong>
+        </div>
+        <!-- ENDIF_PIX -->
+
+        <div class="signature-block">
+            <div class="signature-line"></div>
+            <strong>{{COMPANY_NAME}}</strong><br>
+            <span style="font-size: 0.8rem; color: var(--text-light);">{{COMPANY_SLOGAN}}</span>
+        </div>
+
+        <footer class="footer">
+            {{COMPANY_NAME}} | CNPJ: {{COMPANY_CNPJ}}<br>
+            {{COMPANY_WEBSITE}} | {{FOOTER_NOTE}}
+        </footer>
+    </div>
+</body>
+</html>

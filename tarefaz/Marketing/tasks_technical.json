@@ -1,0 +1,782 @@
+[
+  {
+    "slug": "google-meu-negocio-check",
+    "day": 1,
+    "category": "google",
+    "title": "Apareça no Mapa: Google Meu Negócio",
+    "subtitle": "Seu cliente te procura no Google. Você está lá?",
+    "motivation": "Empresas com perfil completo no Google recebem 7x mais cliques do que perfis incompletos.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Acesse o Google Meu Negócio e verifique se sua empresa está cadastrada."
+      },
+      {
+        "order": 2,
+        "text": "Atualize o horário de atendimento e adicione seu número de WhatsApp."
+      },
+      {
+        "order": 3,
+        "text": "Adicione 3 fotos de serviços realizados recentemente."
+      }
+    ],
+    "tip": "Peça para um amigo pesquisar seu serviço no Google Maps e veja como você aparece.",
+    "actionLabel": "Abrir Google Maps",
+    "actionUrl": "https://www.google.com/business/"
+  },
+  {
+    "slug": "whatsapp-business-bio",
+    "day": 2,
+    "category": "presenca",
+    "title": "Sua vitrine no WhatsApp",
+    "subtitle": "Transforme seu WhatsApp em uma ferramenta de vendas.",
+    "motivation": "O WhatsApp Business permite que você passe profissionalismo antes mesmo de falar 'oi'.",
+    "estimatedMinutes": 10,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Certifique-se de que está usando a versão 'Business' do WhatsApp."
+      },
+      {
+        "order": 2,
+        "text": "Na Bio, escreva exatamente o que você resolve. Ex: 'Eletricista Residencial e Industrial em SP'."
+      },
+      {
+        "order": 3,
+        "text": "Configure uma mensagem de saudação automática educada."
+      }
+    ],
+    "tip": "Use uma foto de perfil profissional, preferencialmente com o uniforme da sua empresa.",
+    "actionLabel": "Configurar WhatsApp",
+    "actionUrl": "https://web.whatsapp.com/"
+  },
+  {
+    "slug": "foto-antes-depois",
+    "day": 3,
+    "category": "instagram",
+    "title": "O Poder do Antes e Depois",
+    "subtitle": "Nada vende mais do que o resultado visual.",
+    "motivation": "Fotos de 'antes e depois' geram 40% mais engajamento para prestadores de serviços técnicos.",
+    "estimatedMinutes": 20,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Escolha um serviço que você terminou recentemente e que tenha foto do início."
+      },
+      {
+        "order": 2,
+        "text": "Use um app de colagem ou o próprio Stories para colocar as duas fotos lado a lado."
+      },
+      {
+        "order": 3,
+        "text": "Poste no Instagram com a legenda: 'Mais um problema resolvido! Arraste para o lado'."
+      }
+    ],
+    "tip": "Não se preocupe com a bagunça do 'antes', o foco é a transformação.",
+    "actionLabel": "Abrir Instagram",
+    "actionUrl": "https://www.instagram.com/"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-4",
+    "day": 4,
+    "category": "anuncio",
+    "title": "Ação de Anuncio - Dia 4",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-5",
+    "day": 5,
+    "category": "presenca",
+    "title": "Ação de Presenca - Dia 5",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-6",
+    "day": 6,
+    "category": "conteudo",
+    "title": "Ação de Conteudo - Dia 6",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-7",
+    "day": 7,
+    "category": "networking",
+    "title": "Ação de Networking - Dia 7",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-8",
+    "day": 8,
+    "category": "instagram",
+    "title": "Ação de Instagram - Dia 8",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-9",
+    "day": 9,
+    "category": "whatsapp",
+    "title": "Ação de Whatsapp - Dia 9",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-10",
+    "day": 10,
+    "category": "prospeccao",
+    "title": "Ação de Prospeccao - Dia 10",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-11",
+    "day": 11,
+    "category": "google",
+    "title": "Ação de Google - Dia 11",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-12",
+    "day": 12,
+    "category": "anuncio",
+    "title": "Ação de Anuncio - Dia 12",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-13",
+    "day": 13,
+    "category": "presenca",
+    "title": "Ação de Presenca - Dia 13",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-14",
+    "day": 14,
+    "category": "conteudo",
+    "title": "Ação de Conteudo - Dia 14",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-15",
+    "day": 15,
+    "category": "networking",
+    "title": "Ação de Networking - Dia 15",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-16",
+    "day": 16,
+    "category": "instagram",
+    "title": "Ação de Instagram - Dia 16",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-17",
+    "day": 17,
+    "category": "whatsapp",
+    "title": "Ação de Whatsapp - Dia 17",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-18",
+    "day": 18,
+    "category": "prospeccao",
+    "title": "Ação de Prospeccao - Dia 18",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-19",
+    "day": 19,
+    "category": "google",
+    "title": "Ação de Google - Dia 19",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-20",
+    "day": 20,
+    "category": "anuncio",
+    "title": "Ação de Anuncio - Dia 20",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-21",
+    "day": 21,
+    "category": "presenca",
+    "title": "Ação de Presenca - Dia 21",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-22",
+    "day": 22,
+    "category": "conteudo",
+    "title": "Ação de Conteudo - Dia 22",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-23",
+    "day": 23,
+    "category": "networking",
+    "title": "Ação de Networking - Dia 23",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-24",
+    "day": 24,
+    "category": "instagram",
+    "title": "Ação de Instagram - Dia 24",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-25",
+    "day": 25,
+    "category": "whatsapp",
+    "title": "Ação de Whatsapp - Dia 25",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-26",
+    "day": 26,
+    "category": "prospeccao",
+    "title": "Ação de Prospeccao - Dia 26",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-27",
+    "day": 27,
+    "category": "google",
+    "title": "Ação de Google - Dia 27",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-28",
+    "day": 28,
+    "category": "anuncio",
+    "title": "Ação de Anuncio - Dia 28",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-29",
+    "day": 29,
+    "category": "presenca",
+    "title": "Ação de Presenca - Dia 29",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "tarefa-tecnica-dia-30",
+    "day": 30,
+    "category": "conteudo",
+    "title": "Ação de Conteudo - Dia 30",
+    "subtitle": "Pequenos passos geram grandes resultados.",
+    "motivation": "A consistência é a chave para o crescimento digital.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Identifique a ação principal do dia."
+      },
+      {
+        "order": 2,
+        "text": "Execute a tarefa focando na qualidade."
+      },
+      {
+        "order": 3,
+        "text": "Revise e publique/envie."
+      }
+    ],
+    "tip": "Feito é melhor que perfeito. Apenas comece.",
+    "actionLabel": "Executar Tarefa",
+    "actionUrl": "#"
+  }
+]
