@@ -4,216 +4,520 @@
     <meta charset="UTF-8">
     <title>Proposta Comercial - PropostaCerta Industrial Bold</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap');
 
         :root {
-            --primary: var(--primary-color, #1A5276);
-            --secondary: var(--secondary-color, #E87722);
-            --dark: #212121;
-            --light: #F5F5F5;
+            --primary: var(--primary-color, #0F1E3C);
+            --accent: var(--secondary-color, #E85A1A);
             --white: #FFFFFF;
+            --off-white: #F8F8F6;
+            --text: #1A1A1A;
+            --muted: #6B6B6B;
+            --border: #E0E0DC;
+            --row-alt: #F4F4F2;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Roboto', sans-serif;
-            color: var(--dark);
-            line-height: 1.4;
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
             background: var(--white);
+            line-height: 1.5;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
+        /* ── PAGE WRAPPER ── */
         .page {
-            padding: 40px;
-            max-width: 900px;
+            max-width: 860px;
             margin: 0 auto;
+            padding: 0;
         }
 
-        header {
+        /* ── HEADER BAND ── */
+        .header-band {
+            background: var(--primary);
+            padding: 28px 48px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 8px solid var(--primary);
-            padding-bottom: 20px;
-            margin-bottom: 40px;
         }
 
-        .logo { max-height: 70px; }
-
-        .company-info { text-align: right; font-size: 0.8rem; }
-
-        .hero {
-            background: var(--dark);
-            color: var(--white);
-            padding: 40px;
-            margin-bottom: 40px;
-            position: relative;
-            overflow: hidden;
+        .logo-wrap img {
+            max-height: 52px;
+            max-width: 180px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
         }
 
-        .hero::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100%;
-            background: var(--secondary);
-            transform: skewX(-20deg) translateX(50px);
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--secondary);
+        .logo-wrap .company-name-fallback {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
             font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.5px;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
+        .header-contact {
+            text-align: right;
+            color: rgba(255,255,255,0.65);
+            font-size: 0.72rem;
+            line-height: 1.8;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* ── HERO: ASYMMETRIC PROPOSAL ID ── */
+        .hero {
+            padding: 48px 48px 0 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 32px;
             margin-bottom: 40px;
         }
 
-        .box {
-            background: var(--light);
-            padding: 20px;
-            border-left: 5px solid var(--primary);
+        .hero-left .eyebrow {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 8px;
         }
 
-        .box h3 {
-            font-size: 0.8rem;
-            text-transform: uppercase;
+        .hero-left h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 700;
             color: var(--primary);
+            letter-spacing: -3px;
+            line-height: 1;
+        }
+
+        .hero-right {
+            text-align: right;
+        }
+
+        .hero-right .date-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .hero-right .date-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        /* ── INFO GRID ── */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 0;
+            margin: 0 48px 40px;
+            border: 1px solid var(--border);
+        }
+
+        .info-block {
+            padding: 24px 28px;
+        }
+
+        .info-block:first-child {
+            border-right: 1px solid var(--border);
+        }
+
+        .info-block .tag {
+            font-size: 0.62rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent);
+            display: block;
             margin-bottom: 10px;
         }
 
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            margin-bottom: 20px;
+        .info-block strong {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
             color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 15px;
+            display: block;
+            margin-bottom: 4px;
         }
 
-        .section-title::after {
+        .info-block p {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* ── SCOPE SECTION ── */
+        .scope-section {
+            margin: 0 48px 40px;
+            padding: 24px 28px;
+            background: var(--off-white);
+            border-left: 4px solid var(--primary);
+        }
+
+        .scope-section .tag {
+            font-size: 0.62rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .scope-section p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        /* ── SECTION TITLE ── */
+        .section-header {
+            margin: 0 48px 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .section-header span {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        .section-header::after {
             content: "";
             flex: 1;
-            height: 4px;
-            background: var(--light);
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── TABLE ── */
+        .table-wrap {
+            margin: 0 48px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 30px;
+        }
+
+        thead tr {
+            background: var(--primary);
         }
 
         th {
-            background: var(--primary);
-            color: var(--white);
-            text-align: left;
-            padding: 12px;
-            font-size: 0.8rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.75);
+            padding: 12px 16px;
+            text-align: left;
         }
+
+        th:last-child { text-align: right; }
+
+        tbody tr:nth-child(even) { background: var(--row-alt); }
 
         td {
-            padding: 12px;
-            border-bottom: 2px solid var(--light);
-            font-size: 0.9rem;
+            padding: 14px 16px;
+            font-size: 0.85rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
         }
 
-        .total-row {
-            display: flex;
-            justify-content: flex-end;
+        td:first-child {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--accent);
+            width: 40px;
         }
 
-        .total-box {
-            background: var(--secondary);
-            color: var(--white);
-            padding: 20px 40px;
+        td:nth-child(3), td:nth-child(4) { text-align: center; width: 70px; }
+        td:nth-child(5) { text-align: right; width: 110px; }
+        td:last-child {
             text-align: right;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            color: var(--primary);
+            width: 120px;
         }
 
-        .total-box span { font-size: 0.9rem; text-transform: uppercase; display: block; }
-        .total-box strong { font-size: 2rem; font-weight: 900; }
-
-        .footer {
-            margin-top: 60px;
-            padding-top: 20px;
-            border-top: 1px solid var(--light);
+        /* ── TOTAL BAND ── */
+        .total-band {
+            margin: 0 48px 40px;
+            background: var(--primary);
+            padding: 28px 32px;
             display: flex;
             justify-content: space-between;
-            font-size: 0.7rem;
-            color: #777;
+            align-items: center;
+            margin-top: 0;
         }
 
-        .signature {
-            margin-top: 80px;
+        .total-band .total-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .total-band .total-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -1px;
+        }
+
+        .total-band .accent-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        /* ── CONDITIONS ── */
+        .conditions-wrap {
+            margin: 0 48px 32px;
+        }
+
+        .cond-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0;
+            border: 1px solid var(--border);
+        }
+
+        .cond-item {
+            padding: 20px 22px;
+            border-right: 1px solid var(--border);
+        }
+
+        .cond-item:last-child { border-right: none; }
+
+        .cond-item .cond-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .cond-item .cond-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* ── PIX ── */
+        .pix-block {
+            margin: 0 48px 32px;
+            background: var(--off-white);
+            padding: 20px 28px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .pix-icon {
+            font-size: 1.5rem;
+        }
+
+        .pix-block .pix-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .pix-block .pix-key {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* ── OBS ── */
+        .obs-block {
+            margin: 0 48px 32px;
+            padding: 20px 28px;
+            border-left: 3px solid var(--border);
+        }
+
+        .obs-block .tag {
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .obs-block p {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* ── SIGNATURE ── */
+        .signature-wrap {
+            margin: 32px 48px 0;
             display: flex;
             justify-content: flex-end;
         }
 
         .sig-box {
-            width: 250px;
             text-align: center;
-            border-top: 2px solid var(--dark);
-            padding-top: 10px;
+            width: 220px;
+        }
+
+        .sig-line {
+            height: 2px;
+            background: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .sig-box .sig-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sig-box .sig-slogan {
+            font-size: 0.7rem;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            margin-top: 40px;
+            background: var(--off-white);
+            padding: 16px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border);
+        }
+
+        footer .f-left {
+            font-size: 0.68rem;
+            color: var(--muted);
+        }
+
+        footer .f-right {
+            font-size: 0.68rem;
+            color: var(--muted);
+            text-align: right;
+        }
+
+        footer .f-accent {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            margin: 0 6px;
+            vertical-align: middle;
         }
     </style>
 </head>
 <body>
-    <div class="page">
-        <header>
-            <img src="{{LOGO_URL}}" alt="Logo" class="logo">
-            <div class="company-info">
-                <strong>{{COMPANY_NAME}}</strong><br>
-                {{COMPANY_ADDRESS}}<br>
-                {{COMPANY_PHONE}}
-            </div>
-        </header>
+<div class="page">
 
-        <div class="hero">
-            <p>Proposta Comercial</p>
+    <!-- HEADER -->
+    <div class="header-band">
+        <div class="logo-wrap">
+            <img src="{{LOGO_URL}}" alt="{{COMPANY_NAME}}" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+            <div class="company-name-fallback" style="display:none;">{{COMPANY_NAME}}</div>
+        </div>
+        <div class="header-contact">
+            {{COMPANY_PHONE}}<br>
+            {{COMPANY_EMAIL}}<br>
+            {{COMPANY_WEBSITE}}
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-left">
+            <span class="eyebrow">Proposta Comercial</span>
             <h1>#{{PROPOSAL_NUM}}</h1>
         </div>
-
-        <div class="grid">
-            <div class="box">
-                <h3>Para</h3>
-                <strong>{{CLIENT_NOME}}</strong><br>
-                {{CLIENT_CONTATO}}<br>
-                {{CLIENT_LOCAL}}
-            </div>
-            <div class="box">
-                <h3>Detalhes</h3>
-                <strong>Emissão:</strong> {{PROPOSAL_DATE}}<br>
-                <strong>Validade:</strong> {{COND_VALIDADE}} dias<br>
-                <strong>Prazo:</strong> {{COND_PRAZO_EXEC}}
-            </div>
+        <div class="hero-right">
+            <span class="date-label">Data de Emissão</span>
+            <div class="date-value">{{PROPOSAL_DATE}}</div>
         </div>
+    </div>
 
-        <div class="section-title">Escopo</div>
-        <p style="margin-bottom: 40px; text-align: justify;">{{CLIENT_OBJETO}}</p>
+    <!-- INFO GRID -->
+    <div class="info-grid">
+        <div class="info-block">
+            <span class="tag">Destinatário</span>
+            <strong>{{CLIENT_NOME}}</strong>
+            <p>{{CLIENT_CONTATO}}<br>{{CLIENT_LOCAL}}</p>
+        </div>
+        <div class="info-block">
+            <span class="tag">Prazos</span>
+            <strong>Validade: {{COND_VALIDADE}} dias</strong>
+            <p>Execução: {{COND_PRAZO_EXEC}}<br>{{COMPANY_NAME}}</p>
+        </div>
+    </div>
 
-        <div class="section-title">Investimento</div>
+    <!-- SCOPE -->
+    <div class="scope-section">
+        <span class="tag">Objeto / Escopo</span>
+        <p>{{CLIENT_OBJETO}}</p>
+    </div>
+
+    <!-- ITEMS TABLE -->
+    <div class="section-header">
+        <span>Detalhamento do Investimento</span>
+    </div>
+
+    <div class="table-wrap">
         <table>
             <thead>
                 <tr>
-                    <th>Item</th>
+                    <th>#</th>
                     <th>Descrição</th>
-                    <th style="text-align: center;">Qtd</th>
-                    <th style="text-align: right;">Total</th>
+                    <th style="text-align:center;">Un.</th>
+                    <th style="text-align:center;">Qtd</th>
+                    <th style="text-align:right;">Unit.</th>
+                    <th style="text-align:right;">Total</th>
                 </tr>
             </thead>
             <tbody>
@@ -221,33 +525,78 @@
                 <!-- ITEMS_END -->
             </tbody>
         </table>
+    </div>
 
-        <div class="total-row">
-            <div class="total-box">
-                <span>Investimento Total</span>
-                <strong>{{TOTAL_AMOUNT}}</strong>
+    <!-- TOTAL BAND -->
+    <div class="total-band">
+        <div class="total-label"><span class="accent-dot"></span>Investimento Total</div>
+        <div class="total-value">{{TOTAL_AMOUNT}}</div>
+    </div>
+
+    <!-- CONDITIONS -->
+    <!-- IF_PAGAMENTO -->
+    <div class="section-header" style="margin-top: 32px;">
+        <span>Condições Comerciais</span>
+    </div>
+    <div class="conditions-wrap">
+        <div class="cond-grid">
+            <div class="cond-item">
+                <span class="cond-label">Entrada</span>
+                <div class="cond-value">{{COND_ENTRADA}}% em {{COND_PRAZO_ENTRADA}} dias</div>
             </div>
-        </div>
-
-        <!-- IF_PAGAMENTO -->
-        <div class="section-title" style="margin-top: 40px;">Condições</div>
-        <p>Entrada de {{COND_ENTRADA}}% em {{COND_PRAZO_ENTRADA}} dias. Saldo via {{COND_FORMA_PAGAMENTO}}.</p>
-        <!-- IF_PIX -->
-        <p style="margin-top: 10px;"><strong>Chave PIX:</strong> {{PIX_KEY}}</p>
-        <!-- ENDIF_PIX -->
-        <!-- ENDIF_PAGAMENTO -->
-
-        <div class="signature">
-            <div class="sig-box">
-                <strong>{{COMPANY_NAME}}</strong><br>
-                {{COMPANY_SLOGAN}}
+            <!-- IF_GARANTIA -->
+            <div class="cond-item">
+                <span class="cond-label">Garantia</span>
+                <div class="cond-value">{{COND_WARRANTY_PERIOD}} {{COND_WARRANTY_TYPE}}</div>
             </div>
-        </div>
-
-        <div class="footer">
-            <div>{{COMPANY_NAME}} | {{COMPANY_CNPJ}}</div>
-            <div>{{COMPANY_EMAIL}} | {{COMPANY_WEBSITE}}</div>
+            <!-- ENDIF_GARANTIA -->
+            <div class="cond-item">
+                <span class="cond-label">Forma de Pagamento</span>
+                <div class="cond-value">{{COND_FORMA_PAGAMENTO}}</div>
+            </div>
         </div>
     </div>
+    <!-- ENDIF_PAGAMENTO -->
+
+    <!-- PIX -->
+    <!-- IF_PIX -->
+    <div class="pix-block">
+        <div class="pix-icon">⚡</div>
+        <div>
+            <span class="pix-label">Pagamento via PIX</span>
+            <div class="pix-key">{{PIX_KEY}}</div>
+        </div>
+    </div>
+    <!-- ENDIF_PIX -->
+
+    <!-- OBS -->
+    <!-- IF_OBS -->
+    <div class="obs-block">
+        <span class="tag">Observações</span>
+        <p>{{COND_OBS}}</p>
+    </div>
+    <!-- ENDIF_OBS -->
+
+    <!-- SIGNATURE -->
+    <div class="signature-wrap">
+        <div class="sig-box">
+            <div class="sig-line"></div>
+            <div class="sig-name">{{COMPANY_NAME}}</div>
+            <div class="sig-slogan">{{COMPANY_SLOGAN}}</div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="f-left">
+            {{COMPANY_NAME}}<span class="f-accent"></span>CNPJ: {{COMPANY_CNPJ}}
+        </div>
+        <div class="f-right">
+            {{COMPANY_ADDRESS}}, {{COMPANY_CITY}} — {{COMPANY_STATE}}<br>
+            {{FOOTER_NOTE}}
+        </div>
+    </footer>
+
+</div>
 </body>
 </html>

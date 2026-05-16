@@ -4,202 +4,540 @@
     <meta charset="UTF-8">
     <title>Proposta Comercial - PropostaCerta Industrial Classic</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Serif+4:wght@300;400;600&display=swap');
 
         :root {
-            --primary: var(--primary-color, #2C3E50);
-            --secondary: var(--secondary-color, #95A5A6);
-            --accent: #E67E22;
-            --text: #333;
-            --border: #BDC3C7;
+            --primary: var(--primary-color, #1A1A1A);
+            --accent: var(--secondary-color, #8B4513);
+            --bg: #FAFAF8;
+            --white: #FFFFFF;
+            --surface: #F3F0EB;
+            --text: #2C2C2C;
+            --muted: #7A7068;
+            --border: #D4CFC9;
+            --gold: #C4A35A;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Source Serif 4', serif;
             color: var(--text);
+            background: var(--bg);
             line-height: 1.6;
-            background: #fff;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
         .page {
-            padding: 60px 80px;
-            max-width: 900px;
+            max-width: 860px;
             margin: 0 auto;
-            border-top: 15px solid var(--primary);
+            background: var(--bg);
+        }
+
+        /* ── ORNAMENTAL HEADER ── */
+        .top-rule {
+            height: 6px;
+            background: var(--primary);
+        }
+
+        .sub-rule {
+            height: 2px;
+            background: var(--accent);
+            margin-top: 3px;
         }
 
         header {
+            padding: 36px 56px 28px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 60px;
+            border-bottom: 1px solid var(--border);
         }
 
-        .logo { max-height: 70px; }
-
-        .company-details {
-            text-align: right;
-            font-size: 0.8rem;
-            color: var(--secondary);
+        .logo-area img {
+            max-height: 56px;
+            max-width: 180px;
+            object-fit: contain;
         }
 
-        .proposal-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .proposal-title h1 {
-            font-family: 'Libre Baskerville', serif;
-            font-size: 2.5rem;
+        .logo-area .company-fallback {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
             color: var(--primary);
-            border-bottom: 2px solid var(--accent);
-            display: inline-block;
-            padding-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .header-right {
+            text-align: right;
+        }
+
+        .header-right .company-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .header-right .contact {
+            font-size: 0.72rem;
+            color: var(--muted);
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        /* ── HERO: EDITORIAL ── */
+        .hero {
+            padding: 52px 56px 40px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .hero .pre-title {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 0.95;
+            letter-spacing: -2px;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--accent);
+        }
+
+        .hero .proposal-num {
+            position: absolute;
+            top: 52px;
+            right: 56px;
+            text-align: right;
+        }
+
+        .hero .proposal-num .num-label {
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .hero .proposal-num .num-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* ── DIVIDER ── */
+        .ornament {
+            text-align: center;
+            padding: 6px 0;
+            color: var(--gold);
+            font-size: 1rem;
+            letter-spacing: 8px;
+        }
+
+        /* ── INFO ROW ── */
+        .info-row {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 0;
+            padding: 32px 56px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .info-col {
+            padding-right: 40px;
+        }
+
+        .info-col:last-child {
+            padding-right: 0;
+            padding-left: 40px;
+            border-left: 1px solid var(--border);
+        }
+
+        .info-col .col-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--accent);
+            display: block;
             margin-bottom: 10px;
         }
 
-        .proposal-title p {
-            font-size: 1.1rem;
+        .info-col strong {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .info-col p {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* ── SCOPE ── */
+        .scope {
+            padding: 28px 56px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .scope .s-label {
+            font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 4px;
-            color: var(--secondary);
+            color: var(--muted);
+            display: block;
+            margin-bottom: 10px;
         }
 
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 50px;
+        .scope p {
+            font-size: 0.92rem;
+            color: var(--text);
+            line-height: 1.8;
+            font-style: italic;
         }
 
-        .info-box {
-            padding: 20px;
-            border: 1px solid var(--border);
-        }
-
-        .info-box h3 {
-            font-size: 0.9rem;
+        /* ── SECTION TITLES ── */
+        .sec-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.8rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
+            letter-spacing: 3px;
             color: var(--primary);
+            margin: 32px 56px 14px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
         }
 
-        .section-header {
-            font-family: 'Libre Baskerville', serif;
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin: 40px 0 20px;
-            padding-left: 15px;
-            border-left: 5px solid var(--accent);
+        .sec-title::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── TABLE ── */
+        .table-wrap {
+            margin: 0 56px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 30px;
+        }
+
+        thead tr {
+            border-top: 2px solid var(--primary);
+            border-bottom: 2px solid var(--primary);
         }
 
         th {
-            background: var(--primary);
-            color: #fff;
-            padding: 12px;
-            text-align: left;
-            font-size: 0.8rem;
+            font-family: 'Source Serif 4', serif;
+            font-size: 0.65rem;
+            font-weight: 600;
             text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary);
+            padding: 10px 12px;
+            text-align: left;
+            background: transparent;
         }
+
+        th.ctr { text-align: center; }
+        th.rgt { text-align: right; }
+
+        tbody tr:nth-child(even) { background: var(--surface); }
 
         td {
-            padding: 12px;
+            padding: 13px 12px;
+            font-size: 0.85rem;
             border-bottom: 1px solid var(--border);
-            font-size: 0.9rem;
+            vertical-align: middle;
         }
 
-        .total-box {
-            float: right;
-            width: 300px;
-            background: #f9f9f9;
-            padding: 20px;
-            border: 2px solid var(--primary);
+        td.item-num {
+            font-size: 0.72rem;
+            color: var(--accent);
+            font-weight: 600;
+            width: 36px;
+        }
+
+        td.ctr { text-align: center; }
+        td.rgt { text-align: right; }
+
+        td.bold-total {
             text-align: right;
-        }
-
-        .total-label {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            display: block;
-        }
-
-        .total-value {
-            font-size: 1.8rem;
+            font-family: 'Playfair Display', serif;
             font-weight: 700;
+            font-size: 0.9rem;
             color: var(--primary);
         }
 
-        .footer {
-            margin-top: 100px;
-            padding-top: 20px;
+        /* ── TOTAL ── */
+        .total-area {
+            margin: 0 56px;
+            border-top: 2px solid var(--primary);
+            padding: 20px 0;
+            display: flex;
+            justify-content: flex-end;
+            align-items: baseline;
+            gap: 20px;
+        }
+
+        .total-area .t-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--muted);
+        }
+
+        .total-area .t-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -1px;
+        }
+
+        /* ── CONDITIONS ── */
+        /* IF_PAGAMENTO */
+        .conditions {
+            margin: 0 56px 24px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .cond-block .cb-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .cond-block .cb-value {
+            font-family: 'Source Serif 4', serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* ── PIX ── */
+        .pix-block {
+            margin: 0 56px 28px;
+            padding: 16px 22px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .pix-block .pix-l {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .pix-block .pix-v {
+            font-family: 'Source Serif 4', serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* ── OBS ── */
+        .obs-block {
+            margin: 0 56px 28px;
+            padding-top: 16px;
             border-top: 1px solid var(--border);
-            text-align: center;
-            font-size: 0.75rem;
-            color: var(--secondary);
         }
 
-        .signature {
-            margin-top: 80px;
+        .obs-block .obs-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .obs-block p {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        /* ── SIGNATURE ── */
+        .sig-wrap {
+            margin: 40px 56px 0;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .sig-box {
+            width: 220px;
             text-align: center;
         }
 
-        .signature-line {
-            width: 250px;
-            border-top: 1px solid var(--primary);
-            margin: 0 auto 10px;
+        .sig-ornament {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--gold);
+            letter-spacing: 8px;
+            margin-bottom: 4px;
+        }
+
+        .sig-line {
+            height: 1px;
+            background: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .sig-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .sig-slogan {
+            font-size: 0.68rem;
+            color: var(--muted);
+            font-style: italic;
+            margin-top: 3px;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            margin-top: 44px;
+            border-top: 1px solid var(--border);
+            padding: 16px 56px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer .f-l {
+            font-size: 0.65rem;
+            color: var(--muted);
+        }
+
+        footer .f-r {
+            font-size: 0.65rem;
+            color: var(--muted);
+            text-align: right;
+        }
+
+        .bottom-rule {
+            height: 4px;
+            background: var(--primary);
+            margin-top: 3px;
+        }
+
+        .bottom-accent {
+            height: 2px;
+            background: var(--accent);
+            margin-top: 2px;
         }
     </style>
 </head>
 <body>
-    <div class="page">
-        <header>
-            <img src="{{LOGO_URL}}" alt="Logo" class="logo">
-            <div class="company-details">
-                <strong>{{COMPANY_NAME}}</strong><br>
-                {{COMPANY_ADDRESS}}<br>
-                {{COMPANY_PHONE}} | {{COMPANY_EMAIL}}
-            </div>
-        </header>
+<div class="page">
 
-        <div class="proposal-title">
-            <h1>Proposta Comercial</h1>
-            <p>Ref. #{{PROPOSAL_NUM}}</p>
+    <div class="top-rule"></div>
+    <div class="sub-rule"></div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo-area">
+            <img src="{{LOGO_URL}}" alt="{{COMPANY_NAME}}" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+            <div class="company-fallback" style="display:none;">{{COMPANY_NAME}}</div>
         </div>
-
-        <div class="info-grid">
-            <div class="info-box">
-                <h3>Cliente</h3>
-                <strong>{{CLIENT_NOME}}</strong><br>
-                {{CLIENT_CONTATO}}<br>
-                {{CLIENT_LOCAL}}
-            </div>
-            <div class="info-box">
-                <h3>Emissão</h3>
-                <strong>Data:</strong> {{PROPOSAL_DATE}}<br>
-                <strong>Validade:</strong> {{COND_VALIDADE}} dias<br>
-                <strong>Prazo:</strong> {{COND_PRAZO_EXEC}}
+        <div class="header-right">
+            <span class="company-name">{{COMPANY_NAME}}</span>
+            <div class="contact">
+                {{COMPANY_PHONE}} · {{COMPANY_EMAIL}}<br>
+                {{COMPANY_ADDRESS}}
             </div>
         </div>
+    </header>
 
-        <div class="section-header">Escopo de Fornecimento</div>
-        <p style="text-align: justify; margin-bottom: 40px;">{{CLIENT_OBJETO}}</p>
+    <!-- HERO -->
+    <div class="hero">
+        <span class="pre-title">Proposta Comercial</span>
+        <h1>Orçamento<br><em>Profissional</em></h1>
 
-        <div class="section-header">Investimento Comercial</div>
+        <div class="proposal-num">
+            <span class="num-label">Referência</span>
+            <div class="num-value">#{{PROPOSAL_NUM}}</div>
+            <div style="font-size:0.7rem; color: var(--muted); margin-top:6px;">{{PROPOSAL_DATE}}</div>
+        </div>
+    </div>
+
+    <div class="ornament">— ✦ —</div>
+
+    <!-- INFO ROW -->
+    <div class="info-row">
+        <div class="info-col">
+            <span class="col-label">Destinatário</span>
+            <strong>{{CLIENT_NOME}}</strong>
+            <p>{{CLIENT_CONTATO}} · {{CLIENT_CARGO}}<br>{{CLIENT_LOCAL}} · {{CLIENT_TEL}}</p>
+        </div>
+        <div class="info-col">
+            <span class="col-label">Condições Gerais</span>
+            <strong>Validade: {{COND_VALIDADE}} dias</strong>
+            <p>Execução: {{COND_PRAZO_EXEC}}<br>{{COMPANY_NAME}} · {{COMPANY_CNPJ}}</p>
+        </div>
+    </div>
+
+    <!-- SCOPE -->
+    <div class="scope">
+        <span class="s-label">Objeto da Proposta</span>
+        <p>{{CLIENT_OBJETO}}</p>
+    </div>
+
+    <!-- TABLE -->
+    <div class="sec-title">Detalhamento do Investimento</div>
+
+    <div class="table-wrap">
         <table>
             <thead>
                 <tr>
-                    <th>Item</th>
-                    <th>Descrição</th>
-                    <th style="text-align: center;">Qtd</th>
-                    <th style="text-align: right;">Total</th>
+                    <th>Nº</th>
+                    <th>Descrição do Serviço / Produto</th>
+                    <th class="ctr">Un.</th>
+                    <th class="ctr">Qtd</th>
+                    <th class="rgt">Unit.</th>
+                    <th class="rgt">Total</th>
                 </tr>
             </thead>
             <tbody>
@@ -207,35 +545,72 @@
                 <!-- ITEMS_END -->
             </tbody>
         </table>
+    </div>
 
-        <div style="overflow: hidden; margin-bottom: 40px;">
-            <div class="total-box">
-                <span class="total-label">Valor Total da Proposta</span>
-                <span class="total-value">{{TOTAL_AMOUNT}}</span>
-            </div>
+    <!-- TOTAL -->
+    <div class="total-area">
+        <span class="t-label">Valor Total do Investimento</span>
+        <div class="t-value">{{TOTAL_AMOUNT}}</div>
+    </div>
+
+    <!-- CONDITIONS -->
+    <!-- IF_PAGAMENTO -->
+    <div class="sec-title">Condições de Pagamento</div>
+    <div class="conditions">
+        <div class="cond-block">
+            <span class="cb-label">Entrada</span>
+            <div class="cb-value">{{COND_ENTRADA}}% em {{COND_PRAZO_ENTRADA}} dias</div>
         </div>
-
-        <!-- IF_PAGAMENTO -->
-        <div class="section-header">Condições de Pagamento</div>
-        <p>Entrada de {{COND_ENTRADA}}% em {{COND_PRAZO_ENTRADA}} dias. Saldo via {{COND_FORMA_PAGAMENTO}}.</p>
-        <!-- ENDIF_PAGAMENTO -->
-
-        <!-- IF_PIX -->
-        <div style="margin-top: 20px; padding: 15px; border: 1px dashed var(--accent); background: #fffcf9;">
-            <strong>Chave PIX para Pagamento:</strong> {{PIX_KEY}}
+        <!-- IF_GARANTIA -->
+        <div class="cond-block">
+            <span class="cb-label">Garantia</span>
+            <div class="cb-value">{{COND_WARRANTY_PERIOD}} {{COND_WARRANTY_TYPE}}</div>
         </div>
-        <!-- ENDIF_PIX -->
-
-        <div class="signature">
-            <div class="signature-line"></div>
-            <strong>{{COMPANY_NAME}}</strong><br>
-            <span style="font-size: 0.8rem;">{{COMPANY_SLOGAN}}</span>
-        </div>
-
-        <div class="footer">
-            {{COMPANY_NAME}} | CNPJ: {{COMPANY_CNPJ}}<br>
-            {{COMPANY_WEBSITE}} | {{FOOTER_NOTE}}
+        <!-- ENDIF_GARANTIA -->
+        <div class="cond-block">
+            <span class="cb-label">Modalidade</span>
+            <div class="cb-value">{{COND_FORMA_PAGAMENTO}}</div>
         </div>
     </div>
+    <!-- ENDIF_PAGAMENTO -->
+
+    <!-- PIX -->
+    <!-- IF_PIX -->
+    <div class="pix-block">
+        <div>
+            <span class="pix-l">Chave PIX</span>
+            <div class="pix-v">{{PIX_KEY}}</div>
+        </div>
+    </div>
+    <!-- ENDIF_PIX -->
+
+    <!-- OBS -->
+    <!-- IF_OBS -->
+    <div class="obs-block">
+        <span class="obs-label">Observações</span>
+        <p>{{COND_OBS}}</p>
+    </div>
+    <!-- ENDIF_OBS -->
+
+    <!-- SIGNATURE -->
+    <div class="sig-wrap">
+        <div class="sig-box">
+            <div class="sig-ornament">— ✦ —</div>
+            <div class="sig-line"></div>
+            <div class="sig-name">{{COMPANY_NAME}}</div>
+            <div class="sig-slogan">{{COMPANY_SLOGAN}}</div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="f-l">{{COMPANY_NAME}} · CNPJ {{COMPANY_CNPJ}}</div>
+        <div class="f-r">{{COMPANY_EMAIL}} · {{COMPANY_WEBSITE}}<br>{{FOOTER_NOTE}}</div>
+    </footer>
+
+    <div class="bottom-rule"></div>
+    <div class="bottom-accent"></div>
+
+</div>
 </body>
 </html>

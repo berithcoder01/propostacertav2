@@ -2,270 +2,545 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proposta Comercial - PropostaCerta Clean Champagne</title>
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap");
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
 
         :root {
-            --primary: var(--primary-color, #8B4513); /* SaddleBrown */
-            --secondary: var(--secondary-color, #D2B48C); /* Tan */
-            --accent: #F5DEB3; /* Wheat */
-            --text-dark: #333333;
-            --text-light: #666666;
-            --bg-light: #FFF8DC; /* Cornsilk */
+            --primary: var(--primary-color, #3D2B1F);
+            --accent: var(--secondary-color, #C4A35A);
+            --bg: #FAF7F2;
+            --cream: #F5EFE2;
             --white: #FFFFFF;
-            --border: #E0E0E0;
+            --text: #2E2218;
+            --muted: #8C7B6B;
+            --border: #E2D9CC;
+            --light-gold: #F0E6C8;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: "Lato", sans-serif;
-            color: var(--text-dark);
+            font-family: 'Jost', sans-serif;
+            color: var(--text);
+            background: var(--bg);
             line-height: 1.6;
-            background-color: var(--bg-light);
             -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
         .page {
-            max-width: 800px;
-            margin: 40px auto;
-            background: var(--white);
-            padding: 60px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            border-top: 8px solid var(--primary);
+            max-width: 860px;
+            margin: 0 auto;
+            background: var(--bg);
+        }
+
+        /* ── HEADER ── */
+        .header-top {
+            height: 3px;
+            background: var(--accent);
         }
 
         header {
+            padding: 40px 56px 28px;
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 80px;
+            align-items: center;
         }
 
-        .logo-container img {
-            max-height: 70px;
-            filter: brightness(0.8);
+        .logo-area img {
+            max-height: 60px;
+            max-width: 180px;
+            object-fit: contain;
         }
 
-        .company-details {
-            text-align: right;
-            font-size: 0.85rem;
-            color: var(--text-light);
-        }
-
-        .company-details strong {
-            font-family: "Playfair Display", serif;
-            font-size: 1.2rem;
+        .logo-area .fallback {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 300;
             color: var(--primary);
+            letter-spacing: 2px;
+        }
+
+        .header-contact {
+            text-align: right;
+            font-size: 0.72rem;
+            font-weight: 300;
+            color: var(--muted);
+            line-height: 1.9;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            padding: 36px 56px 32px;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .hero-title .eyebrow {
+            font-family: 'Jost', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            color: var(--accent);
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
         }
 
-        .proposal-hero {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .proposal-hero h1 {
-            font-family: "Playfair Display", serif;
+        .hero-title h1 {
+            font-family: 'Cormorant Garamond', serif;
             font-size: 3.8rem;
+            font-weight: 300;
+            color: var(--primary);
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+
+        .hero-title h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero-meta {
+            text-align: right;
+        }
+
+        .hero-meta .ref {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .hero-meta .num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
             font-weight: 400;
             color: var(--primary);
-            line-height: 1.1;
-            margin-bottom: 15px;
         }
 
-        .proposal-hero p {
+        .hero-meta .date {
+            font-size: 0.72rem;
+            color: var(--muted);
+            font-weight: 300;
+            margin-top: 4px;
+        }
+
+        /* ── ORNAMENT LINE ── */
+        .ornament {
+            text-align: center;
+            padding: 10px 0;
+            font-family: 'Cormorant Garamond', serif;
             font-size: 1.1rem;
-            color: var(--text-light);
-            letter-spacing: 1px;
+            color: var(--accent);
+            letter-spacing: 12px;
+            opacity: 0.7;
         }
 
-        .info-grid {
+        /* ── INFO ── */
+        .info-band {
+            background: var(--cream);
+            padding: 28px 56px;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            margin-bottom: 60px;
-            padding: 30px 0;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 40px;
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
         }
 
-        .info-block h3 {
-            font-family: "Playfair Display", serif;
-            font-size: 1.3rem;
+        .info-cell .ic-label {
+            font-size: 0.58rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
+
+        .info-cell strong {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 400;
             color: var(--primary);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .info-cell p {
+            font-size: 0.78rem;
+            color: var(--muted);
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        /* ── SCOPE ── */
+        .scope {
+            padding: 28px 56px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .scope .s-tag {
+            font-size: 0.58rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--muted);
+            display: block;
             margin-bottom: 10px;
         }
 
-        .info-block p {
-            font-size: 0.95rem;
-            color: var(--text-dark);
+        .scope p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: var(--text);
+            line-height: 1.8;
+            font-style: italic;
         }
 
-        .section-title {
-            font-family: "Playfair Display", serif;
-            font-size: 2rem;
+        /* ── SECTION TITLE ── */
+        .sec-title {
+            margin: 28px 56px 14px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .sec-title span {
+            font-size: 0.58rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--muted);
+            white-space: nowrap;
             font-weight: 400;
-            color: var(--primary);
-            margin: 60px 0 30px 0;
-            text-align: center;
-            position: relative;
         }
 
-        .section-title::before {
+        .sec-title::after {
             content: "";
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: -10px;
-            width: 80px;
-            height: 2px;
-            background: var(--secondary);
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── TABLE ── */
+        .table-wrap {
+            margin: 0 56px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 40px;
+        }
+
+        thead tr {
+            border-bottom: 1px solid var(--accent);
         }
 
         th {
-            background-color: var(--primary);
-            color: var(--white);
-            text-align: left;
-            padding: 15px;
-            font-size: 0.85rem;
+            font-size: 0.58rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 3px;
+            color: var(--accent);
+            padding: 10px 10px 10px 0;
+            text-align: left;
+            font-weight: 400;
+            background: transparent;
         }
+
+        th:last-child { text-align: right; padding-right: 0; }
+        th.ctr { text-align: center; }
+
+        tbody tr { border-bottom: 1px solid var(--border); }
+        tbody tr:last-child { border-bottom: 1px solid var(--accent); }
 
         td {
-            padding: 15px;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.95rem;
+            padding: 14px 10px 14px 0;
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: var(--text);
+            vertical-align: middle;
         }
 
-        tr:nth-child(even) { background-color: var(--bg-light); }
+        td.item-n {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-style: italic;
+            width: 30px;
+        }
 
-        .total-summary {
+        td.ctr { text-align: center; }
+        td.rgt { text-align: right; }
+
+        td.t-val {
             text-align: right;
-            margin-top: 30px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: var(--primary);
         }
 
-        .total-summary .label {
-            font-size: 1rem;
-            color: var(--text-light);
+        /* ── TOTAL ── */
+        .total-area {
+            margin: 0 56px;
+            background: var(--light-gold);
+            padding: 20px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--border);
+        }
+
+        .total-area .tl {
+            font-size: 0.58rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--muted);
+            font-weight: 400;
+        }
+
+        .total-area .tv {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
+            font-weight: 300;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        /* ── CONDITIONS ── */
+        .cond-area {
+            margin: 0 56px 24px;
+        }
+
+        .cond-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+        }
+
+        .cond-item {
+            padding: 20px 0;
+            border-right: 1px solid var(--border);
+            padding-right: 24px;
+            padding-left: 24px;
+        }
+
+        .cond-item:first-child { padding-left: 0; }
+        .cond-item:last-child { border-right: none; }
+
+        .cond-item .cl {
+            font-size: 0.56rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--accent);
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
+            font-weight: 400;
         }
 
-        .total-summary .value {
-            font-family: "Playfair Display", serif;
-            font-size: 3rem;
-            font-weight: 700;
+        .cond-item .cv {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            font-weight: 400;
             color: var(--primary);
         }
 
-        .conditions-section {
-            background: var(--bg-light);
-            padding: 50px;
-            margin: 60px -60px 0 -60px;
+        /* ── PIX ── */
+        .pix-area {
+            margin: 0 56px 24px;
+            padding: 16px 22px;
+            background: var(--cream);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .pix-area .pl {
+            font-size: 0.56rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--muted);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .pix-area .pv {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--primary);
+        }
+
+        /* ── OBS ── */
+        .obs-area {
+            margin: 0 56px 24px;
             border-top: 1px solid var(--border);
+            padding-top: 16px;
         }
 
-        .condition-item {
-            margin-bottom: 25px;
-        }
-
-        .condition-item h4 {
-            font-family: "Playfair Display", serif;
-            font-size: 1.1rem;
-            color: var(--primary);
+        .obs-area .ol {
+            font-size: 0.56rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--muted);
+            display: block;
             margin-bottom: 8px;
         }
 
-        .pix-info {
-            background: var(--accent);
-            padding: 25px;
-            margin-top: 30px;
+        .obs-area p {
+            font-size: 0.8rem;
+            font-weight: 300;
+            color: var(--muted);
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        /* ── SIGNATURE ── */
+        .sig-wrap {
+            margin: 40px 56px 0;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .sig-box {
             text-align: center;
-            border-radius: 5px;
-            color: var(--primary);
-        }
-
-        .pix-info strong {
-            font-family: "Lato", sans-serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
-
-        .signature-block {
-            margin-top: 80px;
-            text-align: center;
-        }
-
-        .signature-line {
-            border-top: 1px solid var(--text-dark);
             width: 200px;
-            margin: 0 auto 10px;
         }
 
-        .footer {
-            margin-top: 60px;
-            padding-top: 30px;
+        .sig-ornament {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--accent);
+            font-size: 1rem;
+            letter-spacing: 10px;
+            margin-bottom: 6px;
+            opacity: 0.8;
+        }
+
+        .sig-line {
+            height: 1px;
+            background: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .sig-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+
+        .sig-slogan {
+            font-size: 0.65rem;
+            color: var(--muted);
+            font-style: italic;
+            margin-top: 3px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            margin-top: 40px;
             border-top: 1px solid var(--border);
-            text-align: center;
-            font-size: 0.75rem;
-            color: var(--text-light);
+            padding: 16px 56px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer .fl {
+            font-size: 0.62rem;
+            color: var(--muted);
+            font-weight: 300;
+        }
+
+        footer .fr {
+            font-size: 0.62rem;
+            color: var(--muted);
+            text-align: right;
+            font-weight: 300;
+        }
+
+        .header-bottom {
+            height: 3px;
+            background: var(--accent);
         }
     </style>
 </head>
 <body>
-    <div class="page">
-        <header>
-            <div class="logo-container">
-                <img src="{{LOGO_URL}}" alt="Logo Empresa">
-            </div>
-            <div class="company-details">
-                <strong>{{COMPANY_NAME}}</strong><br>
-                {{COMPANY_ADDRESS}}<br>
-                {{COMPANY_PHONE}} | {{COMPANY_EMAIL}}
-            </div>
-        </header>
+<div class="page">
 
-        <div class="proposal-hero">
-            <h1>Proposta Comercial</h1>
-            <p>Ref. #{{PROPOSAL_NUM}} | Emissão: {{PROPOSAL_DATE}}</p>
+    <div class="header-top"></div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo-area">
+            <img src="{{LOGO_URL}}" alt="{{COMPANY_NAME}}" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+            <div class="fallback" style="display:none;">{{COMPANY_NAME}}</div>
         </div>
-
-        <div class="info-grid">
-            <div class="info-block">
-                <h3>Para:</h3>
-                <p><strong>{{CLIENT_NOME}}</strong></p>
-                <p>A/C: {{CLIENT_CONTATO}}</p>
-                <p>{{CLIENT_LOCAL}}</p>
-            </div>
-            <div class="info-block">
-                <h3>Detalhes:</h3>
-                <p><strong>Validade:</strong> {{COND_VALIDADE}} dias</p>
-                <p><strong>Prazo de Execução:</strong> {{COND_PRAZO_EXEC}}</p>
-            </div>
+        <div class="header-contact">
+            {{COMPANY_PHONE}}<br>
+            {{COMPANY_EMAIL}}<br>
+            {{COMPANY_WEBSITE}}
         </div>
+    </header>
 
-        <div class="section-title">Objeto da Proposta</div>
-        <p style="text-align: justify; margin-bottom: 40px; font-size: 1rem;">{{CLIENT_OBJETO}}</p>
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-title">
+            <span class="eyebrow">Proposta Comercial</span>
+            <h1>Proposta<br><em>Exclusiva</em></h1>
+        </div>
+        <div class="hero-meta">
+            <span class="ref">Referência</span>
+            <div class="num">#{{PROPOSAL_NUM}}</div>
+            <div class="date">{{PROPOSAL_DATE}}</div>
+        </div>
+    </div>
 
-        <div class="section-title">Investimento Detalhado</div>
+    <div class="ornament">— ✦ ✦ ✦ —</div>
+
+    <!-- INFO -->
+    <div class="info-band">
+        <div class="info-cell">
+            <span class="ic-label">Destinatário</span>
+            <strong>{{CLIENT_NOME}}</strong>
+            <p>{{CLIENT_CONTATO}}<br>{{CLIENT_LOCAL}}</p>
+        </div>
+        <div class="info-cell">
+            <span class="ic-label">Validades</span>
+            <strong>{{COND_VALIDADE}} dias</strong>
+            <p>Execução em {{COND_PRAZO_EXEC}}</p>
+        </div>
+    </div>
+
+    <!-- SCOPE -->
+    <div class="scope">
+        <span class="s-tag">Objeto da Proposta</span>
+        <p>{{CLIENT_OBJETO}}</p>
+    </div>
+
+    <!-- TABLE -->
+    <div class="sec-title"><span>Detalhamento</span></div>
+
+    <div class="table-wrap">
         <table>
             <thead>
                 <tr>
-                    <th style="width: 50px; text-align: center;">#</th>
-                    <th>Descrição do Item/Serviço</th>
-                    <th style="width: 60px; text-align: center;">Qtd</th>
-                    <th style="width: 120px; text-align: right;">Unitário</th>
-                    <th style="width: 120px; text-align: right;">Total</th>
+                    <th>Nº</th>
+                    <th>Descrição</th>
+                    <th class="ctr">Un.</th>
+                    <th class="ctr">Qtd</th>
+                    <th class="rgt" style="padding-right:0;">Unit.</th>
+                    <th class="rgt" style="padding-right:0;">Total</th>
                 </tr>
             </thead>
             <tbody>
@@ -273,51 +548,73 @@
                 <!-- ITEMS_END -->
             </tbody>
         </table>
+    </div>
 
-        <div class="total-summary">
-            <span class="label">Valor Total do Investimento</span>
-            <span class="value">{{TOTAL_AMOUNT}}</span>
-        </div>
+    <!-- TOTAL -->
+    <div class="total-area" style="margin-top: 0;">
+        <span class="tl">Investimento Total</span>
+        <div class="tv">{{TOTAL_AMOUNT}}</div>
+    </div>
 
-        <!-- IF_PAGAMENTO -->
-        <div class="conditions-section">
-            <div class="section-title">Condições Comerciais</div>
-            <div class="condition-item">
-                <h4>Forma de Pagamento</h4>
-                <p>Entrada de {{COND_ENTRADA}}% em {{COND_PRAZO_ENTRADA}} dias. Saldo remanescente via {{COND_FORMA_PAGAMENTO}}.</p>
+    <!-- CONDITIONS -->
+    <!-- IF_PAGAMENTO -->
+    <div class="sec-title" style="margin-top: 32px;"><span>Condições</span></div>
+    <div class="cond-area">
+        <div class="cond-row">
+            <div class="cond-item">
+                <span class="cl">Entrada</span>
+                <div class="cv">{{COND_ENTRADA}}% em {{COND_PRAZO_ENTRADA}} dias</div>
             </div>
             <!-- IF_GARANTIA -->
-            <div class="condition-item">
-                <h4>Garantia</h4>
-                <p>Garantia de {{COND_WARRANTY_PERIOD}} {{COND_WARRANTY_TYPE}} para os serviços e produtos.</p>
+            <div class="cond-item">
+                <span class="cl">Garantia</span>
+                <div class="cv">{{COND_WARRANTY_PERIOD}} {{COND_WARRANTY_TYPE}}</div>
             </div>
             <!-- ENDIF_GARANTIA -->
-            <!-- IF_OBS -->
-            <div class="condition-item">
-                <h4>Observações Adicionais</h4>
-                <p>{{COND_OBS}}</p>
+            <div class="cond-item">
+                <span class="cl">Pagamento</span>
+                <div class="cv">{{COND_FORMA_PAGAMENTO}}</div>
             </div>
-            <!-- ENDIF_OBS -->
         </div>
-        <!-- ENDIF_PAGAMENTO -->
-
-        <!-- IF_PIX -->
-        <div class="pix-info">
-            <p>Para agilizar o processo, utilize a chave PIX:</p>
-            <strong>{{PIX_KEY}}</strong>
-        </div>
-        <!-- ENDIF_PIX -->
-
-        <div class="signature-block">
-            <div class="signature-line"></div>
-            <strong>{{COMPANY_NAME}}</strong><br>
-            <span style="font-size: 0.8rem; color: var(--text-light);">{{COMPANY_SLOGAN}}</span>
-        </div>
-
-        <footer class="footer">
-            {{COMPANY_NAME}} | CNPJ: {{COMPANY_CNPJ}}<br>
-            {{COMPANY_WEBSITE}} | {{FOOTER_NOTE}}
-        </footer>
     </div>
+    <!-- ENDIF_PAGAMENTO -->
+
+    <!-- PIX -->
+    <!-- IF_PIX -->
+    <div class="pix-area">
+        <div>
+            <span class="pl">Chave PIX</span>
+            <div class="pv">{{PIX_KEY}}</div>
+        </div>
+    </div>
+    <!-- ENDIF_PIX -->
+
+    <!-- OBS -->
+    <!-- IF_OBS -->
+    <div class="obs-area">
+        <span class="ol">Observações</span>
+        <p>{{COND_OBS}}</p>
+    </div>
+    <!-- ENDIF_OBS -->
+
+    <!-- SIGNATURE -->
+    <div class="sig-wrap">
+        <div class="sig-box">
+            <div class="sig-ornament">— ✦ —</div>
+            <div class="sig-line"></div>
+            <div class="sig-name">{{COMPANY_NAME}}</div>
+            <div class="sig-slogan">{{COMPANY_SLOGAN}}</div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="fl">{{COMPANY_NAME}} · CNPJ {{COMPANY_CNPJ}}</div>
+        <div class="fr">{{COMPANY_EMAIL}}<br>{{FOOTER_NOTE}}</div>
+    </footer>
+
+    <div class="header-bottom"></div>
+
+</div>
 </body>
 </html>

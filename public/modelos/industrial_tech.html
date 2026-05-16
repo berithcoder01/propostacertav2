@@ -4,234 +4,562 @@
     <meta charset="UTF-8">
     <title>Proposta Comercial - PropostaCerta Industrial Tech</title>
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto:wght@400;700;900&display=swap");
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
         :root {
-            --primary: var(--primary-color, #007BFF);
-            --secondary: var(--secondary-color, #28A745);
-            --dark: #343A40;
-            --light: #F8F9FA;
-            --white: #FFFFFF;
-            --gray: #6C757D;
-            --border-light: #DEE2E6;
+            --primary: var(--primary-color, #1C2333);
+            --accent: var(--secondary-color, #00C9B1);
+            --bg: #FFFFFF;
+            --surface: #F5F7FA;
+            --surface2: #EAECF0;
+            --text: #111827;
+            --muted: #6B7280;
+            --border: #D1D5DB;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: "Roboto", sans-serif;
-            color: var(--dark);
-            line-height: 1.6;
-            background: var(--white);
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.5;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
         .page {
-            padding: 50px;
-            max-width: 900px;
+            max-width: 860px;
             margin: 0 auto;
-            border: 1px solid var(--border-light);
-            box-shadow: 0 0 15px rgba(0,0,0,0.05);
         }
 
-        .header {
+        /* ── TOP ACCENT BAR ── */
+        .accent-bar {
+            height: 4px;
+            background: var(--accent);
+        }
+
+        /* ── HEADER ── */
+        header {
+            background: var(--primary);
+            padding: 30px 48px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 20px;
-            margin-bottom: 40px;
-            border-bottom: 3px solid var(--primary);
         }
 
-        .logo { max-height: 60px; }
+        .logo-area img {
+            max-height: 48px;
+            max-width: 160px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
 
-        .company-info {
+        .logo-area .fallback-name {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--bg);
+            letter-spacing: -0.3px;
+        }
+
+        .header-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
+        }
+
+        .header-meta .badge {
+            background: var(--accent);
+            color: var(--primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            letter-spacing: 1px;
+        }
+
+        .header-meta .contact {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.5);
             text-align: right;
-            font-size: 0.85rem;
-            color: var(--gray);
+            line-height: 1.7;
         }
 
-        .company-info strong {
-            color: var(--dark);
-            font-size: 1rem;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .proposal-id {
-            background: var(--primary);
-            color: var(--white);
-            padding: 15px 25px;
-            text-align: center;
-            margin: 0 -50px 40px -50px;
-        }
-
-        .proposal-id h1 {
-            font-family: "Roboto Mono", monospace;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin: 0;
-            letter-spacing: 2px;
-        }
-
-        .proposal-id p {
-            font-size: 0.9rem;
-            margin-top: 5px;
-            opacity: 0.9;
-        }
-
-        .info-grid {
+        /* ── HERO: TECHNICAL GRID ── */
+        .hero-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 50px;
+            grid-template-columns: 1fr 220px;
+            border-bottom: 1px solid var(--border);
         }
 
-        .info-box {
-            background: var(--light);
-            padding: 20px;
-            border-left: 4px solid var(--secondary);
+        .hero-main {
+            padding: 40px 48px;
+            border-right: 1px solid var(--border);
         }
 
-        .info-box h3 {
-            font-size: 0.9rem;
+        .hero-main .sys-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            color: var(--accent);
+            letter-spacing: 3px;
             text-transform: uppercase;
-            color: var(--primary);
-            margin-bottom: 10px;
+            display: block;
+            margin-bottom: 12px;
         }
 
-        .section-title {
-            font-size: 1.3rem;
+        .hero-main h1 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3.2rem;
             font-weight: 700;
             color: var(--primary);
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+
+        .hero-main .sub {
+            font-size: 0.82rem;
+            color: var(--muted);
+            margin-top: 12px;
+        }
+
+        .hero-side {
+            padding: 28px 28px;
+            background: var(--surface);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 18px;
+        }
+
+        .hero-side .data-item .dl {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.58rem;
+            color: var(--accent);
             text-transform: uppercase;
-            margin: 40px 0 20px 0;
-            border-bottom: 2px solid var(--border-light);
-            padding-bottom: 10px;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .hero-side .data-item .dv {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* ── CLIENT/PROJECT STRIP ── */
+        .info-strip {
+            display: grid;
+            grid-template-columns: 1.8fr 1fr;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .strip-cell {
+            padding: 22px 48px;
+            border-right: 1px solid var(--border);
+        }
+
+        .strip-cell:last-child {
+            padding-left: 32px;
+            border-right: none;
+        }
+
+        .strip-cell .cell-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.58rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .strip-cell strong {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+        }
+
+        .strip-cell p {
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        /* ── SCOPE ── */
+        .scope-block {
+            margin: 32px 48px;
+            padding: 20px 24px;
+            border-left: 3px solid var(--accent);
+            background: var(--surface);
+        }
+
+        .scope-block .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.58rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .scope-block p {
+            font-size: 0.85rem;
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* ── SECTION LABEL ── */
+        .sec-label {
+            margin: 0 48px 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sec-label::before {
+            content: "";
+            width: 12px;
+            height: 3px;
+            background: var(--accent);
+            display: block;
+            flex-shrink: 0;
+        }
+
+        .sec-label span {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--muted);
+        }
+
+        /* ── TABLE ── */
+        .table-wrap {
+            margin: 0 48px;
+            border: 1px solid var(--border);
+            overflow: hidden;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 30px;
+        }
+
+        thead {
+            background: var(--primary);
         }
 
         th {
-            background-color: var(--dark);
-            color: var(--white);
-            text-align: left;
-            padding: 12px;
-            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.58rem;
+            font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.6);
+            padding: 12px 14px;
+            text-align: left;
         }
+
+        th.num { text-align: center; }
+        th.right { text-align: right; }
+
+        tbody tr:nth-child(even) { background: var(--surface); }
 
         td {
-            padding: 12px;
-            border-bottom: 1px solid var(--border-light);
-            font-size: 0.9rem;
+            padding: 13px 14px;
+            font-size: 0.83rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+            color: var(--text);
         }
 
-        .total-summary {
+        td.item-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--accent);
+            text-align: center;
+            width: 42px;
+            font-weight: 700;
+        }
+
+        td.center { text-align: center; }
+        td.right { text-align: right; }
+
+        td.total-cell {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-align: right;
+            color: var(--primary);
+        }
+
+        /* ── TOTAL BAND ── */
+        .total-band {
+            margin: 0 48px;
+            background: var(--primary);
+            padding: 24px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 3px solid var(--accent);
+        }
+
+        .total-band .tl {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.62rem;
+            color: rgba(255,255,255,0.45);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .total-band .tv {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: -1px;
+        }
+
+        /* ── CONDITIONS ── */
+        .cond-wrap {
+            margin: 32px 48px 0;
+        }
+
+        .cond-panels {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border: 1px solid var(--border);
+        }
+
+        .cond-panel {
+            padding: 18px 20px;
+            border-right: 1px solid var(--border);
+        }
+
+        .cond-panel:last-child { border-right: none; }
+
+        .cond-panel .cp-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.56rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .cond-panel .cp-value {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* ── PIX ── */
+        .pix-strip {
+            margin: 0 48px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-top: none;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .pix-strip .pix-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.58rem;
+            background: var(--accent);
+            color: var(--primary);
+            font-weight: 700;
+            padding: 4px 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+
+        .pix-strip .pix-key {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* ── OBS ── */
+        .obs-wrap {
+            margin: 24px 48px;
+            padding: 16px 20px;
+            background: var(--surface);
+            border-left: 3px solid var(--border);
+        }
+
+        .obs-wrap .obs-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.56rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .obs-wrap p {
+            font-size: 0.8rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        /* ── SIGNATURE ── */
+        .sig-wrap {
+            margin: 40px 48px 0;
             display: flex;
             justify-content: flex-end;
-            margin-top: 20px;
         }
 
-        .total-card {
-            background: var(--secondary);
-            color: var(--white);
-            padding: 20px 30px;
+        .sig-box {
+            width: 200px;
+            text-align: center;
+        }
+
+        .sig-line {
+            height: 1px;
+            background: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .sig-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sig-slogan {
+            font-size: 0.68rem;
+            color: var(--muted);
+            margin-top: 3px;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            margin-top: 36px;
+            border-top: 1px solid var(--border);
+            padding: 14px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--surface);
+        }
+
+        footer .f-l {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.62rem;
+            color: var(--muted);
+        }
+
+        footer .f-r {
+            font-size: 0.65rem;
+            color: var(--muted);
             text-align: right;
-            border-radius: 5px;
         }
 
-        .total-card span { font-size: 0.9rem; text-transform: uppercase; display: block; }
-        .total-card strong { font-size: 2rem; font-weight: 700; }
-
-        .conditions-list {
-            list-style: none;
-            padding: 0;
-            margin-top: 15px;
-        }
-
-        .conditions-list li {
-            padding: 8px 0;
-            border-bottom: 1px dashed var(--border-light);
-            font-size: 0.9rem;
-        }
-
-        .pix-info {
-            background: #E6F7FF;
-            border: 1px solid var(--primary);
-            padding: 20px;
-            margin-top: 30px;
-            text-align: center;
-            border-radius: 5px;
-        }
-
-        .pix-info strong { color: var(--primary); font-size: 1.1rem; }
-
-        .signature-block {
-            margin-top: 80px;
-            text-align: center;
-        }
-
-        .signature-line {
-            border-top: 2px solid var(--dark);
-            width: 250px;
-            margin: 0 auto 10px;
-        }
-
-        .footer {
-            margin-top: 50px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-light);
-            text-align: center;
-            font-size: 0.75rem;
-            color: var(--gray);
+        .accent-tag {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            margin: 0 5px;
+            vertical-align: middle;
         }
     </style>
 </head>
 <body>
-    <div class="page">
-        <header>
-            <img src="{{LOGO_URL}}" alt="Logo" class="logo">
-            <div class="company-info">
-                <strong>{{COMPANY_NAME}}</strong><br>
-                {{COMPANY_ADDRESS}}<br>
-                {{COMPANY_PHONE}} | {{COMPANY_EMAIL}}
-            </div>
-        </header>
+<div class="page">
 
-        <div class="proposal-id">
+    <div class="accent-bar"></div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo-area">
+            <img src="{{LOGO_URL}}" alt="{{COMPANY_NAME}}" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+            <div class="fallback-name" style="display:none;">{{COMPANY_NAME}}</div>
+        </div>
+        <div class="header-meta">
+            <div class="badge">PROPOSTA TÉCNICA</div>
+            <div class="contact">
+                {{COMPANY_PHONE}}<br>
+                {{COMPANY_EMAIL}}
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <div class="hero-grid">
+        <div class="hero-main">
+            <span class="sys-label">// proposta_comercial</span>
             <h1>#{{PROPOSAL_NUM}}</h1>
-            <p>Proposta Comercial - {{PROPOSAL_DATE}}</p>
+            <p class="sub">Emitida em {{PROPOSAL_DATE}}</p>
         </div>
-
-        <div class="info-grid">
-            <div class="info-box">
-                <h3>Cliente</h3>
-                <strong>{{CLIENT_NOME}}</strong><br>
-                {{CLIENT_CONTATO}}<br>
-                {{CLIENT_LOCAL}}
+        <div class="hero-side">
+            <div class="data-item">
+                <span class="dl">Validade</span>
+                <div class="dv">{{COND_VALIDADE}} dias</div>
             </div>
-            <div class="info-box">
-                <h3>Detalhes da Proposta</h3>
-                <strong>Validade:</strong> {{COND_VALIDADE}} dias<br>
-                <strong>Prazo de Execução:</strong> {{COND_PRAZO_EXEC}}
+            <div class="data-item">
+                <span class="dl">Execução</span>
+                <div class="dv">{{COND_PRAZO_EXEC}}</div>
+            </div>
+            <div class="data-item">
+                <span class="dl">Emitente</span>
+                <div class="dv">{{COMPANY_NAME}}</div>
             </div>
         </div>
+    </div>
 
-        <div class="section-title">Objeto da Proposta</div>
-        <p style="margin-bottom: 30px; text-align: justify;">{{CLIENT_OBJETO}}</p>
+    <!-- CLIENT STRIP -->
+    <div class="info-strip">
+        <div class="strip-cell">
+            <span class="cell-label">Destinatário</span>
+            <strong>{{CLIENT_NOME}}</strong>
+            <p>{{CLIENT_CONTATO}} — {{CLIENT_LOCAL}}</p>
+        </div>
+        <div class="strip-cell">
+            <span class="cell-label">Telefone</span>
+            <strong>{{CLIENT_TEL}}</strong>
+            <p>{{CLIENT_CARGO}}</p>
+        </div>
+    </div>
 
-        <div class="section-title">Itens e Serviços</div>
+    <!-- SCOPE -->
+    <div class="scope-block">
+        <span class="tag">// escopo_do_projeto</span>
+        <p>{{CLIENT_OBJETO}}</p>
+    </div>
+
+    <!-- TABLE -->
+    <div class="sec-label" style="margin-top: 8px;">
+        <span>Detalhamento de Itens</span>
+    </div>
+
+    <div class="table-wrap">
         <table>
             <thead>
                 <tr>
-                    <th style="width: 50px; text-align: center;">#</th>
+                    <th class="num">#</th>
                     <th>Descrição</th>
-                    <th style="text-align: center; width: 60px;">Qtd</th>
-                    <th style="text-align: right; width: 120px;">Unitário</th>
-                    <th style="text-align: right; width: 120px;">Total</th>
+                    <th class="num">Un.</th>
+                    <th class="num">Qtd</th>
+                    <th class="right">Unit.</th>
+                    <th class="right">Total</th>
                 </tr>
             </thead>
             <tbody>
@@ -239,52 +567,68 @@
                 <!-- ITEMS_END -->
             </tbody>
         </table>
+    </div>
 
-        <div class="total-summary">
-            <div class="total-card">
-                <span>Investimento Total</span>
-                <strong>{{TOTAL_AMOUNT}}</strong>
+    <!-- TOTAL -->
+    <div class="total-band">
+        <div class="tl">// valor_total_da_proposta</div>
+        <div class="tv">{{TOTAL_AMOUNT}}</div>
+    </div>
+
+    <!-- CONDITIONS -->
+    <!-- IF_PAGAMENTO -->
+    <div class="cond-wrap">
+        <div class="sec-label" style="margin: 0 0 12px;">
+            <span>Condições Comerciais</span>
+        </div>
+        <div class="cond-panels">
+            <div class="cond-panel">
+                <span class="cp-label">Entrada</span>
+                <div class="cp-value">{{COND_ENTRADA}}% / {{COND_PRAZO_ENTRADA}} dias</div>
+            </div>
+            <!-- IF_GARANTIA -->
+            <div class="cond-panel">
+                <span class="cp-label">Garantia</span>
+                <div class="cp-value">{{COND_WARRANTY_PERIOD}} {{COND_WARRANTY_TYPE}}</div>
+            </div>
+            <!-- ENDIF_GARANTIA -->
+            <div class="cond-panel">
+                <span class="cp-label">Pagamento</span>
+                <div class="cp-value">{{COND_FORMA_PAGAMENTO}}</div>
             </div>
         </div>
-
-        <!-- IF_PAGAMENTO -->
-        <div class="section-title">Condições de Pagamento</div>
-        <ul class="conditions-list">
-            <li>Entrada de {{COND_ENTRADA}}% em {{COND_PRAZO_ENTRADA}} dias.</li>
-            <li>Saldo remanescente via {{COND_FORMA_PAGAMENTO}}.</li>
-            <li>Medição a cada {{COND_MEDICAO}} dias.</li>
-        </ul>
-        <!-- ENDIF_PAGAMENTO -->
-
-        <!-- IF_GARANTIA -->
-        <div class="section-title">Garantia</div>
-        <ul class="conditions-list">
-            <li>Garantia de {{COND_WARRANTY_PERIOD}} {{COND_WARRANTY_TYPE}} contra defeitos de fabricação e instalação.</li>
-        </ul>
-        <!-- ENDIF_GARANTIA -->
-
-        <!-- IF_OBS -->
-        <div class="section-title">Observações</div>
-        <p style="font-size: 0.9rem;">{{COND_OBS}}</p>
-        <!-- ENDIF_OBS -->
-
         <!-- IF_PIX -->
-        <div class="pix-info">
-            <p>Para agilizar o processo, realize o pagamento via PIX:</p>
-            <strong>Chave PIX: {{PIX_KEY}}</strong>
+        <div class="pix-strip">
+            <div class="pix-badge">PIX</div>
+            <div class="pix-key">{{PIX_KEY}}</div>
         </div>
         <!-- ENDIF_PIX -->
-
-        <div class="signature-block">
-            <div class="signature-line"></div>
-            <strong>{{COMPANY_NAME}}</strong><br>
-            <span style="font-size: 0.8rem; color: var(--gray);">{{COMPANY_SLOGAN}}</span>
-        </div>
-
-        <footer class="footer">
-            {{COMPANY_NAME}} | {{COMPANY_CNPJ}}<br>
-            {{COMPANY_WEBSITE}} | {{FOOTER_NOTE}}
-        </footer>
     </div>
+    <!-- ENDIF_PAGAMENTO -->
+
+    <!-- OBS -->
+    <!-- IF_OBS -->
+    <div class="obs-wrap">
+        <span class="obs-tag">// observações</span>
+        <p>{{COND_OBS}}</p>
+    </div>
+    <!-- ENDIF_OBS -->
+
+    <!-- SIGNATURE -->
+    <div class="sig-wrap">
+        <div class="sig-box">
+            <div class="sig-line"></div>
+            <div class="sig-name">{{COMPANY_NAME}}</div>
+            <div class="sig-slogan">{{COMPANY_SLOGAN}}</div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="f-l">{{COMPANY_NAME}}<span class="accent-tag"></span>{{COMPANY_CNPJ}}</div>
+        <div class="f-r">{{COMPANY_EMAIL}}<br>{{COMPANY_ADDRESS}}</div>
+    </footer>
+
+</div>
 </body>
 </html>
