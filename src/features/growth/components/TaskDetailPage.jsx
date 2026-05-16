@@ -30,7 +30,7 @@ export default function TaskDetailPage({ task, dayNumber, onBack, onMarkDone, on
   }[categoryIcon] || (() => null)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-4">
+    <div className="w-full max-w-3xl mx-auto">
       <AnimatePresence>
         {showConfetti && (
           <motion.div
@@ -44,7 +44,7 @@ export default function TaskDetailPage({ task, dayNumber, onBack, onMarkDone, on
         )}
       </AnimatePresence>
 
-      <div className="max-w-2xl mx-auto">
+      <div className="w-full">
         <button
           onClick={onBack}
           className="flex items-center gap-2 text-gray-400 hover:text-white mb-6 transition-colors"
@@ -124,7 +124,7 @@ export default function TaskDetailPage({ task, dayNumber, onBack, onMarkDone, on
                 className="flex-1 py-3 px-4 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 <CheckCircle className="w-4 h-4" />
-                {task?.status === 'DONE' ? 'Conclu\u00edda!' : 'Marcar como feito'}
+                {task?.status === 'DONE' ? 'Concluída!' : 'Marcar como feito'}
               </button>
             </div>
           </div>
