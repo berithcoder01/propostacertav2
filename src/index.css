@@ -1,0 +1,127 @@
+/* src/index.css — PropostaCerta Design System v2 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 16px;
+    /* Tema dinâmico — valores padrões, substituídos após login */
+    --primary: #10B981;
+    --primary-hover: #059669;
+    --secondary: #1A5276;
+    --gold: #F59E0B;
+    --accent2: #94A3B8;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-bg text-text-primary font-body antialiased;
+    min-height: 100vh;
+  }
+
+  /* Scrollbar discreta */
+  ::-webkit-scrollbar       { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 99px; }
+
+  /* Seleção de texto */
+  ::selection {
+    background: rgba(79,110,247,0.30);
+    color: #F1F5F9;
+  }
+}
+
+@layer components {
+  /* Card padrão — glassmorphism sutil */
+  .card {
+    @apply bg-surface border border-border rounded-3xl;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.40);
+  }
+
+  .card-elevated {
+    @apply bg-card border border-border-strong rounded-3xl;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.50);
+  }
+
+  /* Botão primário — usa variável dinâmica */
+  .btn-primary {
+    @apply bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white font-semibold
+           px-6 py-3.5 rounded-2xl transition-all duration-200
+           active:scale-[0.97] disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply text-text-secondary hover:text-text-primary hover:bg-white/5
+           px-4 py-2.5 rounded-xl transition-all duration-150 font-medium;
+  }
+
+  /* Input */
+  .input-base {
+    @apply bg-overlay border border-border hover:border-border-strong
+           focus:border-[var(--primary)] focus:ring-1 focus:ring-[color:var(--primary)_/_30]
+           rounded-xl px-4 py-3 text-text-primary placeholder-muted
+           text-sm transition-all outline-none w-full;
+  }
+
+  /* Badge de status */
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full
+           text-xs font-semibold uppercase tracking-wide;
+  }
+
+  /* Texto com gradiente */
+  .text-gradient {
+    background: linear-gradient(135deg, #F1F5F9 0%, #818CF8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-brand {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Halo de luz ambiente */
+  .ambient-glow {
+    position: relative;
+  }
+  .ambient-glow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(79,110,247,0.20) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Pill de navegação ativa */
+  .nav-active {
+    @apply text-[var(--primary)] bg-[var(--primary)]/10;
+  }
+
+  /* Estilo de marca para onboarding */
+  .brand-accent {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  }
+
+  .brand-glow {
+    box-shadow: 0 0 30px rgba(79,110,247,0.25);
+  }
+}
+
+/* Variáveis para preview dinâmico — sobrescritas inline */
+.onboarding-preview {
+  --preview-primary: #10B981;
+}
+
+@layer utilities {
+  .pb-safe { padding-bottom: env(safe-area-inset-bottom, 16px); }
+  .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
+}
