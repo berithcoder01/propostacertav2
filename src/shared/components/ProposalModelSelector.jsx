@@ -174,11 +174,7 @@ const ProposalModelSelector = ({
     selected: { scale: 1.02 },
   };
 
-  const groupedModels = PROPOSAL_MODELS.reduce((acc, model) => {
-    if (!acc[model.group]) acc[model.group] = [];
-    acc[model.group].push(model);
-    return acc;
-  }, {});
+
 
   return (
     <motion.div
@@ -203,70 +199,61 @@ const ProposalModelSelector = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="space-y-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {Object.entries(groupedModels).map(([group, models]) => (
-              <div key={group} className="space-y-3">
-                <h4 className="text-sm font-bold uppercase tracking-wider text-muted">
-                  {group}
-                </h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {models.map((model) => (
-                    <motion.div
-                      key={model.id}
-                      variants={itemVariants}
-                      animate={selectedModel === model.id ? 'selected' : 'visible'}
-                      className={`relative rounded-2xl border-2 transition-all overflow-hidden cursor-pointer group
-                        ${selectedModel === model.id
-                          ? 'border-accent bg-accent/5 shadow-lg shadow-accent/10'
-                          : 'border-border bg-surface hover:border-border-strong'}`}
-                      onClick={() => handleSelect(model.id)}
-                    >
-                      {/* Preview de cores */}
-                      <div className="h-16 flex">
-                        <div className="flex-1" style={{ backgroundColor: model.colors[0] }} />
-                        <div className="flex-1" style={{ backgroundColor: model.colors[1] }} />
-                      </div>
-
-                      <div className="p-4">
-                        <div className="flex items-start justify-between mb-2">
-                          <div className="flex-1">
-                            <h5 className="font-bold text-text-primary text-sm group-hover:text-accent transition-colors">
-                              {model.name}
-                            </h5>
-                            {showDescription && (
-                              <p className="text-[10px] text-muted mt-1 leading-relaxed line-clamp-2">
-                                {model.description}
-                              </p>
-                            )}
-                          </div>
-                          {selectedModel === model.id && (
-                            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="ml-2 w-6 h-6 rounded-full bg-accent flex items-center justify-center text-white flex-shrink-0">
-                              <Check size={14} />
-                            </motion.div>
-                          )}
-                        </div>
-
-                        <div className="flex gap-2 mt-3">
-                          <button
-                            className={`flex-1 py-2 px-3 rounded-lg text-[10px] font-bold transition-all
-                              ${selectedModel === model.id ? 'bg-accent text-white' : 'bg-bg text-muted'}`}
-                          >
-                            {selectedModel === model.id ? 'Selecionado' : 'Selecionar'}
-                          </button>
-                          <button
-                            onClick={(e) => { e.stopPropagation(); setPreviewModel(model.id); }}
-                            className="py-2 px-3 rounded-lg text-xs font-bold bg-bg border border-border text-muted hover:text-white hover:border-accent transition-all flex items-center gap-1"
-                            title="Visualizar modelo"
-                          >
-                            <Eye size={14} />
-                          </button>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
+            {PROPOSAL_MODELS.map((model) => (
+              <motion.div
+                key={model.id}
+                variants={itemVariants}
+                animate={selectedModel === model.id ? 'selected' : 'visible'}
+                className={`relative rounded-2xl border-2 transition-all overflow-hidden cursor-pointer group
+                  ${selectedModel === model.id
+                    ? 'border-accent bg-accent/5 shadow-lg shadow-accent/10'
+                    : 'border-border bg-surface hover:border-border-strong'}`}
+                onClick={() => handleSelect(model.id)}
+              >
+                {/* Preview de cores */}
+                <div className="h-16 flex">
+                  <div className="flex-1" style={{ backgroundColor: model.colors[0] }} />
+                  <div className="flex-1" style={{ backgroundColor: model.colors[1] }} />
                 </div>
-              </div>
+
+                <div className="p-4 flex flex-col h-[calc(100%-4rem)]">
+                  <div className="flex items-start justify-between mb-2">
+                    <div className="flex-1">
+                      <h5 className="font-bold text-text-primary text-sm group-hover:text-accent transition-colors">
+                        {model.name}
+                      </h5>
+                      {showDescription && (
+                        <p className="text-[10px] text-muted mt-1 leading-relaxed line-clamp-2">
+                          {model.description}
+                        </p>
+                      )}
+                    </div>
+                    {selectedModel === model.id && (
+                      <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="ml-2 w-6 h-6 rounded-full bg-accent flex items-center justify-center text-white flex-shrink-0">
+                        <Check size={14} />
+                      </motion.div>
+                    )}
+                  </div>
+
+                  <div className="flex gap-2 mt-auto pt-3">
+                    <button
+                      className={`flex-1 py-2 px-3 rounded-lg text-[10px] font-bold transition-all
+                        ${selectedModel === model.id ? 'bg-accent text-white' : 'bg-bg text-muted hover:bg-bg/80'}`}
+                    >
+                      {selectedModel === model.id ? 'Selecionado' : 'Selecionar'}
+                    </button>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setPreviewModel(model.id); }}
+                      className="py-2 px-3 rounded-lg text-xs font-bold bg-bg border border-border text-muted hover:text-white hover:border-accent transition-all flex items-center gap-1"
+                      title="Visualizar modelo"
+                    >
+                      <Eye size={14} />
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
             ))}
           </motion.div>
         ) : (
