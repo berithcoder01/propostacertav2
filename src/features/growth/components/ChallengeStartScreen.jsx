@@ -3,8 +3,8 @@ import { Rocket, Calendar, Target, TrendingUp } from 'lucide-react'
 
 export default function ChallengeStartScreen({ onStart, loading }) {
   const benefits = [
-    { icon: Calendar, text: '30 dias de tarefas pr\u00e1ticas e objetivas' },
-    { icon: Target, text: 'Personalizado para seu segmento de neg\u00f3cio' },
+    { icon: Calendar, text: '30 dias de tarefas práticas e objetivas' },
+    { icon: Target, text: 'Personalizado para seu segmento de negócio' },
     { icon: TrendingUp, text: 'Aumente sua visibilidade e clientes' },
     { icon: Rocket, text: 'Comece hoje - apenas 15-30 min por dia' }
   ]
@@ -23,7 +23,7 @@ export default function ChallengeStartScreen({ onStart, loading }) {
 
           <h2 className="text-3xl font-bold text-white mb-3">Desafio 30 Dias</h2>
           <p className="text-gray-400 mb-8">
-            Transforme seu neg\u00f3cio com a\u00e7\u00f5es pr\u00e1ticas de marketing digital. 
+            Transforme seu negócio com ações práticas de marketing digital. 
             Uma tarefa por dia, resultados reais.
           </p>
 
@@ -52,7 +52,7 @@ export default function ChallengeStartScreen({ onStart, loading }) {
           </button>
 
           <p className="text-gray-500 text-sm mt-4">
-            Voc\u00ea pode pular tarefas se precisar. O importante \u00e9 n\u00e3o desistir!
+            Você pode pular tarefas se precisar. O importante é não desistir!
           </p>
         </div>
       </motion.div>

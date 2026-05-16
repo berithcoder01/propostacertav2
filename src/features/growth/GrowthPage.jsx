@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Rocket, Image, BookOpen } from 'lucide-react'
-import ChallengeTab from './ChallengeTab'
-import SocialArtsTab from './SocialArtsTab'
-import TutorialsTab from './TutorialsTab'
+import ChallengeTab from './components/ChallengeTab'
+import SocialArtsTab from './components/SocialArtsTab'
+import TutorialsTab from './components/TutorialsTab'
 
 const tabs = [
   { id: 'challenge', label: 'Desafio 30 Dias', icon: Rocket },
@@ -18,7 +18,7 @@ export default function GrowthPage() {
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-6xl mx-auto space-y-6">
       <div>
         <h1 className="text-3xl font-black font-display text-white mb-2">Crescimento</h1>
-        <p className="text-muted">Ferramentas para alavancar seu neg\u00f3cio nas redes sociais.</p>
+        <p className="text-muted">Ferramentas para alavancar seu negócio nas redes sociais.</p>
       </div>
 
       <div className="flex gap-2 border-b border-gray-700 pb-1">

@@ -18,28 +18,28 @@ export default function ChallengeOnboarding({ onComplete }) {
 
   const questions = [
     {
-      title: 'Vamos conhecer seu neg\u00f3cio?',
+      title: 'Vamos conhecer seu negócio?',
       subtitle: 'Responda algumas perguntas para personalizarmos seu desafio',
       fields: [
         { key: 'hasInstagram', label: 'Tem Instagram?', icon: Instagram, type: 'boolean' },
         { key: 'hasWhatsappBiz', label: 'Usa WhatsApp Business?', icon: MessageSquare, type: 'boolean' },
-        { key: 'hasGoogleBusiness', label: 'Tem perfil no Google Meu Neg\u00f3cio?', icon: Globe, type: 'boolean' }
+        { key: 'hasGoogleBusiness', label: 'Tem perfil no Google Meu Negócio?', icon: Globe, type: 'boolean' }
       ]
     },
     {
-      title: 'Sua presen\u00e7a digital',
-      subtitle: 'Isso nos ajuda a sugerir as melhores estrat\u00e9gias',
+      title: 'Sua presença digital',
+      subtitle: 'Isso nos ajuda a sugerir as melhores estratégias',
       fields: [
-        { key: 'hasWebsite', label: 'Tem site ou p\u00e1gina online?', icon: Globe, type: 'boolean' },
-        { key: 'hasPaidAds', label: 'J\u00e1 investiu em an\u00fancios pagos?', icon: Target, type: 'boolean' }
+        { key: 'hasWebsite', label: 'Tem site ou página online?', icon: Globe, type: 'boolean' },
+        { key: 'hasPaidAds', label: 'Já investiu em anúncios pagos?', icon: Target, type: 'boolean' }
       ]
     },
     {
       title: 'Seu tempo e objetivos',
-      subtitle: 'Vamos ajustar o desafio \u00e0 sua realidade',
+      subtitle: 'Vamos ajustar o desafio à sua realidade',
       fields: [
         { key: 'dailyTimeMinutes', label: 'Minutos por dia para marketing', icon: Clock, type: 'number', options: [15, 30, 45, 60] },
-        { key: 'monthlyGoalLeads', label: 'Quantos clientes novos quer por m\u00eas?', icon: Users, type: 'number', options: [3, 5, 10, 20, 30] }
+        { key: 'monthlyGoalLeads', label: 'Quantos clientes novos quer por mês?', icon: Users, type: 'number', options: [3, 5, 10, 20, 30] }
       ]
     }
   ]
@@ -160,7 +160,7 @@ export default function ChallengeOnboarding({ onComplete }) {
               disabled={loading}
               className="flex-1 py-3 px-4 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-700 transition-colors disabled:opacity-50"
             >
-              {loading ? 'Salvando...' : isLastStep ? 'Come\u00e7ar Desafio' : 'Pr\u00f3ximo'}
+              {loading ? 'Salvando...' : isLastStep ? 'Começar Desafio' : 'Próximo'}
             </button>
           </div>
         </div>

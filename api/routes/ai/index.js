@@ -353,9 +353,6 @@ Máximo 5 linhas, tom humano, inclua pergunta aberta.`;
     // Fallback por palavras-chave
     const classifyByKeywords = (text) => {
       const lower = text.toLowerCase();
-      const hasProd = ['produto', 'venda', 'loja', 'comércio', 'material', 'equipamento', 'estoque'].some(k => lower.includes(k));
-      const hasServ = ['serviço', 'instalação', 'manutenção', 'consultoria', 'reparo', 'mão de obra', 'assistência'].some(k => lower.includes(k));
-
       let segment = 'OUTRO';
       if (lower.includes('elétric') || lower.includes('eletric')) segment = 'ELETRICA';
       else if (lower.includes('hidráulic') || lower.includes('hidraulic') || lower.includes('encanamento')) segment = 'HIDRAULICA';
@@ -363,42 +360,33 @@ Máximo 5 linhas, tom humano, inclua pergunta aberta.`;
       else if (lower.includes('ar condicionado') || lower.includes('climatiz') || lower.includes('hvac')) segment = 'AR_CONDICIONADO';
       else if (lower.includes('construção') || lower.includes('construcao') || lower.includes('civil') || lower.includes('obra')) segment = 'CONSTRUCAO_CIVIL';
 
-      let businessType = 'SERVICE_ONLY';
-      if (hasProd && hasServ) businessType = 'HYBRID';
-      else if (hasProd) businessType = 'PRODUCT_ONLY';
-
-      return { businessType, segment, confidence: 0.65, reasoning: 'Classificação por palavras-chave.', method: 'keyword-fallback' };
+      return { segment, confidence: 0.65, reasoning: 'Classificação por palavras-chave.', method: 'keyword-fallback' };
     };
 
     const activeModel = fastify.geminiFlashModel || model;
     if (activeModel) {
       try {
         const prompt = `Analise a descrição do negócio abaixo e retorne um JSON com:
-- businessType: "SERVICE_ONLY" (só serviços), "PRODUCT_ONLY" (só produtos) ou "HYBRID" (ambos)
 - segment: um dos valores exatos: ELETRICA, CONSTRUCAO_CIVIL, HIDRAULICA, PINTURA, AR_CONDICIONADO, OUTRO
 - confidence: número de 0.0 a 1.0
 - reasoning: explicação curta em português
 
 Descrição: "${description}"
 
-Responda APENAS o JSON, sem markdown: {"businessType": "...", "segment": "...", "confidence": 0.0, "reasoning": "..."}`;
+Responda APENAS o JSON, sem markdown: {"segment": "...", "confidence": 0.0, "reasoning": "..."}`;
 
         const result = await activeModel.generateContent(prompt);
         const responseText = result.response.text();
         const jsonMatch = responseText.match(/\{[\s\S]*\}/);
         if (jsonMatch) {
           const parsed = JSON.parse(jsonMatch[0]);
-          const validTypes = ['SERVICE_ONLY', 'PRODUCT_ONLY', 'HYBRID'];
-          if (validTypes.includes(parsed.businessType)) {
-            const segment = VALID_SEGMENTS.includes(parsed.segment) ? parsed.segment : 'OUTRO';
-            return reply.code(200).send({
-              businessType: parsed.businessType,
-              segment,
-              confidence: Math.round((parsed.confidence || 0.8) * 100) / 100,
-              reasoning: parsed.reasoning || '',
-              method: 'gemini',
-            });
-          }
+          const segment = VALID_SEGMENTS.includes(parsed.segment) ? parsed.segment : 'OUTRO';
+          return reply.code(200).send({
+            segment,
+            confidence: Math.round((parsed.confidence || 0.8) * 100) / 100,
+            reasoning: parsed.reasoning || '',
+            method: 'gemini',
+          });
         }
       } catch (geminiErr) {
         fastify.log.warn({ geminiErr }, 'Gemini falhou na classificação — usando fallback por palavras-chave');

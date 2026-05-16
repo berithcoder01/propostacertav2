@@ -12,11 +12,7 @@ const SEGMENT_LABELS = {
   OUTRO: { label: 'Outro', emoji: '🔨' },
 };
 
-const BUSINESS_TYPE_LABELS = {
-  SERVICE_ONLY: { label: 'Prestação de Serviços', emoji: '🛠️' },
-  PRODUCT_ONLY: { label: 'Venda de Produtos', emoji: '📦' },
-  HYBRID: { label: 'Serviços + Produtos', emoji: '🔀' },
-};
+
 
 /**
  * OnboardingConversacional — Fluxo em 2 turnos:
@@ -117,20 +113,18 @@ const OnboardingConversacional = ({ onNext, onBack, formData, update }) => {
         if (!response.ok) throw new Error('Erro ao classificar negócio');
 
         const result = await response.json();
-        const { businessType, segment, confidence, reasoning } = result;
+        const { segment, confidence, reasoning } = result;
 
         // Salva no formData
-        update('businessType', businessType);
         update('segment', segment || 'OUTRO');
 
-        setDetectedData({ businessType, segment: segment || 'OUTRO', confidence, reasoning });
+        setDetectedData({ segment: segment || 'OUTRO', confidence, reasoning });
 
         const segInfo = SEGMENT_LABELS[segment] || SEGMENT_LABELS.OUTRO;
-        const typeInfo = BUSINESS_TYPE_LABELS[businessType] || BUSINESS_TYPE_LABELS.SERVICE_ONLY;
 
         addMessage('assistant',
-          `Perfeito! Identifiquei seu negócio como:\n\n${segInfo.emoji} **Segmento:** ${segInfo.label}\n${typeInfo.emoji} **Tipo:** ${typeInfo.label}\n\n${reasoning || 'Configuração personalizada aplicada!'}\n\nPode continuar para personalizar as cores da sua marca. 🎨`,
-          { isResult: true, detectedData: { businessType, segment: segment || 'OUTRO', confidence } }
+          `Perfeito! Identifiquei seu negócio como:\n\n${segInfo.emoji} **Segmento:** ${segInfo.label}\n\n${reasoning || 'Configuração personalizada aplicada!'}\n\nPode continuar para personalizar as cores da sua marca. 🎨`,
+          { isResult: true, detectedData: { segment: segment || 'OUTRO', confidence } }
         );
         setTurn('done');
       } catch (err) {
@@ -217,12 +211,6 @@ const OnboardingConversacional = ({ onNext, onBack, formData, update }) => {
                       </span>
                     </div>
                     <div className="bg-white/10 rounded-lg p-2 flex items-center gap-1.5">
-                      <Briefcase size={13} />
-                      <span className="text-[11px] font-semibold">
-                        {BUSINESS_TYPE_LABELS[msg.detectedData.businessType]?.label || 'Serviços'}
-                      </span>
-                    </div>
-                    <div className="col-span-2 bg-white/10 rounded-lg p-2 flex items-center gap-1.5">
                       <CheckCircle size={13} />
                       <span className="text-[11px]">
                         Confiança: {Math.round((msg.detectedData.confidence || 0) * 100)}%
@@ -309,7 +297,6 @@ const OnboardingConversacional = ({ onNext, onBack, formData, update }) => {
             <Button variant="ghost" onClick={() => {
               update('name', formData.name || '');
               update('segment', 'OUTRO');
-              update('businessType', 'SERVICE_ONLY');
               onNext();
             }} disabled={loading}>
               Pular

@@ -31,7 +31,7 @@ export default function TutorialsTab() {
     <div className="space-y-6">
       <div className="bg-gray-800/50 border border-gray-700 rounded-2xl p-6">
         <h3 className="text-xl font-bold text-white mb-2">Tutoriais de Marketing Digital</h3>
-        <p className="text-gray-400 mb-6">Aprenda passo a passo como alavancar seu neg\u00f3cio nas redes sociais.</p>
+        <p className="text-gray-400 mb-6">Aprenda passo a passo como alavancar seu negócio nas redes sociais.</p>
 
         <div className="flex gap-2 flex-wrap mb-6">
           {tutorialCategories.map(cat => (
@@ -94,7 +94,7 @@ export default function TutorialsTab() {
                         {tutorial.duration}
                       </div>
                       {progress > 0 && (
-                        <div className="text-emerald-400 text-xs mt-0.5">{progress}% conclu\u00eddo</div>
+                        <div className="text-emerald-400 text-xs mt-0.5">{progress}% concluído</div>
                       )}
                     </div>
                     {isExpanded ? <ChevronUp className="w-5 h-5 text-gray-400" /> : <ChevronDown className="w-5 h-5 text-gray-400" />}

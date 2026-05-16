@@ -21,6 +21,7 @@ const PublicProposal = lazy(() => import('./features/proposal/PublicProposal'));
 const PlansPage = lazy(() => import('./features/billing/PlansPage'));
 const ProspectionDashboard = lazy(() => import('./features/leads/ProspectionDashboard'));
 const ProductsPage = lazy(() => import('./features/products/ProductsPage'));
+const GrowthPage = lazy(() => import('./features/growth/GrowthPage'));
 
 // Loading fallback
 const PageLoading = () => (
@@ -58,6 +59,7 @@ function App() {
                     <Route path="plans" element={<PlansPage />} />
                      <Route path="prospeccao" element={<ProspectionDashboard />} />
                      <Route path="produtos" element={<ProductsPage />} />
+                     <Route path="crescimento" element={<GrowthPage />} />
                   </Route>
                 </Route>
               </Routes>

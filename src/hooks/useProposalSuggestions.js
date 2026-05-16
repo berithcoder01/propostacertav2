@@ -3,7 +3,7 @@ import { getFinalConfigExpanded } from '../config/commercialConditionsConfigExpa
 
 export const useProposalSuggestions = (businessType, segment) => {
   return useMemo(() => {
-    const config = getFinalConfigExpanded(businessType, segment);
+    const config = getFinalConfigExpanded('HYBRID', segment);
 
     return {
       config,

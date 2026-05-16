@@ -6,7 +6,6 @@ import Button from '../../shared/Button';
 import { useAuth } from '../../shared/context/AuthContext';
 import { fetchCompany, updateCompany, fetchCatalog, createCatalogItem, updateCatalogItem, deleteCatalogItem, API_URL } from '../../shared/services/api';
 import { fmt } from '../proposal/constants';
-import BusinessTypeSettings from './components/BusinessTypeSettings';
 import ProposalModelSelector from '../../shared/components/ProposalModelSelector';
 
 const SEGMENTS = [
@@ -310,21 +309,7 @@ const Company = () => {
           />
         </div>
 
-        {/* Tipo de Negócio — FASE 8 */}
-        <div className="md:col-span-2 bg-surface border-2 border-border p-6 rounded-2xl space-y-6">
-          <h2 className="text-xl font-bold font-display text-accent2 border-b-2 border-border pb-2 flex items-center gap-3">
-            <Sparkles size={20} /> Tipo de Negócio
-          </h2>
-          {company && (
-            <BusinessTypeSettings
-              company={company}
-              onUpdate={(updated) => {
-                setCompany(updated);
-                refreshCompany();
-              }}
-            />
-          )}
-        </div>
+
 
         {/* Inteligência Artificial — NOVA */}
         <div className="md:col-span-2 bg-surface border-2 border-border p-6 rounded-2xl space-y-6">

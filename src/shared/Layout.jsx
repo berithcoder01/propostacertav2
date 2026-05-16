@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, FileText, Users, Settings, LogOut, Plus, ImageIcon, MapPin, Package } from 'lucide-react';
+import { LayoutDashboard, FileText, Users, Settings, LogOut, Plus, ImageIcon, MapPin, Package, TrendingUp } from 'lucide-react';
 import { useAuth } from './context/AuthContext';
 import { useTheme } from '../hooks/useTheme';
 import { FeatureFlagsProvider, useFeatureFlags } from './context/FeatureFlagsContext';
@@ -9,8 +9,6 @@ const Layout = () => {
   const { signOut, user, company, subscription } = useAuth();
   const { theme } = useTheme();
   const navigate = useNavigate();
-  const businessType = company?.businessType || 'SERVICE_ONLY';
-  const showProducts = businessType === 'PRODUCT_ONLY' || businessType === 'HYBRID';
   const companyName = company?.name || 'PropostaCerta';
   const companyInitial = companyName.charAt(0).toUpperCase();
 
@@ -66,9 +64,8 @@ const Layout = () => {
             <SideNavLink to="/"          icon={<LayoutDashboard size={20}/>} label="Dashboard" />
             <SideNavLink to="/propostas" icon={<FileText size={20}/>}        label="Propostas" />
             <SideNavLink to="/clientes"  icon={<Users size={20}/>}           label="Clientes" />
-            {showProducts && (
-              <SideNavLink to="/produtos"  icon={<Package size={20}/>}         label="Produtos" />
-            )}
+            <SideNavLink to="/produtos"  icon={<Package size={20}/>}         label="Catálogo" />
+            <SideNavLink to="/crescimento" icon={<TrendingUp size={20}/>}      label="Crescimento" />
             {subscription?.plan?.hasAi ? (
               <SideNavLink to="/prospeccao" icon={<MapPin size={20}/>} label="Prospecção" />
             ) : (
@@ -83,20 +80,6 @@ const Layout = () => {
 
           {/* Bottom Actions */}
           <div className="mt-auto flex flex-col">
-            {!showProducts && (
-              <div className="px-3 pb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-hidden whitespace-nowrap relative z-10">
-                <button 
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    navigate('/configuracoes');
-                  }} 
-                  className="text-[11px] text-muted hover:text-accent underline underline-offset-4 transition-colors cursor-pointer"
-                >
-                  Gostaria de ativar produtos?
-                </button>
-              </div>
-            )}
             <div className="flex flex-col gap-2 pt-6 border-t border-border">
               <SideNavLink to="/configuracoes" icon={<Settings size={20}/>} label="Configurações" />
               <button

@@ -35,10 +35,10 @@ export function getWeekNumber(day) {
 
 export function getWeekLabel(week) {
   const labels = {
-    1: 'Alicerce e Presen\u00e7a Digital',
+    1: 'Alicerce e Presença Digital',
     2: 'Prova Social e Autoridade',
-    3: 'Ativa\u00e7\u00e3o de Base e Networking',
-    4: 'Escala e An\u00fancios'
+    3: 'Ativação de Base e Networking',
+    4: 'Escala e Anúncios'
   }
   return labels[week] || ''
 }

@@ -90,7 +90,7 @@ model Company {
   defaultPenaltyPct      Float  @default(0.3)
   defaultPenaltyCap      Float  @default(10)
 
- // Relações
+  // Relações
     user       User?
     clients    Client[]
     catalog    CatalogItem[]
@@ -101,6 +101,8 @@ model Company {
     aiChats        AiChat[]
     leads          Lead[]
     subscription   Subscription?
+    marketingProfile   MarketingProfile?
+    marketingChallenges MarketingChallenge[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -517,4 +519,78 @@ model ProposalTemplate {
   proposals Proposal[]
 
   @@index([companyId])
+}
+
+// ─────────────────────────────────────────────
+// MARKETING - DESAFIO 30 DIAS
+// ─────────────────────────────────────────────
+
+model MarketingProfile {
+  id                String             @id @default(uuid())
+  companyId         String             @unique
+  company           Company            @relation(fields: [companyId], references: [id])
+
+  hasInstagram      Boolean            @default(false)
+  hasWhatsappBiz    Boolean            @default(false)
+  hasPaidAds        Boolean            @default(false)
+  hasWebsite        Boolean            @default(false)
+  hasGoogleBusiness Boolean            @default(false)
+  dailyTimeMinutes  Int                @default(30)
+  monthlyGoalLeads  Int                @default(5)
+
+  profileType       String             @default("technical")
+
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+
+  challenges        MarketingChallenge[]
+}
+
+model MarketingChallenge {
+  id                String             @id @default(uuid())
+  companyId         String
+  company           Company            @relation(fields: [companyId], references: [id])
+  marketingProfileId String
+  marketingProfile  MarketingProfile   @relation(fields: [marketingProfileId], references: [id])
+
+  startDate         DateTime
+  endDate           DateTime
+  status            ChallengeStatus    @default(ACTIVE)
+
+  totalDone         Int                @default(0)
+  totalSkipped      Int                @default(0)
+  completionPct     Float              @default(0)
+
+  createdAt         DateTime           @default(now())
+
+  tasks             MarketingTask[]
+
+  @@index([companyId, status])
+}
+
+model MarketingTask {
+  id          String      @id @default(uuid())
+  challengeId String
+  challenge   MarketingChallenge @relation(fields: [challengeId], references: [id], onDelete: Cascade)
+
+  day         Int
+  taskSlug    String
+  status      TaskStatus  @default(PENDING)
+  completedAt DateTime?
+  skippedAt   DateTime?
+
+  @@index([challengeId, day])
+  @@unique([challengeId, day])
+}
+
+enum ChallengeStatus {
+  ACTIVE
+  COMPLETED
+  ABANDONED
+}
+
+enum TaskStatus {
+  PENDING
+  DONE
+  SKIPPED
 }

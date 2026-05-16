@@ -17,38 +17,35 @@ export const useFeatureFlags = () => {
 export const FeatureFlagsProvider = ({ children, company }) => {
   const businessType = company?.businessType || 'SERVICE_ONLY';
 
-  // Calcular quais features estão habilitadas baseado no businessType
   const features = useMemo(
     () => ({
-      // Funcionalidades de Serviços
-      showServices: businessType === 'SERVICE_ONLY' || businessType === 'HYBRID',
-      showServiceCatalog: businessType === 'SERVICE_ONLY' || businessType === 'HYBRID',
-      showServiceTemplates: businessType === 'SERVICE_ONLY' || businessType === 'HYBRID',
+      // Todas as funcionalidades agora estão universalmente habilitadas
+      showServices: true,
+      showServiceCatalog: true,
+      showServiceTemplates: true,
 
-      // Funcionalidades de Produtos
-      showProducts: businessType === 'PRODUCT_ONLY' || businessType === 'HYBRID',
-      showProductCatalog: businessType === 'PRODUCT_ONLY' || businessType === 'HYBRID',
-      showInventory: businessType === 'PRODUCT_ONLY' || businessType === 'HYBRID',
-      showStockAlerts: businessType === 'PRODUCT_ONLY' || businessType === 'HYBRID',
+      showProducts: true,
+      showProductCatalog: true,
+      showInventory: true,
+      showStockAlerts: true,
 
-      // Funcionalidades Híbridas
-      showHybridProposals: businessType === 'HYBRID',
-      showMixedItems: businessType === 'HYBRID',
+      showHybridProposals: true,
+      showMixedItems: true,
 
-      // Funcionalidades Gerais (sempre ativas)
+      // Funcionalidades Gerais
       showProposals: true,
       showClients: true,
       showDashboard: true,
       showSettings: true,
       showAI: true,
 
-      // Metadata
-      businessType,
-      isServiceOnly: businessType === 'SERVICE_ONLY',
-      isProductOnly: businessType === 'PRODUCT_ONLY',
-      isHybrid: businessType === 'HYBRID',
+      // Mantemos as chaves antigas com valores genéricos caso algum componente antigo dependa estritamente delas
+      businessType: 'HYBRID',
+      isServiceOnly: false,
+      isProductOnly: false,
+      isHybrid: true,
     }),
-    [businessType]
+    []
   );
 
   return (
