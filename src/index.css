@@ -67,29 +67,23 @@
 @layer components {
   /* Card padrão */
   .card {
-    @apply border rounded-2xl;
+    @apply bg-surface border border-border rounded-2xl;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.1);
   }
   .dark .card {
     background-color: #141414;
     border-color: #2a2a2a;
     box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);
   }
-  .card:not(.dark .card) {
-    @apply bg-surface border border-border;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.1);
-  }
 
   .card-elevated {
-    @apply border rounded-2xl;
+    @apply bg-card border border-border-strong rounded-2xl;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.025);
   }
   .dark .card-elevated {
     background-color: #1a1a1a;
     border-color: #2a2a2a;
     box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -2px rgba(0,0,0,0.2);
-  }
-  .card-elevated:not(.dark .card-elevated) {
-    @apply bg-card border border-border-strong;
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.025);
   }
 
   /* Botão primário — Light Mode */

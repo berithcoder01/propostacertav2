@@ -198,13 +198,13 @@ const ProspectionDashboard = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-black font-display text-white">Prospecção</h1>
-          <p className="text-muted text-sm mt-1">Encontre e gerencie leads qualificados para sua empresa</p>
+          <h1 className="text-3xl font-black font-display text-text-primary dark:text-white">Prospecção</h1>
+          <p className="text-muted dark:text-gray-500 text-sm mt-1">Encontre e gerencie leads qualificados para sua empresa</p>
         </div>
         <div className="flex gap-2">
           <button
             onClick={loadWeeklyReport}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-surface/50 border border-border text-sm font-bold text-muted hover:text-white hover:border-accent transition-colors"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-surface/50 dark:bg-dark-surface/50 border border-border dark:border-dark-border text-sm font-bold text-muted dark:text-gray-500 hover:text-text-primary dark:hover:text-white hover:border-accent transition-colors"
           >
             <BarChart2 size={16} /> Relatório Semanal
           </button>
@@ -220,31 +220,31 @@ const ProspectionDashboard = () => {
       {/* Stats Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {statsCards.map((stat, idx) => (
-          <div key={idx} className={`${stat.bg} border border-border rounded-2xl p-4 space-y-1`}>
+          <div key={idx} className={`${stat.bg} dark:bg-opacity-20 border border-border dark:border-dark-border rounded-2xl p-4 space-y-1`}>
             <stat.icon size={20} className={stat.color} />
-            <div className="text-2xl font-black font-display text-white">{stat.value}</div>
-            <div className="text-[10px] text-muted uppercase tracking-wider">{stat.title}</div>
+            <div className="text-2xl font-black font-display text-text-primary dark:text-white">{stat.value}</div>
+            <div className="text-[10px] text-muted dark:text-gray-500 uppercase tracking-wider">{stat.title}</div>
           </div>
         ))}
       </div>
 
       {/* Filtros e Busca */}
-      <div className="bg-surface border-2 border-border rounded-2xl p-4 space-y-4">
+      <div className="bg-surface dark:bg-dark-surface border-2 border-border dark:border-dark-border rounded-2xl p-4 space-y-4">
         <div className="flex flex-col md:flex-row gap-4 items-center">
           <div className="flex-1 relative">
-            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
+            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted dark:text-gray-500" />
             <input
               type="text"
               placeholder="Buscar lead por nome, empresa, cidade..."
               value={searchQuery}
               onChange={e => { setSearchQuery(e.target.value); setPage(1); }}
-              className="w-full bg-bg border border-border rounded-xl px-10 py-2.5 text-sm text-white outline-none focus:border-accent"
+              className="w-full bg-bg dark:bg-dark-bg border border-border dark:border-dark-border rounded-xl px-10 py-2.5 text-sm text-text-primary dark:text-white outline-none focus:border-accent"
             />
           </div>
           <select
             value={statusFilter}
             onChange={e => { setStatusFilter(e.target.value); setPage(1); }}
-            className="bg-bg border border-border rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-accent"
+            className="bg-bg dark:bg-dark-bg border border-border dark:border-dark-border rounded-xl px-4 py-2.5 text-sm text-text-primary dark:text-white outline-none focus:border-accent"
           >
             <option value="ALL">Todos Status</option>
             <option value="NEW">Novo</option>
@@ -256,7 +256,7 @@ const ProspectionDashboard = () => {
           <select
             value={segmentFilter}
             onChange={e => { setSegmentFilter(e.target.value); setPage(1); }}
-            className="bg-bg border border-border rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-accent"
+            className="bg-bg dark:bg-dark-bg border border-border dark:border-dark-border rounded-xl px-4 py-2.5 text-sm text-text-primary dark:text-white outline-none focus:border-accent"
           >
             <option value="ALL">Todos Segmentos</option>
             <option value="RESIDENCIAL">Residencial</option>
@@ -266,7 +266,7 @@ const ProspectionDashboard = () => {
           </select>
           <button
             onClick={() => { setRefreshing(true); loadLeads(); }}
-            className="p-2.5 rounded-xl bg-surface text-muted hover:text-accent border border-border transition-colors"
+            className="p-2.5 rounded-xl bg-surface dark:bg-dark-surface text-muted dark:text-gray-500 hover:text-accent border border-border dark:border-dark-border transition-colors"
           >
             <RefreshCw size={16} className={refreshing ? 'animate-spin' : ''} />
           </button>
@@ -275,14 +275,14 @@ const ProspectionDashboard = () => {
         {/* Busca de Oportunidades por IA */}
         <div className="flex gap-2 items-center">
           <div className="relative flex-1 max-w-md">
-            <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
+            <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted dark:text-gray-500" />
             <input
               type="text"
               placeholder="Buscar oportunidades por IA (ex.: condomínios em Maringá)..."
               value={searchPlaceQuery}
               onChange={e => setSearchPlaceQuery(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && handleSearchPlaces()}
-              className="w-full bg-bg border border-border rounded-xl pl-9 pr-4 py-2 text-sm text-white outline-none focus:border-accent"
+              className="w-full bg-bg dark:bg-dark-bg border border-border dark:border-dark-border rounded-xl pl-9 pr-4 py-2 text-sm text-text-primary dark:text-white outline-none focus:border-accent"
             />
           </div>
           <button
@@ -298,21 +298,21 @@ const ProspectionDashboard = () => {
         {/* Scraping de Website */}
         <div className="flex gap-2 items-center mt-4">
           <div className="relative flex-1 max-w-md">
-            <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
+            <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted dark:text-gray-500" />
             <input
               type="text"
               placeholder="URL para scraping (ex.: https://exemplo.com/empresas)"
               value={scrapeUrl}
               onChange={e => setScrapeUrl(e.target.value)}
-              className="w-full bg-bg border border-border rounded-xl pl-9 pr-4 py-2 text-sm text-white outline-none focus:border-accent"
+              className="w-full bg-bg dark:bg-dark-bg border border-border dark:border-dark-border rounded-xl pl-9 pr-4 py-2 text-sm text-text-primary dark:text-white outline-none focus:border-accent"
             />
           </div>
           <div className="relative flex-1 max-w-xs">
-            <MapPin size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
+            <MapPin size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted dark:text-gray-500" />
             <select
               value={scrapeSegment}
               onChange={e => setScrapeSegment(e.target.value)}
-              className="bg-bg border border-border rounded-xl pl-9 pr-4 py-2 text-sm text-white outline-none focus:border-accent w-full"
+              className="bg-bg dark:bg-dark-bg border border-border dark:border-dark-border rounded-xl pl-9 pr-4 py-2 text-sm text-text-primary dark:text-white outline-none focus:border-accent w-full"
             >
               <option value="RESIDENCIAL">Residencial</option>
               <option value="COMERCIAL">Comercial</option>
@@ -331,7 +331,7 @@ const ProspectionDashboard = () => {
         </div>
 
         {/* Toggle View */}
-        <div className="flex gap-1 p-1 bg-bg rounded-xl">
+        <div className="flex gap-1 p-1 bg-bg dark:bg-dark-bg rounded-xl">
           {viewOptions.map((opt) => {
             const Icon = opt.icon;
             return (
@@ -341,7 +341,7 @@ const ProspectionDashboard = () => {
                 className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
                   activeView === opt.key
                     ? 'bg-accent text-white shadow-sm'
-                    : 'text-muted hover:text-white'
+                    : 'text-muted dark:text-gray-500 hover:text-text-primary dark:hover:text-white'
                 }`}
               >
                 <Icon size={12} />
@@ -402,12 +402,12 @@ const ProspectionDashboard = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="bg-surface border-2 border-border rounded-2xl p-6 max-w-lg w-full max-h-[80vh] overflow-y-auto"
+              className="bg-surface dark:bg-dark-surface border-2 border-border dark:border-dark-border rounded-2xl p-6 max-w-lg w-full max-h-[80vh] overflow-y-auto"
               onClick={e => e.stopPropagation()}
             >
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-xl font-bold font-display text-white">Relatório Semanal</h3>
-                <button onClick={() => setShowReport(false)} className="text-muted hover:text-white"><XCircle size={20} /></button>
+                <h3 className="text-xl font-bold font-display text-text-primary dark:text-white">Relatório Semanal</h3>
+                <button onClick={() => setShowReport(false)} className="text-muted dark:text-gray-500 hover:text-text-primary dark:hover:text-white"><XCircle size={20} /></button>
               </div>
               <WeeklyReport data={weeklyReport} />
             </motion.div>
@@ -423,7 +423,7 @@ const ProspectionDashboard = () => {
                initial={{ opacity: 0, scale: 0.95, y: 20 }}
                animate={{ opacity: 1, scale: 1, y: 0 }}
                exit={{ opacity: 0, scale: 0.95, y: 20 }}
-               className="bg-surface border-2 border-border rounded-2xl p-6 max-w-lg w-full max-h-[85vh] overflow-y-auto"
+               className="bg-surface dark:bg-dark-surface border-2 border-border dark:border-dark-border rounded-2xl p-6 max-w-lg w-full max-h-[85vh] overflow-y-auto"
                onClick={e => e.stopPropagation()}
              >
                <LeadCard lead={selectedLead} compact={false} onClose={() => setSelectedLead(null)} onAction={(action, lead) => {

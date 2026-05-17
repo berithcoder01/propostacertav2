@@ -105,22 +105,22 @@ const ProductFormModal = ({ isOpen, onClose, onSuccess, editItem }) => {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: '100%', opacity: 0 }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="relative w-full max-w-lg bg-surface border-t sm:border-2 border-border rounded-t-3xl sm:rounded-2xl p-6 space-y-6 z-10 max-h-[90vh] overflow-y-auto"
+            className="relative w-full max-w-lg bg-surface dark:bg-dark-surface border-t sm:border-2 border-border dark:border-dark-border rounded-t-3xl sm:rounded-2xl p-6 space-y-6 z-10 max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            <button onClick={onClose} className="absolute top-4 right-4 p-2 text-muted hover:text-white transition-colors">
+            <button onClick={onClose} className="absolute top-4 right-4 p-2 text-muted dark:text-gray-500 hover:text-text-primary dark:hover:text-white transition-colors">
               <X size={20} />
             </button>
 
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-accent/10 rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-accent/10 dark:bg-accent/20 rounded-xl flex items-center justify-center">
                 <Package size={20} className="text-accent" />
               </div>
               <div>
-                <h3 className="text-lg font-bold font-display text-white">
+                <h3 className="text-lg font-bold font-display text-text-primary dark:text-white">
                   {editItem ? 'Editar Item' : 'Novo Item'}
                 </h3>
-                <p className="text-xs text-muted">
+                <p className="text-xs text-muted dark:text-gray-500">
                   {editItem ? 'Atualize os dados do item' : 'Cadastre um produto ou serviço no catálogo'}
                 </p>
               </div>
@@ -128,12 +128,12 @@ const ProductFormModal = ({ isOpen, onClose, onSuccess, editItem }) => {
 
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Tipo */}
-              <div className="flex gap-2 p-1 bg-bg rounded-xl">
+              <div className="flex gap-2 p-1 bg-bg dark:bg-dark-bg rounded-xl">
                 <button
                   type="button"
                   onClick={() => setFormData({ ...formData, isProduct: false })}
                   className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${
-                    !formData.isProduct ? 'bg-gold text-white' : 'text-muted'
+                    !formData.isProduct ? 'bg-gold text-white' : 'text-muted dark:text-gray-500'
                   }`}
                 >
                   Serviço
@@ -142,7 +142,7 @@ const ProductFormModal = ({ isOpen, onClose, onSuccess, editItem }) => {
                   type="button"
                   onClick={() => setFormData({ ...formData, isProduct: true })}
                   className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${
-                    formData.isProduct ? 'bg-accent text-white' : 'text-muted'
+                    formData.isProduct ? 'bg-accent text-white' : 'text-muted dark:text-gray-500'
                   }`}
                 >
                   Produto
@@ -159,21 +159,21 @@ const ProductFormModal = ({ isOpen, onClose, onSuccess, editItem }) => {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-xs font-bold uppercase tracking-wider text-muted mb-1.5 block">Unidade *</label>
+                  <label className="text-xs font-bold uppercase tracking-wider text-muted dark:text-gray-500 mb-1.5 block">Unidade *</label>
                   <select
                     value={formData.unit}
                     onChange={(e) => setFormData({ ...formData, unit: e.target.value })}
-                    className="w-full bg-bg border border-border rounded-xl px-3 py-2.5 text-sm text-white outline-none focus:border-accent"
+                    className="w-full bg-bg dark:bg-dark-bg border border-border dark:border-dark-border rounded-xl px-3 py-2.5 text-sm text-text-primary dark:text-white outline-none focus:border-accent"
                   >
                     {UNITS.map(u => <option key={u} value={u}>{u}</option>)}
                   </select>
                 </div>
                 <div>
-                  <label className="text-xs font-bold uppercase tracking-wider text-muted mb-1.5 block">Categoria</label>
+                  <label className="text-xs font-bold uppercase tracking-wider text-muted dark:text-gray-500 mb-1.5 block">Categoria</label>
                   <select
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                    className="w-full bg-bg border border-border rounded-xl px-3 py-2.5 text-sm text-white outline-none focus:border-accent"
+                    className="w-full bg-bg dark:bg-dark-bg border border-border dark:border-dark-border rounded-xl px-3 py-2.5 text-sm text-text-primary dark:text-white outline-none focus:border-accent"
                   >
                     {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
                   </select>
@@ -224,13 +224,13 @@ const ProductFormModal = ({ isOpen, onClose, onSuccess, editItem }) => {
               )}
 
               <div>
-                <label className="text-xs font-bold uppercase tracking-wider text-muted mb-1.5 block">Observações</label>
+                <label className="text-xs font-bold uppercase tracking-wider text-muted dark:text-gray-500 mb-1.5 block">Observações</label>
                 <textarea
                   rows={2}
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                   placeholder="Notas adicionais..."
-                  className="w-full bg-bg border border-border rounded-xl px-3 py-2.5 text-sm text-white outline-none focus:border-accent resize-none"
+                  className="w-full bg-bg dark:bg-dark-bg border border-border dark:border-dark-border rounded-xl px-3 py-2.5 text-sm text-text-primary dark:text-white outline-none focus:border-accent resize-none"
                 />
               </div>
 

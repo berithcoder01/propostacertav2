@@ -117,18 +117,18 @@ const ProductsPage = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-black font-display text-white">Produtos & Catálogo</h1>
-          <p className="text-muted text-sm mt-1">Gerencie produtos, serviços e controle de estoque</p>
+          <h1 className="text-3xl font-black font-display text-text-primary dark:text-white">Produtos & Catálogo</h1>
+          <p className="text-muted dark:text-gray-500 text-sm mt-1">Gerencie produtos, serviços e controle de estoque</p>
         </div>
       </div>
 
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {statCards.map((stat, idx) => (
-          <div key={idx} className={`${stat.bg} border border-border rounded-2xl p-4 space-y-1`}>
+          <div key={idx} className={`${stat.bg} dark:bg-opacity-20 border border-border dark:border-dark-border rounded-2xl p-4 space-y-1`}>
             <stat.icon size={20} className={stat.color} />
-            <div className="text-2xl font-black font-display text-white">{stat.value}</div>
-            <div className="text-[10px] text-muted uppercase tracking-wider">{stat.title}</div>
+            <div className="text-2xl font-black font-display text-text-primary dark:text-white">{stat.value}</div>
+            <div className="text-[10px] text-muted dark:text-gray-500 uppercase tracking-wider">{stat.title}</div>
           </div>
         ))}
       </div>

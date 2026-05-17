@@ -113,8 +113,8 @@ const ClientsList = () => {
     >
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-black font-display text-white mb-2">Clientes</h1>
-          <p className="text-muted">Gerencie sua base de clientes e contatos.</p>
+          <h1 className="text-3xl font-black font-display text-text-primary dark:text-white mb-2">Clientes</h1>
+          <p className="text-muted dark:text-gray-500">Gerencie sua base de clientes e contatos.</p>
         </div>
         {!isFormOpen && !editingId && (
           <Button onClick={() => setIsFormOpen(true)} className="flex items-center gap-2 px-6">
@@ -125,9 +125,9 @@ const ClientsList = () => {
       </div>
 
       {isFormOpen && (
-        <div className="bg-surface border-2 border-accent/50 rounded-2xl p-6 shadow-xl relative overflow-hidden">
+        <div className="bg-surface dark:bg-dark-surface border-2 border-accent/50 dark:border-accent/30 rounded-2xl p-6 shadow-xl relative overflow-hidden">
           <div className="absolute top-0 left-0 w-2 h-full bg-accent" />
-          <h2 className="text-xl font-bold font-display text-white mb-6">Cadastrar Cliente</h2>
+          <h2 className="text-xl font-bold font-display text-text-primary dark:text-white mb-6">Cadastrar Cliente</h2>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Input label="Empresa / Cliente" placeholder="Razão Social ou Nome Completo" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} />
@@ -143,10 +143,10 @@ const ClientsList = () => {
         </div>
       )}
 
-      <div className="bg-surface border-2 border-border rounded-2xl shadow-xl overflow-hidden">
-        <div className="p-4 border-b border-border flex gap-4">
+      <div className="bg-surface dark:bg-dark-surface border-2 border-border dark:border-dark-border rounded-2xl shadow-xl overflow-hidden">
+        <div className="p-4 border-b border-border dark:border-dark-border flex gap-4">
           <div className="relative flex-1 max-w-md">
-            <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-muted">
+            <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-muted dark:text-gray-500">
               <Search size={18} />
             </div>
             <input
@@ -154,7 +154,7 @@ const ClientsList = () => {
               placeholder="Buscar clientes..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-bg border-2 border-border rounded-xl pl-12 pr-4 py-3 text-sm text-white outline-none transition-all focus:border-accent focus:ring-4 focus:ring-accent/15"
+              className="w-full bg-bg dark:bg-dark-bg border-2 border-border dark:border-dark-border rounded-xl pl-12 pr-4 py-3 text-sm text-text-primary dark:text-white outline-none transition-all focus:border-accent focus:ring-4 focus:ring-accent/15"
             />
           </div>
         </div>
@@ -162,25 +162,25 @@ const ClientsList = () => {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-bg text-[10px] uppercase tracking-widest text-muted">
-                <th className="p-4 font-bold border-b border-border">Empresa / Cliente</th>
-                <th className="p-4 font-bold border-b border-border">Contato</th>
-                <th className="p-4 font-bold border-b border-border">Localidade</th>
-                <th className="p-4 font-bold border-b border-border text-right">Ações</th>
+              <tr className="bg-bg dark:bg-dark-bg text-[10px] uppercase tracking-widest text-muted dark:text-gray-500">
+                <th className="p-4 font-bold border-b border-border dark:border-dark-border">Empresa / Cliente</th>
+                <th className="p-4 font-bold border-b border-border dark:border-dark-border">Contato</th>
+                <th className="p-4 font-bold border-b border-border dark:border-dark-border">Localidade</th>
+                <th className="p-4 font-bold border-b border-border dark:border-dark-border text-right">Ações</th>
               </tr>
             </thead>
             <tbody>
               {isLoading ? (
                 <tr>
-                  <td colSpan="4" className="p-8 text-center text-muted">Carregando...</td>
+                  <td colSpan="4" className="p-8 text-center text-muted dark:text-gray-500">Carregando...</td>
                 </tr>
               ) : filteredClients.length === 0 ? (
                 <tr>
-                  <td colSpan="4" className="p-8 text-center text-muted">Nenhum cliente encontrado.</td>
+                  <td colSpan="4" className="p-8 text-center text-muted dark:text-gray-500">Nenhum cliente encontrado.</td>
                 </tr>
               ) : (
                 filteredClients.map(client => (
-                  <tr key={client.id} className="border-b border-border hover:bg-white/5 transition-colors group">
+                  <tr key={client.id} className="border-b border-border dark:border-dark-border hover:bg-white/5 dark:hover:bg-white/10 transition-colors group">
                     {editingId === client.id ? (
                       <>
                         <td className="p-4" colSpan="4">
@@ -202,14 +202,14 @@ const ClientsList = () => {
                       <>
                         <td className="p-4">
                           <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-xl bg-accent/10 text-accent flex items-center justify-center">
+                            <div className="w-10 h-10 rounded-xl bg-accent/10 dark:bg-accent/20 text-accent flex items-center justify-center">
                               <Building2 size={20} />
                             </div>
-                            <div className="font-bold text-white text-sm">{client.name}</div>
+                            <div className="font-bold text-text-primary dark:text-white text-sm">{client.name}</div>
                           </div>
                         </td>
-                        <td className="p-4 text-sm text-muted">
-                          <div className="text-white font-medium mb-1">{client.contact}</div>
+                        <td className="p-4 text-sm text-muted dark:text-gray-500">
+                          <div className="text-text-primary dark:text-white font-medium mb-1">{client.contact}</div>
                           {client.phone && <div className="flex items-center gap-1.5 text-xs"><Phone size={12}/> {client.phone}</div>}
                         </td>
                         <td className="p-4 text-sm text-muted">

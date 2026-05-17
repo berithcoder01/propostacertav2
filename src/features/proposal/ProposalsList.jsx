@@ -49,13 +49,13 @@ const StatusBadge = ({ status, proposalId, onChange }) => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -4 }}
               transition={{ duration: 0.12 }}
-              className="absolute right-0 top-full mt-2 bg-surface border border-border rounded-2xl overflow-hidden shadow-2xl z-50 w-44"
+              className="absolute right-0 top-full mt-2 bg-surface dark:bg-dark-surface border border-border dark:border-dark-border rounded-2xl overflow-hidden shadow-2xl z-50 w-44"
             >
               {STATUS_FILTER_ORDER.slice(1).map(val => {
                 const Ic = STATUS_ICONS[val] || Clock;
                 return (
                   <button key={val} onClick={() => { onChange(proposalId, val); setOpen(false); }}
-                    className={`flex items-center gap-3 w-full px-4 py-3 text-sm hover:bg-white/5 transition-colors text-left ${status === val ? 'text-accent2 font-bold' : 'text-white'}`}
+                    className={`flex items-center gap-3 w-full px-4 py-3 text-sm hover:bg-white/5 dark:hover:bg-white/10 transition-colors text-left ${status === val ? 'text-accent2 font-bold' : 'text-text-primary dark:text-white'}`}
                   >
                     <Ic size={14} className="text-muted" /> {STATUS_LABELS[val]}
                   </button>
@@ -78,20 +78,20 @@ const ProposalCard = ({ p, onPdf, onStatusChange, onDelete, onDuplicate, isGener
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.96 }}
-      className="bg-surface border border-border rounded-2xl p-4 flex flex-col gap-3"
+      className="bg-surface dark:bg-dark-surface border border-border dark:border-dark-border rounded-2xl p-4 flex flex-col gap-3"
     >
       <div className="flex justify-between items-start gap-3">
         <div className="min-w-0 flex-1">
-          <div className="text-white font-bold text-base leading-tight truncate">{p.clientName}</div>
-          <div className="text-muted text-xs mt-0.5">
+          <div className="text-text-primary dark:text-white font-bold text-base leading-tight truncate">{p.clientName}</div>
+          <div className="text-muted dark:text-gray-500 text-xs mt-0.5">
             {p.number}
-            {p.clientLocation && <span className="ml-1 text-muted/60">· {p.clientLocation}</span>}
+            {p.clientLocation && <span className="ml-1 text-muted/60 dark:text-gray-600">· {p.clientLocation}</span>}
           </div>
-          <div className="text-accent2 font-black font-display text-lg mt-1">{fmt(p.total)}</div>
+          <div className="text-accent2 dark:text-gray-400 font-black font-display text-lg mt-1">{fmt(p.total)}</div>
         </div>
         <div className="flex flex-col items-end gap-2">
           <StatusBadge status={p.status} proposalId={p.id} onChange={onStatusChange} />
-          <div className="text-muted text-[10px] flex items-center gap-1">
+          <div className="text-muted dark:text-gray-500 text-[10px] flex items-center gap-1">
             <Calendar size={9} />
             {new Date(p.createdAt).toLocaleDateString('pt-BR')}
           </div>
@@ -100,24 +100,24 @@ const ProposalCard = ({ p, onPdf, onStatusChange, onDelete, onDuplicate, isGener
 
       <div className="flex gap-2">
         <button onClick={() => onPdf(p)} disabled={!!isGenerating}
-          className="flex-1 py-2.5 rounded-xl bg-bg border border-border text-muted text-xs font-bold flex items-center justify-center gap-1.5 active:bg-accent/10 active:text-accent2 transition-colors disabled:opacity-40"
+          className="flex-1 py-2.5 rounded-xl bg-bg dark:bg-dark-bg border border-border dark:border-dark-border text-muted dark:text-gray-400 text-xs font-bold flex items-center justify-center gap-1.5 active:bg-accent/10 active:text-accent2 transition-colors disabled:opacity-40"
         >
           {isGenerating ? <Loader size={12} className="animate-spin" /> : <Download size={13} />} PDF
         </button>
         <button onClick={() => navigate(`/propostas/editar/geral/${p.id}`)}
-          className="flex-1 py-2.5 rounded-xl bg-accent/10 border border-accent/30 text-accent2 text-xs font-bold flex items-center justify-center gap-1.5 active:bg-accent/20 transition-colors"
+          className="flex-1 py-2.5 rounded-xl bg-accent/10 border border-accent/30 text-accent2 dark:text-gray-400 text-xs font-bold flex items-center justify-center gap-1.5 active:bg-accent/20 transition-colors"
         >
           <Edit size={13} /> Editar
         </button>
         <button onClick={() => onDuplicate(p.id)} disabled={isDuplicating}
-          className="py-2.5 px-3 rounded-xl border border-border text-muted text-xs font-bold flex items-center justify-center hover:text-white hover:border-accent/30 transition-colors disabled:opacity-50"
+          className="py-2.5 px-3 rounded-xl border border-border dark:border-dark-border text-muted dark:text-gray-500 text-xs font-bold flex items-center justify-center hover:text-text-primary dark:hover:text-white hover:border-accent/30 transition-colors disabled:opacity-50"
           title="Duplicar Proposta"
         >
           {isDuplicating ? <Loader size={13} className="animate-spin" /> : <Copy size={13} />}
         </button>
         <ShareButton proposalId={p.id} variant="icon" />
         <button onClick={() => onDelete(p.id)}
-          className="py-2.5 px-3 rounded-xl border border-border text-muted text-xs font-bold flex items-center justify-center hover:text-danger hover:border-danger/30 transition-colors"
+          className="py-2.5 px-3 rounded-xl border border-border dark:border-dark-border text-muted dark:text-gray-500 text-xs font-bold flex items-center justify-center hover:text-danger hover:border-danger/30 transition-colors"
         >
           <Trash2 size={13} />
         </button>
@@ -284,8 +284,8 @@ const ProposalsList = () => {
       {/* ── Header ────────────────────────────────────────────────────── */}
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-2xl font-bold font-display text-text-primary">Propostas</h1>
-          <p className="text-muted text-sm">{proposals.length} no total</p>
+          <h1 className="text-2xl font-bold font-display text-text-primary dark:text-white">Propostas</h1>
+          <p className="text-muted dark:text-gray-500 text-sm">{proposals.length} no total</p>
         </div>
         <div className="hidden md:flex gap-2">
           <Button variant="ghost" onClick={exportToCSV} className="flex items-center gap-2 px-4">
@@ -321,11 +321,11 @@ const ProposalsList = () => {
               key={s}
               onClick={() => setStatusFilter(s)}
               className={`flex-shrink-0 flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold transition-all border-2 whitespace-nowrap ${
-                isActive ? 'bg-accent border-accent text-white shadow-lg shadow-accent/20' : 'bg-surface border-border text-muted hover:border-accent/50'
+                isActive ? 'bg-accent border-accent text-white shadow-lg shadow-accent/20' : 'bg-surface dark:bg-dark-surface border-border dark:border-dark-border text-muted dark:text-gray-500 hover:border-accent/50'
               }`}
             >
               {s === 'ALL' ? 'Todas' : STATUS_LABELS[s]}
-              <span className={`px-1.5 py-0.5 rounded-md text-[9px] ${isActive ? 'bg-white/20 text-white' : 'bg-white/5 text-muted'}`}>
+              <span className={`px-1.5 py-0.5 rounded-md text-[9px] ${isActive ? 'bg-white/20 text-white' : 'bg-white/5 dark:bg-white/10 text-muted dark:text-gray-500'}`}>
                 {count}
               </span>
             </button>
@@ -337,9 +337,9 @@ const ProposalsList = () => {
       {isLoading ? (
         <ListSkeleton />
       ) : filtered.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-20 text-muted border-2 border-dashed border-border rounded-3xl bg-surface/30">
+        <div className="flex flex-col items-center justify-center py-20 text-muted dark:text-gray-500 border-2 border-dashed border-border dark:border-dark-border rounded-3xl bg-surface/30 dark:bg-dark-surface/30">
           <FileText size={48} className="mb-4 opacity-20" />
-          <p className="font-bold text-white">Nenhuma proposta encontrada</p>
+          <p className="font-bold text-text-primary dark:text-white">Nenhuma proposta encontrada</p>
           <p className="text-sm">Tente mudar o filtro ou buscar outro termo.</p>
         </div>
       ) : (

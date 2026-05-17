@@ -30,7 +30,7 @@ const ProductList = ({
   return (
     <div className="space-y-4">
       {/* Tabs */}
-      <div className="flex gap-1 p-1 bg-surface border border-border rounded-xl">
+      <div className="flex gap-1 p-1 bg-surface dark:bg-dark-surface border border-border dark:border-dark-border rounded-xl">
         {tabs.map(tab => (
           <button
             key={tab.key}
@@ -38,7 +38,7 @@ const ProductList = ({
             className={`flex-1 py-2 rounded-lg text-xs font-bold transition-all ${
               activeTab === tab.key
                 ? 'bg-accent text-white shadow-sm'
-                : 'text-muted hover:text-white'
+                : 'text-muted dark:text-gray-500 hover:text-text-primary dark:hover:text-white'
             }`}
           >
             {tab.label}
@@ -49,13 +49,13 @@ const ProductList = ({
       {/* Search + Add */}
       <div className="flex gap-3">
         <div className="relative flex-1">
-          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
+          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted dark:text-gray-500" />
           <input
             type="text"
             placeholder="Buscar por nome ou código..."
             value={search}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="w-full bg-surface border border-border rounded-xl pl-10 pr-4 py-2.5 text-sm text-white outline-none focus:border-accent"
+            className="w-full bg-surface dark:bg-dark-surface border border-border dark:border-dark-border rounded-xl pl-10 pr-4 py-2.5 text-sm text-text-primary dark:text-white outline-none focus:border-accent"
           />
         </div>
         <button
@@ -74,11 +74,11 @@ const ProductList = ({
         </div>
       ) : items.length === 0 ? (
         <div className="text-center py-16">
-          <div className="w-16 h-16 bg-surface rounded-full flex items-center justify-center mx-auto mb-4">
-            <Search size={24} className="text-muted" />
+          <div className="w-16 h-16 bg-surface dark:bg-dark-surface rounded-full flex items-center justify-center mx-auto mb-4">
+            <Search size={24} className="text-muted dark:text-gray-500" />
           </div>
-          <p className="font-bold text-white mb-2">Nenhum item encontrado</p>
-          <p className="text-sm text-muted">Cadastre produtos ou serviços para começar</p>
+          <p className="font-bold text-text-primary dark:text-white mb-2">Nenhum item encontrado</p>
+          <p className="text-sm text-muted dark:text-gray-500">Cadastre produtos ou serviços para começar</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -97,21 +97,21 @@ const ProductList = ({
       {/* Pagination */}
       {totalPages > 1 && (
         <div className="flex items-center justify-between pt-4">
-          <span className="text-xs text-muted">
+          <span className="text-xs text-muted dark:text-gray-500">
             Mostrando {((page - 1) * limit) + 1}-{Math.min(page * limit, total)} de {total}
           </span>
           <div className="flex gap-2">
             <button
               onClick={() => onPageChange(page - 1)}
               disabled={page <= 1}
-              className="px-3 py-1.5 rounded-lg bg-surface border border-border text-xs font-bold text-muted hover:text-white disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              className="px-3 py-1.5 rounded-lg bg-surface dark:bg-dark-surface border border-border dark:border-dark-border text-xs font-bold text-muted dark:text-gray-500 hover:text-text-primary dark:hover:text-white disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
             >
               Anterior
             </button>
             <button
               onClick={() => onPageChange(page + 1)}
               disabled={page >= totalPages}
-              className="px-3 py-1.5 rounded-lg bg-surface border border-border text-xs font-bold text-muted hover:text-white disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              className="px-3 py-1.5 rounded-lg bg-surface dark:bg-dark-surface border border-border dark:border-dark-border text-xs font-bold text-muted dark:text-gray-500 hover:text-text-primary dark:hover:text-white disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
             >
               Próximo
             </button>
