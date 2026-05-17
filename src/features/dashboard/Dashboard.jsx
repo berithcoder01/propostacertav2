@@ -13,7 +13,7 @@ import { fmt } from '../proposal/constants';
 import PdfGenerator from '../proposal/components/PdfGenerator';
 import { DashboardSkeleton } from '../../shared/components/Skeleton';
 import { useToast } from '../../shared/context/ToastContext';
-import DashboardChallengeBlock from '../growth/components/DashboardChallengeBlock';
+import DashboardChallengeBlock from '../growth/dashboard/DashboardChallengeBlock';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const STATUS_LABELS = { APPROVED: 'Aprovada', SENT: 'Enviada', REJECTED: 'Recusada', EXPIRED: 'Expirada', DRAFT: 'Rascunho', ARCHIVED: 'Arquivada' };

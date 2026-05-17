@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { Rocket, ArrowRight, Lightbulb, Flame } from 'lucide-react'
-import { useActiveChallenge } from '../hooks/useActiveChallenge'
-import { getDailyTip } from '../data/dailyTips'
+import { useActiveChallenge } from '../challenge/hooks/useActiveChallenge'
+import { getDailyTip } from '../challenge/data/dailyTips'
 
 export default function DashboardChallengeBlock({ onNavigate }) {
   const { challenge, todayTask, dayNumber, streak, loading } = useActiveChallenge()

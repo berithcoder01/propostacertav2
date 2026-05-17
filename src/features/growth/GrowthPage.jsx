@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Rocket, Image, BookOpen } from 'lucide-react'
-import ChallengeTab from './components/ChallengeTab'
-import SocialArtsTab from './components/SocialArtsTab'
-import TutorialsTab from './components/TutorialsTab'
+import ChallengeTab from './challenge/ChallengeTab'
+import SocialArtsTab from './social-arts/SocialArtsTab'
+import TutorialsTab from './tutorials/TutorialsTab'
 
 const tabs = [
   { id: 'challenge', label: 'Desafio 30 Dias', icon: Rocket },

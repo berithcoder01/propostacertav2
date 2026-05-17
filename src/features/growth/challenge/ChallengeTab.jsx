@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Rocket, ArrowRight } from 'lucide-react'
-import { useActiveChallenge } from '../hooks/useActiveChallenge'
-import ChallengeOnboarding from './ChallengeOnboarding'
-import ChallengeStartScreen from './ChallengeStartScreen'
-import TaskDetailPage from './TaskDetailPage'
-import ChallengeCalendar from './ChallengeCalendar'
-import ChallengeProgressCard from './ChallengeProgressCard'
-import DailyTipCard from './DailyTipCard'
+import { useActiveChallenge } from './hooks/useActiveChallenge'
+import ChallengeOnboarding from './components/ChallengeOnboarding'
+import ChallengeStartScreen from './components/ChallengeStartScreen'
+import TaskDetailPage from './components/TaskDetailPage'
+import ChallengeCalendar from './components/ChallengeCalendar'
+import ChallengeProgressCard from './components/ChallengeProgressCard'
+import DailyTipCard from './components/DailyTipCard'
 
 export default function ChallengeTab() {
   const [view, setView] = useState('block')

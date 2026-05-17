@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Check, X, Circle } from 'lucide-react'
-import { getWeekNumber, getWeekLabel } from '../utils/challengeUtils'
+import { getWeekNumber, getWeekLabel } from '../challenge/utils/challengeUtils'
 
 export default function ProgressCalendar({ tasks }) {
   if (!tasks || tasks.length === 0) return null

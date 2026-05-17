@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Clock, ChevronDown, ChevronUp, Play, Filter } from 'lucide-react'
-import { tutorials, tutorialCategories } from '../data/tutorials'
+import { tutorials, tutorialCategories } from './data/tutorials'
 
 export default function TutorialsTab() {
   const [selectedCategory, setSelectedCategory] = useState('Todos')

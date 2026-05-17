@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Download, Check, ChevronLeft, ChevronDown, Layers, Upload, Trash2, Camera, Users } from 'lucide-react'
 import html2canvas from 'html2canvas'
 import { useAuth } from '../../../shared/context/AuthContext'
-import { bannerPresets, getInitialFields } from '../data/bannerPresets'
+import { bannerPresets, getInitialFields } from './data/bannerPresets'
 
 const SEGMENT_LABELS = {
   ELETRICA: 'Elétrica',
