@@ -118,7 +118,7 @@ const Layout = () => {
         </header>
 
         {/* Content Area */}
-        <main className="flex-1 overflow-auto custom-scrollbar bg-bg">
+        <main className={`flex-1 overflow-auto custom-scrollbar ${isDark ? 'bg-dark-bg' : 'bg-bg'}`}>
           <div className="w-full p-6 md:p-8 lg:p-10 pb-32 md:pb-10">
             <Outlet context={{ company }} />
           </div>

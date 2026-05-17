@@ -208,8 +208,8 @@ const Company = () => {
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-5xl mx-auto space-y-8">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-black font-display text-white mb-2">Configurações</h1>
-          <p className="text-muted">Personalize os dados da sua empresa e gerencie o catálogo.</p>
+          <h1 className="text-3xl font-black font-display text-text-primary dark:text-white mb-2">Configurações</h1>
+          <p className="text-muted dark:text-gray-500">Personalize os dados da sua empresa e gerencie o catálogo.</p>
         </div>
         <Button onClick={handleSave} disabled={isSaving} className="flex items-center gap-2 px-6">
           <Save size={18} />
@@ -224,21 +224,21 @@ const Company = () => {
         {/* ... dados da empresa ... */}
 
         {/* SEÇÃO WHITE LABEL — NOVA */}
-        <div className="bg-surface border-2 border-border p-6 rounded-2xl space-y-6">
-          <h2 className="text-xl font-bold font-display text-gold border-b-2 border-border pb-2">
+        <div className="bg-surface dark:bg-dark-surface border-2 border-border dark:border-dark-border p-6 rounded-2xl space-y-6">
+          <h2 className="text-xl font-bold font-display text-gold dark:text-amber-400 border-b-2 border-border dark:border-dark-border pb-2">
             <ImageIcon className="inline mr-2" size={20} /> White Label & Marca
           </h2>
           <div className="space-y-4">
             {/* Upload de Logo */}
             <div>
-              <label className="text-xs font-bold uppercase tracking-wider text-muted mb-2 block">Logotipo da Empresa</label>
+              <label className="text-xs font-bold uppercase tracking-wider text-muted dark:text-gray-500 mb-2 block">Logotipo da Empresa</label>
               <div className="flex items-center gap-4">
                 {/* Preview do logo */}
-                <div className="w-20 h-20 rounded-xl border-2 border-border overflow-hidden bg-bg flex items-center justify-center relative group">
+                <div className="w-20 h-20 rounded-xl border-2 border-border dark:border-dark-border overflow-hidden bg-bg dark:bg-dark-bg flex items-center justify-center relative group">
                   {logoPreview ? (
                     <img src={logoPreview} alt="Logo preview" className="w-full h-full object-contain" />
                   ) : (
-                    <span className="text-3xl text-muted">{company?.name?.charAt(0) || '?'}</span>
+                    <span className="text-3xl text-muted dark:text-gray-500">{company?.name?.charAt(0) || '?'}</span>
                   )}
                   {/* Overlay de upload */}
                   <label className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer rounded-xl">
@@ -251,10 +251,10 @@ const Company = () => {
                     />
                   </label>
                 </div>
-                <div className="text-xs text-muted space-y-1">
+                <div className="text-xs text-muted dark:text-gray-500 space-y-1">
                   <p>Formatos: PNG, JPG, SVG</p>
                   <p>Máximo: 5MB</p>
-                  <p className="text-accent2">Recomendado: fundo transparente</p>
+                  <p className="text-accent2 dark:text-gray-400">Recomendado: fundo transparente</p>
                 </div>
               </div>
             </div>
@@ -276,13 +276,13 @@ const Company = () => {
         </div>
 
         {/* Configurações PIX — NOVA */}
-        <div className="bg-surface border-2 border-border p-6 rounded-2xl space-y-6">
-          <h2 className="text-xl font-bold font-display text-success border-b-2 border-border pb-2">
+        <div className="bg-surface dark:bg-dark-surface border-2 border-border dark:border-dark-border p-6 rounded-2xl space-y-6">
+          <h2 className="text-xl font-bold font-display text-success dark:text-emerald-400 border-b-2 border-border dark:border-dark-border pb-2">
             💳 Pix & Pagamentos
           </h2>
           <div className="space-y-4">
             <div>
-              <label className="text-xs font-bold uppercase tracking-wider text-muted mb-2 block">Chave Pix</label>
+              <label className="text-xs font-bold uppercase tracking-wider text-muted dark:text-gray-500 mb-2 block">Chave Pix</label>
               <input
                 type="text"
                 value={company.pixKey || ''}
@@ -290,14 +290,14 @@ const Company = () => {
                 placeholder="E-mail, CPF, CNPJ ou Telefone"
                 className="input-base"
               />
-              <p className="text-[10px] text-muted mt-1">Informe sua chave Pix para receber pagamentos via QR Code nas propostas.</p>
+              <p className="text-[10px] text-muted dark:text-gray-500 mt-1">Informe sua chave Pix para receber pagamentos via QR Code nas propostas.</p>
             </div>
           </div>
         </div>
 
         {/* Modelo de Design da Proposta — NOVO */}
-        <div className="md:col-span-2 bg-surface border-2 border-border p-6 rounded-2xl space-y-6">
-          <h2 className="text-xl font-bold font-display text-accent border-b-2 border-border pb-2">
+        <div className="md:col-span-2 bg-surface dark:bg-dark-surface border-2 border-border dark:border-dark-border p-6 rounded-2xl space-y-6">
+          <h2 className="text-xl font-bold font-display text-accent dark:text-emerald-400 border-b-2 border-border dark:border-dark-border pb-2">
             🎨 Modelo de Design da Proposta
           </h2>
           <ProposalModelSelector
@@ -312,24 +312,24 @@ const Company = () => {
 
 
         {/* Inteligência Artificial — NOVA */}
-        <div className="md:col-span-2 bg-surface border-2 border-border p-6 rounded-2xl space-y-6">
-          <h2 className="text-xl font-bold font-display text-accent border-b-2 border-border pb-2 flex justify-between items-center">
+        <div className="md:col-span-2 bg-surface dark:bg-dark-surface border-2 border-border dark:border-dark-border p-6 rounded-2xl space-y-6">
+          <h2 className="text-xl font-bold font-display text-accent dark:text-emerald-400 border-b-2 border-border dark:border-dark-border pb-2 flex justify-between items-center">
             <div className="flex items-center">
               <Sparkles className="inline mr-2" size={20} /> Inteligência Artificial
             </div>
             <span className={`text-[10px] px-2 py-0.5 rounded-full font-black ${
-              company.subscription?.plan?.hasAi ? 'bg-accent/20 text-accent' : 'bg-muted/20 text-muted'
+              company.subscription?.plan?.hasAi ? 'bg-accent/20 text-accent dark:bg-accent/30 dark:text-emerald-400' : 'bg-muted/20 text-muted dark:bg-gray-700 dark:text-gray-500'
             }`}>
               {company.subscription?.plan?.hasAi ? 'ATIVADO' : 'BLOQUEADO'}
             </span>
           </h2>
           <div className="space-y-4">
-            <p className="text-xs text-muted leading-relaxed">
+            <p className="text-xs text-muted dark:text-gray-500 leading-relaxed">
               Recursos de IA incluem: sugestão automática de itens, gerador de propostas via texto, pesquisa de mercado e chat técnico.
             </p>
             {!company.subscription?.plan?.hasAi && (
-              <div className="bg-accent/10 border border-accent/20 p-4 rounded-xl space-y-3">
-                <p className="text-[11px] font-bold text-accent2">O seu plano atual (FREE) não possui recursos de IA.</p>
+              <div className="bg-accent/10 dark:bg-accent/5 border border-accent/20 dark:border-accent/10 p-4 rounded-xl space-y-3">
+                <p className="text-[11px] font-bold text-accent2 dark:text-gray-400">O seu plano atual (FREE) não possui recursos de IA.</p>
                 <Button 
                   variant="accent" 
                   className="w-full text-xs py-2 h-auto" 
@@ -355,7 +355,7 @@ const Company = () => {
               </div>
             )}
             {company.subscription?.plan?.hasAi && (
-              <div className="flex items-center gap-2 text-success text-[11px] font-bold">
+              <div className="flex items-center gap-2 text-success dark:text-emerald-400 text-[11px] font-bold">
                 <Check size={14} /> Todos os recursos de IA estão liberados no seu plano {company.subscription?.plan?.name}.
               </div>
             )}
@@ -367,8 +367,8 @@ const Company = () => {
       {/* ... restante do componente igual ... */}
       {/* Para manter o exemplo focado, a seção de catálogo e padrões comerciais permanece igual */}
 
-      <div className="bg-surface border-2 border-border p-6 rounded-2xl space-y-6">
-        <h2 className="text-xl font-bold font-display text-success border-b-2 border-border pb-2">Padrões Comerciais</h2>
+      <div className="bg-surface dark:bg-dark-surface border-2 border-border dark:border-dark-border p-6 rounded-2xl space-y-6">
+        <h2 className="text-xl font-bold font-display text-success dark:text-emerald-400 border-b-2 border-border dark:border-dark-border pb-2">Padrões Comerciais</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <Input type="number" label="Entrada (%)" value={company.defaultDownPaymentPct ?? 20} onChange={e => update('defaultDownPaymentPct', parseFloat(e.target.value) || 0)} />
           <Input type="number" label="Prazo Entrada (dias)" value={company.defaultDownPaymentDays ?? 45} onChange={e => update('defaultDownPaymentDays', parseInt(e.target.value) || 0)} />
@@ -376,7 +376,7 @@ const Company = () => {
           
           <div className="space-y-1">
             <Input type="number" label="Garantia Padrão" value={company.defaultWarrantyPeriod ?? 5} onChange={e => update('defaultWarrantyPeriod', parseInt(e.target.value) || 0)} />
-            <select value={company.defaultWarrantyType || 'ANOS'} onChange={e => update('defaultWarrantyType', e.target.value)} className="w-full bg-bg border-2 border-border rounded-xl px-4 py-2 text-xs text-white outline-none focus:border-accent">
+            <select value={company.defaultWarrantyType || 'ANOS'} onChange={e => update('defaultWarrantyType', e.target.value)} className="w-full bg-bg dark:bg-dark-bg border-2 border-border dark:border-dark-border rounded-xl px-4 py-2 text-xs text-text-primary dark:text-white outline-none focus:border-accent">
               <option value="DIAS">Dias</option>
               <option value="MESES">Meses</option>
               <option value="ANOS">Anos</option>
@@ -391,28 +391,28 @@ const Company = () => {
         </div>
       </div>
 
-      <div className="bg-surface border-2 border-border p-6 rounded-2xl space-y-4">
-        <h2 className="text-xl font-bold font-display text-accent2 border-b-2 border-border pb-2">Configurações do PDF</h2>
+      <div className="bg-surface dark:bg-dark-surface border-2 border-border dark:border-dark-border p-6 rounded-2xl space-y-4">
+        <h2 className="text-xl font-bold font-display text-accent2 dark:text-gray-400 border-b-2 border-border dark:border-dark-border pb-2">Configurações do PDF</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
           <label className="flex items-center gap-3 cursor-pointer">
-            <input type="checkbox" checked={company.showWarranties !== false} onChange={e => update('showWarranties', e.target.checked)} className="w-5 h-5 rounded border-border text-accent" />
-            <span className="text-sm font-bold text-text-primary">Exibir Garantias</span>
+            <input type="checkbox" checked={company.showWarranties !== false} onChange={e => update('showWarranties', e.target.checked)} className="w-5 h-5 rounded border-border dark:border-dark-border text-accent" />
+            <span className="text-sm font-bold text-text-primary dark:text-white">Exibir Garantias</span>
           </label>
           <label className="flex items-center gap-3 cursor-pointer">
-            <input type="checkbox" checked={company.showSpecialConditions === true} onChange={e => update('showSpecialConditions', e.target.checked)} className="w-5 h-5 rounded border-border text-accent" />
-            <span className="text-sm font-bold text-text-primary">Exibir Condições Especiais</span>
+            <input type="checkbox" checked={company.showSpecialConditions === true} onChange={e => update('showSpecialConditions', e.target.checked)} className="w-5 h-5 rounded border-border dark:border-dark-border text-accent" />
+            <span className="text-sm font-bold text-text-primary dark:text-white">Exibir Condições Especiais</span>
           </label>
         </div>
         {company.showSpecialConditions && (
           <div>
-            <label className="text-xs font-bold uppercase tracking-wider text-muted mb-2 block">Texto de Condições Especiais</label>
+            <label className="text-xs font-bold uppercase tracking-wider text-muted dark:text-gray-500 mb-2 block">Texto de Condições Especiais</label>
             <textarea
               rows={3}
               value={company.specialConditionText || ''}
               onChange={e => update('specialConditionText', e.target.value)}
               placeholder="Texto que aparecerá na seção de condições especiais do PDF..."
-              className="w-full bg-bg border-2 border-border rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-accent resize-none"
+              className="w-full bg-bg dark:bg-dark-bg border-2 border-border dark:border-dark-border rounded-xl px-4 py-3 text-sm text-text-primary dark:text-white outline-none focus:border-accent resize-none"
             />
           </div>
         )}
@@ -420,16 +420,16 @@ const Company = () => {
 
 
 
-      <div className="bg-surface border-2 border-border p-6 rounded-2xl space-y-4">
+      <div className="bg-surface dark:bg-dark-surface border-2 border-border dark:border-dark-border p-6 rounded-2xl space-y-4">
         <div className="flex justify-between items-center">
-          <h2 className="text-xl font-bold font-display text-accent2 border-b-2 border-border pb-2 flex-1">Catálogo</h2>
+          <h2 className="text-xl font-bold font-display text-accent2 dark:text-gray-400 border-b-2 border-border dark:border-dark-border pb-2 flex-1">Catálogo</h2>
           <Button onClick={() => setAddingItem(true)} className="flex items-center gap-2 text-sm px-4 py-2">
             <Plus size={16} /> Novo Item
           </Button>
         </div>
 
         {addingItem && (
-          <div className="bg-bg border border-accent/30 rounded-xl p-4 space-y-3">
+          <div className="bg-bg dark:bg-dark-bg border border-accent/30 dark:border-accent/20 rounded-xl p-4 space-y-3">
             <div className="grid grid-cols-1 sm:grid-cols-5 gap-3">
               <Input placeholder="Descrição" value={newItem.description} onChange={e => setNewItem(p => ({ ...p, description: e.target.value }))} className="sm:col-span-2" />
               <Input placeholder="Unidade" value={newItem.unit} onChange={e => setNewItem(p => ({ ...p, unit: e.target.value }))} />
@@ -456,10 +456,10 @@ const Company = () => {
 
         <div className="space-y-2 max-h-[400px] overflow-y-auto">
           {catalog.length === 0 ? (
-            <div className="text-center py-8 text-muted">Nenhum item no catálogo. Adicione o primeiro!</div>
+            <div className="text-center py-8 text-muted dark:text-gray-500">Nenhum item no catálogo. Adicione o primeiro!</div>
           ) : (
             catalog.map(item => (
-              <div key={item.id} className="flex items-center gap-3 p-3 bg-bg rounded-xl border border-border hover:border-accent/30 transition-colors">
+              <div key={item.id} className="flex items-center gap-3 p-3 bg-bg dark:bg-dark-bg rounded-xl border border-border dark:border-dark-border hover:border-accent/30 transition-colors">
                 {editingId === item.id ? (
                   <>
                     <div className="flex-1 grid grid-cols-3 gap-2">
@@ -467,18 +467,18 @@ const Company = () => {
                       <Input value={editForm.unit} onChange={e => setEditForm(p => ({ ...p, unit: e.target.value }))} className="text-sm py-1" />
                       <Input type="number" step="0.01" value={editForm.defaultPrice} onChange={e => setEditForm(p => ({ ...p, defaultPrice: e.target.value }))} className="text-sm py-1" />
                     </div>
-                    <button onClick={async () => { await updateCatalogItem(item.id, editForm); const cat = await fetchCatalog(); setCatalog(cat); setEditingId(null); }} className="p-2 text-success hover:bg-success/10 rounded-lg"><Check size={16} /></button>
+                    <button onClick={async () => { await updateCatalogItem(item.id, editForm); const cat = await fetchCatalog(); setCatalog(cat); setEditingId(null); }} className="p-2 text-success dark:text-emerald-400 hover:bg-success/10 rounded-lg"><Check size={16} /></button>
                     <button onClick={() => setEditingId(null)} className="p-2 text-danger hover:bg-danger/10 rounded-lg"><X size={16} /></button>
                   </>
                 ) : (
                   <>
                     <div className="flex-1 min-w-0">
-                      <div className="text-sm font-bold text-white truncate">{item.description}</div>
-                      <div className="text-[10px] text-muted">{item.category} · {item.unit}</div>
+                      <div className="text-sm font-bold text-text-primary dark:text-white truncate">{item.description}</div>
+                      <div className="text-[10px] text-muted dark:text-gray-500">{item.category} · {item.unit}</div>
                     </div>
-                    <div className="text-sm font-bold text-accent2">{item.defaultPrice ? fmt(item.defaultPrice) : '—'}</div>
-                    <button onClick={() => { setEditingId(item.id); setEditForm({ description: item.description, unit: item.unit, defaultPrice: item.defaultPrice || '' }); }} className="p-2 text-muted hover:text-white hover:bg-surface rounded-lg"><Edit2 size={14} /></button>
-                    <button onClick={async () => { await deleteCatalogItem(item.id); setCatalog(prev => prev.filter(c => c.id !== item.id)); }} className="p-2 text-muted hover:text-danger hover:bg-danger/10 rounded-lg"><Trash2 size={14} /></button>
+                    <div className="text-sm font-bold text-accent2 dark:text-gray-400">{item.defaultPrice ? fmt(item.defaultPrice) : '—'}</div>
+                    <button onClick={() => { setEditingId(item.id); setEditForm({ description: item.description, unit: item.unit, defaultPrice: item.defaultPrice || '' }); }} className="p-2 text-muted dark:text-gray-500 hover:text-text-primary dark:hover:text-white hover:bg-surface dark:hover:bg-dark-surface rounded-lg"><Edit2 size={14} /></button>
+                    <button onClick={async () => { await deleteCatalogItem(item.id); setCatalog(prev => prev.filter(c => c.id !== item.id)); }} className="p-2 text-muted dark:text-gray-500 hover:text-danger hover:bg-danger/10 rounded-lg"><Trash2 size={14} /></button>
                   </>
                 )}
               </div>

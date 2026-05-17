@@ -60,7 +60,7 @@ const StatusBadge = ({ status, proposalId, onChange }) => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -4 }}
               transition={{ duration: 0.12 }}
-              className="absolute right-0 top-full mt-2 bg-surface border border-border rounded-2xl overflow-hidden shadow-2xl z-50 w-44"
+              className="absolute right-0 top-full mt-2 bg-surface dark:bg-dark-surface border border-border dark:border-dark-border rounded-2xl overflow-hidden shadow-2xl z-50 w-44"
             >
               {STATUS_OPTIONS.map(opt => {
                 const Icon = opt.icon;
@@ -68,7 +68,7 @@ const StatusBadge = ({ status, proposalId, onChange }) => {
                   <button
                     key={opt.value}
                     onClick={() => { onChange(proposalId, opt.value); setOpen(false); }}
-                    className={`flex items-center gap-3 w-full px-4 py-3 text-sm hover:bg-white/5 transition-colors text-left ${status === opt.value ? 'text-accent2 font-bold' : 'text-white'}`}
+                    className={`flex items-center gap-3 w-full px-4 py-3 text-sm hover:bg-white/5 dark:hover:bg-white/10 transition-colors text-left ${status === opt.value ? 'text-accent2 font-bold' : 'text-text-primary dark:text-white'}`}
                   >
                     <Icon size={15} className="text-muted flex-shrink-0" />
                     {opt.label}
@@ -127,15 +127,15 @@ const ProposalCard = ({ p, onPdf, onStatusChange, isGenerating }) => {
         onDrag={(event, info) => setDragX(info.offset.x)}
         onDragEnd={handleDragEnd}
         style={{ x: dragX }}
-        className="card p-5 flex flex-col gap-3 active:scale-[0.99] transition-transform relative z-10 bg-surface hover:shadow-card-hover"
+        className="card p-5 flex flex-col gap-3 active:scale-[0.99] transition-transform relative z-10 bg-surface dark:bg-dark-surface hover:shadow-card-hover"
       >
         <div className="flex justify-between items-start gap-3">
           <div className="min-w-0">
-            <div className="text-text-primary font-bold text-base leading-tight truncate">{p.clientName}</div>
-            <div className="text-text-secondary text-xs mt-0.5 font-medium">
+            <div className="text-text-primary dark:text-white font-bold text-base leading-tight truncate">{p.clientName}</div>
+            <div className="text-text-secondary dark:text-gray-400 text-xs mt-0.5 font-medium">
               {p.number} · <span className="text-accent font-bold">{fmt(p.total)}</span>
             </div>
-            <div className="text-text-secondary text-[10px] mt-1 flex items-center gap-1">
+            <div className="text-text-secondary dark:text-gray-400 text-[10px] mt-1 flex items-center gap-1">
               <Calendar size={10} />
               {new Date(p.createdAt).toLocaleDateString('pt-BR')}
             </div>
@@ -147,7 +147,7 @@ const ProposalCard = ({ p, onPdf, onStatusChange, isGenerating }) => {
           <button
             onClick={() => onPdf(p)}
             disabled={!!isGenerating}
-            className="flex-1 py-2.5 rounded-xl bg-bg border border-border text-text-secondary text-xs font-bold flex items-center justify-center gap-1.5 active:bg-accent/10 active:text-accent transition-colors disabled:opacity-40"
+            className="flex-1 py-2.5 rounded-xl bg-bg dark:bg-dark-bg border border-border dark:border-dark-border text-text-secondary dark:text-gray-400 text-xs font-bold flex items-center justify-center gap-1.5 active:bg-accent/10 active:text-accent transition-colors disabled:opacity-40"
           >
             {isGenerating ? <Loader size={12} className="animate-spin" /> : <Download size={13} />}
             PDF
@@ -240,10 +240,10 @@ const Dashboard = () => {
        {/* ── Greeting ──────────────────────────────────────────────────── */}
        <div className="flex justify-between items-start">
          <div>
-           <h1 className="text-3xl font-black font-display text-text-primary">
+           <h1 className="text-3xl font-black font-display text-text-primary dark:text-white">
              {getGreeting()}{userName ? `, ${userName}` : ''}
            </h1>
-           <p className="text-text-secondary text-sm capitalize mt-1">{todayFmt()}</p>
+           <p className="text-text-secondary dark:text-gray-400 text-sm capitalize mt-1">{todayFmt()}</p>
          </div>
          <div className="flex items-center gap-3">
            <ThemeToggle />
@@ -259,53 +259,53 @@ const Dashboard = () => {
 
        {/* ── 3 Metric cards ────────────────────────────────────────────── */}
        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-         <div className="card p-6 hover:shadow-card-hover transition-all duration-300">
+         <div className="card p-6 hover:shadow-card-hover transition-all duration-300 bg-surface dark:bg-dark-surface">
            <div className="flex items-center gap-3 mb-3">
              <div className="p-2 rounded-lg bg-accent/10 text-accent">
                <FileText size={18} />
              </div>
-             <div className="text-xs text-text-secondary font-bold uppercase tracking-wider">Este mês</div>
+             <div className="text-xs text-text-secondary dark:text-gray-400 font-bold uppercase tracking-wider">Este mês</div>
            </div>
-           <div className="text-4xl font-black font-display text-text-primary">{stats?.monthlyProposals ?? 0}</div>
-           <div className="text-xs text-muted mt-2">{stats?.totalProposals ?? 0} total</div>
+           <div className="text-4xl font-black font-display text-text-primary dark:text-white">{stats?.monthlyProposals ?? 0}</div>
+           <div className="text-xs text-muted dark:text-gray-500 mt-2">{stats?.totalProposals ?? 0} total</div>
          </div>
 
-         <div className="card p-6 hover:shadow-card-hover transition-all duration-300">
+         <div className="card p-6 hover:shadow-card-hover transition-all duration-300 bg-surface dark:bg-dark-surface">
            <div className="flex items-center gap-3 mb-3">
              <div className="p-2 rounded-lg bg-success/10 text-success">
                <TrendingUp size={18} />
              </div>
-             <div className="text-xs text-text-secondary font-bold uppercase tracking-wider">Aprovado</div>
+             <div className="text-xs text-text-secondary dark:text-gray-400 font-bold uppercase tracking-wider">Aprovado</div>
            </div>
            <div className="text-3xl font-black font-display text-success leading-tight">{fmt(stats?.approvedValue ?? 0)}</div>
-           <div className="text-xs text-muted mt-2">{stats?.approvedCount ?? 0} propostas</div>
+           <div className="text-xs text-muted dark:text-gray-500 mt-2">{stats?.approvedCount ?? 0} propostas</div>
          </div>
 
-         <div className="card p-6 hover:shadow-card-hover transition-all duration-300">
+         <div className="card p-6 hover:shadow-card-hover transition-all duration-300 bg-surface dark:bg-dark-surface">
            <div className="flex items-center gap-3 mb-3">
              <div className="p-2 rounded-lg bg-info/10 text-info">
                <Users size={18} />
              </div>
-             <div className="text-xs text-text-secondary font-bold uppercase tracking-wider">Leads Novos</div>
+             <div className="text-xs text-text-secondary dark:text-gray-400 font-bold uppercase tracking-wider">Leads Novos</div>
            </div>
            <div className="text-4xl font-black font-display text-info">{leadsSummary?.activeLeads ?? 0}</div>
-           <div className="text-xs text-muted mt-2">Leads ativos</div>
+           <div className="text-xs text-muted dark:text-gray-500 mt-2">Leads ativos</div>
          </div>
        </div>
 
       {/* ── Recent proposals ──────────────────────────────────────────── */}
       <div>
         <div className="flex justify-between items-center mb-6">
-          <h2 className="font-bold text-text-primary font-display text-lg">Atividade Recente</h2>
+          <h2 className="font-bold text-text-primary dark:text-white font-display text-lg">Atividade Recente</h2>
           <button onClick={() => navigate('/propostas')} className="text-accent text-sm font-bold hover:underline">
             Ver todas →
           </button>
         </div>
 
         {recent.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-16 text-muted border-2 border-dashed border-border rounded-2xl bg-surface">
-            <FileText size={48} className="mb-4 text-border" />
-            <p className="font-bold text-text-primary text-lg mb-2">Nenhuma proposta ainda</p>
+          <div className="flex flex-col items-center justify-center py-16 text-muted dark:text-gray-500 border-2 border-dashed border-border dark:border-dark-border rounded-2xl bg-surface dark:bg-dark-surface">
+            <FileText size={48} className="mb-4 text-border dark:text-dark-border" />
+            <p className="font-bold text-text-primary dark:text-white text-lg mb-2">Nenhuma proposta ainda</p>
             <p className="text-sm mb-6">Crie sua primeira proposta agora.</p>
             <Button onClick={() => navigate('/propostas/nova/rapida')} className="px-8 shadow-md">
               <Plus size={16} className="mr-2" /> Criar agora
