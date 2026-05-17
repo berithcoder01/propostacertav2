@@ -24,19 +24,38 @@
     --editor-text: #111111;
   }
 
+  /* Dark Mode */
+  .dark {
+    --editor-bg: #0f0f0f;
+    --editor-panel-bg: #151515;
+    --editor-panel-border: #242424;
+    --editor-panel-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    --editor-header-bg: #111111;
+    --editor-input-bg: #1f1f1f;
+    --editor-input-border: #333333;
+    --editor-text: #e5e5e5;
+  }
+
   * {
     -webkit-tap-highlight-color: transparent;
   }
 
   body {
-    @apply bg-bg text-text-primary font-body antialiased;
+    @apply font-body antialiased;
     min-height: 100vh;
   }
 
-  /* Scrollbar discreta - Light Mode */
+  .dark body {
+    background-color: #0a0a0a;
+    color: #e5e5e5;
+  }
+
+  /* Scrollbar discreta */
   ::-webkit-scrollbar       { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 99px; }
+
+  .dark ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); }
 
   /* Seleção de texto */
   ::selection {
@@ -46,14 +65,30 @@
 }
 
 @layer components {
-  /* Card padrão — Light Mode */
+  /* Card padrão */
   .card {
-    @apply bg-surface border border-border rounded-2xl;
+    @apply border rounded-2xl;
+  }
+  .dark .card {
+    background-color: #141414;
+    border-color: #2a2a2a;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);
+  }
+  .card:not(.dark .card) {
+    @apply bg-surface border border-border;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.1);
   }
 
   .card-elevated {
-    @apply bg-card border border-border-strong rounded-2xl;
+    @apply border rounded-2xl;
+  }
+  .dark .card-elevated {
+    background-color: #1a1a1a;
+    border-color: #2a2a2a;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -2px rgba(0,0,0,0.2);
+  }
+  .card-elevated:not(.dark .card-elevated) {
+    @apply bg-card border border-border-strong;
     box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.025);
   }
 
@@ -69,12 +104,21 @@
            px-4 py-2.5 rounded-xl transition-all duration-150 font-medium;
   }
 
-  /* Input - Light Mode */
+  /* Input */
   .input-base {
-    @apply bg-white border border-border hover:border-border-strong
-           focus:border-accent focus:ring-1 focus:ring-accent/30
-           rounded-xl px-4 py-3 text-text-primary placeholder-muted
-           text-sm transition-all outline-none w-full;
+    @apply border rounded-xl px-4 py-3 text-sm transition-all outline-none w-full;
+  }
+  .dark .input-base {
+    background-color: #1f1f1f;
+    border-color: #333333;
+    color: #e5e5e5;
+  }
+  .dark .input-base:focus {
+    border-color: #10B981;
+    box-shadow: 0 0 0 1px rgba(16,185,129,0.3);
+  }
+  .input-base:not(.dark .input-base) {
+    @apply bg-white border border-border hover:border-border-strong focus:border-accent focus:ring-1 focus:ring-accent/30 text-text-primary placeholder-muted;
   }
 
   /* Badge de status */

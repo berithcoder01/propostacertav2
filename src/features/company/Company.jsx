@@ -397,11 +397,11 @@ const Company = () => {
 
           <label className="flex items-center gap-3 cursor-pointer">
             <input type="checkbox" checked={company.showWarranties !== false} onChange={e => update('showWarranties', e.target.checked)} className="w-5 h-5 rounded border-border text-accent" />
-            <span className="text-sm font-bold text-white">Exibir Garantias</span>
+            <span className="text-sm font-bold text-text-primary">Exibir Garantias</span>
           </label>
           <label className="flex items-center gap-3 cursor-pointer">
             <input type="checkbox" checked={company.showSpecialConditions === true} onChange={e => update('showSpecialConditions', e.target.checked)} className="w-5 h-5 rounded border-border text-accent" />
-            <span className="text-sm font-bold text-white">Exibir Condições Especiais</span>
+            <span className="text-sm font-bold text-text-primary">Exibir Condições Especiais</span>
           </label>
         </div>
         {company.showSpecialConditions && (

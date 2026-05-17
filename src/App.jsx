@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './shared/context/AuthContext';
 import { UpgradeProvider } from './shared/context/UpgradeContext';
+import { ThemeProvider } from './shared/context/ThemeContext';
 import Layout from './shared/Layout';
 import ProtectedRoute from './shared/components/ProtectedRoute';
 import { ToastProvider } from './shared/context/ToastContext';
@@ -35,12 +36,13 @@ const PageLoading = () => (
 
 function App() {
   return (
-    <ToastProvider>
-      <AuthProvider>
-        <UpgradeProvider>
-          <BrowserRouter>
-            <Suspense fallback={<PageLoading />}>
-              <Routes>
+    <ThemeProvider>
+      <ToastProvider>
+        <AuthProvider>
+          <UpgradeProvider>
+            <BrowserRouter>
+              <Suspense fallback={<PageLoading />}>
+                <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/onboarding" element={<Onboarding />} />
                 <Route path="/p/:token" element={<PublicProposal />} />
@@ -68,6 +70,7 @@ function App() {
         </UpgradeProvider>
       </AuthProvider>
     </ToastProvider>
+    </ThemeProvider>
   );
 }
 

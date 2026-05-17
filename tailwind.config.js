@@ -3,6 +3,7 @@ import { fontFamily } from 'tailwindcss/defaultTheme';
 
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
@@ -16,17 +17,23 @@ export default {
       },
       colors: {
         // Fundos - Light Mode (Cursor/Notion style)
-        bg:      '#F7F7F5',       // Off-white quente
-        surface: '#FFFFFF',       // Cards brancos
+        bg:      '#F7F7F5',
+        surface: '#FFFFFF',
         card:    '#FFFFFF',
         overlay: '#F3F4F6',
-        
+
+        // Dark Mode
+        'dark-bg':      '#0a0a0a',
+        'dark-surface': '#141414',
+        'dark-card':    '#1a1a1a',
+        'dark-border':  '#2a2a2a',
+
         // Bordas - Subtis
         border:         '#E5E7EB',
         'border-strong':'#D1D5DB',
 
         // Acento principal — Emerald
-        accent:        '#10B981', 
+        accent:        '#10B981',
         'accent-hover':'#059669',
         'accent-muted':'rgba(16,185,129,0.10)',
 
@@ -38,9 +45,9 @@ export default {
         'gold-muted':'rgba(245,158,11,0.10)',
 
         // Textos - Alto Contraste
-        'text-primary':   '#111827',   // Quase preto
-        'text-secondary': '#6B7280',   // Cinza médio
-        muted:            '#9CA3AF',   // Cinza claro
+        'text-primary':   '#111827',
+        'text-secondary': '#6B7280',
+        muted:            '#9CA3AF',
 
         // Semânticas
         success: '#10B981',

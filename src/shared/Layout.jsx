@@ -3,11 +3,14 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { LayoutDashboard, FileText, Users, Settings, LogOut, Plus, ImageIcon, MapPin, Package, TrendingUp } from 'lucide-react';
 import { useAuth } from './context/AuthContext';
 import { useTheme } from '../hooks/useTheme';
+import { useThemeMode } from './context/ThemeContext';
 import { FeatureFlagsProvider, useFeatureFlags } from './context/FeatureFlagsContext';
+import ThemeToggle from './components/ThemeToggle';
 
 const Layout = () => {
   const { signOut, user, company, subscription } = useAuth();
   const { theme } = useTheme();
+  const { isDark } = useThemeMode();
   const navigate = useNavigate();
   const companyName = company?.name || 'PropostaCerta';
   const companyInitial = companyName.charAt(0).toUpperCase();
@@ -31,15 +34,15 @@ const Layout = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-screen bg-bg text-text-primary font-body overflow-hidden selection:bg-accent/30"
+    <div className={`flex flex-col md:flex-row h-screen ${isDark ? 'bg-dark-bg text-white' : 'bg-bg text-text-primary'} font-body overflow-hidden selection:bg-accent/30`}
          style={{ '--brand-primary': primaryColor }}>
 
       {/* Ambient Glow com cor da marca */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--brand-primary)]/20 to-transparent" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[300px] bg-ambient-glow opacity-50 pointer-events-none" />
 
-      {/* Sidebar Desktop - Clean White */}
-      <aside className="hidden md:flex w-20 hover:w-64 group flex-col bg-white border-r border-border transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] z-50 shadow-sm"
+      {/* Sidebar Desktop */}
+      <aside className={`hidden md:flex w-20 hover:w-64 group flex-col ${isDark ? 'bg-dark-surface border-dark-border' : 'bg-white border-border'} border-r transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] z-50 shadow-sm`}
              style={{ '--accent-nav': primaryColor }}>
         <div className="flex flex-col h-full py-8 px-4">
 
@@ -81,6 +84,7 @@ const Layout = () => {
           {/* Bottom Actions */}
           <div className="mt-auto flex flex-col">
             <div className="flex flex-col gap-2 pt-6 border-t border-border">
+              <ThemeToggle size={18} />
               <SideNavLink to="/configuracoes" icon={<Settings size={20}/>} label="Configurações" />
               <button
                 onClick={signOut}
@@ -155,7 +159,7 @@ const SideNavLink = ({ to, icon, label }) => (
       `flex items-center gap-4 px-3 py-3 rounded-sm transition-all duration-300 group/nav
        ${isActive
           ? 'bg-accent/10 text-accent border-l-2 border-accent shadow-[inset_4px_0_12px_rgba(16,185,129,0.05)]'
-           : 'text-muted hover:text-text-primary hover:bg-gray-50'
+           : 'text-muted hover:text-text-primary hover:bg-gray-50 dark:hover:bg-gray-800'
        }`
     }>
     <div className="flex-shrink-0">{icon}</div>

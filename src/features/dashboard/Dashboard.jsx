@@ -14,6 +14,7 @@ import PdfGenerator from '../proposal/components/PdfGenerator';
 import { DashboardSkeleton } from '../../shared/components/Skeleton';
 import { useToast } from '../../shared/context/ToastContext';
 import DashboardChallengeBlock from '../growth/dashboard/DashboardChallengeBlock';
+import ThemeToggle from '../../shared/components/ThemeToggle';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const STATUS_LABELS = { APPROVED: 'Aprovada', SENT: 'Enviada', REJECTED: 'Recusada', EXPIRED: 'Expirada', DRAFT: 'Rascunho', ARCHIVED: 'Arquivada' };
@@ -244,9 +245,12 @@ const Dashboard = () => {
            </h1>
            <p className="text-text-secondary text-sm capitalize mt-1">{todayFmt()}</p>
          </div>
-         <Button onClick={() => navigate('/propostas/nova/rapida')} className="hidden md:flex items-center gap-2 px-5 shadow-md">
-           <Plus size={16} /> Nova Proposta
-         </Button>
+         <div className="flex items-center gap-3">
+           <ThemeToggle />
+           <Button onClick={() => navigate('/propostas/nova/rapida')} className="hidden md:flex items-center gap-2 px-5 shadow-md">
+             <Plus size={16} /> Nova Proposta
+           </Button>
+         </div>
        </div>
 
 
