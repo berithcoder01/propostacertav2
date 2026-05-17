@@ -6,12 +6,22 @@
 @layer base {
   :root {
     --radius: 16px;
-    /* Tema dinâmico — valores padrões, substituídos após login */
     --primary: #10B981;
     --primary-hover: #059669;
     --secondary: #1A5276;
     --gold: #F59E0B;
     --accent2: #94A3B8;
+
+    /* Editor theme — Light Mode */
+    --editor-bg: #e8e8e6;
+    --editor-panel-bg: #f5f5f3;
+    --editor-panel-border: #d4d4d2;
+    --editor-panel-radius: 12px;
+    --editor-panel-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    --editor-header-bg: #ebebea;
+    --editor-input-bg: #ffffff;
+    --editor-input-border: #d4d4d2;
+    --editor-text: #111111;
   }
 
   * {
@@ -113,6 +123,29 @@
 
   .brand-glow {
     box-shadow: 0 0 30px rgba(79,110,247,0.25);
+  }
+
+  /* Editor panel styles */
+  .bg-editor-panel {
+    background-color: var(--editor-panel-bg);
+  }
+  .border-editor-border {
+    border-color: var(--editor-panel-border);
+  }
+  .bg-editor-header {
+    background-color: var(--editor-header-bg);
+  }
+  .bg-editor-input {
+    background-color: var(--editor-input-bg);
+  }
+  .border-editor-input-border {
+    border-color: var(--editor-input-border);
+  }
+  .text-editor-text {
+    color: var(--editor-text);
+  }
+  .shadow-editor {
+    box-shadow: var(--editor-panel-shadow);
   }
 }
 
