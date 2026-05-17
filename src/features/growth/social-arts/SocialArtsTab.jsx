@@ -88,7 +88,7 @@ function SharedElements({ company, fields, uploadedPhoto, ctaButton, layoutSpaci
   }
 
   const PhoneDisplay = ({ className = '' }) => (
-    <span className={`text-white/70 text-sm ${className}`}>{phone}</span>
+    <span className={`text-text-secondary text-sm ${className}`}>{phone}</span>
   )
 
   const DecorativeShapes = () => (
@@ -157,15 +157,15 @@ function BannerRender({ preset, company, fields, uploadedPhoto, elementOffset = 
             <LogoOrInitial size="sm" />
           </div>
 
-          <p className="text-white font-bold text-xl leading-snug break-words" style={{ wordBreak: 'break-word', maxWidth: '100%' }}>
-            {fields.mainText}
-          </p>
-
-          {fields.subtitle && (
-            <p className="text-white/70 text-sm break-words" style={{ wordBreak: 'break-word', maxWidth: '100%' }}>
-              {fields.subtitle}
+            <p className="text-text-primary font-bold text-xl leading-snug break-words" style={{ wordBreak: 'break-word', maxWidth: '100%' }}>
+              {fields.mainText}
             </p>
-          )}
+
+            {fields.subtitle && (
+              <p className="text-text-secondary text-sm break-words" style={{ wordBreak: 'break-word', maxWidth: '100%' }}>
+                {fields.subtitle}
+              </p>
+            )}
 
           <div className="pt-2 space-y-3" style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}>
             <PhoneDisplay className="block" />
@@ -185,19 +185,19 @@ function BannerRender({ preset, company, fields, uploadedPhoto, elementOffset = 
         <div className="relative z-10 p-8 pt-10" style={{ marginBottom: layoutSpacing }}>
           <div className="flex items-center gap-2">
             <LogoOrInitial size="sm" />
-            <span className="text-white/80 text-sm font-bold">{name}</span>
+            <span className="text-text-secondary text-sm font-bold">{name}</span>
           </div>
         </div>
         <div className="relative z-10 flex-1 flex items-center justify-center px-8" style={{ gap: layoutSpacing }}>
           <div className="text-center w-full flex flex-col items-center" style={{ gap: layoutSpacing / 2 }}>
-            <p className="text-white font-black text-2xl leading-snug break-words" style={{ wordBreak: 'break-word' }}>{fields.mainText}</p>
-            {fields.subtitle && <p className="text-white/70 text-sm break-words" style={{ wordBreak: 'break-word' }}>{fields.subtitle}</p>}
+            <p className="text-text-primary font-black text-2xl leading-snug break-words" style={{ wordBreak: 'break-word' }}>{fields.mainText}</p>
+            {fields.subtitle && <p className="text-text-secondary text-sm break-words" style={{ wordBreak: 'break-word' }}>{fields.subtitle}</p>}
           </div>
         </div>
         <div className={`relative z-10 p-8 pb-10 ${ctaButton.alignment === 'left' ? 'text-left' : ctaButton.alignment === 'right' ? 'text-right' : 'text-center'}`} style={{ marginTop: layoutSpacing }}>
           <CTAButton alignment={ctaButton.alignment} className="inline-block" />
           {!ctaButton.enabled && (
-            <div className="inline-block px-6 py-3 rounded-full text-white font-bold text-sm" style={{ background: secondary }}>
+            <div className="inline-block px-6 py-3 rounded-full text-text-primary font-bold text-sm" style={{ background: secondary }}>
               📞 {phone}
             </div>
           )}
@@ -223,11 +223,11 @@ function BannerRender({ preset, company, fields, uploadedPhoto, elementOffset = 
             </>
           ) : (
             <>
-              <div className="bg-gray-800 rounded-xl flex flex-col items-center justify-center gap-2 text-gray-500">
+              <div className="bg-gray-100 rounded-xl flex flex-col items-center justify-center gap-2 text-muted">
                 <span className="text-2xl">📷</span>
                 <span className="text-[10px] uppercase tracking-widest font-bold">Antes</span>
               </div>
-              <div className="rounded-xl flex flex-col items-center justify-center gap-2 border-2 text-white"
+              <div className="rounded-xl flex flex-col items-center justify-center gap-2 border-2 text-text-primary"
                 style={{ background: `${primary}33`, borderColor: secondary }}>
                 <span className="text-2xl">✨</span>
                 <span className="text-[10px] uppercase tracking-widest font-bold">Depois</span>
@@ -236,9 +236,9 @@ function BannerRender({ preset, company, fields, uploadedPhoto, elementOffset = 
           )}
         </div>
         <div className="p-6 text-center" style={{ background: `linear-gradient(to right, ${primary}, ${secondary})` }}>
-          <h3 className="text-white font-black text-lg">{name}</h3>
-          <p className="text-white/80 text-sm mt-2 break-words" style={{ wordBreak: 'break-word' }}>{fields.mainText}</p>
-          <p className="text-white/50 text-xs mt-3">{phone}</p>
+          <h3 className="text-text-primary font-black text-lg">{name}</h3>
+          <p className="text-text-secondary text-sm mt-2 break-words" style={{ wordBreak: 'break-word' }}>{fields.mainText}</p>
+          <p className="text-muted text-xs mt-3">{phone}</p>
         </div>
       </div>
     )
@@ -250,13 +250,13 @@ function BannerRender({ preset, company, fields, uploadedPhoto, elementOffset = 
         <PhotoBackground overlay="bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
         <div className="relative z-10 flex-1 flex flex-col justify-end p-8 pb-10">
           <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-6 shadow-2xl">
-            <p className="text-white font-bold text-2xl leading-snug mb-2 break-words" style={{ wordBreak: 'break-word' }}>{fields.mainText}</p>
-            {fields.subtitle && <p className="text-white/70 text-sm mb-4 break-words" style={{ wordBreak: 'break-word' }}>{fields.subtitle}</p>}
-            <div className="flex items-center gap-3 pt-2 border-t border-white/10">
+            <p className="text-text-primary font-bold text-2xl leading-snug mb-2 break-words" style={{ wordBreak: 'break-word' }}>{fields.mainText}</p>
+            {fields.subtitle && <p className="text-text-secondary text-sm mb-4 break-words" style={{ wordBreak: 'break-word' }}>{fields.subtitle}</p>}
+            <div className="flex items-center gap-3 pt-2 border-t border-border">
               <LogoOrInitial size="sm" />
               <div>
-                <p className="text-white font-semibold text-sm">{name}</p>
-                <p className="text-white/70 text-xs">{phone}</p>
+                <p className="text-text-primary font-semibold text-sm">{name}</p>
+                <p className="text-text-secondary text-xs">{phone}</p>
               </div>
             </div>
           </div>
@@ -270,14 +270,14 @@ function BannerRender({ preset, company, fields, uploadedPhoto, elementOffset = 
       <div className="w-full h-full flex flex-col p-10 gap-8" style={{ background: primary }}>
         <div className="flex items-start justify-between">
           <div>
-            <h2 className="text-white font-black text-4xl leading-none mb-3 break-words" style={{ wordBreak: 'break-word' }}>{fields.mainText.split(' ')[0]}</h2>
-            <p className="text-white/80 text-sm font-bold uppercase tracking-widest">{segment}</p>
+            <h2 className="text-text-primary font-black text-4xl leading-none mb-3 break-words" style={{ wordBreak: 'break-word' }}>{fields.mainText.split(' ')[0]}</h2>
+            <p className="text-text-secondary text-sm font-bold uppercase tracking-widest">{segment}</p>
           </div>
           <LogoOrInitial size="lg" className="border-4" style={{ borderColor: secondary }} />
         </div>
         <div className="flex-1 flex items-end">
           <div className="w-full border-4" style={{ borderColor: secondary, borderTop: 'none', borderLeft: 'none', borderRight: 'none' }}>
-            <p className="text-white/70 text-sm font-bold py-4 break-words" style={{ wordBreak: 'break-word' }}>{fields.mainText}</p>
+            <p className="text-text-secondary text-sm font-bold py-4 break-words" style={{ wordBreak: 'break-word' }}>{fields.mainText}</p>
           </div>
         </div>
         <div className={`pt-6 border-t-4 space-y-3 ${ctaButton.alignment === 'left' ? 'text-left' : ctaButton.alignment === 'right' ? 'text-right' : 'text-center'}`} style={{ borderColor: secondary }}>
@@ -300,8 +300,8 @@ function BannerRender({ preset, company, fields, uploadedPhoto, elementOffset = 
         <div className="flex items-center gap-3 mb-8">
           <LogoOrInitial size="md" className="border-2 border-white/30" />
           <div>
-            <h2 className="text-white font-black text-2xl">{name}</h2>
-            <p className="text-white/70 text-xs uppercase tracking-widest">{segment}</p>
+            <h2 className="text-text-primary font-black text-2xl">{name}</h2>
+            <p className="text-text-secondary text-xs uppercase tracking-widest">{segment}</p>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-4 flex-1 mb-8">
@@ -310,12 +310,12 @@ function BannerRender({ preset, company, fields, uploadedPhoto, elementOffset = 
               <div className="text-2xl mb-2">
                 {['⚡', '', '🛠️', '💡'][i % 4]}
               </div>
-              <p className="text-white font-bold text-sm break-words" style={{ wordBreak: 'break-word' }}>{svc}</p>
+              <p className="text-text-primary font-bold text-sm break-words" style={{ wordBreak: 'break-word' }}>{svc}</p>
             </div>
           ))}
         </div>
         <div className="pt-6 border-t-2 border-white/20">
-          <p className="text-white/80 text-xs font-semibold mb-3 break-words" style={{ wordBreak: 'break-word' }}>{fields.tagline}</p>
+          <p className="text-text-secondary text-xs font-semibold mb-3 break-words" style={{ wordBreak: 'break-word' }}>{fields.tagline}</p>
           <PhoneDisplay className="font-bold text-sm" />
         </div>
       </div>
@@ -332,13 +332,13 @@ function BannerRender({ preset, company, fields, uploadedPhoto, elementOffset = 
             <span className="text-xs font-bold uppercase tracking-widest" style={{ color: secondary }}>Especialista Verificado</span>
           </div>
           <div>
-            <h2 className="text-white font-black text-3xl mb-3 break-words" style={{ wordBreak: 'break-word' }}>{fields.mainText}</h2>
-            <p className="text-white/70 text-sm mb-6">{segment}</p>
-            <div className="flex items-center gap-3 pt-6 border-t border-white/20">
+            <h2 className="text-text-primary font-black text-3xl mb-3 break-words" style={{ wordBreak: 'break-word' }}>{fields.mainText}</h2>
+            <p className="text-text-secondary text-sm mb-6">{segment}</p>
+            <div className="flex items-center gap-3 pt-6 border-t border-border">
               <LogoOrInitial size="md" />
               <div>
-                <p className="text-white font-bold text-sm">{name}</p>
-                <p className="text-white/50 text-xs">{phone}</p>
+                <p className="text-text-primary font-bold text-sm">{name}</p>
+                <p className="text-muted text-xs">{phone}</p>
               </div>
             </div>
           </div>
@@ -355,13 +355,13 @@ function BannerRender({ preset, company, fields, uploadedPhoto, elementOffset = 
         <div className="w-full h-full flex flex-col items-center justify-center p-10 text-center"
           style={{ background: `linear-gradient(135deg, ${primary}, ${secondary})` }}>
           <LogoOrInitial size="lg" className="mb-6 bg-white/20 p-2" />
-          <h2 className="text-3xl font-black text-white mb-2">{name}</h2>
-          <p className="text-white/70 text-sm mb-6 uppercase tracking-widest">{segment}</p>
-          <div className="bg-white/20 backdrop-blur-sm rounded-2xl px-8 py-5 mb-6 border border-white/30 w-full mx-2">
-            <p className="text-white font-bold text-xl leading-snug break-words" style={{ wordBreak: 'break-word' }}>{fields.mainText}</p>
-            {fields.subtitle && <p className="text-white/70 text-sm mt-3 break-words" style={{ wordBreak: 'break-word' }}>{fields.subtitle}</p>}
+          <h2 className="text-3xl font-black text-text-primary mb-2">{name}</h2>
+          <p className="text-text-secondary text-sm mb-6 uppercase tracking-widest">{segment}</p>
+          <div className="bg-gray-50 backdrop-blur-sm rounded-2xl px-8 py-5 mb-6 border border-border w-full mx-2">
+            <p className="text-text-primary font-bold text-xl leading-snug break-words" style={{ wordBreak: 'break-word' }}>{fields.mainText}</p>
+            {fields.subtitle && <p className="text-text-secondary text-sm mt-3 break-words" style={{ wordBreak: 'break-word' }}>{fields.subtitle}</p>}
           </div>
-          <div className="flex items-center gap-2 text-white/70 text-sm">
+          <div className="flex items-center gap-2 text-text-secondary text-sm">
             <span>📞</span>
             <span>{phone}</span>
           </div>
@@ -376,18 +376,18 @@ function BannerRender({ preset, company, fields, uploadedPhoto, elementOffset = 
             {[1,2,3,4,5].map(i => <span key={i} style={{ color: secondary }} className="text-xl">★</span>)}
           </div>
           <div className="flex-1 flex flex-col justify-center">
-            <div className="text-5xl mb-4 opacity-30 text-white font-serif leading-none">"</div>
-            <p className="text-white text-lg italic leading-relaxed break-words" style={{ wordBreak: 'break-word' }}>{fields.mainText}</p>
-            <div className="text-5xl text-right mt-4 opacity-30 text-white font-serif leading-none">"</div>
+            <div className="text-5xl mb-4 opacity-20 text-text-primary font-serif leading-none">"</div>
+            <p className="text-text-primary text-lg italic leading-relaxed break-words" style={{ wordBreak: 'break-word' }}>{fields.mainText}</p>
+            <div className="text-5xl text-right mt-4 opacity-20 text-text-primary font-serif leading-none">"</div>
           </div>
           <div className="flex items-center justify-between mt-6 pt-6 border-t border-white/20">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-white font-bold">
+              <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-text-primary font-bold">
                 {(fields.clientName || 'C').charAt(0)}
               </div>
               <div>
-                <p className="text-white font-bold text-sm">{fields.clientName || 'Cliente Satisfeito'}</p>
-                <p className="text-white/50 text-xs">via {name}</p>
+                <p className="text-text-primary font-bold text-sm">{fields.clientName || 'Cliente Satisfeito'}</p>
+                <p className="text-muted text-xs">via {name}</p>
               </div>
             </div>
             <LogoOrInitial size="sm" className="opacity-70" />
@@ -406,13 +406,13 @@ function BannerRender({ preset, company, fields, uploadedPhoto, elementOffset = 
             </div>
           </div>
           <div className="flex-1 flex items-center">
-            <p className="text-white text-xl font-semibold leading-relaxed break-words" style={{ wordBreak: 'break-word' }}>{fields.mainText}</p>
+            <p className="text-text-primary text-xl font-semibold leading-relaxed break-words" style={{ wordBreak: 'break-word' }}>{fields.mainText}</p>
           </div>
-          <div className="flex items-center gap-3 pt-6 border-t border-white/10">
+          <div className="flex items-center gap-3 pt-6 border-t border-border">
             <LogoOrInitial size="sm" />
             <div>
-              <p className="text-white font-bold text-sm">{name}</p>
-              <p className="text-white/50 text-xs">{phone}</p>
+              <p className="text-text-primary font-bold text-sm">{name}</p>
+              <p className="text-muted text-xs">{phone}</p>
             </div>
           </div>
         </div>
@@ -425,11 +425,11 @@ function BannerRender({ preset, company, fields, uploadedPhoto, elementOffset = 
           <div className="flex items-center gap-3 mb-8">
             <LogoOrInitial size="md" className="bg-white/10 p-1" />
             <div>
-              <h2 className="text-white font-black text-xl">{name}</h2>
-              <p className="text-white/60 text-sm">{segment}</p>
+              <h2 className="text-text-primary font-black text-xl">{name}</h2>
+              <p className="text-text-secondary text-sm">{segment}</p>
             </div>
           </div>
-          <div className="text-white/60 text-xs uppercase tracking-widest mb-4">Nossos Serviços</div>
+          <div className="text-text-secondary text-xs uppercase tracking-widest mb-4">Nossos Serviços</div>
           <div className="space-y-4 flex-1">
             {[fields.service1, fields.service2, fields.service3].filter(Boolean).map((svc, i) => (
               <div key={i} className="flex items-center gap-3">
@@ -437,13 +437,13 @@ function BannerRender({ preset, company, fields, uploadedPhoto, elementOffset = 
                   style={{ background: secondary }}>
                   {i + 1}
                 </div>
-                <span className="text-white text-sm font-medium break-words" style={{ wordBreak: 'break-word' }}>{svc}</span>
+                <span className="text-text-primary text-sm font-medium break-words" style={{ wordBreak: 'break-word' }}>{svc}</span>
               </div>
             ))}
           </div>
           <div className="pt-6 border-t border-white/10">
-            <p className="text-white/80 text-sm italic break-words" style={{ wordBreak: 'break-word' }}>{fields.tagline}</p>
-            <p className="text-white/50 text-xs mt-2">{phone}</p>
+            <p className="text-text-secondary text-sm italic break-words" style={{ wordBreak: 'break-word' }}>{fields.tagline}</p>
+            <p className="text-muted text-xs mt-2">{phone}</p>
           </div>
         </div>
       )
@@ -453,14 +453,14 @@ function BannerRender({ preset, company, fields, uploadedPhoto, elementOffset = 
         <div className="w-full h-full flex flex-col items-center justify-center p-10 text-center"
           style={{ background: 'linear-gradient(135deg, #dc2626, #7f1d1d)' }}>
           <div className="text-6xl mb-6 animate-pulse">🚨</div>
-          <h2 className="text-3xl font-black text-white mb-3">
+          <h2 className="text-3xl font-black text-text-primary mb-3">
             Precisa de <br />{segment}?
           </h2>
-          <p className="text-white/80 text-base mb-8 break-words" style={{ wordBreak: 'break-word' }}>{fields.mainText}</p>
-          <div className="bg-white rounded-2xl px-8 py-4 mb-6 shadow-2xl">
-            <p className="font-black text-2xl text-gray-900">{phone}</p>
+          <p className="text-text-secondary text-base mb-8 break-words" style={{ wordBreak: 'break-word' }}>{fields.mainText}</p>
+          <div className="bg-white rounded-2xl px-8 py-4 mb-6 shadow-lg border border-border">
+            <p className="font-black text-2xl text-text-primary">{phone}</p>
           </div>
-          <div className="flex items-center gap-2 text-white/60 text-sm">
+          <div className="flex items-center gap-2 text-muted text-sm">
             <LogoOrInitial size="sm" />
             <span>{name} — Atendimento Rápido</span>
           </div>
@@ -469,7 +469,7 @@ function BannerRender({ preset, company, fields, uploadedPhoto, elementOffset = 
 
     default:
       return (
-        <div className="flex items-center justify-center h-full text-gray-400 text-sm">
+        <div className="flex items-center justify-center h-full text-muted text-sm">
           Preview indisponível
         </div>
       )
@@ -491,21 +491,21 @@ function PresetCard({ preset, onClick }) {
         style={{ background: preset.theme.cardGradient }}
       >
         <span className="text-4xl">{preset.icon}</span>
-        <span className="text-[10px] font-bold uppercase tracking-widest text-white/60 px-3 py-0.5 rounded-full bg-black/20">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-text-secondary px-3 py-0.5 rounded-full bg-gray-100">
           {preset.category}
         </span>
       </div>
 
       <div className="p-4 bg-gray-800/60">
-        <h4 className="text-white font-bold text-sm group-hover:text-emerald-400 transition-colors">
+        <h4 className="text-text-primary font-bold text-sm group-hover:text-accent transition-colors">
           {preset.name}
         </h4>
-        <p className="text-gray-400 text-xs mt-1 leading-relaxed line-clamp-2">
+        <p className="text-text-secondary text-xs mt-1 leading-relaxed line-clamp-2">
           {preset.description}
         </p>
         <div className="flex gap-2 mt-3 flex-wrap">
           {preset.sizes.map(size => (
-            <span key={size} className="text-[9px] px-2 py-0.5 bg-gray-700 rounded-full text-gray-400 font-mono">
+            <span key={size} className="text-[9px] px-2 py-0.5 bg-gray-100 rounded-full text-muted font-mono">
               {size}
             </span>
           ))}
@@ -525,7 +525,7 @@ function PresetCard({ preset, onClick }) {
 function FieldEditor({ field, value, onChange }) {
   return (
     <div className="space-y-1">
-      <label className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider">
+      <label className="text-[10px] font-semibold text-text-secondary uppercase tracking-wider">
         {field.label}
       </label>
       {field.multiline ? (
@@ -535,7 +535,7 @@ function FieldEditor({ field, value, onChange }) {
           placeholder={field.placeholder}
           maxLength={field.maxLength}
           rows={2}
-          className="w-full bg-gray-700/50 border border-gray-600 rounded-lg px-2 py-1.5 text-white text-xs placeholder-gray-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/50 resize-none"
+          className="w-full bg-gray-50 border border-border rounded-lg px-2 py-1.5 text-text-primary placeholder-muted text-xs focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 resize-none"
         />
       ) : (
         <input
@@ -544,7 +544,7 @@ function FieldEditor({ field, value, onChange }) {
           onChange={e => onChange(field.key, e.target.value)}
           placeholder={field.placeholder}
           maxLength={field.maxLength}
-          className="w-full bg-gray-700/50 border border-gray-600 rounded-lg px-2 py-1.5 text-white text-xs placeholder-gray-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/50"
+          className="w-full bg-gray-50 border border-border rounded-lg px-2 py-1.5 text-text-primary placeholder-muted text-xs focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30"
         />
       )}
     </div>
@@ -581,8 +581,8 @@ function PhotoUploader({ photo, onPhotoChange, onPhotoRemove }) {
         </div>
       ) : (
         <label className="flex items-center justify-center gap-2 border border-dashed border-gray-600 rounded-lg p-3 cursor-pointer hover:border-emerald-500 hover:bg-emerald-500/5 transition-all">
-          <Upload size={14} className="text-gray-400" />
-          <span className="text-xs text-gray-400">Upload</span>
+          <Upload size={14} className="text-muted" />
+          <span className="text-xs text-muted">Upload</span>
           <input
             type="file"
             accept="image/*"
@@ -601,17 +601,17 @@ function CollapsibleSection({ title, icon, defaultOpen = false, children }) {
   const [isOpen, setIsOpen] = useState(defaultOpen)
 
   return (
-    <div className="border-b border-gray-700/50 last:border-b-0">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between px-3 py-2.5 hover:bg-gray-700/30 transition-colors"
-      >
-        <div className="flex items-center gap-2">
-          <span className="text-sm">{icon}</span>
-          <span className="text-xs font-semibold text-gray-300 uppercase tracking-wider">{title}</span>
-        </div>
-        <motion.div animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
-          <ChevronDown size={14} className="text-gray-500" />
+    <div className="border-b border-border last:border-b-0">
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="w-full flex items-center justify-between px-3 py-2.5 hover:bg-gray-50 transition-colors"
+        >
+          <div className="flex items-center gap-2">
+            <span className="text-sm">{icon}</span>
+            <span className="text-xs font-semibold text-text-primary uppercase tracking-wider">{title}</span>
+          </div>
+          <motion.div animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
+            <ChevronDown size={14} className="text-text-secondary" />
         </motion.div>
       </button>
       <AnimatePresence>
@@ -723,8 +723,8 @@ export default function SocialArtsTab() {
           <div>
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h3 className="text-xl font-bold text-white mb-1">Artes para Redes Sociais</h3>
-                <p className="text-gray-400 text-sm">
+                <h3 className="text-xl font-bold text-text-primary mb-1">Artes para Redes Sociais</h3>
+                <p className="text-text-secondary text-sm">
                   Escolha um modelo, personalize e baixe em PNG. Fotos ficam apenas no seu navegador.
                 </p>
               </div>
@@ -740,7 +740,7 @@ export default function SocialArtsTab() {
                   className={`px-4 py-2 rounded-full font-semibold text-sm whitespace-nowrap transition-all ${
                     selectedVibe === vibe.id
                       ? 'bg-emerald-600 text-white'
-                      : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                      : 'bg-gray-100 text-text-secondary hover:bg-gray-200'
                   }`}
                 >
                   {vibe.icon} {vibe.label}
@@ -789,7 +789,7 @@ export default function SocialArtsTab() {
       >
         <button
           onClick={() => { setSelectedPreset(null); setDownloaded(false); setUploadedPhoto(null) }}
-          className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm mb-4"
+          className="flex items-center gap-2 text-text-secondary hover:text-text-primary transition-colors text-sm mb-4"
         >
           <ChevronLeft size={16} />
           Voltar aos modelos
@@ -797,14 +797,14 @@ export default function SocialArtsTab() {
 
         <div className="flex gap-4 h-[calc(100vh-200px)]">
           {/* ── LEFT: COMPACT CONTROLS ─ */}
-          <div className="w-96 flex-shrink-0 bg-gray-800/50 border border-gray-700 rounded-2xl overflow-hidden flex flex-col">
+          <div className="w-96 flex-shrink-0 bg-white border border-border rounded-2xl overflow-hidden flex flex-col shadow-sm">
             {/* Header */}
-            <div className="p-3 border-b border-gray-700/50">
+            <div className="p-3 border-b border-border">
               <div className="flex items-center gap-2">
                 <span className="text-xl">{selectedPreset.icon}</span>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-white font-bold text-sm truncate">{selectedPreset.name}</h3>
-                  <p className="text-gray-500 text-[10px] truncate">{selectedPreset.description}</p>
+                  <h3 className="text-text-primary font-bold text-sm truncate">{selectedPreset.name}</h3>
+                  <p className="text-text-secondary text-[10px] truncate">{selectedPreset.description}</p>
                 </div>
               </div>
             </div>
@@ -839,7 +839,7 @@ export default function SocialArtsTab() {
                 {/* CTA Button */}
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] text-gray-400">Botão CTA</span>
+                    <span className="text-[10px] text-text-secondary">Botão CTA</span>
                     <button
                       onClick={() => setCtaButton(prev => ({ ...prev, enabled: !prev.enabled }))}
                       className={`w-8 h-4 rounded-full transition-colors relative ${ctaButton.enabled ? 'bg-emerald-500' : 'bg-gray-600'}`}
@@ -858,22 +858,22 @@ export default function SocialArtsTab() {
                       />
                       <div className="flex gap-2">
                         <div className="flex-1">
-                          <label className="text-[9px] text-gray-500">Cor</label>
+                          <label className="text-[9px] text-muted">Cor</label>
                           <div className="flex items-center gap-1">
                             <input type="color" value={ctaButton.color} onChange={e => setCtaButton(prev => ({ ...prev, color: e.target.value }))} className="w-6 h-6 rounded cursor-pointer" />
-                            <span className="text-[9px] text-gray-500 font-mono">{ctaButton.color}</span>
+                            <span className="text-[9px] text-muted font-mono">{ctaButton.color}</span>
                           </div>
                         </div>
                         <div className="flex-1">
-                          <label className="text-[9px] text-gray-500">Texto</label>
+                          <label className="text-[9px] text-muted">Texto</label>
                           <div className="flex items-center gap-1">
                             <input type="color" value={ctaButton.textColor} onChange={e => setCtaButton(prev => ({ ...prev, textColor: e.target.value }))} className="w-6 h-6 rounded cursor-pointer" />
-                            <span className="text-[9px] text-gray-500 font-mono">{ctaButton.textColor}</span>
+                            <span className="text-[9px] text-muted font-mono">{ctaButton.textColor}</span>
                           </div>
                         </div>
                       </div>
                       <div>
-                        <label className="text-[9px] text-gray-500">Arredondamento</label>
+                        <label className="text-[9px] text-muted">Arredondamento</label>
                         <input
                           type="range"
                           min="0"
@@ -888,13 +888,13 @@ export default function SocialArtsTab() {
                         />
                       </div>
                       <div>
-                        <label className="text-[9px] text-gray-500">Alinhamento</label>
+                        <label className="text-[9px] text-muted">Alinhamento</label>
                         <div className="flex gap-1 mt-1">
                           {['left', 'center', 'right'].map(align => (
                             <button
                               key={align}
                               onClick={() => setCtaButton(prev => ({ ...prev, alignment: align }))}
-                              className={`flex-1 px-2 py-1 rounded text-[10px] transition-colors ${ctaButton.alignment === align ? 'bg-emerald-600 text-white' : 'bg-gray-700 text-gray-400'}`}
+                              className={`flex-1 px-2 py-1 rounded text-[10px] transition-colors ${ctaButton.alignment === align ? 'bg-accent text-white' : 'bg-gray-100 text-text-secondary'}`}
                             >
                               {align === 'left' ? '← Esq' : align === 'right' ? 'Dir →' : 'Centro'}
                             </button>
@@ -906,8 +906,8 @@ export default function SocialArtsTab() {
                 </div>
 
                 {/* Spacing */}
-                <div className="pt-2 border-t border-gray-700/30">
-                  <label className="text-[10px] text-gray-400">Espaçamento: {layoutSpacing}px</label>
+                <div className="pt-2 border-t border-border">
+                  <label className="text-[10px] text-text-secondary">Espaçamento: {layoutSpacing}px</label>
                   <input
                     type="range"
                     min="8"
@@ -920,42 +920,42 @@ export default function SocialArtsTab() {
                 </div>
 
                 {/* Position */}
-                <div className="pt-2 border-t border-gray-700/30">
-                  <label className="text-[10px] text-gray-400">Posição do Texto</label>
+                <div className="pt-2 border-t border-border">
+                  <label className="text-[10px] text-text-secondary">Posição do Texto</label>
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <label className="text-[9px] text-gray-500">X: {elementOffset.x}px</label>
+                      <label className="text-[9px] text-muted">X: {elementOffset.x}px</label>
                       <input type="range" min="-50" max="50" value={elementOffset.x} onChange={e => setElementOffset(prev => ({ ...prev, x: parseInt(e.target.value) }))} className="w-full accent-emerald-500 h-1" />
                     </div>
                     <div>
-                      <label className="text-[9px] text-gray-500">Y: {elementOffset.y}px</label>
+                      <label className="text-[9px] text-muted">Y: {elementOffset.y}px</label>
                       <input type="range" min="-50" max="50" value={elementOffset.y} onChange={e => setElementOffset(prev => ({ ...prev, y: parseInt(e.target.value) }))} className="w-full accent-emerald-500 h-1" />
                     </div>
                   </div>
                 </div>
 
                 {/* Rect Blocks */}
-                <div className="pt-2 border-t border-gray-700/30">
-                  <label className="text-[10px] text-gray-400">Blocos Retangulares</label>
+                <div className="pt-2 border-t border-border">
+                  <label className="text-[10px] text-text-secondary">Blocos Retangulares</label>
                   <div className="grid grid-cols-2 gap-1 mt-1">
-                    <button onClick={() => setRectBlocks(prev => [...prev, { id: Date.now(), position: 'top', height: 80, opacity: 0.3 }])} className="px-2 py-1 rounded bg-gray-700 text-[10px] text-gray-300 hover:bg-gray-600 transition-colors">+ Topo</button>
-                    <button onClick={() => setRectBlocks(prev => [...prev, { id: Date.now(), position: 'bottom', height: 80, opacity: 0.3 }])} className="px-2 py-1 rounded bg-gray-700 text-[10px] text-gray-300 hover:bg-gray-600 transition-colors">+ Base</button>
+                    <button onClick={() => setRectBlocks(prev => [...prev, { id: Date.now(), position: 'top', height: 80, opacity: 0.3 }])} className="px-2 py-1 rounded bg-gray-100 text-[10px] text-text-secondary hover:bg-gray-200 transition-colors">+ Topo</button>
+                    <button onClick={() => setRectBlocks(prev => [...prev, { id: Date.now(), position: 'bottom', height: 80, opacity: 0.3 }])} className="px-2 py-1 rounded bg-gray-100 text-[10px] text-text-secondary hover:bg-gray-200 transition-colors">+ Base</button>
                   </div>
                   {rectBlocks.map((block, idx) => (
                     <div key={block.id} className="mt-2 p-2 rounded bg-gray-700/30 space-y-1">
                       <div className="flex items-center justify-between">
-                        <span className="text-[9px] text-gray-500">Bloco {idx + 1} — {block.position === 'top' ? 'Topo' : 'Base'}</span>
-                        <button onClick={() => setRectBlocks(prev => prev.filter(b => b.id !== block.id))} className="text-gray-500 hover:text-red-400 text-xs">✕</button>
+                        <span className="text-[9px] text-muted">Bloco {idx + 1} — {block.position === 'top' ? 'Topo' : 'Base'}</span>
+                        <button onClick={() => setRectBlocks(prev => prev.filter(b => b.id !== block.id))} className="text-muted hover:text-danger text-xs">✕</button>
                       </div>
                       <div className="flex gap-1">
                         <button onClick={() => setRectBlocks(prev => prev.map(b => b.id === block.id ? { ...b, position: b.position === 'top' ? 'bottom' : 'top' } : b))} className="flex-1 px-1 py-0.5 rounded bg-gray-600 text-[9px] text-gray-300">{block.position === 'top' ? '↓ Base' : '↑ Topo'}</button>
                       </div>
                       <div>
-                        <label className="text-[9px] text-gray-500">Altura: {block.height}px</label>
+                        <label className="text-[9px] text-muted">Altura: {block.height}px</label>
                         <input type="range" min="20" max="200" value={block.height} onChange={e => setRectBlocks(prev => prev.map(b => b.id === block.id ? { ...b, height: parseInt(e.target.value) } : b))} className="w-full accent-emerald-500 h-1" />
                       </div>
                       <div>
-                        <label className="text-[9px] text-gray-500">Opacidade: {Math.round(block.opacity * 100)}%</label>
+                        <label className="text-[9px] text-muted">Opacidade: {Math.round(block.opacity * 100)}%</label>
                         <input type="range" min="5" max="100" value={Math.round(block.opacity * 100)} onChange={e => setRectBlocks(prev => prev.map(b => b.id === block.id ? { ...b, opacity: parseInt(e.target.value) / 100 } : b))} className="w-full accent-emerald-500 h-1" />
                       </div>
                     </div>
@@ -987,8 +987,8 @@ export default function SocialArtsTab() {
                       }}
                       className={`flex flex-col items-center gap-0.5 p-1.5 rounded border transition-all ${
                         decorativeShapes.includes(shape.id)
-                          ? 'bg-emerald-600/20 border-emerald-500/50 text-emerald-400'
-                          : 'bg-gray-800/50 border-gray-700/50 text-gray-500 hover:border-gray-600'
+                          ? 'bg-emerald-100 border-emerald-500/50 text-emerald-700'
+                          : 'bg-gray-100 border-border text-muted hover:border-border-strong'
                       }`}
                     >
                       <span className="text-sm">{shape.icon}</span>
@@ -1017,14 +1017,14 @@ export default function SocialArtsTab() {
           </div>
 
           {/* ── RIGHT: PREVIEW + DOWNLOAD ── */}
-          <div className="flex-1 bg-gray-800/50 border border-gray-700 rounded-2xl p-4 flex flex-col">
-            <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3">
+          <div className="flex-1 bg-white border border-border rounded-2xl p-4 flex flex-col shadow-sm">
+            <h3 className="text-sm font-bold text-text-secondary uppercase tracking-wider mb-3">
               Pré-visualização
             </h3>
 
             <div className="flex-1 flex items-center justify-center overflow-hidden">
               <div
-                className={`bg-gray-900 rounded-xl overflow-hidden shadow-2xl ${
+                className={`bg-white rounded-xl overflow-hidden shadow-lg ${
                   selectedPreset.sizes.includes('1080x1920') ? 'aspect-[9/16]' : 'aspect-square'
                 }`}
                 style={{ maxWidth: selectedPreset.sizes.includes('1080x1920') ? 260 : 320, maxHeight: '100%' }}
@@ -1047,7 +1047,7 @@ export default function SocialArtsTab() {
 
             <div className="flex justify-center gap-2 mt-3 mb-3">
               {selectedPreset.sizes.map(size => (
-                <span key={size} className="text-[10px] px-2 py-0.5 bg-gray-700 rounded-full text-gray-400 font-mono">
+                <span key={size} className="text-[10px] px-2 py-0.5 bg-gray-100 rounded-full text-text-secondary font-mono">
                   {size}
                 </span>
               ))}
@@ -1082,7 +1082,7 @@ export default function SocialArtsTab() {
               )}
             </motion.button>
 
-            <p className="text-[10px] text-gray-600 text-center mt-1">
+            <p className="text-[10px] text-muted text-center mt-1">
               PNG · 2x resolução · Pronto para publicar
             </p>
           </div>

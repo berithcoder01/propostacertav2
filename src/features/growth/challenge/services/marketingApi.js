@@ -1,4 +1,4 @@
-import { API_URL } from '../../../shared/services/api'
+import { API_URL } from '../../../../shared/services/api'
 
 const getAuthHeaders = (hasBody = false) => {
   const token = localStorage.getItem('@propostacerta:token')

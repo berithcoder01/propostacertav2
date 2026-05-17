@@ -126,15 +126,15 @@ const ProposalCard = ({ p, onPdf, onStatusChange, isGenerating }) => {
         onDrag={(event, info) => setDragX(info.offset.x)}
         onDragEnd={handleDragEnd}
         style={{ x: dragX }}
-        className="card p-4 flex flex-col gap-3 active:scale-[0.99] transition-transform relative z-10 bg-surface"
+        className="card p-5 flex flex-col gap-3 active:scale-[0.99] transition-transform relative z-10 bg-surface hover:shadow-card-hover"
       >
         <div className="flex justify-between items-start gap-3">
           <div className="min-w-0">
-            <div className="text-white font-bold text-base leading-tight truncate">{p.clientName}</div>
-            <div className="text-muted text-xs mt-0.5 font-medium">
-              {p.number} · <span className="text-accent2 font-bold">{fmt(p.total)}</span>
+            <div className="text-text-primary font-bold text-base leading-tight truncate">{p.clientName}</div>
+            <div className="text-text-secondary text-xs mt-0.5 font-medium">
+              {p.number} · <span className="text-accent font-bold">{fmt(p.total)}</span>
             </div>
-            <div className="text-muted text-[10px] mt-1 flex items-center gap-1">
+            <div className="text-text-secondary text-[10px] mt-1 flex items-center gap-1">
               <Calendar size={10} />
               {new Date(p.createdAt).toLocaleDateString('pt-BR')}
             </div>
@@ -146,14 +146,14 @@ const ProposalCard = ({ p, onPdf, onStatusChange, isGenerating }) => {
           <button
             onClick={() => onPdf(p)}
             disabled={!!isGenerating}
-            className="flex-1 py-2.5 rounded-xl bg-bg border border-border text-muted text-xs font-bold flex items-center justify-center gap-1.5 active:bg-accent/10 active:text-accent2 transition-colors disabled:opacity-40"
+            className="flex-1 py-2.5 rounded-xl bg-bg border border-border text-text-secondary text-xs font-bold flex items-center justify-center gap-1.5 active:bg-accent/10 active:text-accent transition-colors disabled:opacity-40"
           >
             {isGenerating ? <Loader size={12} className="animate-spin" /> : <Download size={13} />}
             PDF
           </button>
           <button
             onClick={() => navigate(`/propostas/editar/geral/${p.id}`)}
-            className="flex-1 py-2.5 rounded-xl bg-accent/10 border border-accent/30 text-accent2 text-xs font-bold flex items-center justify-center gap-1.5 active:bg-accent/20 transition-colors"
+            className="flex-1 py-2.5 rounded-xl bg-accent/10 border border-accent/30 text-accent text-xs font-bold flex items-center justify-center gap-1.5 active:bg-accent/20 transition-colors"
           >
             <Edit size={13} /> Editar
           </button>
@@ -225,7 +225,7 @@ const Dashboard = () => {
   if (isLoading) return <DashboardSkeleton />;
 
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-6 max-w-4xl mx-auto">
+    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-6 w-full">
 
       {/* Novo motor de PDF unificado */}
       {generatingProposal && (
@@ -239,12 +239,12 @@ const Dashboard = () => {
        {/* ── Greeting ──────────────────────────────────────────────────── */}
        <div className="flex justify-between items-start">
          <div>
-           <h1 className="text-2xl font-bold font-display text-text-primary">
+           <h1 className="text-3xl font-black font-display text-text-primary">
              {getGreeting()}{userName ? `, ${userName}` : ''}
            </h1>
-           <p className="text-muted text-sm capitalize mt-0.5">{todayFmt()}</p>
+           <p className="text-text-secondary text-sm capitalize mt-1">{todayFmt()}</p>
          </div>
-         <Button onClick={() => navigate('/propostas/nova/rapida')} className="hidden md:flex items-center gap-2 px-5">
+         <Button onClick={() => navigate('/propostas/nova/rapida')} className="hidden md:flex items-center gap-2 px-5 shadow-md">
            <Plus size={16} /> Nova Proposta
          </Button>
        </div>
@@ -254,55 +254,61 @@ const Dashboard = () => {
        <DashboardChallengeBlock onNavigate={() => navigate('/meu-negocio')} />
 
        {/* ── 3 Metric cards ────────────────────────────────────────────── */}
-       <div className="grid grid-cols-3 gap-4">
-         <div className="card p-5">
-           <div className="flex items-center gap-2 mb-2">
-             <FileText size={16} className="text-accent2" />
-             <div className="text-[10px] text-muted font-bold uppercase tracking-wider">Este mês</div>
+       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+         <div className="card p-6 hover:shadow-card-hover transition-all duration-300">
+           <div className="flex items-center gap-3 mb-3">
+             <div className="p-2 rounded-lg bg-accent/10 text-accent">
+               <FileText size={18} />
+             </div>
+             <div className="text-xs text-text-secondary font-bold uppercase tracking-wider">Este mês</div>
            </div>
-           <div className="text-3xl font-bold font-display text-text-primary">{stats?.monthlyProposals ?? 0}</div>
-           <div className="text-[10px] text-muted mt-1">{stats?.totalProposals ?? 0} total</div>
+           <div className="text-4xl font-black font-display text-text-primary">{stats?.monthlyProposals ?? 0}</div>
+           <div className="text-xs text-muted mt-2">{stats?.totalProposals ?? 0} total</div>
          </div>
 
-         <div className="card p-5">
-           <div className="flex items-center gap-2 mb-2">
-             <TrendingUp size={16} className="text-success" />
-             <div className="text-[10px] text-muted font-bold uppercase tracking-wider">Aprovado</div>
+         <div className="card p-6 hover:shadow-card-hover transition-all duration-300">
+           <div className="flex items-center gap-3 mb-3">
+             <div className="p-2 rounded-lg bg-success/10 text-success">
+               <TrendingUp size={18} />
+             </div>
+             <div className="text-xs text-text-secondary font-bold uppercase tracking-wider">Aprovado</div>
            </div>
-           <div className="text-2xl font-bold font-display text-success leading-tight">{fmt(stats?.approvedValue ?? 0)}</div>
-           <div className="text-[10px] text-muted mt-1">{stats?.approvedCount ?? 0} propostas</div>
+           <div className="text-3xl font-black font-display text-success leading-tight">{fmt(stats?.approvedValue ?? 0)}</div>
+           <div className="text-xs text-muted mt-2">{stats?.approvedCount ?? 0} propostas</div>
          </div>
 
-         <div className="card p-5">
-           <div className="flex items-center gap-2 mb-2">
-             <Users size={16} className="text-blue-400" />
-             <div className="text-[10px] text-muted font-bold uppercase tracking-wider">Leads Novos</div>
+         <div className="card p-6 hover:shadow-card-hover transition-all duration-300">
+           <div className="flex items-center gap-3 mb-3">
+             <div className="p-2 rounded-lg bg-info/10 text-info">
+               <Users size={18} />
+             </div>
+             <div className="text-xs text-text-secondary font-bold uppercase tracking-wider">Leads Novos</div>
            </div>
-           <div className="text-2xl font-bold font-display text-blue-400">{leadsSummary?.activeLeads ?? 0}</div>
-           <div className="text-[10px] text-muted mt-1">Leads ativos</div>
+           <div className="text-4xl font-black font-display text-info">{leadsSummary?.activeLeads ?? 0}</div>
+           <div className="text-xs text-muted mt-2">Leads ativos</div>
          </div>
        </div>
 
       {/* ── Recent proposals ──────────────────────────────────────────── */}
       <div>
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="font-bold text-text-primary font-display">Atividade Recente</h2>
-          <button onClick={() => navigate('/propostas')} className="text-accent2 text-xs font-bold hover:underline">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="font-bold text-text-primary font-display text-lg">Atividade Recente</h2>
+          <button onClick={() => navigate('/propostas')} className="text-accent text-sm font-bold hover:underline">
             Ver todas →
           </button>
         </div>
 
         {recent.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-14 text-muted border-2 border-dashed border-border rounded-2xl">
-            <FileText size={40} className="mb-3 text-border" />
-            <p className="font-bold text-white mb-1">Nenhuma proposta ainda</p>
-            <p className="text-sm mb-4">Crie sua primeira proposta agora.</p>
-            <Button onClick={() => navigate('/propostas/nova/rapida')} className="px-6">
+          <div className="flex flex-col items-center justify-center py-16 text-muted border-2 border-dashed border-border rounded-2xl bg-surface">
+            <FileText size={48} className="mb-4 text-border" />
+            <p className="font-bold text-text-primary text-lg mb-2">Nenhuma proposta ainda</p>
+            <p className="text-sm mb-6">Crie sua primeira proposta agora.</p>
+            <Button onClick={() => navigate('/propostas/nova/rapida')} className="px-8 shadow-md">
               <Plus size={16} className="mr-2" /> Criar agora
             </Button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {recent.map(p => (
               <ProposalCard 
                 key={p.id} 

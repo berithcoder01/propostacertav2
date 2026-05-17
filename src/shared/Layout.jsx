@@ -38,8 +38,8 @@ const Layout = () => {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--brand-primary)]/20 to-transparent" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[300px] bg-ambient-glow opacity-50 pointer-events-none" />
 
-      {/* Sidebar Desktop - Floating Dock */}
-      <aside className="hidden md:flex w-20 hover:w-60 group flex-col bg-card/40 backdrop-blur-3xl border-r border-border transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] z-50"
+      {/* Sidebar Desktop - Clean White */}
+      <aside className="hidden md:flex w-20 hover:w-64 group flex-col bg-white border-r border-border transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] z-50 shadow-sm"
              style={{ '--accent-nav': primaryColor }}>
         <div className="flex flex-col h-full py-8 px-4">
 
@@ -114,8 +114,8 @@ const Layout = () => {
         </header>
 
         {/* Content Area */}
-        <main className="flex-1 overflow-auto custom-scrollbar">
-          <div className="max-w-6xl mx-auto p-6 md:p-12 pb-32 md:pb-12">
+        <main className="flex-1 overflow-auto custom-scrollbar bg-bg">
+          <div className="w-full p-6 md:p-8 lg:p-10 pb-32 md:pb-10">
             <Outlet context={{ company }} />
           </div>
         </main>
@@ -155,7 +155,7 @@ const SideNavLink = ({ to, icon, label }) => (
       `flex items-center gap-4 px-3 py-3 rounded-sm transition-all duration-300 group/nav
        ${isActive
           ? 'bg-accent/10 text-accent border-l-2 border-accent shadow-[inset_4px_0_12px_rgba(16,185,129,0.05)]'
-          : 'text-muted hover:text-text-primary hover:bg-white/5'
+           : 'text-muted hover:text-text-primary hover:bg-gray-50'
        }`
     }>
     <div className="flex-shrink-0">{icon}</div>

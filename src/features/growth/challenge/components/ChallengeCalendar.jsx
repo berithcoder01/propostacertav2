@@ -4,10 +4,10 @@ import { Check, X } from 'lucide-react'
 const WEEK_LABELS = ['D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'D7']
 
 const WEEK_THEMES = [
-  { label: 'Alicerce', color: 'text-blue-400' },
-  { label: 'Prova Social', color: 'text-purple-400' },
-  { label: 'Networking', color: 'text-amber-400' },
-  { label: 'Escala', color: 'text-emerald-400' }
+  { label: 'Alicerce', color: 'text-blue-600' },
+  { label: 'Prova Social', color: 'text-purple-600' },
+  { label: 'Networking', color: 'text-amber-600' },
+  { label: 'Escala', color: 'text-emerald-600' }
 ]
 
 export default function ChallengeCalendar({ tasks, currentDay, onDayClick }) {
@@ -25,9 +25,9 @@ export default function ChallengeCalendar({ tasks, currentDay, onDayClick }) {
   return (
     <div>
       <div className="flex items-center gap-2 mb-2">
-        <span className="text-[10px] text-gray-600 w-8" />
+        <span className="text-[10px] text-muted w-8" />
         {WEEK_LABELS.map(d => (
-          <span key={d} className="flex-1 text-center text-[9px] font-bold text-gray-600 uppercase">{d}</span>
+          <span key={d} className="flex-1 text-center text-[9px] font-bold text-muted uppercase">{d}</span>
         ))}
       </div>
 
@@ -51,12 +51,12 @@ export default function ChallengeCalendar({ tasks, currentDay, onDayClick }) {
                     onDayClick ? 'cursor-pointer' : 'cursor-default'
                   } ${
                     isDone
-                      ? 'bg-emerald-500/15 text-emerald-400'
+                      ? 'bg-emerald-100 text-emerald-700'
                       : isSkipped
-                      ? 'bg-gray-700/30 text-gray-600'
+                      ? 'bg-gray-100 text-gray-400'
                       : isToday
-                      ? 'bg-emerald-600 text-white ring-1 ring-emerald-400'
-                      : 'bg-gray-800/30 text-gray-500 hover:bg-gray-700/40'
+                      ? 'bg-accent text-white ring-1 ring-accent'
+                      : 'bg-gray-50 text-gray-500 hover:bg-gray-100'
                   }`}
                 >
                   {isDone ? (
@@ -73,11 +73,11 @@ export default function ChallengeCalendar({ tasks, currentDay, onDayClick }) {
         )
       })}
 
-      <div className="flex gap-3 mt-2 pt-2 border-t border-gray-700/40 text-[9px] text-gray-500">
-        <span className="flex items-center gap-1"><div className="w-2 h-2 rounded bg-emerald-500/15" /> Feita</span>
-        <span className="flex items-center gap-1"><div className="w-2 h-2 rounded bg-emerald-600" /> Hoje</span>
-        <span className="flex items-center gap-1"><div className="w-2 h-2 rounded bg-gray-800/30" /> Pendente</span>
-        <span className="flex items-center gap-1"><div className="w-2 h-2 rounded bg-gray-700/30 flex items-center justify-center"><X className="w-1.5 h-1.5 text-gray-600" /></div> Pulada</span>
+      <div className="flex gap-3 mt-2 pt-2 border-t border-border text-[9px] text-muted">
+        <span className="flex items-center gap-1"><div className="w-2 h-2 rounded bg-emerald-100" /> Feita</span>
+        <span className="flex items-center gap-1"><div className="w-2 h-2 rounded bg-accent" /> Hoje</span>
+        <span className="flex items-center gap-1"><div className="w-2 h-2 rounded bg-gray-50" /> Pendente</span>
+        <span className="flex items-center gap-1"><div className="w-2 h-2 rounded bg-gray-100 flex items-center justify-center"><X className="w-1.5 h-1.5 text-gray-400" /></div> Pulada</span>
       </div>
     </div>
   )

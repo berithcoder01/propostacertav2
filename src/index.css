@@ -23,46 +23,46 @@
     min-height: 100vh;
   }
 
-  /* Scrollbar discreta */
-  ::-webkit-scrollbar       { width: 4px; height: 4px; }
+  /* Scrollbar discreta - Light Mode */
+  ::-webkit-scrollbar       { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 99px; }
+  ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 99px; }
 
   /* Seleção de texto */
   ::selection {
-    background: rgba(79,110,247,0.30);
-    color: #F1F5F9;
+    background: rgba(16,185,129,0.20);
+    color: #111827;
   }
 }
 
 @layer components {
-  /* Card padrão — glassmorphism sutil */
+  /* Card padrão — Light Mode */
   .card {
-    @apply bg-surface border border-border rounded-3xl;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.40);
+    @apply bg-surface border border-border rounded-2xl;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.1);
   }
 
   .card-elevated {
-    @apply bg-card border border-border-strong rounded-3xl;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.50);
+    @apply bg-card border border-border-strong rounded-2xl;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.025);
   }
 
-  /* Botão primário — usa variável dinâmica */
+  /* Botão primário — Light Mode */
   .btn-primary {
-    @apply bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white font-semibold
-           px-6 py-3.5 rounded-2xl transition-all duration-200
-           active:scale-[0.97] disabled:opacity-40 disabled:cursor-not-allowed;
+    @apply bg-accent hover:bg-accent-hover text-white font-semibold
+           px-6 py-3 rounded-xl transition-all duration-200 shadow-sm
+           active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed;
   }
 
   .btn-ghost {
-    @apply text-text-secondary hover:text-text-primary hover:bg-white/5
+    @apply text-text-secondary hover:text-text-primary hover:bg-gray-100
            px-4 py-2.5 rounded-xl transition-all duration-150 font-medium;
   }
 
-  /* Input */
+  /* Input - Light Mode */
   .input-base {
-    @apply bg-overlay border border-border hover:border-border-strong
-           focus:border-[var(--primary)] focus:ring-1 focus:ring-[color:var(--primary)_/_30]
+    @apply bg-white border border-border hover:border-border-strong
+           focus:border-accent focus:ring-1 focus:ring-accent/30
            rounded-xl px-4 py-3 text-text-primary placeholder-muted
            text-sm transition-all outline-none w-full;
   }
@@ -73,9 +73,9 @@
            text-xs font-semibold uppercase tracking-wide;
   }
 
-  /* Texto com gradiente */
+  /* Texto com gradiente - Light Mode */
   .text-gradient {
-    background: linear-gradient(135deg, #F1F5F9 0%, #818CF8 100%);
+    background: linear-gradient(135deg, #111827 0%, #4B5563 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

@@ -38,7 +38,7 @@ export default function TaskDetailPage({ task, dayNumber, onBack, onMarkDone, on
       <div className="w-full">
         <button
           onClick={onBack}
-          className="flex items-center gap-2 text-gray-400 hover:text-white mb-6 transition-colors"
+          className="flex items-center gap-2 text-text-secondary hover:text-text-primary mb-6 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           Voltar
@@ -47,9 +47,9 @@ export default function TaskDetailPage({ task, dayNumber, onBack, onMarkDone, on
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl overflow-hidden"
+          className="bg-white backdrop-blur-sm border border-border rounded-2xl overflow-hidden shadow-sm"
         >
-          <div className={`p-6 ${isFutureDay ? 'bg-gradient-to-r from-blue-600 to-blue-700' : 'bg-gradient-to-r from-emerald-600 to-emerald-700'}`}>
+          <div className={`p-6 ${isFutureDay ? 'bg-gradient-to-r from-blue-500 to-blue-600' : 'bg-gradient-to-r from-accent to-emerald-600'}`}>
             <div className="flex items-center gap-3 mb-3">
               <span className="px-3 py-1 bg-white/20 rounded-full text-sm text-white">
                 Dia {dayNumber} de 30
@@ -58,24 +58,24 @@ export default function TaskDetailPage({ task, dayNumber, onBack, onMarkDone, on
                 {content?.category || 'Geral'}
               </span>
               {isFutureDay && (
-                <span className="px-3 py-1 bg-blue-400/30 rounded-full text-xs text-blue-100 font-bold flex items-center gap-1">
+                <span className="px-3 py-1 bg-blue-300/30 rounded-full text-xs text-blue-100 font-bold flex items-center gap-1">
                   <Forward className="w-3 h-3" /> Adiantando
                 </span>
               )}
             </div>
             <h1 className="text-2xl font-bold text-white mb-2">{content?.title || 'Tarefa do Dia'}</h1>
-            <p className="text-white/80">{content?.subtitle || ''}</p>
+            <p className="text-white/90">{content?.subtitle || ''}</p>
           </div>
 
           <div className="p-6">
             {content?.motivation && (
-              <div className="mb-6 p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl">
-                <p className="text-emerald-300 text-sm italic">{content.motivation}</p>
+              <div className="mb-6 p-4 bg-emerald-50 border border-emerald-200 rounded-xl">
+                <p className="text-emerald-700 text-sm italic">{content.motivation}</p>
               </div>
             )}
 
             {content?.estimatedMinutes && (
-              <div className="flex items-center gap-2 mb-6 text-gray-400">
+              <div className="flex items-center gap-2 mb-6 text-text-secondary">
                 <Clock className="w-4 h-4" />
                 <span className="text-sm">Tempo estimado: {content.estimatedMinutes} minutos</span>
               </div>
@@ -88,9 +88,9 @@ export default function TaskDetailPage({ task, dayNumber, onBack, onMarkDone, on
             </div>
 
             {content?.tip && (
-              <div className="flex gap-3 p-4 bg-amber-500/10 border border-amber-500/20 rounded-xl mb-6">
-                <Lightbulb className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
-                <p className="text-amber-300 text-sm">{content.tip}</p>
+              <div className="flex gap-3 p-4 bg-amber-50 border border-amber-200 rounded-xl mb-6">
+                <Lightbulb className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                <p className="text-amber-700 text-sm">{content.tip}</p>
               </div>
             )}
 
@@ -99,7 +99,7 @@ export default function TaskDetailPage({ task, dayNumber, onBack, onMarkDone, on
                 href={content.actionUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full py-3 px-4 mb-4 rounded-xl bg-blue-600 text-white text-center font-medium hover:bg-blue-700 transition-colors"
+                className="block w-full py-3 px-4 mb-4 rounded-xl bg-blue-600 text-white text-center font-medium hover:bg-blue-700 transition-colors shadow-sm"
               >
                 {content.actionLabel}
               </a>
@@ -109,7 +109,7 @@ export default function TaskDetailPage({ task, dayNumber, onBack, onMarkDone, on
               <button
                 onClick={onSkip}
                 disabled={loading}
-                className="flex-1 py-3 px-4 rounded-xl border border-gray-600 text-gray-300 hover:border-gray-500 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+                className="flex-1 py-3 px-4 rounded-xl border border-border text-text-secondary hover:border-border-strong transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 <SkipForward className="w-4 h-4" />
                 Pular
@@ -117,7 +117,7 @@ export default function TaskDetailPage({ task, dayNumber, onBack, onMarkDone, on
               <button
                 onClick={handleMarkDone}
                 disabled={loading || task?.status === 'DONE'}
-                className="flex-1 py-3 px-4 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+                className="flex-1 py-3 px-4 rounded-xl bg-accent text-white font-medium hover:bg-accent-hover transition-colors flex items-center justify-center gap-2 disabled:opacity-50 shadow-sm"
               >
                 <CheckCircle className="w-4 h-4" />
                 {task?.status === 'DONE' ? 'Concluída!' : 'Marcar como feito'}

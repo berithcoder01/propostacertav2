@@ -7,43 +7,40 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        // Display: pesada, moderna
         display: ['Sora', 'sans-serif'],
-        // Body: limpeza premium
         body: ['DM Sans', 'sans-serif'],
-        // Aliases backward-compat — não quebra usos existentes
         syne:    ['Sora', 'sans-serif'],
         inter:   ['DM Sans', 'sans-serif'],
         jakarta: ['Sora', 'sans-serif'],
         dmSans:  ['DM Sans', 'sans-serif'],
       },
       colors: {
-        // Fundos - Neutral Premium Dark
-        bg:      '#050505',
-        surface: '#0A0A0A',
-        card:    '#0F0F0F',
-        overlay: '#141414',
+        // Fundos - Light Mode (Cursor/Notion style)
+        bg:      '#F7F7F5',       // Off-white quente
+        surface: '#FFFFFF',       // Cards brancos
+        card:    '#FFFFFF',
+        overlay: '#F3F4F6',
         
-        // Bordas - Sharper
-        border:         'rgba(255,255,255,0.05)',
-        'border-strong':'rgba(255,255,255,0.10)',
+        // Bordas - Subtis
+        border:         '#E5E7EB',
+        'border-strong':'#D1D5DB',
 
-        // Acento principal — Cyan/Emerald (Zentra style)
+        // Acento principal — Emerald
         accent:        '#10B981', 
         'accent-hover':'#059669',
         'accent-muted':'rgba(16,185,129,0.10)',
 
-        // Acento secundário — Steel
-        accent2: '#94A3B8',
+        // Acento secundário
+        accent2: '#64748B',
 
         // Especial armazém - Amber
         gold:        '#F59E0B',
         'gold-muted':'rgba(245,158,11,0.10)',
 
-        // Textos
-        'text-primary':   '#FFFFFF',
-        'text-secondary': '#A1A1AA',
-        muted:            '#52525B',
+        // Textos - Alto Contraste
+        'text-primary':   '#111827',   // Quase preto
+        'text-secondary': '#6B7280',   // Cinza médio
+        muted:            '#9CA3AF',   // Cinza claro
 
         // Semânticas
         success: '#10B981',
@@ -52,20 +49,20 @@ export default {
         info:    '#0EA5E9',
       },
       backgroundImage: {
-        'ambient-glow':  'radial-gradient(ellipse 80% 60% at 50% -10%, rgba(16,185,129,0.08) 0%, transparent 70%)',
-        'gradient-text': 'linear-gradient(135deg, #FFFFFF 0%, #94A3B8 100%)',
-        'gradient-brand':'linear-gradient(135deg, #10B981 0%, #14B8A6 100%)',
+        'ambient-glow':  'radial-gradient(ellipse 80% 60% at 50% -10%, rgba(16,185,129,0.05) 0%, transparent 70%)',
+        'gradient-text': 'linear-gradient(135deg, #111827 0%, #4B5563 100%)',
+        'gradient-brand':'linear-gradient(135deg, #10B981 0%, #059669 100%)',
       },
       boxShadow: {
-        'glow':      '0 0 40px rgba(16,185,129,0.15)',
-        'glow-sm':   '0 0 20px rgba(16,185,129,0.10)',
-        'card':      '0 4px 24px rgba(0,0,0,0.60)',
-        'card-hover':'0 8px 40px rgba(0,0,0,0.80)',
+        'glow':      '0 0 40px rgba(16,185,129,0.10)',
+        'glow-sm':   '0 0 20px rgba(16,185,129,0.05)',
+        'card':      '0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.1)',
+        'card-hover':'0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.025)',
       },
       borderRadius: {
-        '2xl': '16px',
-        '3xl': '24px',
-        '4xl': '32px',
+        '2xl': '12px',
+        '3xl': '16px',
+        '4xl': '24px',
       },
       backdropBlur: {
         xs: '4px',
