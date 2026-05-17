@@ -147,23 +147,23 @@ export default async function (fastify, opts) {
       }
 
       const todayTask = challenge.tasks.find(t => t.day === dayNumber)
-      if (!todayTask) {
-        return { success: true, data: { challenge, dayNumber, todayTask: null }, error: null }
-      }
 
-      const taskContent = getTaskContent(profile.profileType, todayTask.taskSlug)
+      const tasksWithContent = challenge.tasks.map(task => {
+        const content = getTaskContent(profile.profileType, task.taskSlug)
+        return { ...task, content }
+      })
 
       return {
         success: true,
         data: {
           challenge: {
             ...challenge,
-            tasks: challenge.tasks
+            tasks: tasksWithContent
           },
-          todayTask: {
+          todayTask: todayTask ? {
             ...todayTask,
-            content: taskContent
-          },
+            content: getTaskContent(profile.profileType, todayTask.taskSlug)
+          } : null,
           dayNumber,
           hasProfile: true
         },

@@ -59,7 +59,7 @@ function App() {
                     <Route path="plans" element={<PlansPage />} />
                      <Route path="prospeccao" element={<ProspectionDashboard />} />
                      <Route path="produtos" element={<ProductsPage />} />
-                     <Route path="crescimento" element={<GrowthPage />} />
+                     <Route path="meu-negocio" element={<GrowthPage />} />
                   </Route>
                 </Route>
               </Routes>

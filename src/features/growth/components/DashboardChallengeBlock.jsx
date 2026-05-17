@@ -1,28 +1,18 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Rocket, CheckCircle, Clock, ArrowRight, Trophy, Calendar } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { Rocket, ArrowRight, Lightbulb, Flame } from 'lucide-react'
 import { useActiveChallenge } from '../hooks/useActiveChallenge'
-import StreakBadge from './StreakBadge'
-import ProgressCalendar from './ProgressCalendar'
+import { getDailyTip } from '../data/dailyTips'
 
-export default function DashboardChallengeBlock({ onNavigateToTask, onNavigateToOnboarding, onNavigateToStart }) {
-  const { challenge, todayTask, dayNumber, streak, loading, error, hasProfile, startChallenge } = useActiveChallenge()
-  const [showCalendar, setShowCalendar] = useState(false)
+export default function DashboardChallengeBlock({ onNavigate }) {
+  const { challenge, todayTask, dayNumber, streak, loading } = useActiveChallenge()
+  const tip = getDailyTip()
 
   if (loading) {
     return (
-      <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-6 animate-pulse">
-        <div className="h-6 bg-gray-700 rounded w-48 mb-4"></div>
+      <div className="bg-gray-800/50 border border-gray-700 rounded-2xl p-5 animate-pulse">
+        <div className="h-5 bg-gray-700 rounded w-40 mb-3"></div>
         <div className="h-4 bg-gray-700 rounded w-64 mb-2"></div>
         <div className="h-4 bg-gray-700 rounded w-32"></div>
-      </div>
-    )
-  }
-
-  if (error) {
-    return (
-      <div className="bg-gray-800/50 backdrop-blur-sm border border-red-500/30 rounded-2xl p-6">
-        <p className="text-red-400">Erro ao carregar desafio: {error}</p>
       </div>
     )
   }
@@ -32,26 +22,28 @@ export default function DashboardChallengeBlock({ onNavigateToTask, onNavigateTo
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-gradient-to-r from-emerald-600/20 to-emerald-700/20 border border-emerald-500/30 rounded-2xl p-6"
+        className="bg-gradient-to-r from-emerald-600/15 to-emerald-700/10 border border-emerald-500/25 rounded-2xl overflow-hidden"
       >
-        <div className="flex items-start gap-4">
-          <div className="w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
-            <Rocket className="w-6 h-6 text-emerald-500" />
+        <div className="p-5">
+          <div className="flex items-start gap-4">
+            <div className="w-11 h-11 rounded-xl bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
+              <Rocket className="w-5 h-5 text-emerald-500" />
+            </div>
+            <div className="flex-1">
+              <h3 className="text-base font-bold text-white mb-1">Desafio 30 Dias</h3>
+              <p className="text-gray-400 text-sm mb-3">Tarefas diárias para alavancar seu negócio nas redes sociais.</p>
+              <button
+                onClick={onNavigate}
+                className="py-2 px-4 rounded-lg bg-emerald-600 text-white text-sm font-medium hover:bg-emerald-700 transition-colors inline-flex items-center gap-1.5"
+              >
+                Começar agora <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
           </div>
-          <div className="flex-1">
-            <h3 className="text-xl font-bold text-white mb-2">Desafio 30 Dias</h3>
-            <p className="text-gray-300 mb-4">
-              Transforme seu negócio com tarefas práticas de marketing. 
-              30 dias para aumentar sua visibilidade e conquistar mais clientes.
-            </p>
-            <button
-              onClick={hasProfile ? onNavigateToStart : onNavigateToOnboarding}
-              className="py-2.5 px-5 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-700 transition-colors flex items-center gap-2"
-            >
-              {hasProfile ? 'Começar agora' : 'Configurar Perfil'}
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
+        </div>
+        <div className="px-5 py-3 bg-amber-500/10 border-t border-amber-500/15 flex items-center gap-2">
+          <Lightbulb className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" />
+          <p className="text-amber-200/80 text-xs">{tip.tip}</p>
         </div>
       </motion.div>
     )
@@ -62,36 +54,21 @@ export default function DashboardChallengeBlock({ onNavigateToTask, onNavigateTo
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-gradient-to-r from-purple-600/20 to-purple-700/20 border border-purple-500/30 rounded-2xl p-6"
+        className="bg-gradient-to-r from-purple-600/15 to-purple-700/10 border border-purple-500/25 rounded-2xl p-5"
       >
-        <div className="flex items-start gap-4">
-          <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0">
-            <Trophy className="w-6 h-6 text-purple-500" />
-          </div>
-          <div className="flex-1">
-            <h3 className="text-xl font-bold text-white mb-2">Desafio Concluído! 🎉</h3>
-            <div className="grid grid-cols-3 gap-4 mb-4">
-              <div className="text-center">
-                <p className="text-2xl font-bold text-purple-400">{challenge.totalDone}</p>
-                <p className="text-sm text-gray-400">Tarefas feitas</p>
-              </div>
-              <div className="text-center">
-                <p className="text-2xl font-bold text-purple-400">{challenge.totalSkipped}</p>
-                <p className="text-sm text-gray-400">Puladas</p>
-              </div>
-              <div className="text-center">
-                <p className="text-2xl font-bold text-purple-400">{Math.round(challenge.completionPct)}%</p>
-                <p className="text-sm text-gray-400">Conclusão</p>
-              </div>
-            </div>
-            <button
-              onClick={onNavigateToStart}
-              className="py-2.5 px-5 rounded-xl bg-purple-600 text-white font-medium hover:bg-purple-700 transition-colors flex items-center gap-2"
-            >
-              Iniciar próximo ciclo
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-base font-bold text-white">🏆 Desafio Concluído!</h3>
+          <button
+            onClick={onNavigate}
+            className="py-2 px-4 rounded-lg bg-purple-600 text-white text-sm font-medium hover:bg-purple-700 transition-colors inline-flex items-center gap-1.5"
+          >
+            Novo ciclo <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
+        <div className="flex gap-4 text-sm">
+          <span className="text-purple-400 font-bold">{challenge.totalDone}/30 feitas</span>
+          <span className="text-gray-500">•</span>
+          <span className="text-gray-400">{Math.round(challenge.completionPct)}% concluído</span>
         </div>
       </motion.div>
     )
@@ -104,67 +81,66 @@ export default function DashboardChallengeBlock({ onNavigateToTask, onNavigateTo
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl overflow-hidden"
+      className="bg-gray-800/50 border border-gray-700 rounded-2xl overflow-hidden"
     >
-      <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 p-4">
-        <div className="flex items-center justify-between">
+      <div className="p-5">
+        <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-3">
-            <Calendar className="w-5 h-5 text-white" />
-            <h3 className="text-lg font-semibold text-white">Desafio 30 Dias</h3>
+            <div className="w-9 h-9 rounded-lg bg-emerald-500/20 flex items-center justify-center">
+              <Rocket className="w-4 h-4 text-emerald-500" />
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-white">Desafio 30 Dias</h3>
+              <span className="text-xs text-gray-400">Dia {dayNumber} de 30</span>
+            </div>
           </div>
-          <StreakBadge streak={streak} />
+          {streak > 0 && (
+            <div className="flex items-center gap-1.5 px-2.5 py-1 bg-orange-500/20 rounded-full">
+              <Flame className="w-3.5 h-3.5 text-orange-500" />
+              <span className="text-orange-400 text-xs font-bold">{streak}</span>
+            </div>
+          )}
         </div>
-      </div>
 
-      <div className="p-4">
         {isTaskDone ? (
-          <div className="flex items-center gap-3 mb-3">
-            <CheckCircle className="w-5 h-5 text-emerald-500" />
-            <span className="text-emerald-400 font-medium">Tarefa do dia concluída!</span>
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-emerald-400 text-sm font-medium">Tarefa do dia concluída! ✓</p>
+              <p className="text-gray-500 text-xs mt-0.5">{todayTask.content?.title}</p>
+            </div>
           </div>
         ) : isTaskSkipped ? (
-          <div className="flex items-center gap-3 mb-3">
-            <Clock className="w-5 h-5 text-gray-400" />
-            <span className="text-gray-400">Tarefa pulada hoje</span>
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Tarefa pulada hoje</p>
+              <p className="text-gray-500 text-xs mt-0.5">{todayTask.content?.title}</p>
+            </div>
+            <button
+              onClick={onNavigate}
+              className="py-1.5 px-3 rounded-lg bg-gray-700 text-gray-300 text-xs font-medium hover:bg-gray-600 transition-colors"
+            >
+              Ver
+            </button>
           </div>
         ) : (
-          <div className="mb-3">
-            <span className="text-sm text-gray-400">Dia {dayNumber} de 30</span>
-            <h4 className="text-white font-medium mt-1">{todayTask?.content?.title || 'Tarefa do dia'}</h4>
-            <p className="text-gray-400 text-sm mt-1">{todayTask?.content?.subtitle || ''}</p>
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-white text-sm font-medium">{todayTask?.content?.title || 'Tarefa do dia'}</p>
+              <p className="text-gray-400 text-xs mt-0.5">{todayTask?.content?.subtitle || ''}</p>
+            </div>
+            <button
+              onClick={onNavigate}
+              className="py-2 px-4 rounded-lg bg-emerald-600 text-white text-sm font-medium hover:bg-emerald-700 transition-colors inline-flex items-center gap-1.5"
+            >
+              Ver tarefa <ArrowRight className="w-3.5 h-3.5" />
+            </button>
           </div>
         )}
+      </div>
 
-        <div className="flex gap-2">
-          {!isTaskDone && !isTaskSkipped && todayTask && (
-            <button
-              onClick={() => onNavigateToTask?.(todayTask, dayNumber)}
-              className="flex-1 py-2 px-4 rounded-lg bg-emerald-600/20 text-emerald-400 hover:bg-emerald-600/30 transition-colors flex items-center justify-center gap-2 text-sm font-medium"
-            >
-              Ver tarefa
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          )}
-          <button
-            onClick={() => setShowCalendar(!showCalendar)}
-            className="py-2 px-4 rounded-lg bg-gray-700/50 text-gray-300 hover:bg-gray-700/70 transition-colors text-sm"
-          >
-            {showCalendar ? 'Fechar' : 'Ver progresso'}
-          </button>
-        </div>
-
-        <AnimatePresence>
-          {showCalendar && challenge?.tasks && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              className="mt-4 pt-4 border-t border-gray-700 overflow-hidden"
-            >
-              <ProgressCalendar tasks={challenge.tasks} />
-            </motion.div>
-          )}
-        </AnimatePresence>
+      <div className="px-5 py-3 bg-amber-500/10 border-t border-amber-500/15 flex items-center gap-2">
+        <Lightbulb className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" />
+        <p className="text-amber-200/80 text-xs">{tip.tip}</p>
       </div>
     </motion.div>
   )

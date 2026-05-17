@@ -1,5 +1,5 @@
 /**
- * BANNER PRESETS v2.0
+ * EVOLVED BANNER PRESETS v2.0
  * Sistema de presets para geração de artes sociais com suporte a múltiplos estilos
  * Inclui modelos originais + novos modelos modernos (glassmorphism, neo-brutalism, etc)
  */
@@ -32,14 +32,6 @@ export const bannerPresets = [
         defaultValue: 'Serviço feito com qualidade!',
         multiline: true,
         maxLength: 120,
-      },
-      {
-        key: 'subtitle',
-        label: 'Subtítulo (opcional)',
-        placeholder: 'Profissionalismo e confiança',
-        defaultValue: '',
-        multiline: false,
-        maxLength: 80,
       },
       {
         key: 'ctaText',
@@ -106,14 +98,6 @@ export const bannerPresets = [
         defaultValue: 'Orçamento grátis esta semana!',
         multiline: true,
         maxLength: 100,
-      },
-      {
-        key: 'subtitle',
-        label: 'Subtítulo (opcional)',
-        placeholder: 'Aproveite e agende já',
-        defaultValue: '',
-        multiline: false,
-        maxLength: 60,
       },
     ],
   },
@@ -199,14 +183,6 @@ export const bannerPresets = [
         defaultValue: 'Orçamento grátis e sem compromisso! Ligue agora.',
         multiline: false,
         maxLength: 80,
-      },
-      {
-        key: 'subtitle',
-        label: 'Subtítulo (opcional)',
-        placeholder: 'Válido até o final do mês',
-        defaultValue: '',
-        multiline: false,
-        maxLength: 60,
       },
     ],
   },

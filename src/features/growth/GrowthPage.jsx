@@ -17,7 +17,7 @@ export default function GrowthPage() {
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-6xl mx-auto space-y-6">
       <div>
-        <h1 className="text-3xl font-black font-display text-white mb-2">Crescimento</h1>
+        <h1 className="text-3xl font-black font-display text-white mb-2">Meu Negócio</h1>
         <p className="text-muted">Ferramentas para alavancar seu negócio nas redes sociais.</p>
       </div>
 

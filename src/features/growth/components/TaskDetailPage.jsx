@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowLeft, Lightbulb, SkipForward, CheckCircle, Clock } from 'lucide-react'
+import { ArrowLeft, Lightbulb, SkipForward, CheckCircle, Clock, Forward } from 'lucide-react'
 import TaskStep from './TaskStep'
 import { getCategoryIcon } from '../utils/challengeUtils'
 
-export default function TaskDetailPage({ task, dayNumber, onBack, onMarkDone, onSkip, loading }) {
+export default function TaskDetailPage({ task, dayNumber, onBack, onMarkDone, onSkip, loading, currentDay }) {
   const [showConfetti, setShowConfetti] = useState(false)
   const content = task?.content || task
+
+  const isFutureDay = currentDay && dayNumber > currentDay
 
   const handleMarkDone = async () => {
     const success = await onMarkDone(task.id)
@@ -17,17 +19,6 @@ export default function TaskDetailPage({ task, dayNumber, onBack, onMarkDone, on
   }
 
   const categoryIcon = getCategoryIcon(content?.category || 'presenca')
-  const IconComponent = {
-    Camera: () => null,
-    MessageSquare: () => null,
-    Target: () => null,
-    Search: () => null,
-    Megaphone: () => null,
-    Globe: () => null,
-    Edit: () => null,
-    Handshake: () => null,
-    Circle: () => null
-  }[categoryIcon] || (() => null)
 
   return (
     <div className="w-full max-w-3xl mx-auto">
@@ -50,7 +41,7 @@ export default function TaskDetailPage({ task, dayNumber, onBack, onMarkDone, on
           className="flex items-center gap-2 text-gray-400 hover:text-white mb-6 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
-          Voltar ao Dashboard
+          Voltar
         </button>
 
         <motion.div
@@ -58,7 +49,7 @@ export default function TaskDetailPage({ task, dayNumber, onBack, onMarkDone, on
           animate={{ opacity: 1, y: 0 }}
           className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl overflow-hidden"
         >
-          <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 p-6">
+          <div className={`p-6 ${isFutureDay ? 'bg-gradient-to-r from-blue-600 to-blue-700' : 'bg-gradient-to-r from-emerald-600 to-emerald-700'}`}>
             <div className="flex items-center gap-3 mb-3">
               <span className="px-3 py-1 bg-white/20 rounded-full text-sm text-white">
                 Dia {dayNumber} de 30
@@ -66,9 +57,14 @@ export default function TaskDetailPage({ task, dayNumber, onBack, onMarkDone, on
               <span className="px-3 py-1 bg-white/20 rounded-full text-sm text-white capitalize">
                 {content?.category || 'Geral'}
               </span>
+              {isFutureDay && (
+                <span className="px-3 py-1 bg-blue-400/30 rounded-full text-xs text-blue-100 font-bold flex items-center gap-1">
+                  <Forward className="w-3 h-3" /> Adiantando
+                </span>
+              )}
             </div>
             <h1 className="text-2xl font-bold text-white mb-2">{content?.title || 'Tarefa do Dia'}</h1>
-            <p className="text-emerald-100">{content?.subtitle || ''}</p>
+            <p className="text-white/80">{content?.subtitle || ''}</p>
           </div>
 
           <div className="p-6">
@@ -116,7 +112,7 @@ export default function TaskDetailPage({ task, dayNumber, onBack, onMarkDone, on
                 className="flex-1 py-3 px-4 rounded-xl border border-gray-600 text-gray-300 hover:border-gray-500 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 <SkipForward className="w-4 h-4" />
-                Pular por hoje
+                Pular
               </button>
               <button
                 onClick={handleMarkDone}

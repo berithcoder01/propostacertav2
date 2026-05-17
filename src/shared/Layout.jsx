@@ -65,7 +65,7 @@ const Layout = () => {
             <SideNavLink to="/propostas" icon={<FileText size={20}/>}        label="Propostas" />
             <SideNavLink to="/clientes"  icon={<Users size={20}/>}           label="Clientes" />
             <SideNavLink to="/produtos"  icon={<Package size={20}/>}         label="Catálogo" />
-            <SideNavLink to="/crescimento" icon={<TrendingUp size={20}/>}      label="Crescimento" />
+            <SideNavLink to="/meu-negocio" icon={<TrendingUp size={20}/>}      label="Meu Negócio" />
             {subscription?.plan?.hasAi ? (
               <SideNavLink to="/prospeccao" icon={<MapPin size={20}/>} label="Prospecção" />
             ) : (
