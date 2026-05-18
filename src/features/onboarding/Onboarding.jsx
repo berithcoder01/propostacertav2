@@ -20,7 +20,6 @@ const lazyWithReload = (factory) => lazy(() =>
 const OnboardingConversacional = lazyWithReload(() => import('./OnboardingConversacional'));
 const ProposalPreview = lazyWithReload(() => import('./components/ProposalPreview'));
 const BrandGenerator = lazyWithReload(() => import('../../shared/components/BrandGenerator'));
-const ThemeSelector = lazyWithReload(() => import('../../shared/components/ThemeSelector'));
 
 const SEGMENTS = [
   { value: 'ELETRICA', label: 'Elétrica', emoji: '⚡' },
@@ -289,8 +288,8 @@ const EtapaIdentidade = ({ formData, update, onNext, onBack, setLogoSelecionada,
         </Suspense>
       </div>
 
-      {/* ── SEÇÕES 2 + 3: Cores e Tema — lado a lado ── */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {/* ── SEÇÃO 2: Cores e Slogan ── */}
+      <div className="max-w-2xl w-full mx-auto">
         {/* 2. Cores e Slogan */}
         <div className="bg-surface/50 border border-border rounded-2xl p-5 space-y-4">
           <h3 className="text-xs font-bold uppercase tracking-widest text-accent flex items-center gap-2">
@@ -353,22 +352,6 @@ const EtapaIdentidade = ({ formData, update, onNext, onBack, setLogoSelecionada,
             onChange={(e) => update('slogan', e.target.value)}
           />
         </div>
-
-        {/* 3. Tema da Proposta */}
-        <div className="bg-surface/50 border border-border rounded-2xl p-5">
-          <h3 className="text-xs font-bold uppercase tracking-widest text-accent mb-4 flex items-center gap-2">
-            <span className="w-5 h-5 rounded-full bg-accent text-white flex items-center justify-center text-[10px] font-black">3</span>
-            Estilo da Proposta
-          </h3>
-          <Suspense fallback={<div className="h-20 flex items-center justify-center"><Loader className="animate-spin" /></div>}>
-            <ThemeSelector
-              segment={formData.segment}
-              currentTheme={formData.proposalTheme || 'professional'}
-              onSelect={(themeId) => update('proposalTheme', themeId)}
-              showDescription={true}
-            />
-          </Suspense>
-        </div>
       </div>
 
       {/* ── BANNER DE PREVIEW HORIZONTAL ── */}
@@ -398,8 +381,6 @@ const EtapaIdentidade = ({ formData, update, onNext, onBack, setLogoSelecionada,
             <div className="flex items-center gap-2 mt-1">
               <div className="w-3 h-3 rounded-full" style={{ background: formData.primaryColor }} />
               <span className="text-[10px] text-muted">{formData.primaryColor}</span>
-              <span className="text-[10px] text-muted">·</span>
-              <span className="text-[10px] text-accent capitalize">{formData.proposalTheme || 'professional'}</span>
               {logoSelecionada && (
                 <>
                   <span className="text-[10px] text-muted">·</span>
