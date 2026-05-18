@@ -25,9 +25,9 @@ export default function ChallengeCalendar({ tasks, currentDay, onDayClick }) {
   return (
     <div>
       <div className="flex items-center gap-2 mb-2">
-        <span className="text-[10px] text-muted w-8" />
+        <span className="text-[10px] text-muted dark:text-gray-500 w-8" />
         {WEEK_LABELS.map(d => (
-          <span key={d} className="flex-1 text-center text-[9px] font-bold text-muted uppercase">{d}</span>
+          <span key={d} className="flex-1 text-center text-[9px] font-bold text-muted dark:text-gray-500 uppercase">{d}</span>
         ))}
       </div>
 
@@ -51,12 +51,12 @@ export default function ChallengeCalendar({ tasks, currentDay, onDayClick }) {
                     onDayClick ? 'cursor-pointer' : 'cursor-default'
                   } ${
                     isDone
-                      ? 'bg-emerald-100 text-emerald-700'
+                      ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400'
                       : isSkipped
-                      ? 'bg-gray-100 text-gray-400'
+                      ? 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500'
                       : isToday
                       ? 'bg-accent text-white ring-1 ring-accent'
-                      : 'bg-gray-50 text-gray-500 hover:bg-gray-100'
+                      : 'bg-gray-50 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
                   }`}
                 >
                   {isDone ? (
@@ -73,11 +73,11 @@ export default function ChallengeCalendar({ tasks, currentDay, onDayClick }) {
         )
       })}
 
-      <div className="flex gap-3 mt-2 pt-2 border-t border-border text-[9px] text-muted">
-        <span className="flex items-center gap-1"><div className="w-2 h-2 rounded bg-emerald-100" /> Feita</span>
+      <div className="flex gap-3 mt-2 pt-2 border-t border-border dark:border-dark-border text-[9px] text-muted dark:text-gray-500">
+        <span className="flex items-center gap-1"><div className="w-2 h-2 rounded bg-emerald-100 dark:bg-emerald-900/30" /> Feita</span>
         <span className="flex items-center gap-1"><div className="w-2 h-2 rounded bg-accent" /> Hoje</span>
-        <span className="flex items-center gap-1"><div className="w-2 h-2 rounded bg-gray-50" /> Pendente</span>
-        <span className="flex items-center gap-1"><div className="w-2 h-2 rounded bg-gray-100 flex items-center justify-center"><X className="w-1.5 h-1.5 text-gray-400" /></div> Pulada</span>
+        <span className="flex items-center gap-1"><div className="w-2 h-2 rounded bg-gray-50 dark:bg-gray-800" /> Pendente</span>
+        <span className="flex items-center gap-1"><div className="w-2 h-2 rounded bg-gray-100 dark:bg-gray-800 flex items-center justify-center"><X className="w-1.5 h-1.5 text-gray-400 dark:text-gray-500" /></div> Pulada</span>
       </div>
     </div>
   )

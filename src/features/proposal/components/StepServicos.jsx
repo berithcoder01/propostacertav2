@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { ArrowRight, ArrowLeft, Plus, Trash2, Search, Building2, Bot, RefreshCw } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Plus, Trash2, Search, Building2, Bot, RefreshCw, Package, Wrench } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { fmt } from '../constants';
 import Button from '../../../shared/Button';
@@ -50,7 +50,8 @@ const StepServicos = ({ items, onChange, tipoProposta, onTipoChange, onNext, onB
       unit: catItem.unit,
       qty: 1,
       price: catItem.defaultPrice || 0,
-      category: catItem.category || 'SERVICO'
+      category: catItem.category || 'SERVICO',
+      isProduct: catItem.isProduct || false,
     }]);
     setShowCatalogSearch(false);
     setSearchQuery('');
@@ -106,7 +107,7 @@ const StepServicos = ({ items, onChange, tipoProposta, onTipoChange, onNext, onB
             }`}
           >
             <Search size={14} className="inline mr-1.5" />
-            Buscar Catálogo
+            Buscar Produtos
           </button>
 
           <button
@@ -241,13 +242,16 @@ const StepServicos = ({ items, onChange, tipoProposta, onTipoChange, onNext, onB
                     }}
                     className="w-full flex items-center justify-between px-3 py-2 rounded-lg hover:bg-accent/10 text-left transition-colors"
                   >
-                    <div>
-                      <div className="text-sm font-bold text-white">{item.description}</div>
-                      <div className="text-[10px] text-muted">
-                        {item.category || 'SERVICO'} · {item.unit || 'UNID.'} · {typeof item.defaultPrice === 'number' ? fmt(item.defaultPrice) : '—'}
+                    <div className="flex items-center gap-2 flex-1 min-w-0">
+                      {item.isProduct ? <Package size={12} className="text-accent flex-shrink-0" /> : <Wrench size={12} className="text-gold flex-shrink-0" />}
+                      <div className="min-w-0">
+                        <div className="text-sm font-bold text-white truncate">{item.description}</div>
+                        <div className="text-[10px] text-muted">
+                          {item.category || 'SERVICO'} · {item.unit || 'UNID.'} · {typeof item.defaultPrice === 'number' ? fmt(item.defaultPrice) : '—'}
+                        </div>
                       </div>
                     </div>
-                    <Plus size={14} className="text-accent opacity-50" />
+                    <Plus size={14} className="text-accent opacity-50 flex-shrink-0" />
                   </button>
                 ))}
               </div>
@@ -268,6 +272,7 @@ const StepServicos = ({ items, onChange, tipoProposta, onTipoChange, onNext, onB
             <div className="max-h-48 overflow-y-auto space-y-1 mt-2">
               {filteredCatalog.map(item => {
                 const alreadyAdded = items.some(i => i.catalogId === item.id);
+                const isLowStock = item.isProduct && item.stockQuantity <= item.minStock;
                 return (
                   <button
                     key={item.id}
@@ -279,11 +284,17 @@ const StepServicos = ({ items, onChange, tipoProposta, onTipoChange, onNext, onB
                         : 'hover:bg-accent/10 text-white'
                     }`}
                   >
-                    <div>
-                      <div className="text-sm font-bold">{item.description}</div>
-                      <div className="text-[10px] text-muted">{item.category} · {item.unit}</div>
+                    <div className="flex items-center gap-2 flex-1 min-w-0">
+                      {item.isProduct ? <Package size={12} className="text-accent flex-shrink-0" /> : <Wrench size={12} className="text-gold flex-shrink-0" />}
+                      <div className="min-w-0">
+                        <div className="text-sm font-bold truncate">{item.description}</div>
+                        <div className="text-[10px] text-muted">
+                          {item.category} · {item.unit}
+                          {item.isProduct && <> · Estoque: <span className={isLowStock ? 'text-danger' : 'text-success'}>{item.stockQuantity}</span></>}
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 flex-shrink-0">
                       <span className="text-sm font-bold text-accent2">
                         {item.defaultPrice ? fmt(item.defaultPrice) : '—'}
                       </span>
@@ -312,7 +323,7 @@ const StepServicos = ({ items, onChange, tipoProposta, onTipoChange, onNext, onB
               <div className="flex justify-between items-center p-4 border-b-2 border-border bg-black/20">
                 <div className="text-sm font-bold text-white flex items-center gap-3">
                   <span className="text-accent2 font-display text-lg">{index + 1}</span>
-                  {item.catalogId ? <span className="text-[10px] bg-accent/20 text-accent2 px-2 py-0.5 rounded-full font-bold">Do Catálogo</span> : 'Item do Escopo'}
+                  {item.catalogId ? <span className="text-[10px] bg-accent/20 text-accent2 px-2 py-0.5 rounded-full font-bold">Do Cadastro</span> : 'Item do Escopo'}
                 </div>
                 <Button variant="ghost" className="text-danger hover:text-danger hover:bg-danger/10 px-3 py-1 flex items-center gap-2" onClick={() => removeItem(item.id)}>
                   <Trash2 size={16} /> Remover
@@ -369,7 +380,7 @@ const StepServicos = ({ items, onChange, tipoProposta, onTipoChange, onNext, onB
               <Plus size={24} className="text-accent" />
             </div>
             <p className="font-bold text-white mb-2">Nenhum item adicionado</p>
-            <p className="text-sm">Use "Buscar Catálogo" para adicionar itens pré-cadastrados ou clique abaixo para adicionar manualmente.</p>
+            <p className="text-sm">Use "Buscar Produtos" para adicionar itens pré-cadastrados ou clique abaixo para adicionar manualmente.</p>
           </div>
         )}
 
@@ -386,6 +397,7 @@ const StepServicos = ({ items, onChange, tipoProposta, onTipoChange, onNext, onB
               qty: suggested.qty || 1,
               price: suggested.price || 0,
               category: suggested.category || 'SERVICO',
+              isProduct: suggested.isProduct || false,
             }]);
           }}
           disabled={!aiEnabled}

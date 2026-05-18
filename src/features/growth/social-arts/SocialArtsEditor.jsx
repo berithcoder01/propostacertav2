@@ -23,7 +23,7 @@ export default function SocialArtsEditor({ company }) {
         <EditorHeader onBack={actions.backToGallery} />
 
         <div className="flex-1 flex gap-3 p-3 overflow-hidden" style={{ background: 'var(--editor-bg, #e8e8e6)' }}>
-          <ToolsPanel showPhoto={preset?.requiresPhoto} />
+          <ToolsPanel />
           <CanvasPanel company={company} />
           <PropertiesPanel />
         </div>

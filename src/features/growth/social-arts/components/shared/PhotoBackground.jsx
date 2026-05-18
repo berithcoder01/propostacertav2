@@ -1,6 +1,6 @@
 import { Camera } from 'lucide-react'
 
-export default function PhotoBackground({ uploadedPhoto, fallbackIcon: Icon = Camera, fallbackText = 'Sua foto aqui', overlay = 'bg-gradient-to-t from-black/90 via-black/30 to-transparent' }) {
+export default function PhotoBackground({ uploadedPhoto, fallbackIcon: Icon = Camera, fallbackText = 'Sua foto aqui', overlay, overlayColor }) {
   return (
     <>
       {uploadedPhoto ? (
@@ -11,7 +11,8 @@ export default function PhotoBackground({ uploadedPhoto, fallbackIcon: Icon = Ca
           <span className="text-xs">{fallbackText}</span>
         </div>
       )}
-      {uploadedPhoto && <div className={`absolute inset-0 ${overlay}`} />}
+      {uploadedPhoto && overlay && <div className={`absolute inset-0 ${overlay}`} />}
+      {uploadedPhoto && overlayColor && <div className="absolute inset-0" style={{ background: overlayColor }} />}
     </>
   )
 }

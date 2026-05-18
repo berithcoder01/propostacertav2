@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Save, Plus, Trash2, Edit2, Check, X, ImageIcon, Upload, Sparkles } from 'lucide-react';
+import { Save, Plus, Trash2, Edit2, Check, X, ImageIcon, Upload, Sparkles, Package, Wrench } from 'lucide-react';
 import Input from '../../shared/Input';
 import Button from '../../shared/Button';
 import { useAuth } from '../../shared/context/AuthContext';
@@ -36,7 +36,7 @@ const Company = () => {
   const [editingId, setEditingId] = useState(null);
   const [editForm, setEditForm] = useState({});
   const [addingItem, setAddingItem] = useState(false);
-  const [newItem, setNewItem] = useState({ description: '', unit: 'UNID.', category: 'SERVICO', defaultPrice: '', notes: '' });
+  const [newItem, setNewItem] = useState({ description: '', unit: 'UNID.', category: 'SERVICO', defaultPrice: '', notes: '', isProduct: false, stockQuantity: 0, minStock: 5 });
   // NOVA FEATURE: Preview de logo (White Label)
   const [logoPreview, setLogoPreview] = useState(null);
 
@@ -422,7 +422,7 @@ const Company = () => {
 
       <div className="bg-surface dark:bg-dark-surface border-2 border-border dark:border-dark-border p-6 rounded-2xl space-y-4">
         <div className="flex justify-between items-center">
-          <h2 className="text-xl font-bold font-display text-accent2 dark:text-gray-400 border-b-2 border-border dark:border-dark-border pb-2 flex-1">Catálogo</h2>
+          <h2 className="text-xl font-bold font-display text-accent2 dark:text-gray-400 border-b-2 border-border dark:border-dark-border pb-2 flex-1">Produtos e Serviços</h2>
           <Button onClick={() => setAddingItem(true)} className="flex items-center gap-2 text-sm px-4 py-2">
             <Plus size={16} /> Novo Item
           </Button>
@@ -430,22 +430,33 @@ const Company = () => {
 
         {addingItem && (
           <div className="bg-bg dark:bg-dark-bg border border-accent/30 dark:border-accent/20 rounded-xl p-4 space-y-3">
+            {/* Toggle Produto/Serviço */}
+            <div className="flex gap-2 p-1 bg-surface dark:bg-dark-surface rounded-lg w-fit">
+              <button type="button" onClick={() => setNewItem(p => ({ ...p, isProduct: false }))} className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all ${!newItem.isProduct ? 'bg-gold text-white' : 'text-muted'}`}>Serviço</button>
+              <button type="button" onClick={() => setNewItem(p => ({ ...p, isProduct: true }))} className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all ${newItem.isProduct ? 'bg-accent text-white' : 'text-muted'}`}>Produto</button>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-5 gap-3">
               <Input placeholder="Descrição" value={newItem.description} onChange={e => setNewItem(p => ({ ...p, description: e.target.value }))} className="sm:col-span-2" />
               <Input placeholder="Unidade" value={newItem.unit} onChange={e => setNewItem(p => ({ ...p, unit: e.target.value }))} />
               <Input type="number" step="0.01" placeholder="Preço Padrão" value={newItem.defaultPrice} onChange={e => setNewItem(p => ({ ...p, defaultPrice: e.target.value }))} />
               <Input placeholder="Observações" value={newItem.notes || ''} onChange={e => setNewItem(p => ({ ...p, notes: e.target.value }))} />
             </div>
+            {newItem.isProduct && (
+              <div className="flex gap-3 items-end">
+                <Input label="Estoque" type="number" value={newItem.stockQuantity} onChange={e => setNewItem(p => ({ ...p, stockQuantity: e.target.value }))} className="w-28" />
+                <Input label="Mínimo" type="number" value={newItem.minStock} onChange={e => setNewItem(p => ({ ...p, minStock: e.target.value }))} className="w-28" />
+              </div>
+            )}
             <div className="flex gap-2 justify-end">
-              <Button variant="ghost" onClick={() => { setAddingItem(false); setNewItem({ description: '', unit: 'UNID.', category: 'SERVICO', defaultPrice: '', notes: '' }); }} className="flex items-center gap-1 text-sm px-3 py-1.5"><X size={14} /> Cancelar</Button>
+              <Button variant="ghost" onClick={() => { setAddingItem(false); setNewItem({ description: '', unit: 'UNID.', category: 'SERVICO', defaultPrice: '', notes: '', isProduct: false, stockQuantity: 0, minStock: 5 }); }} className="flex items-center gap-1 text-sm px-3 py-1.5"><X size={14} /> Cancelar</Button>
               <Button onClick={async () => {
                 if (!newItem.description || !newItem.unit) return;
                 try {
-                  await createCatalogItem({ description: newItem.description, unit: newItem.unit, category: newItem.category, defaultPrice: parseFloat(newItem.defaultPrice) || 0, notes: newItem.notes });
+                  await createCatalogItem({ description: newItem.description, unit: newItem.unit, category: newItem.category, defaultPrice: parseFloat(newItem.defaultPrice) || 0, notes: newItem.notes, isProduct: newItem.isProduct, stockQuantity: parseInt(newItem.stockQuantity) || 0, minStock: parseInt(newItem.minStock) || 5 });
                   const cat = await fetchCatalog();
                   setCatalog(cat);
                   setAddingItem(false);
-                  setNewItem({ description: '', unit: 'UNID.', category: 'SERVICO', defaultPrice: '', notes: '' });
+                  setNewItem({ description: '', unit: 'UNID.', category: 'SERVICO', defaultPrice: '', notes: '', isProduct: false, stockQuantity: 0, minStock: 5 });
                 } catch {
                   // mantém form aberto em caso de erro
                 }
@@ -472,9 +483,15 @@ const Company = () => {
                   </>
                 ) : (
                   <>
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      {item.isProduct ? <Package size={14} className="text-accent" /> : <Wrench size={14} className="text-gold" />}
+                    </div>
                     <div className="flex-1 min-w-0">
                       <div className="text-sm font-bold text-text-primary dark:text-white truncate">{item.description}</div>
-                      <div className="text-[10px] text-muted dark:text-gray-500">{item.category} · {item.unit}</div>
+                      <div className="text-[10px] text-muted dark:text-gray-500">
+                        {item.category} · {item.unit}
+                        {item.isProduct && <> · Estoque: <span className={item.stockQuantity <= item.minStock ? 'text-danger' : 'text-success'}>{item.stockQuantity}</span></>}
+                      </div>
                     </div>
                     <div className="text-sm font-bold text-accent2 dark:text-gray-400">{item.defaultPrice ? fmt(item.defaultPrice) : '—'}</div>
                     <button onClick={() => { setEditingId(item.id); setEditForm({ description: item.description, unit: item.unit, defaultPrice: item.defaultPrice || '' }); }} className="p-2 text-muted dark:text-gray-500 hover:text-text-primary dark:hover:text-white hover:bg-surface dark:hover:bg-dark-surface rounded-lg"><Edit2 size={14} /></button>

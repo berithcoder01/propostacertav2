@@ -50,11 +50,15 @@ export default async function (fastify, opts) {
     const companyId = await getCompanyId(request);
     if (!companyId) return reply.code(400).send({ error: 'Empresa não configurada' });
 
-    const allItems = await fastify.prisma.catalogItem.findMany({
-      where: { companyId, active: true, isProduct: true },
+    const lowStockItems = await fastify.prisma.catalogItem.findMany({
+      where: {
+        companyId,
+        active: true,
+        isProduct: true,
+        stockQuantity: { lte: fastify.prisma.catalogItem.fields.minStock },
+      },
+      orderBy: [{ stockQuantity: 'asc' }],
     });
-
-    const lowStockItems = allItems.filter(item => item.stockQuantity <= item.minStock);
 
     return { items: lowStockItems, count: lowStockItems.length };
   });
@@ -64,21 +68,35 @@ export default async function (fastify, opts) {
     const companyId = await getCompanyId(request);
     if (!companyId) return reply.code(400).send({ error: 'Empresa não configurada' });
 
-    const allItems = await fastify.prisma.catalogItem.findMany({
-      where: { companyId, active: true },
-      select: { isProduct: true, stockQuantity: true, minStock: true, category: true, defaultPrice: true },
-    });
+    const [totalProducts, totalServices, lowStockCount, totalValueResult] = await fastify.prisma.$transaction([
+      fastify.prisma.catalogItem.count({ where: { companyId, active: true, isProduct: true } }),
+      fastify.prisma.catalogItem.count({ where: { companyId, active: true, isProduct: false } }),
+      fastify.prisma.catalogItem.count({
+        where: {
+          companyId,
+          active: true,
+          isProduct: true,
+          stockQuantity: { lte: fastify.prisma.catalogItem.fields.minStock },
+        },
+      }),
+      fastify.prisma.catalogItem.aggregate({
+        where: { companyId, active: true, isProduct: true },
+        _sum: { defaultPrice: true },
+      }),
+    ]);
 
-    const products = allItems.filter(i => i.isProduct);
-    const services = allItems.filter(i => !i.isProduct);
-    const lowStock = products.filter(i => i.stockQuantity <= i.minStock);
-    const totalValue = products.reduce((sum, i) => sum + (i.stockQuantity * (i.defaultPrice || 0)), 0);
+    // Calcular valor total do estoque (precisa dos items individuais para multiplicar qty * price)
+    const stockItems = await fastify.prisma.catalogItem.findMany({
+      where: { companyId, active: true, isProduct: true },
+      select: { stockQuantity: true, defaultPrice: true },
+    });
+    const totalStockValue = stockItems.reduce((sum, i) => sum + (i.stockQuantity * (i.defaultPrice || 0)), 0);
 
     return {
-      totalProducts: products.length,
-      totalServices: services.length,
-      lowStockCount: lowStock.length,
-      totalStockValue: totalValue,
+      totalProducts,
+      totalServices,
+      lowStockCount,
+      totalStockValue,
     };
   });
 
@@ -142,8 +160,8 @@ export default async function (fastify, opts) {
     delete data.updatedAt;
 
     if (data.defaultPrice !== undefined) data.defaultPrice = parseFloat(data.defaultPrice);
-    if (data.stockQuantity !== undefined) data.stockQuantity = parseInt(data.stockQuantity);
-    if (data.minStock !== undefined) data.minStock = parseInt(data.minStock);
+    if (data.stockQuantity !== undefined) data.stockQuantity = Math.max(0, parseInt(data.stockQuantity));
+    if (data.minStock !== undefined) data.minStock = Math.max(0, parseInt(data.minStock));
 
     const updated = await fastify.prisma.catalogItem.update({ where: { id }, data });
     return updated;
@@ -158,13 +176,17 @@ export default async function (fastify, opts) {
     const exists = await fastify.prisma.catalogItem.findFirst({ where: { id, companyId } });
     if (!exists) return reply.notFound();
 
+    if (!exists.isProduct) {
+      return reply.code(400).send({ error: 'Apenas produtos possuem controle de estoque' });
+    }
+
     let newQuantity;
     if (operation === 'add') {
       newQuantity = exists.stockQuantity + parseInt(quantity);
     } else if (operation === 'remove') {
       newQuantity = Math.max(0, exists.stockQuantity - parseInt(quantity));
     } else {
-      newQuantity = parseInt(quantity);
+      newQuantity = Math.max(0, parseInt(quantity));
     }
 
     const updated = await fastify.prisma.catalogItem.update({

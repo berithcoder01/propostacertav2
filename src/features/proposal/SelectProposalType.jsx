@@ -26,10 +26,10 @@ const SelectProposalType = () => {
         {/* Opção: Geral */}
         <button
           onClick={() => navigate('/propostas/nova/geral')}
-          className="bg-surface border-2 border-border p-8 rounded-3xl text-left hover:border-accent hover:bg-accent/5 transition-all group relative overflow-hidden"
+          className="bg-surface dark:bg-dark-surface border-2 border-border dark:border-dark-border p-8 rounded-3xl text-left hover:border-accent hover:bg-accent/5 dark:hover:bg-accent/10 transition-all group relative overflow-hidden"
         >
           <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-bl-full -z-10 group-hover:bg-accent/20 transition-colors" />
-          <div className="w-16 h-16 bg-bg border-2 border-border rounded-2xl flex items-center justify-center mb-6 group-hover:border-accent transition-colors">
+          <div className="w-16 h-16 bg-bg dark:bg-dark-bg border-2 border-border dark:border-dark-border rounded-2xl flex items-center justify-center mb-6 group-hover:border-accent transition-colors">
             <Settings className="text-accent2" size={32} />
           </div>
           <h2 className="text-xl font-bold font-display text-white mb-3">Geral / Padrão</h2>
@@ -42,10 +42,10 @@ const SelectProposalType = () => {
         {/* Opção: Serviço Contínuo */}
         <button
           onClick={() => navigate('/propostas/nova/geral?tipo=servico_continuo')}
-          className="bg-surface border-2 border-border p-8 rounded-3xl text-left hover:border-gold hover:bg-gold/5 transition-all group relative overflow-hidden"
+          className="bg-surface dark:bg-dark-surface border-2 border-border dark:border-dark-border p-8 rounded-3xl text-left hover:border-gold hover:bg-gold/5 dark:hover:bg-gold/10 transition-all group relative overflow-hidden"
         >
           <div className="absolute top-0 right-0 w-32 h-32 bg-gold/10 rounded-bl-full -z-10 group-hover:bg-gold/20 transition-colors" />
-          <div className="w-16 h-16 bg-bg border-2 border-border rounded-2xl flex items-center justify-center mb-6 group-hover:border-gold transition-colors">
+          <div className="w-16 h-16 bg-bg dark:bg-dark-bg border-2 border-border dark:border-dark-border rounded-2xl flex items-center justify-center mb-6 group-hover:border-gold transition-colors">
             <Calendar className="text-gold" size={32} />
           </div>
           <h2 className="text-xl font-bold font-display text-white mb-3">Serviço Contínuo</h2>
@@ -58,15 +58,15 @@ const SelectProposalType = () => {
         {/* Opção: IA Geradora — controlada por plano */}
         <button
           onClick={() => aiEnabled ? navigate('/propostas/nova/ai') : navigate('/plans')}
-          className={`bg-surface border-2 p-8 rounded-3xl text-left transition-all group relative overflow-hidden
+          className={`bg-surface dark:bg-dark-surface border-2 p-8 rounded-3xl text-left transition-all group relative overflow-hidden
             ${aiEnabled
-              ? 'border-border hover:border-accent2 hover:bg-accent2/5 cursor-pointer'
-              : 'border-border/40 opacity-60 cursor-not-allowed'}`}
+              ? 'border-border dark:border-dark-border hover:border-accent2 hover:bg-accent2/5 dark:hover:bg-accent2/10 cursor-pointer'
+              : 'border-border/40 dark:border-dark-border/40 opacity-60 cursor-not-allowed'}`}
         >
           <div className={`absolute top-0 right-0 w-32 h-32 rounded-bl-full -z-10 transition-colors
             ${aiEnabled ? 'bg-accent2/10 group-hover:bg-accent2/20' : 'bg-muted/5'}`} />
-          <div className={`w-16 h-16 bg-bg border-2 rounded-2xl flex items-center justify-center mb-6 transition-colors
-            ${aiEnabled ? 'border-border group-hover:border-accent2' : 'border-border/40'}`}>
+          <div className={`w-16 h-16 bg-bg dark:bg-dark-bg border-2 rounded-2xl flex items-center justify-center mb-6 transition-colors
+            ${aiEnabled ? 'border-border dark:border-dark-border group-hover:border-accent2' : 'border-border/40 dark:border-dark-border/40'}`}>
             {aiEnabled
               ? <Sparkles className="text-accent" size={32} />
               : <Lock className="text-muted" size={32} />}

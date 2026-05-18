@@ -98,9 +98,9 @@ const ProductList = ({
       {totalPages > 1 && (
         <div className="flex items-center justify-between pt-4">
           <span className="text-xs text-muted dark:text-gray-500">
-            Mostrando {((page - 1) * limit) + 1}-{Math.min(page * limit, total)} de {total}
+            Página {page} de {totalPages} · {((page - 1) * limit) + 1}-{Math.min(page * limit, total)} de {total}
           </span>
-          <div className="flex gap-2">
+          <div className="flex items-center gap-1">
             <button
               onClick={() => onPageChange(page - 1)}
               disabled={page <= 1}
@@ -108,6 +108,31 @@ const ProductList = ({
             >
               Anterior
             </button>
+            {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+              let pageNum;
+              if (totalPages <= 5) {
+                pageNum = i + 1;
+              } else if (page <= 3) {
+                pageNum = i + 1;
+              } else if (page >= totalPages - 2) {
+                pageNum = totalPages - 4 + i;
+              } else {
+                pageNum = page - 2 + i;
+              }
+              return (
+                <button
+                  key={pageNum}
+                  onClick={() => onPageChange(pageNum)}
+                  className={`w-8 h-8 rounded-lg text-xs font-bold transition-colors ${
+                    pageNum === page
+                      ? 'bg-accent text-white'
+                      : 'bg-surface dark:bg-dark-surface border border-border dark:border-dark-border text-muted dark:text-gray-500 hover:text-text-primary dark:hover:text-white'
+                  }`}
+                >
+                  {pageNum}
+                </button>
+              );
+            })}
             <button
               onClick={() => onPageChange(page + 1)}
               disabled={page >= totalPages}

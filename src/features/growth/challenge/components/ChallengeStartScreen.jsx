@@ -10,13 +10,13 @@ export default function ChallengeStartScreen({ onStart, loading }) {
   ]
 
   return (
-    <div className="min-h-screen bg-bg flex items-center justify-center p-4">
+    <div className="min-h-screen bg-bg dark:bg-dark-bg flex items-center justify-center p-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-lg"
       >
-        <div className="bg-white backdrop-blur-sm border border-border rounded-2xl p-8 text-center shadow-lg">
+        <div className="bg-surface dark:bg-dark-surface backdrop-blur-sm border border-border dark:border-dark-border rounded-2xl p-8 text-center shadow-lg">
           <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-accent/10 flex items-center justify-center">
             <Rocket className="w-8 h-8 text-accent" />
           </div>
@@ -34,7 +34,7 @@ export default function ChallengeStartScreen({ onStart, loading }) {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.1 }}
-                className="flex items-center gap-3 p-3 rounded-lg bg-gray-50"
+                className="flex items-center gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-800"
               >
                 <item.icon className="w-5 h-5 text-accent flex-shrink-0" />
                 <span className="text-text-primary">{item.text}</span>

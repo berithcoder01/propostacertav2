@@ -1,97 +1,108 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Layers } from 'lucide-react'
+import { Search } from 'lucide-react'
 import { bannerPresets } from '../data/bannerPresets'
 import { useEditor } from '../context/EditorContext'
 import PresetCard from './PresetCard'
 
-const CATEGORY_ORDER = ['WhatsApp Status', 'Instagram Stories', 'Instagram Feed', 'Prova Social', 'Autoridade', 'Portfólio']
-
-const STYLE_VIBES = [
-  { id: 'all', label: 'Todos', icon: '🎨' },
-  { id: 'modern', label: 'Moderno', icon: '✨' },
-  { id: 'bold', label: 'Impactante', icon: '⚡' },
-  { id: 'professional', label: 'Profissional', icon: '💼' },
-  { id: 'social', label: 'Social', icon: '👥' },
-]
+const CATEGORIES = ['Todos', ...Array.from(new Set(bannerPresets.map(p => p.category)))]
 
 export default function PresetGallery() {
   const { actions } = useEditor()
-  const [selectedVibe, setSelectedVibe] = useState('all')
+  const [activeCategory, setActiveCategory] = useState('Todos')
+  const [query, setQuery] = useState('')
 
-  const filteredPresets = selectedVibe === 'all'
-    ? bannerPresets
-    : bannerPresets.filter(p => p.vibe === selectedVibe)
-
-  const categorized = filteredPresets.reduce((acc, preset) => {
-    if (!acc[preset.category]) acc[preset.category] = []
-    acc[preset.category].push(preset)
-    return acc
-  }, {})
+  const filtered = useMemo(() => {
+    return bannerPresets.filter(preset => {
+      const matchCategory =
+        activeCategory === 'Todos' || preset.category === activeCategory
+      const q = query.toLowerCase().trim()
+      const matchQuery =
+        !q ||
+        [preset.name, preset.category, ...(preset.tags || [])].some(s =>
+          s.toLowerCase().includes(q)
+        )
+      return matchCategory && matchQuery
+    })
+  }, [activeCategory, query])
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key="gallery"
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -12 }}
-        className="space-y-8"
-      >
-        <div>
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <h3 className="text-xl font-bold text-text-primary mb-1">Artes para Redes Sociais</h3>
-              <p className="text-text-secondary text-sm">
-                Escolha um modelo, personalize e baixe em PNG. Fotos ficam apenas no seu navegador.
-              </p>
-            </div>
-          </div>
+    <div className="flex flex-col gap-6">
 
-          <div className="flex gap-2 overflow-x-auto pb-4">
-            {STYLE_VIBES.map(vibe => (
-              <motion.button
-                key={vibe.id}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setSelectedVibe(vibe.id)}
-                className={`px-4 py-2 rounded-full font-semibold text-sm whitespace-nowrap transition-all ${
-                  selectedVibe === vibe.id
-                    ? 'bg-emerald-600 text-white'
-                    : 'bg-gray-100 text-text-secondary hover:bg-gray-200'
-                }`}
-              >
-                {vibe.icon} {vibe.label}
-              </motion.button>
-            ))}
-          </div>
+      <div className="flex flex-col gap-3">
+        <div>
+          <h3 className="text-lg font-bold text-white">Escolha um modelo</h3>
+          <p className="text-white/40 text-sm mt-0.5">
+            {bannerPresets.length} templates · PNG em alta resolução
+          </p>
         </div>
 
-        {CATEGORY_ORDER.map(category => {
-          const presets = categorized[category] || []
-          if (presets.length === 0) return null
-          return (
-            <div key={category}>
-              <div className="flex items-center gap-3 mb-4">
-                <Layers size={14} className="text-emerald-600" />
-                <span className="text-xs font-bold uppercase tracking-widest text-emerald-600">
-                  {category}
-                </span>
-                <div className="flex-1 h-px bg-gray-200" />
+        <div className="relative">
+          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
+          <input
+            type="text"
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+            placeholder="Buscar por nome, estilo ou formato..."
+            className="w-full pl-9 pr-3 py-2 rounded-lg
+                       bg-[#1f1f2a] border border-[rgba(255,255,255,0.08)]
+                       text-white text-sm placeholder-white/25
+                       focus:outline-none focus:border-blue-500/50
+                       focus:ring-1 focus:ring-blue-500/20
+                       transition-all"
+          />
+        </div>
+      </div>
+
+      <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
+        {CATEGORIES.map(cat => (
+          <button
+            key={cat}
+            onClick={() => setActiveCategory(cat)}
+            className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap
+                        flex-shrink-0 transition-all
+              ${activeCategory === cat
+                ? 'bg-blue-600 text-white'
+                : 'bg-[#1f1f2a] text-white/50 hover:text-white/80 border border-[rgba(255,255,255,0.08)]'
+              }`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <AnimatePresence mode="wait">
+        {filtered.length === 0 ? (
+          <motion.div
+            key="empty"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="py-16 text-center text-white/30 text-sm"
+          >
+            Nenhum template encontrado para "{query}"
+          </motion.div>
+        ) : (
+          <motion.div
+            key="results"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="columns-2 sm:columns-3 lg:columns-4 xl:columns-5 gap-3"
+          >
+            {filtered.map((preset, i) => (
+              <div
+                key={preset.id}
+                className="break-inside-avoid mb-3"
+              >
+                <PresetCard
+                  preset={preset}
+                  index={i}
+                  onClick={() => actions.selectPreset(preset)}
+                />
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {presets.map(preset => (
-                  <PresetCard
-                    key={preset.id}
-                    preset={preset}
-                    onClick={() => actions.selectPreset(preset)}
-                  />
-                ))}
-              </div>
-            </div>
-          )
-        })}
-      </motion.div>
-    </AnimatePresence>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   )
 }

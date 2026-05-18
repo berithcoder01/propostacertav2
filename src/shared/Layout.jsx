@@ -42,8 +42,9 @@ const Layout = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[300px] bg-ambient-glow opacity-50 pointer-events-none" />
 
       {/* Sidebar Desktop */}
-      <aside className={`hidden md:flex w-20 hover:w-64 group flex-col ${isDark ? 'bg-dark-surface border-dark-border' : 'bg-white border-border'} border-r transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] z-50 shadow-sm`}
-             style={{ '--accent-nav': primaryColor }}>
+      <div className="hidden md:flex w-20 hover:w-64 group flex-col transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] z-50 shadow-sm overflow-hidden"
+           style={{ '--accent-nav': primaryColor }}>
+        <aside className={`w-64 flex-shrink-0 flex flex-col ${isDark ? 'bg-dark-surface border-dark-border' : 'bg-white border-border'} border-r h-full`}>
         <div className="flex flex-col h-full py-8 px-4">
 
           {/* Logo com White Label */}
@@ -67,7 +68,7 @@ const Layout = () => {
             <SideNavLink to="/"          icon={<LayoutDashboard size={20}/>} label="Dashboard" />
             <SideNavLink to="/propostas" icon={<FileText size={20}/>}        label="Propostas" />
             <SideNavLink to="/clientes"  icon={<Users size={20}/>}           label="Clientes" />
-            <SideNavLink to="/produtos"  icon={<Package size={20}/>}         label="Catálogo" />
+            <SideNavLink to="/produtos"  icon={<Package size={20}/>}         label="Produtos e Serviços" />
             <SideNavLink to="/meu-negocio" icon={<TrendingUp size={20}/>}      label="Meu Negócio" />
             {subscription?.plan?.hasAi ? (
               <SideNavLink to="/prospeccao" icon={<MapPin size={20}/>} label="Prospecção" />
@@ -96,7 +97,8 @@ const Layout = () => {
             </div>
           </div>
         </div>
-      </aside>
+        </aside>
+      </div>
 
       {/* Main UI */}
       <div className="flex-1 flex flex-col overflow-hidden relative">

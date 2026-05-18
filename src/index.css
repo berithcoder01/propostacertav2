@@ -43,6 +43,8 @@
   body {
     @apply font-body antialiased;
     min-height: 100vh;
+    background: linear-gradient(160deg, #E3DDD3 0%, #F7F5F3 50%, #C0D5CA 100%);
+    background-attachment: fixed;
   }
 
   .dark body {

@@ -23,7 +23,8 @@ export const bannerPresets = [
     },
     layout: 'photo-overlay',
     sizes: ['1080x1920'],
-    requiresPhoto: true,
+    requiresPhoto: 'required',
+    tags: ['foto', 'whatsapp', 'status', 'overlay'],
     fields: [
       {
         key: 'mainText',
@@ -66,8 +67,25 @@ export const bannerPresets = [
     },
     layout: 'urgency-cta',
     sizes: ['1080x1080', '1080x1920'],
-    requiresPhoto: false,
+    requiresPhoto: 'optional',
+    tags: ['urgência', 'emergência', '24h', 'destaque'],
     fields: [
+      {
+        key: 'headline',
+        label: 'Chamada de Urgência',
+        placeholder: 'Precisa de Elétrica?',
+        defaultValue: 'Precisa de Elétrica?',
+        multiline: false,
+        maxLength: 40,
+      },
+      {
+        key: 'emoji',
+        label: 'Ícone de Urgência',
+        placeholder: '🚨',
+        defaultValue: '🚨',
+        multiline: false,
+        maxLength: 4,
+      },
       {
         key: 'mainText',
         label: 'Mensagem de Urgência',
@@ -97,7 +115,8 @@ export const bannerPresets = [
     },
     layout: 'story-promo',
     sizes: ['1080x1920'],
-    requiresPhoto: true,
+    requiresPhoto: 'required',
+    tags: ['promoção', 'stories', 'oferta', 'foto'],
     fields: [
       {
         key: 'mainText',
@@ -132,7 +151,8 @@ export const bannerPresets = [
     },
     layout: 'minimal-glass',
     sizes: ['1080x1920'],
-    requiresPhoto: true,
+    requiresPhoto: 'required',
+    tags: ['minimalista', 'glass', 'moderno', 'foto'],
     fields: [
       {
         key: 'mainText',
@@ -163,13 +183,22 @@ export const bannerPresets = [
     },
     layout: 'photo-before-after',
     sizes: ['1080x1080'],
-    requiresPhoto: true,
+    requiresPhoto: false,
+    tags: ['antes depois', 'resultado', 'portfólio', 'feed'],
     fields: [
       {
         key: 'mainText',
         label: 'Legenda do Resultado',
         placeholder: 'Resultado que fala por si!',
         defaultValue: 'Resultado que fala por si!',
+        multiline: false,
+        maxLength: 60,
+      },
+      {
+        key: 'subtitle',
+        label: 'Texto Complementar',
+        placeholder: 'Peça já o seu!',
+        defaultValue: '',
         multiline: false,
         maxLength: 60,
       },
@@ -190,7 +219,8 @@ export const bannerPresets = [
     },
     layout: 'centered-impact',
     sizes: ['1080x1080', '1080x1920'],
-    requiresPhoto: false,
+    requiresPhoto: 'optional',
+    tags: ['promoção', 'oferta', 'desconto', 'feed'],
     fields: [
       {
         key: 'mainText',
@@ -225,8 +255,17 @@ export const bannerPresets = [
     },
     layout: 'neo-brutalism',
     sizes: ['1080x1080', '1080x1920'],
-    requiresPhoto: false,
+    requiresPhoto: 'optional',
+    tags: ['impactante', 'bold', 'brutalismo', 'feed'],
     fields: [
+      {
+        key: 'headline',
+        label: 'Palavra de Destaque',
+        placeholder: 'QUALIDADE',
+        defaultValue: 'QUALIDADE',
+        multiline: false,
+        maxLength: 20,
+      },
       {
         key: 'mainText',
         label: 'Mensagem Principal',
@@ -252,7 +291,8 @@ export const bannerPresets = [
     },
     layout: 'service-grid',
     sizes: ['1080x1080', '1080x1920'],
-    requiresPhoto: false,
+    requiresPhoto: 'optional',
+    tags: ['serviços', 'grade', 'lista', 'profissional'],
     fields: [
       {
         key: 'service1',
@@ -307,7 +347,8 @@ export const bannerPresets = [
     },
     layout: 'testimonial-quote',
     sizes: ['1080x1080', '1080x1920'],
-    requiresPhoto: false,
+    requiresPhoto: 'optional',
+    tags: ['depoimento', 'cliente', 'prova social', 'avaliação'],
     fields: [
       {
         key: 'mainText',
@@ -342,7 +383,8 @@ export const bannerPresets = [
     },
     layout: 'expert-profile',
     sizes: ['1080x1080', '1080x1920'],
-    requiresPhoto: true,
+    requiresPhoto: 'required',
+    tags: ['perfil', 'especialista', 'autoridade', 'foto'],
     fields: [
       {
         key: 'mainText',
@@ -351,6 +393,14 @@ export const bannerPresets = [
         defaultValue: 'Eletricista Certificado',
         multiline: false,
         maxLength: 60,
+      },
+      {
+        key: 'badge',
+        label: 'Selo / Credencial',
+        placeholder: 'Especialista Verificado',
+        defaultValue: 'Especialista Verificado',
+        multiline: false,
+        maxLength: 40,
       },
     ],
   },
@@ -373,8 +423,17 @@ export const bannerPresets = [
     },
     layout: 'tip-card',
     sizes: ['1080x1080', '1080x1920'],
-    requiresPhoto: false,
+    requiresPhoto: 'optional',
+    tags: ['dica', 'conteúdo', 'autoridade', 'educativo'],
     fields: [
+      {
+        key: 'badge',
+        label: 'Tipo de Conteúdo',
+        placeholder: '💡 Dica do Profissional',
+        defaultValue: '💡 Dica do Profissional',
+        multiline: false,
+        maxLength: 40,
+      },
       {
         key: 'mainText',
         label: 'Dica / Conteúdo',
@@ -404,8 +463,17 @@ export const bannerPresets = [
     },
     layout: 'services-list',
     sizes: ['1080x1080', '1080x1920'],
-    requiresPhoto: false,
+    requiresPhoto: 'optional',
+    tags: ['serviços', 'portfólio', 'lista', 'profissional'],
     fields: [
+      {
+        key: 'sectionTitle',
+        label: 'Título da Seção',
+        placeholder: 'Nossos Serviços',
+        defaultValue: 'Nossos Serviços',
+        multiline: false,
+        maxLength: 30,
+      },
       {
         key: 'service1',
         label: 'Serviço 1',

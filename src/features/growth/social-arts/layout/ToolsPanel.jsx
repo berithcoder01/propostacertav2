@@ -2,21 +2,19 @@ import { useEditor } from '../context/EditorContext'
 
 const TOOLS = [
   { id: 'content', icon: 'T', label: 'Texto' },
-  { id: 'photo', icon: '🖼', label: 'Foto' },
+  { id: 'background', icon: '🎨', label: 'Fundo' },
   { id: 'layout', icon: '⬛', label: 'Layout' },
   { id: 'decoration', icon: '✨', label: 'Deco' },
   { id: 'cta', icon: '📞', label: 'CTA' },
 ]
 
-export default function ToolsPanel({ showPhoto }) {
+export default function ToolsPanel() {
   const { state, actions } = useEditor()
   const { activeTool } = state
 
-  const tools = showPhoto ? TOOLS : TOOLS.filter(t => t.id !== 'photo')
-
   return (
     <div className="w-[80px] flex-shrink-0 bg-editor-panel border border-editor-border rounded-xl p-2 flex flex-col items-center gap-1 shadow-editor">
-      {tools.map(tool => {
+      {TOOLS.map(tool => {
         const isActive = activeTool === tool.id
         return (
           <button

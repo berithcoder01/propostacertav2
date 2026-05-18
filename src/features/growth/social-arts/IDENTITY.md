@@ -24,9 +24,10 @@ social-arts/
 │
 ├── panels/
 │   ├── ContentPanel.jsx          # Campos de texto do preset
-│   ├── PhotoPanel.jsx            # Upload de foto
+│   ├── PhotoPanel.jsx            # Upload de foto (suporte a 2 fotos para Antes/Depois)
+│   ├── BackgroundPanel.jsx       # Controle de fundo (sólido, gradiente, imagem)
 │   ├── LayoutPanel.jsx           # Espaçamento, posição, rectBlocks
-│   ├── DecorationPanel.jsx       # Formas decorativas
+│   ├── DecorationPanel.jsx       # Sistema de decorações com items configuráveis
 │   └── CTAPanel.jsx              # Botão CTA completo
 │
 ├── renderers/
@@ -59,14 +60,17 @@ social-arts/
 │       └── AlignmentButtons.jsx
 │
 ├── gallery/
-│   ├── PresetGallery.jsx         # Grid de presets com filtro por vibe
-│   └── PresetCard.jsx            # Card individual de preset
+│   ├── PresetGallery.jsx         # Layout masonry Pinterest-style, busca, filtros
+│   ├── PresetCard.jsx            # Card com preview real + badge categoria + hover overlay
+│   └── MiniRenderer.jsx          # Renderiza template real em escala reduzida
 │
 ├── data/
 │   └── bannerPresets.js          # Definição dos presets de arte
 │
-└── utils/
-    └── color.js                  # getContrastColor + lightenColor
+├── utils/
+│   ├── color.js                  # getContrastColor + lightenColor
+│   ├── segments.js               # SEGMENT_LABELS centralizado + getSegmentLabel
+│   └── background.js             # resolveBackground + resolveOverlay
 ```
 
 ## Dependências Externas
@@ -92,7 +96,23 @@ social-arts/
 - 12 presets configuráveis (foto-status, story-promo, promocao, etc.)
 - Layout 3 colunas: Tools Panel (80px) → Canvas → Properties Panel (280px)
 - Estado global via EditorContext + useReducer (zero prop drilling)
-- Painéis contextuais conforme tool selecionada (Conteúdo, Foto, Layout, Decoração, CTA)
+- 6 ferramentas: Conteúdo, Foto, Fundo, Layout, Decoração, CTA
+- **Painel Fundo**: controle de cor sólida, gradiente (ângulo + 2 cores) ou imagem com overlay
+- **Foto opcional**: todos os templates aceitam foto como fundo (requiresPhoto: 'optional')
+- **Duas fotos**: template Antes/Depois com uploads independentes (photo + photoAlt)
+- **Decorações configuráveis**: 5 elementos (Linha, Canto, Brilho, Pontos, Selo) com posição, cor e opacidade por item
+- **Offset de texto**: range expandido (-200 a +200px) com botão "Centralizar"
+- **Botão de download**: movido para o rodapé do PropertiesPanel (modelo Adobe)
+- **Micro-copy**: estados vazios com orientação em todos os painéis
+- Painéis contextuais conforme tool selecionada
 - Exportação PNG 2x resolução
-- Tema light mode com CSS variables (--editor-bg, --editor-panel-bg, etc.)
-- Galeria com filtro por vibe (Todos, Moderno, Impactante, Profissional, Social)
+- Tema light/dark com CSS variables (--editor-bg, --editor-panel-bg, etc.)
+- Galeria estilo Pinterest (masonry) com cards de alturas variadas (1:1 e 9:16)
+- Layout orgânico sem agrupamento por categoria — todos os templates misturados
+- Badge de categoria no canto superior esquerdo de cada card
+- Busca por nome, categoria ou tags
+- Filtros por categoria via chips (aplicados à lista plana)
+- Grid responsivo: 2 col (mobile) → 3 (tablet) → 4 (desktop) → 5 (wide)
+- Hover overlay com ação "Usar template"
+- **Todos os 12 renderers integrados**: CTA, Offset, RectBlocks, DecorativeShapes e LayoutSpacing funcionais em todos os presets
+- `SEGMENT_LABELS` centralizado em `utils/segments.js` (zero duplicatas)

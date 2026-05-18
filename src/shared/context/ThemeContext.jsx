@@ -7,7 +7,8 @@ const STORAGE_KEY = '@propostacerta:theme'
 export function ThemeProvider({ children }) {
   const [isDark, setIsDark] = useState(() => {
     const stored = localStorage.getItem(STORAGE_KEY)
-    return stored === 'dark'
+    if (stored) return stored === 'dark'
+    return false
   })
 
   useEffect(() => {
@@ -22,9 +23,10 @@ export function ThemeProvider({ children }) {
   }, [isDark])
 
   const toggle = useCallback(() => setIsDark(prev => !prev), [])
+  const setLight = useCallback(() => setIsDark(false), [])
 
   return (
-    <ThemeContext.Provider value={{ isDark, toggle }}>
+    <ThemeContext.Provider value={{ isDark, toggle, setLight }}>
       {children}
     </ThemeContext.Provider>
   )

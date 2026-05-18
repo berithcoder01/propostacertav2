@@ -167,7 +167,7 @@ Seja direto, profissional e ajude com redação técnica ou cálculos.`;
     try {
       const catalog = await fastify.prisma.catalogItem.findMany({
         where: { companyId, active: true },
-        select: { id: true, description: true, unit: true, defaultPrice: true, category: true, suggestedPrice: true }
+        select: { id: true, description: true, unit: true, defaultPrice: true, category: true, isProduct: true }
       });
 
       if (catalog.length === 0) {
@@ -191,6 +191,7 @@ Retorne APENAS o JSON exato:
       "description": "descrição",
       "unit": "unidade",
       "defaultPrice": preco,
+      "isProduct": false,
       "relevanceScore": 0 a 1,
       "reason": "por que este item é relevante"
     }
@@ -250,7 +251,7 @@ Retorne APENAS o JSON EXATO:
   "clientPhone": "telefone",
   "object": "Resumo do projeto",
   "items": [
-    { "label": "Nome", "unit": "PT|ML|M2|M3|UNID|HRS|VB|KG|CJ|MTS", "quantity": 0, "unitPrice": 0, "category": "SERVICO|MATERIAL|EQUIPAMENTO|MAO_DE_OBRA", "notes": "" }
+    { "label": "Nome", "unit": "PT|ML|M2|M3|UNID|HRS|VB|KG|CJ|MTS", "quantity": 0, "unitPrice": 0, "category": "SERVICO|MATERIAL|EQUIPAMENTO|MAO_DE_OBRA", "isProduct": false, "notes": "" }
   ],
   "conditions": {
     "downPayment": 0, "downPaymentDays": 0, "measurementDays": 0, "paymentNfDays": 0, "validityDays": 60
@@ -280,7 +281,7 @@ Retorne APENAS o JSON EXATO:
     try {
       const catalog = await fastify.prisma.catalogItem.findMany({
         where: { companyId, active: true },
-        select: { id: true, description: true, unit: true, defaultPrice: true, category: true }
+        select: { id: true, description: true, unit: true, defaultPrice: true, category: true, isProduct: true }
       });
 
       const catalogJson = JSON.stringify(catalog);
@@ -292,7 +293,7 @@ Catálogo: ${catalogJson}
 Itens já incluídos: ${itemsJson}
 
 Sugira itens complementares que NÃO estão na lista.
-Retorne APENAS: {"suggestions": [{"id": "...", "label": "...", "unit": "...", "quantity": 0, "unitPrice": 0, "reason": "..."}]}`;
+Retorne APENAS: {"suggestions": [{"id": "...", "label": "...", "unit": "...", "quantity": 0, "unitPrice": 0, "isProduct": false, "reason": "..."}]}`;
 
       const result = await model.generateContent(prompt);
       const responseText = result.response.text();

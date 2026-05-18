@@ -1,9 +1,10 @@
 import { Camera } from 'lucide-react'
-import { PhotoBackground, RectBlocks, DecorativeShapes, LogoOrInitial, PhoneDisplay, CTAButton } from '../components/shared'
+import { RectBlocks, DecorativeShapes, LogoOrInitial, PhoneDisplay, CTAButton } from '../components/shared'
+import { resolveBackground, resolveOverlay } from '../utils/background'
 
 const SEGMENT_LABELS = { ELETRICA: 'Elétrica', HIDRAULICA: 'Hidráulica', PINTURA: 'Pintura', CONSTRUCAO_CIVIL: 'Construção Civil', AR_CONDICIONADO: 'Ar Condicionado', SERVICOS: 'Serviços', OUTRO: 'Serviços' }
 
-export default function FotoStatus({ company, fields, uploadedPhoto, elementOffset, decorativeShapes, layoutSpacing, rectBlocks, ctaButton }) {
+export default function FotoStatus({ company, fields, background, uploadedPhoto, elementOffset, decorativeShapes, layoutSpacing, rectBlocks, ctaButton }) {
   const name = company?.name || 'Sua Empresa'
   const phone = company?.phone || '(00) 00000-0000'
   const segment = SEGMENT_LABELS[company?.segment] || 'Serviços'
@@ -11,9 +12,13 @@ export default function FotoStatus({ company, fields, uploadedPhoto, elementOffs
   const secondary = company?.secondaryColor || '#E87722'
   const logo = company?.logoUrl || null
 
+  const bgStyle = resolveBackground(background, company)
+  const overlayStyle = resolveOverlay(background)
+
   return (
-    <div className="w-full h-full relative flex flex-col" style={{ background: '#111' }}>
-      <PhotoBackground uploadedPhoto={uploadedPhoto} />
+    <div className="w-full h-full relative flex flex-col" style={bgStyle}>
+      {overlayStyle && <div style={overlayStyle} />}
+
       <RectBlocks rectBlocks={rectBlocks} primary={primary} />
       <DecorativeShapes shapes={decorativeShapes} primary={primary} secondary={secondary} />
 

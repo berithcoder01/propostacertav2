@@ -63,8 +63,8 @@ export default function RemindersWidget({ proposalId }) {
   };
 
   return (
-    <div className="bg-surface border border-border rounded-2xl p-4">
-      <div className="flex items-center gap-2 mb-4 text-white font-bold">
+    <div className="bg-surface dark:bg-dark-surface border border-border dark:border-dark-border rounded-2xl p-4">
+      <div className="flex items-center gap-2 mb-4 text-white dark:text-gray-200 font-bold">
         <Bell size={18} className="text-accent2" />
         Lembretes {reminders.length > 0 && <span className="bg-accent/20 text-accent2 px-2 rounded-full text-xs">{reminders.length}</span>}
       </div>
@@ -75,44 +75,44 @@ export default function RemindersWidget({ proposalId }) {
           value={title}
           onChange={e => setTitle(e.target.value)}
           placeholder="Novo lembrete..."
-          className="flex-1 bg-bg border border-border rounded-xl px-3 py-2 text-sm text-white"
+          className="flex-1 bg-bg dark:bg-dark-bg border border-border dark:border-dark-border rounded-xl px-3 py-2 text-sm text-white dark:text-gray-200 placeholder:text-muted dark:placeholder:text-gray-500"
         />
         <input 
           type="date" 
           value={dueDate}
           onChange={e => setDueDate(e.target.value)}
-          className="bg-bg border border-border rounded-xl px-2 py-2 text-sm text-white"
+          className="bg-bg dark:bg-dark-bg border border-border dark:border-dark-border rounded-xl px-2 py-2 text-sm text-white dark:text-gray-200"
         />
-        <button type="submit" className="bg-accent2 text-bg p-2 rounded-xl">
+        <button type="submit" className="bg-accent2 text-bg dark:text-dark-bg p-2 rounded-xl">
           <Plus size={16} />
         </button>
       </form>
 
       {loading ? (
-        <div className="text-muted text-sm text-center py-4">Carregando...</div>
+        <div className="text-muted dark:text-gray-500 text-sm text-center py-4">Carregando...</div>
       ) : reminders.length === 0 ? (
-        <div className="text-muted text-sm text-center py-4">Nenhum lembrete pendente.</div>
+        <div className="text-muted dark:text-gray-500 text-sm text-center py-4">Nenhum lembrete pendente.</div>
       ) : (
         <ul className="space-y-2">
           {reminders.map(r => {
             const isLate = new Date(r.dueDate) < new Date();
             return (
-              <li key={r.id} className="flex items-center justify-between bg-bg border border-border rounded-xl p-3">
+              <li key={r.id} className="flex items-center justify-between bg-bg dark:bg-dark-bg border border-border dark:border-dark-border rounded-xl p-3">
                 <div className="flex items-center gap-3">
-                  <button onClick={() => handleToggle(r.id, r.isCompleted)} className="text-muted hover:text-success transition-colors">
+                  <button onClick={() => handleToggle(r.id, r.isCompleted)} className="text-muted dark:text-gray-500 hover:text-success transition-colors">
                     <Check size={18} />
                   </button>
                   <div>
-                    <p className="text-white text-sm font-bold">{r.title}</p>
+                    <p className="text-white dark:text-gray-200 text-sm font-bold">{r.title}</p>
                     <div className="flex items-center gap-1 text-xs mt-0.5">
-                      <Clock size={10} className={isLate ? 'text-danger' : 'text-muted'} />
-                      <span className={isLate ? 'text-danger font-bold' : 'text-muted'}>
+                      <Clock size={10} className={isLate ? 'text-danger' : 'text-muted dark:text-gray-500'} />
+                      <span className={isLate ? 'text-danger font-bold' : 'text-muted dark:text-gray-500'}>
                         {new Date(r.dueDate).toLocaleDateString('pt-BR')}
                       </span>
                     </div>
                   </div>
                 </div>
-                <button onClick={() => handleDelete(r.id)} className="text-muted hover:text-danger p-1">
+                <button onClick={() => handleDelete(r.id)} className="text-muted dark:text-gray-500 hover:text-danger p-1">
                   <Trash2 size={14} />
                 </button>
               </li>

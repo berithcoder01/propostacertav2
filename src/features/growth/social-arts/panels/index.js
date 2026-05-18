@@ -1,5 +1,5 @@
 export { default as ContentPanel } from './ContentPanel'
-export { default as PhotoPanel } from './PhotoPanel'
+export { default as BackgroundPanel } from './BackgroundPanel'
 export { default as LayoutPanel } from './LayoutPanel'
 export { default as DecorationPanel } from './DecorationPanel'
 export { default as CTAPanel } from './CTAPanel'

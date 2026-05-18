@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../shared/context/AuthContext';
+import { useThemeMode } from '../../shared/context/ThemeContext';
 import { Lock, Mail, Eye, EyeOff, Building2, User, ArrowRight } from 'lucide-react';
 
 const Login = () => {
+  const { setLight } = useThemeMode();
   const [isLogin, setIsLogin]       = useState(true);
   const [email, setEmail]           = useState('');
   const [password, setPassword]     = useState('');
@@ -14,6 +16,8 @@ const Login = () => {
   const [isLoading, setIsLoading]   = useState(false);
   const { signIn, signUp } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => { setLight(); }, [setLight]);
 
   const companyName    = localStorage.getItem('@propostacerta:companyName') || 'PropostaCerta';
   const companySlogan  = localStorage.getItem('@propostacerta:companySlogan') || 'Propostas Comerciais';

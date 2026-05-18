@@ -25,7 +25,7 @@ const Stepper = ({ steps = [], currentStep = 1, variant = 'onboarding' }) => {
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: isCompleted ? 1 : 0 }}
                     className={`h-[3px] rounded-full flex-shrink-0 transition-colors duration-300 ${
-                      isCompleted ? 'bg-[var(--primary)]' : 'bg-border'
+                      isCompleted ? 'bg-emerald-500' : 'bg-border'
                     }`}
                     style={{ width: isFirst || isLast ? '1.5rem' : '2.5rem' }}
                   />
@@ -42,9 +42,9 @@ const Stepper = ({ steps = [], currentStep = 1, variant = 'onboarding' }) => {
                     className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold
                       transition-all duration-300
                       ${isActive
-                        ? 'bg-[var(--primary)] text-white shadow-glow scale-110'
+                        ? 'bg-emerald-500 text-white shadow-glow scale-110'
                         : isCompleted
-                          ? 'bg-[var(--primary)]/20 text-[var(--primary)]'
+                          ? 'bg-emerald-500/20 text-emerald-600'
                           : 'bg-border text-muted'
                       }`}
                   >
@@ -52,7 +52,7 @@ const Stepper = ({ steps = [], currentStep = 1, variant = 'onboarding' }) => {
                   </div>
                   <span
                     className={`text-[10px] font-medium transition-colors duration-300 ${
-                      isActive ? 'text-[var(--primary)]' : 'text-muted'
+                      isActive ? 'text-emerald-600' : 'text-muted'
                     }`}
                   >
                     {step.label}
@@ -70,12 +70,12 @@ const Stepper = ({ steps = [], currentStep = 1, variant = 'onboarding' }) => {
               <div key={step.number} className="flex flex-col items-center gap-1">
                 <div
                   className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    step.number <= currentStep ? 'bg-[var(--primary)] shadow-glow' : 'bg-border'
+                    step.number <= currentStep ? 'bg-emerald-500 shadow-glow' : 'bg-border'
                   }`}
                 />
                 <span
                   className={`text-[10px] font-medium transition-colors duration-300 ${
-                    step.number <= currentStep ? 'text-[var(--primary)]' : 'text-muted'
+                    step.number <= currentStep ? 'text-emerald-600' : 'text-muted'
                   }`}
                 >
                   {step.label}

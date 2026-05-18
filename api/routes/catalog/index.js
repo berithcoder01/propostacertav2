@@ -74,9 +74,12 @@ export default async function (fastify, opts) {
     const item = await fastify.prisma.catalogItem.findFirst({ where: { id, companyId } })
     if (!item) return reply.notFound()
 
-    const data = request.body
+    const data = { ...request.body }
     delete data.id
     delete data.companyId
+
+    if (data.stockQuantity !== undefined) data.stockQuantity = Math.max(0, parseInt(data.stockQuantity))
+    if (data.minStock !== undefined) data.minStock = Math.max(0, parseInt(data.minStock))
 
     const updated = await fastify.prisma.catalogItem.update({ where: { id }, data })
     return updated

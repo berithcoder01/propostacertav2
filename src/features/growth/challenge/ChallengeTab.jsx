@@ -62,7 +62,7 @@ export default function ChallengeTab() {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white border border-border rounded-2xl p-8 text-center shadow-sm"
+          className="bg-surface dark:bg-dark-surface border border-border dark:border-dark-border rounded-2xl p-8 text-center shadow-sm"
         >
           <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-accent/10 flex items-center justify-center">
             <Rocket className="w-8 h-8 text-accent" />
@@ -89,24 +89,24 @@ export default function ChallengeTab() {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white border border-purple-200 rounded-2xl p-8 text-center shadow-sm"
+          className="bg-surface dark:bg-dark-surface border border-purple-200 dark:border-purple-800 rounded-2xl p-8 text-center shadow-sm"
         >
           <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-purple-100 flex items-center justify-center">
             <span className="text-3xl">🏆</span>
           </div>
           <h2 className="text-2xl font-bold text-text-primary mb-3">Desafio Concluído!</h2>
           <div className="grid grid-cols-3 gap-4 mb-6 max-w-sm mx-auto">
-            <div className="p-3 bg-gray-50 rounded-xl">
-              <p className="text-2xl font-bold text-purple-600">{challenge.totalDone}</p>
-              <p className="text-[10px] text-muted uppercase">Feitas</p>
+            <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
+              <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">{challenge.totalDone}</p>
+              <p className="text-[10px] text-muted dark:text-gray-500 uppercase">Feitas</p>
             </div>
-            <div className="p-3 bg-gray-50 rounded-xl">
-              <p className="text-2xl font-bold text-muted">{challenge.totalSkipped}</p>
-              <p className="text-[10px] text-muted uppercase">Puladas</p>
+            <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
+              <p className="text-2xl font-bold text-muted dark:text-gray-500">{challenge.totalSkipped}</p>
+              <p className="text-[10px] text-muted dark:text-gray-500 uppercase">Puladas</p>
             </div>
-            <div className="p-3 bg-gray-50 rounded-xl">
+            <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
               <p className="text-2xl font-bold text-accent">{Math.round(challenge.completionPct)}%</p>
-              <p className="text-[10px] text-muted uppercase">Progresso</p>
+              <p className="text-[10px] text-muted dark:text-gray-500 uppercase">Progresso</p>
             </div>
           </div>
           <button
@@ -130,61 +130,62 @@ export default function ChallengeTab() {
 
       <ChallengeProgressCard challenge={challenge} dayNumber={dayNumber} streak={streak} />
 
-      {todayTask && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className={`rounded-2xl p-6 border ${
-            isTaskDone
-              ? 'bg-emerald-50 border-emerald-200'
-              : isTaskSkipped
-              ? 'bg-gray-50 border-border'
-              : 'bg-gradient-to-r from-emerald-50 to-emerald-100/50 border-emerald-200'
-          }`}
-        >
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <span className="text-xs text-muted uppercase tracking-wider">Tarefa do dia {dayNumber}</span>
-              <h3 className="text-xl font-bold text-text-primary mt-1">{todayTask.content?.title || 'Tarefa do dia'}</h3>
-              <p className="text-text-secondary text-sm mt-1">{todayTask.content?.subtitle || ''}</p>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {todayTask && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className={`rounded-2xl p-6 border flex flex-col justify-between ${
+              isTaskDone
+                ? 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-200 dark:border-emerald-800'
+                : isTaskSkipped
+                ? 'bg-gray-50 dark:bg-gray-800 border-border dark:border-dark-border'
+                : 'bg-gradient-to-r from-emerald-50 to-emerald-100/50 dark:from-emerald-900/20 dark:to-emerald-800/10 border-emerald-200 dark:border-emerald-800'
+            }`}
+          >
+            <div className="mb-4">
+              <span className="text-xs text-muted dark:text-gray-500 uppercase tracking-wider">Tarefa do dia {dayNumber}</span>
+              <h3 className="text-xl font-bold text-text-primary dark:text-white mt-1">{todayTask.content?.title || 'Tarefa do dia'}</h3>
+              <p className="text-text-secondary dark:text-gray-400 text-sm mt-1">{todayTask.content?.subtitle || ''}</p>
             </div>
-            {isTaskDone && (
-              <span className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-bold">Feita ✓</span>
-            )}
-          </div>
+            <div className="flex items-center justify-between mt-auto">
+              {isTaskDone && (
+                <span className="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 rounded-full text-xs font-bold">Feita ✓</span>
+              )}
+              {!isTaskDone && !isTaskSkipped && (
+                <button
+                  onClick={() => handleNavigateToTask(todayTask, dayNumber)}
+                  className="py-2.5 px-6 rounded-xl bg-accent text-white font-medium hover:bg-accent-hover transition-colors inline-flex items-center gap-2 shadow-sm"
+                >
+                  Ver tarefa completa <ArrowRight className="w-4 h-4" />
+                </button>
+              )}
+              {isTaskSkipped && (
+                <button
+                  onClick={() => handleNavigateToTask(todayTask, dayNumber)}
+                  className="py-2.5 px-6 rounded-xl bg-gray-600 text-white font-medium hover:bg-gray-500 transition-colors inline-flex items-center gap-2"
+                >
+                  Ver tarefa <ArrowRight className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+          </motion.div>
+        )}
 
-          {!isTaskDone && !isTaskSkipped && (
-            <button
-              onClick={() => handleNavigateToTask(todayTask, dayNumber)}
-              className="py-2.5 px-6 rounded-xl bg-accent text-white font-medium hover:bg-accent-hover transition-colors inline-flex items-center gap-2 shadow-sm"
-            >
-              Ver tarefa completa <ArrowRight className="w-4 h-4" />
-            </button>
-          )}
-          {isTaskSkipped && (
-            <button
-              onClick={() => handleNavigateToTask(todayTask, dayNumber)}
-              className="py-2.5 px-6 rounded-xl bg-gray-600 text-white font-medium hover:bg-gray-500 transition-colors inline-flex items-center gap-2"
-            >
-              Ver tarefa <ArrowRight className="w-4 h-4" />
-            </button>
-          )}
-        </motion.div>
-      )}
-
-      {challenge?.tasks && (
-        <div className="bg-white border border-border rounded-2xl p-6 shadow-sm">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-bold text-text-primary">Calendário do Desafio</h3>
-            <span className="text-xs text-muted">Clique em qualquer dia para abrir a tarefa</span>
+        {challenge?.tasks && (
+          <div className="bg-surface dark:bg-dark-surface border border-border dark:border-dark-border rounded-2xl p-6 shadow-sm">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-bold text-text-primary dark:text-white">Calendário do Desafio</h3>
+              <span className="text-xs text-muted dark:text-gray-500">Clique em qualquer dia para abrir a tarefa</span>
+            </div>
+            <ChallengeCalendar
+              tasks={challenge.tasks}
+              currentDay={dayNumber}
+              onDayClick={handleDayClick}
+            />
           </div>
-          <ChallengeCalendar
-            tasks={challenge.tasks}
-            currentDay={dayNumber}
-            onDayClick={handleDayClick}
-          />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   )
 }

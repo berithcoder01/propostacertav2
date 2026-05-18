@@ -146,7 +146,8 @@ export const saveProposal = async ({ cliente, items, cond, propNum, templateId }
       items: items.map(i => ({
         catalogId: i.catalogId || null, label: i.label, unit: i.unit,
         quantity: parseFloat(i.qty) || 0, unitPrice: parseFloat(i.price) || 0,
-        category: i.category || 'SERVICO'
+        category: i.category || 'SERVICO',
+        isProduct: i.isProduct || false,
       })),
       conditions: {
         downPayment: parseFloat(cond.entrada) || 0,
@@ -198,6 +199,7 @@ export const updateProposal = async (id, { cliente, items, cond, propNum }) => {
         catalogId: i.catalogId || null, label: i.label, unit: i.unit,
         quantity: parseFloat(i.qty) || 0, unitPrice: parseFloat(i.price) || 0,
         category: i.category || 'SERVICO',
+        isProduct: i.isProduct || false,
       })),
       conditions: {
         downPayment: parseFloat(cond.entrada) || 0,

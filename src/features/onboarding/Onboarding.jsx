@@ -3,13 +3,14 @@ import React, { useState, useEffect, useCallback, Suspense, lazy } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Building2, Palette, CheckCircle, ArrowRight, ArrowLeft,
-  Loader, Sparkles
+  Loader, Sparkles, Check, Zap, Shield, Users, Heart
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Input from '../../shared/Input';
 import Button from '../../shared/Button';
 import { useAuth } from '../../shared/context/AuthContext';
-import { fetchPlans, refreshToken } from '../../shared/services/api';
+import { useThemeMode } from '../../shared/context/ThemeContext';
+import { refreshToken } from '../../shared/services/api';
 import Stepper from '../../shared/components/Stepper';
 
 // Lazy load pesados com auto-reload em caso de chunk invalidation (entre deploys)
@@ -68,81 +69,152 @@ const masks = {
 
 // ===== ETAPA 0: Plano de Assinatura =====
 const EtapaPlano = ({ onNext }) => {
-  const [plans, setPlans] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [processing, setProcessing] = useState(false);
 
-  useEffect(() => {
-    fetchPlans()
-      .then((data) => { setPlans(data.plans || data); setLoading(false); })
-      .catch(() => setLoading(false));
-  }, []);
+  const features = [
+    'Propostas ilimitadas',
+    'Clientes ilimitados',
+    'Catálogo de serviços e produtos',
+    'Compartilhamento via WhatsApp',
+    'Assistente IA',
+    'Relatórios básicos',
+    'Aplicativo mobile',
+    'Logo personalizada',
+    'Dashboard premium',
+  ];
 
-  if (loading) {
-    return (
-      <div className="text-center py-10">
-        <Loader size={24} className="animate-spin mx-auto text-accent" />
-        <p className="text-muted mt-4">Carregando planos...</p>
-      </div>
-    );
-  }
+  const handleStart = () => {
+    setProcessing(true);
+    onNext({ name: 'PRO', price: 24.90 });
+  };
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -30 }}
-      className="text-center space-y-6 py-4"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 flex flex-col md:flex-row overflow-hidden"
     >
-      <div className="space-y-2">
-        <h1 className="text-2xl font-bold font-display text-text-primary">Escolha seu Plano</h1>
-        <p className="text-text-secondary">Cada plano desbloqueia funcionalidades diferentes para seu negócio.</p>
+      {/* LEFT PANEL (40%) */}
+      <div
+        className="w-full md:w-[40%] flex flex-col p-8 md:p-12 relative z-10"
+        style={{
+          background: 'linear-gradient(160deg, #E3DDD3 0%, #F7F5F3 50%, #C0D5CA 100%)',
+        }}
+      >
+        {/* Logo */}
+        <div className="flex items-center gap-2.5 mb-8">
+          <div className="w-10 h-10 rounded-2xl bg-gradient-brand flex items-center justify-center shadow-glow">
+            <Building2 size={20} className="text-white" />
+          </div>
+          <span className="font-display font-bold text-lg text-gray-800 tracking-tight">
+            PropostaCerta
+          </span>
+        </div>
+
+        {/* Text Content */}
+        <div className="flex-1 flex flex-col justify-center space-y-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 border border-emerald-200 w-fit">
+            <Sparkles size={14} className="text-emerald-600" />
+            <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider">
+              7 dias grátis
+            </span>
+          </div>
+
+          <h1 className="text-3xl md:text-4xl font-black font-display text-gray-900 leading-tight">
+            O jeito mais simples de criar{' '}
+            <span className="text-emerald-600">propostas profissionais</span>
+          </h1>
+
+          <p className="text-gray-600 text-base leading-relaxed max-w-md">
+            Ideal para MEIs, prestadores de serviço e pequenos negócios que querem vender mais pelo WhatsApp.
+          </p>
+
+          {/* Trust - Real Info Only */}
+          <div className="pt-4 space-y-3">
+            <div className="flex items-center gap-2 text-sm text-gray-500">
+              <Shield size={16} className="text-emerald-500" />
+              <span>Feito para pequenos negócios brasileiros</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-gray-500">
+              <Heart size={16} className="text-emerald-500" />
+              <span>Suporte humanizado</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
-        {plans.map((plan) => {
-          const cardClass = plan.name === 'FREE'
-            ? 'bg-surface border-border'
-            : (plan.name === 'PRO'
-              ? 'bg-surface border-accent/50 shadow-lg shadow-accent/10'
-              : 'bg-surface border-gold/50 shadow-lg shadow-gold/10');
 
-          let planColor = 'var(--text-secondary)';
-          if (plan.name === 'PRO') planColor = 'var(--primary)';
-          else if (plan.name === 'ENTERPRISE') planColor = 'var(--gold, #F59E0B)';
+      {/* RIGHT PANEL (60%) */}
+      <div className="w-full md:w-[60%] bg-gray-50 flex items-center justify-center p-8 md:p-12 relative overflow-y-auto">
+        {/* Card Container */}
+        <div className="w-full max-w-md">
+          <div className="relative bg-white rounded-3xl border border-gray-100 shadow-xl shadow-gray-200/50 overflow-hidden">
+            {/* Glow effect inside card */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-1 bg-gradient-to-r from-transparent via-emerald-400 to-transparent opacity-50" />
 
-          const featuresList = typeof plan.features === 'string'
-            ? JSON.parse(plan.features || '[]')
-            : null;
+            <div className="p-8 md:p-10 space-y-6">
+              {/* Header */}
+              <div className="text-center space-y-4">
+                <h3 className="text-sm font-black font-display text-emerald-600 uppercase tracking-widest">
+                  Plano Profissional
+                </h3>
 
-          return (
-            <motion.div
-              key={plan.name}
-              whileHover={{ scale: 1.03, y: -4 }}
-              className={`rounded-2xl border-2 p-6 space-y-4 ${cardClass}`}
-            >
-              <div className="text-sm font-bold uppercase tracking-widest" style={{ color: planColor }}>
-                {plan.name}
+                {/* Trial Badge */}
+                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-100">
+                  <Check size={12} /> Teste grátis por 7 dias
+                </div>
+
+                {/* Price */}
+                <div className="flex items-end justify-center gap-1">
+                  <span className="text-gray-400 text-lg mb-2 font-medium">R$</span>
+                  <span className="text-5xl font-black font-display text-gray-900">24</span>
+                  <span className="text-2xl font-black font-display text-gray-900">,90</span>
+                  <span className="text-gray-400 text-lg mb-2 font-medium">/mês</span>
+                </div>
+                <p className="text-xs text-gray-400">Sem cartão • Cancele quando quiser</p>
               </div>
-              <div className="text-3xl font-black font-display">
-                R$ {plan.price.toFixed(2)}
-                <span className="text-sm text-muted font-normal">/mês</span>
-              </div>
-              <ul className="text-left text-sm space-y-1">
-                {featuresList
-                  ? featuresList.map((f, i) => (
-                    <li key={i} className="flex items-center gap-2 text-muted">
-                      <CheckCircle size={14} className="text-success shrink-0" />
-                      {' '}
-                      <span>{f}</span>
-                    </li>
-                  ))
-                  : <li className="text-muted">{plan.maxProposals} propostas/mês</li>}
+
+              {/* Divider */}
+              <div className="h-px bg-gray-100" />
+
+              {/* Features */}
+              <ul className="space-y-3">
+                {features.map((f, i) => (
+                  <li key={i} className="flex items-center gap-3 text-sm text-gray-600">
+                    <div className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                      <Check size={12} className="text-emerald-600" />
+                    </div>
+                    <span>{f}</span>
+                  </li>
+                ))}
               </ul>
-              <Button onClick={() => onNext(plan)} className="w-full">
-                {plan.price === 0 ? 'Começar Grátis' : `Escolher ${plan.name}`}
-              </Button>
-            </motion.div>
-          );
-        })}
+
+              {/* CTA */}
+              <motion.button
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
+                onClick={handleStart}
+                disabled={processing}
+                className={`w-full py-4 rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2 shadow-lg ${
+                  processing
+                    ? 'bg-gray-100 text-gray-400 cursor-wait shadow-none'
+                    : 'bg-emerald-500 hover:bg-emerald-600 text-white shadow-emerald-200'
+                }`}
+              >
+                {processing ? (
+                  <><Loader size={16} className="animate-spin" /> Processando...</>
+                ) : (
+                  <>Começar Teste Grátis <ArrowRight size={16} /></>
+                )}
+              </motion.button>
+            </div>
+          </div>
+
+          {/* Footer */}
+          <p className="text-center text-xs text-gray-400 mt-6">
+            PropostaCerta © {new Date().getFullYear()}
+          </p>
+        </div>
       </div>
     </motion.div>
   );
@@ -159,9 +231,9 @@ const EtapaBemVindo = ({ onNext }) => (
     <motion.div
       animate={{ rotate: [0, 5, -5, 0], scale: [1, 1.05, 1] }}
       transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
-      className="w-24 h-24 bg-gradient-brand rounded-2xl flex items-center justify-center font-bold text-4xl text-white mx-auto shadow-glow"
+      className="w-24 h-24 bg-gradient-brand rounded-2xl flex items-center justify-center mx-auto shadow-glow"
     >
-      P
+      <Building2 size={40} className="text-white" />
     </motion.div>
     <div className="space-y-3">
       <h1 className="text-3xl font-bold font-display text-text-primary">
@@ -464,7 +536,7 @@ const EtapaFinal = ({ formData, onBack, handleCreateCompany, isLoading, error })
           className="bg-surface border border-border rounded-xl p-4 text-left text-sm text-muted space-y-2"
         >
           <p>✅ Empresa cadastrada</p>
-          <p>✅ Catálogo populado</p>
+          <p>✅ Produtos e Serviços populados</p>
           <p>✅ Identidade visual configurada</p>
           {formData.pixKey && <p>✅ Chave PIX configurada</p>}
           <p>✅ Conta ativada</p>
@@ -580,11 +652,14 @@ const EtapaFinal = ({ formData, onBack, handleCreateCompany, isLoading, error })
 const Onboarding = () => {
   const navigate = useNavigate();
   const { createCompany: apiCreateCompany, refreshCompany } = useAuth();
-  const [step, setStep] = useState(0); // 0 = plano, 1-5 etapas
+  const { setLight } = useThemeMode();
+  const [step, setStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [logoSelecionada, setLogoSelecionada] = useState(null);
   const [selectedPlan, setSelectedPlan] = useState(null);
+
+  useEffect(() => { setLight(); }, [setLight]);
   const [formData, setFormData] = useState({
     name: '',
     cnpj: '',
@@ -748,28 +823,24 @@ const Onboarding = () => {
     }
   };
 
-  const bgStyle = {
-    background: `radial-gradient(ellipse 70% 50% at 50% 0%, ${formData.primaryColor}, transparent 65%)`,
-  };
-
-  const gradientStyle = {
-    background: `linear-gradient(135deg, ${formData.primaryColor}, ${formData.secondaryColor})`,
-  };
-
   return (
-    <div className="min-h-screen bg-[#050505] flex items-center justify-center p-4 relative overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[300px] pointer-events-none" style={bgStyle} />
+    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[300px] pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 0%, #10B981, transparent 65%)' }}
+      />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-2xl relative z-10"
       >
         <div className="text-center mb-8">
-          <div
-            className="w-14 h-14 rounded-2xl flex items-center justify-center font-bold text-3xl text-white mx-auto shadow-glow"
-            style={gradientStyle}
-          >
-            {formData.name ? formData.name[0].toUpperCase() : 'P'}
+          <div className="inline-flex items-center gap-2.5">
+            <div className="w-14 h-14 rounded-2xl bg-gradient-brand flex items-center justify-center shadow-glow">
+              <Building2 size={24} className="text-white" />
+            </div>
+            <span className="font-display font-bold text-xl text-text-primary tracking-tight">
+              PropostaCerta
+            </span>
           </div>
         </div>
         <div className="mb-8 flex justify-center">

@@ -73,6 +73,7 @@ const ProposalFromAi = () => {
           qty: item.quantity,
           price: item.unitPrice,
           catalogId: item.catalogId || null,
+          isProduct: item.isProduct || false,
         })),
         conditions: {
           ...data.conditions,

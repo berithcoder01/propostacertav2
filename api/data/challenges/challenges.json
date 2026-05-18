@@ -1,0 +1,1292 @@
+[
+  {
+    "slug": "google-meu-negocio-check",
+    "day": 1,
+    "category": "google",
+    "phase": "1 — Fundação Digital",
+    "title": "Google Meu Negócio: Sua Empresa Precisa Existir",
+    "subtitle": "Se o cliente procurar hoje pelo seu serviço no Google, ele consegue encontrar você?",
+    "strategicObjective": "Criar ou profissionalizar a presença digital básica da empresa para aumentar credibilidade e descoberta local.",
+    "concept": "\"Confiança digital precede vendas.\" Antes do cliente chamar no WhatsApp, ele pesquisa. Antes de fechar negócio, ele valida. Antes de confiar, ele procura sinais de profissionalismo.",
+    "whyItMatters": "Empresas locais com perfil completo no Google recebem mais visualizações, mais cliques, mais chamadas, mais pedidos de rota e mais confiança imediata. Muitos pequenos negócios perdem clientes todos os dias simplesmente porque não aparecem, têm perfil incompleto, possuem fotos ruins ou estão abandonados digitalmente.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir perfil comercial configurado, telefone atualizado, horário preenchido, fotos profissionais adicionadas e localização correta.",
+    "evolutionMetric": "Perfil publicado, Número de fotos adicionadas, Informações preenchidas e Link do perfil ativo.",
+    "commonError": "Criar o perfil e nunca mais atualizar. Perfis abandonados transmitem desorganização, falta de profissionalismo e empresa inativa.",
+    "futureDependencies": "Esse perfil será usado nos próximos desafios para receber avaliações, publicar atualizações, rodar anúncios locais e gerar autoridade regional.",
+    "estimatedMinutes": 20,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Verifique se sua empresa já existe no Google pesquisando pelo nome, categoria ou telefone. Se existir, reivindique o acesso; se não, crie um novo perfil."
+      },
+      {
+        "order": 2,
+        "text": "Complete TODAS as informações: nome correto, telefone, WhatsApp, horário de funcionamento, endereço/área atendida, categoria e uma descrição curta."
+      },
+      {
+        "order": 3,
+        "text": "Adicione fotos reais de qualidade (logo, fachada, bastidores, serviços realizados, ambiente de trabalho). Evite imagens borradas, prints ou artes genéricas."
+      },
+      {
+        "order": 4,
+        "text": "Escreva uma descrição profissional: Quem você ajuda + qual problema resolve + diferencial. Ex: 'Especialistas em manutenção elétrica com atendimento rápido e seguro'."
+      },
+      {
+        "order": 5,
+        "text": "Salve o link do perfil, pois você o utilizará para pedir avaliações, rodar anúncios e compartilhar com clientes."
+      }
+    ],
+    "bonusChallenge": "Peça para um amigo pesquisar '[tipo do seu serviço] + [sua cidade]' e veja se você aparece, como aparece, e compare com os concorrentes.",
+    "reflection": "Seu perfil transmite confiança, profissionalismo e qualidade ou apenas existência?",
+    "difficulty": "Iniciante",
+    "actionLabel": "Configurar Google",
+    "actionUrl": "https://www.google.com/business/"
+  },
+  {
+    "slug": "bio-instagram-matadora",
+    "day": 2,
+    "category": "instagram",
+    "phase": "1 — Fundação Digital",
+    "title": "Bio Matadora: Explique Seu Valor em 3 Segundos",
+    "subtitle": "Se alguém entrar no seu perfil agora, entende imediatamente o que você faz?",
+    "strategicObjective": "Transformar o perfil do Instagram em uma página comercial clara e objetiva.",
+    "concept": "\"Confusão mata conversão.\" Se o cliente não entende rapidamente o que você faz, para quem trabalha ou como contratar, ele sai da sua página.",
+    "whyItMatters": "A bio do Instagram funciona como vitrine, cartão de visitas e mini página de vendas. O visitante decide em poucos segundos se segue, chama, confia e compra de você.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir uma bio clara, posicionamento definido, chamada de ação de contato (CTA), link funcional e uma foto de perfil profissional.",
+    "evolutionMetric": "Bio atualizada, Link active, Clareza da descrição e Foto profissional aplicada.",
+    "commonError": "Usar frases genéricas e vazias como 'realizando sonhos' ou 'trabalhando com amor'. O cliente quer saber de forma prática o que você faz, como resolve e como te contrata.",
+    "futureDependencies": "Essa bio e posicionamento serão a base para os seus futuros anúncios, tráfego pago, conteúdos, Reels e campanhas de conversão.",
+    "estimatedMinutes": 20,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Revise sua foto de perfil: use uma logo limpa, foto profissional nítida e evite selfies informais ou imagens escuras."
+      },
+      {
+        "order": 2,
+        "text": "Reescreva sua bio seguindo a estrutura recomendada: Linha 1 (O que você faz), Linha 2 (Qual problema resolve), Linha 3 (Como entrar em contato)."
+      },
+      {
+        "order": 3,
+        "text": "Configure o link da bio para levar rapidamente para o WhatsApp, catálogo ou formulário de orçamento, sem deixar o cliente se perder."
+      },
+      {
+        "order": 4,
+        "text": "Revise o nome do perfil para ser pesquisável (ex: 'João Silva | Eletricista' em vez de apenas '@joaosilva.oficial')."
+      },
+      {
+        "order": 5,
+        "text": "Analise 3 concorrentes fortes para observar como eles se apresentam, escrevem, organizam a bio e quais chamadas para ação utilizam."
+      }
+    ],
+    "bonusChallenge": "Pergunte para 3 pessoas: 'O que você acha que minha empresa faz olhando meu perfil por 5 segundos?'. Se houver confusão, a bio precisa melhorar.",
+    "reflection": "Seu perfil parece um negócio profissional ou apenas uma rede social pessoal?",
+    "difficulty": "Iniciante",
+    "actionLabel": "Editar Perfil",
+    "actionUrl": "https://www.instagram.com/"
+  },
+  {
+    "slug": "whatsapp-business-bio",
+    "day": 3,
+    "category": "whatsapp",
+    "phase": "1 — Fundação Digital",
+    "title": "Seu WhatsApp Precisa Virar uma Máquina de Atendimento",
+    "subtitle": "Todo marketing quebra quando o atendimento é ruim.",
+    "strategicObjective": "Transformar o WhatsApp em um canal profissional de conversão de clientes.",
+    "concept": "\"Velocidade e organização aumentam fechamento.\" A maioria dos clientes escolhe o profissional que responde primeiro, transmite organização e facilita o processo.",
+    "whyItMatters": "Muitos negócios perdem vendas valiosas porque respondem tarde, esquecem o cliente, não têm respostas prontas ou transmitem amadorismo.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir o WhatsApp Business configurado, mensagem de saudação automática, descrição comercial, catálogo básico e etiquetas organizadas.",
+    "evolutionMetric": "Tempo de resposta, Mensagens automáticas configuradas, Etiquetas criadas e Perfil comercial completo.",
+    "commonError": "Misturar conversas pessoais, memes familiares, clientes and trabalho. O atendimento comercial precisa transmitir 100% de organização.",
+    "futureDependencies": "Esse canal profissional será o destino final de todos os seus futuros anúncios, campanhas de tráfego, listas de transmissão e follow-up.",
+    "estimatedMinutes": 25,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Configure o perfil comercial do WhatsApp Business: preencha descrição, horário, endereço, e-mail, site e categoria."
+      },
+      {
+        "order": 2,
+        "text": "Crie uma mensagem de saudação receptiva automática (Ex: 'Olá! Seja bem-vindo(a). Por favor, me envie seu nome e como posso te ajudar hoje')."
+      },
+      {
+        "order": 3,
+        "text": "Configure respostas rápidas (atalhos) para orçamento, horário, formas de pagamento, localização e apresentação."
+      },
+      {
+        "order": 4,
+        "text": "Crie etiquetas organizacionais para separar as conversas (ex: Novo Lead, Orçamento Enviado, Cliente Ativo, Aguardando Resposta)."
+      },
+      {
+        "order": 5,
+        "text": "Configure um catálogo básico de serviços/produtos para facilitar o envio rápido de fotos, pacotes e preços."
+      }
+    ],
+    "bonusChallenge": "Cronometre quanto tempo você leva para responder a um cliente novo. Quanto menor o tempo, maior a chance de fechamento.",
+    "reflection": "Seu WhatsApp transmite organização, profissionalismo e confiança ou improviso?",
+    "difficulty": "Iniciante",
+    "actionLabel": "Configurar WhatsApp",
+    "actionUrl": "https://web.whatsapp.com/"
+  },
+  {
+    "slug": "foto-antes-depois",
+    "day": 4,
+    "category": "conteudo",
+    "phase": "1 — Fundação Digital",
+    "title": "Mostre Resultados Reais",
+    "subtitle": "Clientes acreditam mais no que veem do que no que você promete.",
+    "strategicObjective": "Criar as primeiras provas sociais e ativos visuais reutilizáveis para o seu negócio.",
+    "concept": "\"Clientes compram evidência.\" O mercado está cheio de promessas vazias. O que diferencia profissionais de alto valor são provas visuais e transformações reais.",
+    "whyItMatters": "Fotos de antes/depois, vídeos de bastidores e relatos de clientes aumentam a confiança, quebram objeções e aceleram a decisão de contratação.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir pelo menos 1 prova social publicada, fotos organizadas e material pronto para futuros anúncios.",
+    "evolutionMetric": "Quantidade de conteúdos publicados, Número de provas sociais criadas e Engajamento recebido.",
+    "commonError": "Esperar a perfeição ou equipamentos caros para começar. Fotos reais, humanas e simples geralmente performam melhor do que imagens super produzidas.",
+    "futureDependencies": "Esse material visual e depoimento serão a base de criativos para seus futuros anúncios pagos, Reels, carrosséis e páginas de vendas.",
+    "estimatedMinutes": 20,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Escolha um serviço realizado recentemente que tenha um impacto visual legal (antes/depois, processo, bastidor ou elogio)."
+      },
+      {
+        "order": 2,
+        "text": "Organize o material: separe as melhores fotos, vídeos curtos ou tire um print limpo do elogio do cliente."
+      },
+      {
+        "order": 3,
+        "text": "Crie uma legenda simples usando a estrutura: Problema do Cliente + Sua Solução + Resultado Final."
+      },
+      {
+        "order": 4,
+        "text": "Poste nos Stories do Instagram ou Status do WhatsApp para mostrar movimento e gerar confiança na sua audiência."
+      },
+      {
+        "order": 5,
+        "text": "Crie uma pasta no celular chamada 'Provas Sociais' e salve todo esse material, pois ele será vital nas próximas fases."
+      }
+    ],
+    "bonusChallenge": "Publique também um vídeo rápido mostrando uma ferramenta em uso ou bastidores do processo. Pessoas adoram ver como o trabalho acontece.",
+    "reflection": "Seu conteúdo mostra propaganda fria ou resultados reais e humanos?",
+    "difficulty": "Iniciante",
+    "actionLabel": "Postar Stories",
+    "actionUrl": "https://www.instagram.com/"
+  },
+  {
+    "slug": "bastidores-video",
+    "day": 5,
+    "category": "conteudo",
+    "phase": "1 — Fundação Digital",
+    "title": "Pessoas Compram de Pessoas",
+    "subtitle": "Sua marca precisa parecer humana, não apenas comercial.",
+    "strategicObjective": "Criar conexão emocional e aumentar a proximidade com sua audiência digital.",
+    "concept": "\"Conexão emocional gera preferência.\" Existem muitos profissionais tecnicamente bons, mas o cliente escolhe contratar aquele com quem sente proximidade e identificação.",
+    "whyItMatters": "Negócios humanizados geram maior confiança imediata, aumentam a fidelização do cliente e recebem muito mais indicações orgânicas.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir seu primeiro conteúdo humanizado publicado, maior engajamento e as bases de sua identidade de comunicação.",
+    "evolutionMetric": "Stories publicados, Respostas recebidas, Interações da audiência e Mensagens iniciadas.",
+    "commonError": "Acreditar que o marketing precisa parecer uma publicidade corporativa fria o tempo todo. O público quer ver rotina, bastidores, imperfeições e autenticidade.",
+    "futureDependencies": "Essa conexão humana e marca pessoal serão a base para aumentar a taxa de fechamento e criar uma comunidade de clientes fiéis.",
+    "estimatedMinutes": 20,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Grave um bastidor simples: preparando ferramentas, organizando a agenda, indo até o cliente ou separando materiais de trabalho."
+      },
+      {
+        "order": 2,
+        "text": "Grave de forma natural e sem buscar perfeição. Não precisa de câmera cara, edição avançada ou iluminação de estúdio."
+      },
+      {
+        "order": 3,
+        "text": "Adicione contexto escrevendo uma frase simples por cima (ex: 'Começando mais um dia de trabalho por aqui!')."
+      },
+      {
+        "order": 4,
+        "text": "Insira um adesivo de interação (enquete, caixa de perguntas ou termômetro) para estimular conversas e relacionamento."
+      },
+      {
+        "order": 5,
+        "text": "Monitore as respostas e interações. Responda a todos gentilmente, pois essas pessoas são os leads mais quentes no momento."
+      }
+    ],
+    "bonusChallenge": "Mostre seu rosto ou grave falando brevemente. Negócios locais crescem muito mais rápido quando o cliente conhece quem realiza o serviço.",
+    "reflection": "Sua marca parece distante e fria ou próxima e humana?",
+    "difficulty": "Iniciante",
+    "actionLabel": "Gravar Stories",
+    "actionUrl": "https://www.instagram.com/"
+  },
+  {
+    "slug": "depoimento-status-whatsapp",
+    "day": 6,
+    "category": "whatsapp",
+    "phase": "2 — Prova Social & Autoridade",
+    "title": "Depoimentos Que Geram Confiança Instantânea",
+    "subtitle": "Nada convence mais um novo cliente do que um cliente satisfeito.",
+    "strategicObjective": "Transformar feedbacks reais em ativos públicos de credibilidade.",
+    "concept": "\"Pessoas acreditam mais em clientes do que em empresas.\" A prova social reduz medo, desconfiança, insegurança e comparação de preço.",
+    "whyItMatters": "Antes de contratar, o cliente quer saber se funciona, se entrega, se é confiável e se outras pessoas aprovam. Depoimentos aceleram decisões.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir 1 depoimento publicado, um banco inicial de feedbacks e o primeiro ativo forte de confiança.",
+    "evolutionMetric": "Número de depoimentos coletados, Stories publicados, Respostas recebidas e Leads gerados.",
+    "commonError": "Guardar elogios apenas no privado. Todo elogio recebido pode virar autoridade, conteúdo, prova social e conversão.",
+    "futureDependencies": "Esse depoimento será utilizado futuramente em anúncios, páginas comerciais, Reels, campanhas e nos destaques do Instagram.",
+    "estimatedMinutes": 20,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Passo 1 — Procure feedbacks antigos: Busque no WhatsApp, Instagram, áudios, mensagens ou comentários de clientes."
+      },
+      {
+        "order": 2,
+        "text": "Passo 2 — Escolha o melhor depoimento: Priorize feedbacks que mostrem transformação, rapidez, qualidade ou profunda confiança."
+      },
+      {
+        "order": 3,
+        "text": "Passo 3 — Transforme em conteúdo: Você pode usar um print simples, um card com o texto editado, um vídeo ou apenas texto."
+      },
+      {
+        "order": 4,
+        "text": "Passo 4 — Publique nos Stories: Adicione uma legenda de contexto como 'Mais um cliente satisfeito. Gratidão pela confiança!'."
+      },
+      {
+        "order": 5,
+        "text": "Passo 5 — Crie uma pasta de provas sociais no seu celular e organize tudo para que seja reutilizável a qualquer momento."
+      }
+    ],
+    "bonusChallenge": "Peça um depoimento novo para um cliente recente. O momento ideal para pedir é logo após a entrega do serviço.",
+    "reflection": "Seu marketing mostra apenas o que você fala sobre si, ou mostra o que os clientes dizem sobre você?",
+    "difficulty": "Iniciante",
+    "actionLabel": "Postar Stories",
+    "actionUrl": "https://www.instagram.com/"
+  },
+  {
+    "slug": "desafio-dia-7",
+    "day": 7,
+    "category": "conteudo",
+    "phase": "2 — Prova Social & Autoridade",
+    "title": "Ensine Algo Simples e Ganhe Autoridade",
+    "subtitle": "Quem ensina demonstra domínio.",
+    "strategicObjective": "Criar percepção de autoridade técnica através de conteúdo educativo.",
+    "concept": "\"Educar gera confiança antes da venda.\" Conteúdo útil faz o cliente pensar: se ele ensina bem, provavelmente trabalha bem.",
+    "whyItMatters": "Conteúdo educativo aumenta compartilhamentos, gera salvamentos de posts, melhora o alcance orgânico da marca e posiciona você como autoridade regional.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir seu primeiro conteúdo educativo publicado, iniciando seu posicionamento técnico e percepção de autoridade.",
+    "evolutionMetric": "Salvamentos de posts, Compartilhamentos, Comentários e Novos seguidores.",
+    "commonError": "Acreditar que conteúdo precisa ser muito complexo. O conteúdo que mais gera conversão é aquele que resolve dúvidas simples, erros comuns e problemas frequentes do cliente.",
+    "futureDependencies": "Esse conteúdo educativo servirá de base para futuros posts de carrossel, Reels dinâmicos, anúncios pagos e sequências inteiras de conteúdo de atração.",
+    "estimatedMinutes": 25,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Passo 1 — Escolha uma dúvida comum dos seus clientes. Pergunte-se: 'O que meus clientes sempre me perguntam durante o atendimento?'."
+      },
+      {
+        "order": 2,
+        "text": "Passo 2 — Crie 3 dicas rápidas e práticas para resolver essa questão (erros comuns, cuidados importantes ou como evitar problemas)."
+      },
+      {
+        "order": 3,
+        "text": "Passo 3 — Transforme as dicas em um carrossel no Instagram ou sequência de Stories, mantendo o visual limpo, frases curtas e de fácil leitura."
+      },
+      {
+        "order": 4,
+        "text": "Passo 4 — Adicione uma chamada para ação (CTA), como 'Salve esse conteúdo', 'Envie para um amigo que precisa ver isso' ou 'Me chama no WhatsApp'."
+      },
+      {
+        "order": 5,
+        "text": "Passo 5 — Observe o comportamento da sua audiência para ver quais dicas e temas geram mais interesse, salvamentos e perguntas."
+      }
+    ],
+    "bonusChallenge": "Grave um vídeo curto (Reels) explicando essas 3 dicas práticas em menos de 1 minuto.",
+    "reflection": "Seu perfil ensina algo útil que resolve o problema do cliente ou apenas tenta vender a todo momento?",
+    "difficulty": "Iniciante",
+    "actionLabel": "Postar Carrossel",
+    "actionUrl": "https://www.instagram.com/"
+  },
+  {
+    "slug": "desafio-dia-8",
+    "day": 8,
+    "category": "instagram",
+    "phase": "2 — Prova Social & Autoridade",
+    "title": "Faça Sua Audiência Conversar com Você",
+    "subtitle": "Quanto mais interação, mais confiança e alcance da sua página.",
+    "strategicObjective": "Criar relacionamento ativo com seguidores e potenciais clientes.",
+    "concept": "\"Negócios fortes criam relacionamento antes da necessidade de compra.\" A interação ativa humaniza a marca e aproxima as pessoas.",
+    "whyItMatters": "Audiências engajadas lembram mais da sua marca, respondem mais aos anúncios patrocinados, indicam mais o seu nome e compram muito mais rápido.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir Stories interativos publicados, com as primeiras conversas iniciadas com a audiência e aumento de proximidade.",
+    "evolutionMetric": "Respostas recebidas nos Stories, Reações, Mensagens privadas no Direct e Interações gerais.",
+    "commonError": "Usar os Stories apenas para fazer panfletagem digital e propaganda fria. Stories funcionam melhor quando parecem uma conversa real, rotina de bastidores e proximidade.",
+    "futureDependencies": "Essas interações aquecerão seus leads para campanhas futuras de venda direta, aumentando a taxa de fechamento e construindo sua comunidade.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Passo 1 — Grave ou tire foto de um bastidor simples do seu dia (preparação de ferramentas, rotina, andamento de serviço ou organização)."
+      },
+      {
+        "order": 2,
+        "text": "Passo 2 — Adicione um adesivo de interação interativo do Instagram (enquete, caixa de perguntas, barra de reação ou um quiz rápido)."
+      },
+      {
+        "order": 3,
+        "text": "Passo 3 — Faça uma pergunta simples e estimulante para o público, por exemplo: 'Você já passou por isso?' ou 'Qual sua maior dificuldade com...?'."
+      },
+      {
+        "order": 4,
+        "text": "Passo 4 — Responda de forma atenciosa e humana a todos que interagirem ou enviarem mensagens. Relacionamento gera grandes oportunidades."
+      },
+      {
+        "order": 5,
+        "text": "Passo 5 — Observe padrões nas respostas para identificar quais assuntos geram mais interesse para criar conteúdos futuros sobre eles."
+      }
+    ],
+    "bonusChallenge": "Apareça falando nos Stories para se apresentar e conectar de forma direta com o público.",
+    "reflection": "Seu público sente que conhece a pessoa por trás do seu negócio, ou vê apenas uma marca impessoal?",
+    "difficulty": "Iniciante",
+    "actionLabel": "Criar Stories",
+    "actionUrl": "https://www.instagram.com/"
+  },
+  {
+    "slug": "desafio-dia-9",
+    "day": 9,
+    "category": "whatsapp",
+    "phase": "2 — Prova Social & Autoridade",
+    "title": "Seus Clientes Antigos Ainda São Oportunidades",
+    "subtitle": "Vender novamente costuma ser muito mais fácil e barato do que conquistar um cliente do zero.",
+    "strategicObjective": "Reativar contatos de clientes antigos e gerar novas oportunidades comerciais imediatas.",
+    "concept": "\"Relacionamento contínuo aumenta faturamento.\" Oferecer atenção no pós-venda ativa o gatilho da lembrança e gera novas contratações.",
+    "whyItMatters": "Clientes antigos já conhecem seu trabalho, já confiam no seu serviço, possuem menor resistência comercial e convertem muito mais rápido.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir uma lista de clientes antigos reativados, com novas conversas comerciais em andamento e relacionamento retomado.",
+    "evolutionMetric": "Mensagens enviadas, Respostas recebidas, Conversas ativas retomadas e Novos orçamentos gerados.",
+    "commonError": "Falar com os clientes antigos apenas quando está precisando vender algo desesperadamente. A comunicação deve ser natural e focada em ajudar.",
+    "futureDependencies": "Essa base de contatos reaquecida será crucial para futuras ofertas exclusivas, listas VIP, campanhas sazonais e programas de indicação premiada.",
+    "estimatedMinutes": 20,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Passo 1 — Liste clientes antigos e satisfeitos dos últimos meses que não compram ou realizam serviços com você há algum tempo."
+      },
+      {
+        "order": 2,
+        "text": "Passo 2 — Redija uma mensagem humanizada de acompanhamento. Evite mensagens frias de venda em massa e foque in atenção individualizada."
+      },
+      {
+        "order": 3,
+        "text": "Passo 3 — Pergunte como estão as coisas e mencione o serviço realizado, demonstrando cuidado e lembrança ativa."
+      },
+      {
+        "order": 4,
+        "text": "Passo 4 — Ofereça ajuda para uma revisão, manutenção ou nova demanda sem pressionar a venda. Posicione-se como um parceiro de soluções."
+      },
+      {
+        "order": 5,
+        "text": "Passo 5 — Organize as respostas recebidas utilizando etiquetas do WhatsApp Business (ex: Interessado, Retorno Futuro, Cliente Ativo)."
+      }
+    ],
+    "bonusChallenge": "Solicite indicações de amigos ou vizinhos que estejam precisando do seu serviço para os clientes mais satisfeitos que responderem.",
+    "reflection": "Você cultiva o relacionamento ativo pós-venda ou esquece o cliente logo após receber o pagamento?",
+    "difficulty": "Iniciante",
+    "actionLabel": "Enviar Mensagens",
+    "actionUrl": "https://web.whatsapp.com/"
+  },
+  {
+    "slug": "desafio-dia-10",
+    "day": 10,
+    "category": "prospeccao",
+    "phase": "2 — Prova Social & Autoridade",
+    "title": "Pare de Esperar Clientes e Comece a Procurá-los",
+    "subtitle": "Negócios saudáveis e que crescem possuem estratégias de aquisição ativa.",
+    "strategicObjective": "Ensinar e estruturar uma prospecção inteligente, consultiva e direcionada.",
+    "concept": "\"Prospecção não é insistência chata. É identificação técnica de oportunidade.\" Oferecer a solução certa para o cliente certo no momento oportuno.",
+    "whyItMatters": "Empresas que dependem apenas de indicações orgânicas crescem lentamente, possuem receita altamente instável e ficam muito vulneráveis a oscilações do mercado.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir seus primeiros contatos prospectados com abordagem consultiva estruturada e novas oportunidades comerciais abertas.",
+    "evolutionMetric": "Contatos realizados, Respostas obtidas, Reuniões/orçamentos iniciados e Leads qualificados.",
+    "commonError": "Abordar o potencial cliente tentando vender o produto ou serviço imediatamente na primeira mensagem. A prospecção comercial moderna começa gerando valor, observando e diagnosticando.",
+    "futureDependencies": "Essa habilidade comercial de prospecção será a base para o seu networking presencial, formação de parcerias e futuras vendas B2B de maior valor.",
+    "estimatedMinutes": 30,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Passo 1 — Mapeie e escolha 5 potenciais clientes ideais na sua região (empresas locais, comércios, condomínios ou residências específicas)."
+      },
+      {
+        "order": 2,
+        "text": "Passo 2 — Observe oportunidades reais de melhoria onde o seu serviço/produto geraria valor imediato para o dia a dia deles."
+      },
+      {
+        "order": 3,
+        "text": "Passo 3 — Faça o contato inicial de forma profissional e gentil, focando in abrir uma conversa amigável demonstrando sua percepção técnica."
+      },
+      {
+        "order": 4,
+        "text": "Passo 4 — Ofereça um diagnóstico simples, avaliação rápida de segurança/qualidade ou sugestão técnica sem custo inicial."
+      },
+      {
+        "order": 5,
+        "text": "Passo 5 — Registre todos os contatos realizados in uma lista de acompanhamento (CRM) para organizar o histórico e os retornos comerciais."
+      }
+    ],
+    "bonusChallenge": "Crie uma planilha de prospecção organizada com colunas para Nome, Contato, Oportunidade, Status e Data de Retorno.",
+    "reflection": "O crescimento do seu faturamento depende da sorte e do acaso, ou existe uma estratégia ativa de prospecção acontecendo hoje?",
+    "difficulty": "Intermediário",
+    "actionLabel": "Iniciar Prospecção",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "desafio-dia-11",
+    "day": 11,
+    "category": "google",
+    "phase": "3 — Aquisição & Expansão",
+    "title": "Avaliações 5 Estrelas São Seu Novo Outdoor Digital",
+    "subtitle": "Antes de contratar, o cliente procura aprovação social.",
+    "strategicObjective": "Construir reputação pública forte através de avaliações reais de clientes.",
+    "concept": "\"Confiança pública acelera vendas privadas.\" Avaliações funcionam como prova social pública, validação coletiva e segurança emocional.",
+    "whyItMatters": "Negócios bem avaliados aparecem mais nos resultados de pesquisa local do Google, recebem mais cliques diretos, convertem clientes muito mais rápido e transmitem profundo profissionalismo.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir novos pedidos de avaliação enviados, reputação digital local fortalecida e uma estratégia contínua de coleta iniciada.",
+    "evolutionMetric": "Avaliações recebidas, Nota média da empresa, Respostas ativas de clientes e Visualizações locais no mapa.",
+    "commonError": "Esperar que as avaliações de vinte e cinco estrelas aconteçam de forma totalmente natural. A maioria dos clientes satisfeitos simplesmente esquece de avaliar; você precisa pedir.",
+    "futureDependencies": "Essas avaliações reais serão utilizadas futuramente em seus anúncios locais, landing pages comerciais, posts de mídia social e como argumentos irrefutáveis de fechamento comercial.",
+    "estimatedMinutes": 20,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Passo 1 — Gere o link de avaliação direta: Acesse o painel do Google Meu Negócio e copie o link curto de compartilhamento direto de avaliações."
+      },
+      {
+        "order": 2,
+        "text": "Passo 2 — Escolha clientes satisfeitos e recentes: Faça uma lista rápida de clientes felizes, recentes e que possuem boa comunicação."
+      },
+      {
+        "order": 3,
+        "text": "Passo 3 — Envie uma solicitação personalizada: Evite mensagens prontas e genéricas. Agradeça pela parceria primeiro e peça o feedback sincero."
+      },
+      {
+        "order": 4,
+        "text": "Passo 4 — Facilite ao máximo o processo para o cliente: Envie o link direto de avaliação acompanhado de uma instrução curta e mensagem objetiva."
+      },
+      {
+        "order": 5,
+        "text": "Passo 5 — Responda todas as avaliações recebidas: Responda a cada uma delas agradecendo individualmente, valorizando a parceria comercial."
+      }
+    ],
+    "bonusChallenge": "Crie uma mensagem padrão profissional de solicitação de feedback para automatizar esse processo nas suas próximas entregas.",
+    "reflection": "O seu negócio possui hoje provas públicas e visíveis suficientes para que um completo desconhecido confie em contratar você?",
+    "difficulty": "Iniciante",
+    "actionLabel": "Pedir Avaliações",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "desafio-dia-12",
+    "day": 12,
+    "category": "instagram",
+    "phase": "3 — Aquisição & Expansão",
+    "title": "Use o Algoritmo para Atrair Clientes Novos",
+    "subtitle": "O Reels do Instagram é uma das ferramentas mais poderosas do mundo para descoberta orgânica de negócios.",
+    "strategicObjective": "Criar conteúdo estratégico de alto alcance para atrair pessoas locais que ainda não conhecem sua marca.",
+    "concept": "\"Conteúdo de descoberta aumenta crescimento sem depender apenas de indicação.\" Vídeos dinâmicos rompem a barreira do seu círculo de seguidores.",
+    "whyItMatters": "Vídeos no Reels permitem que você alcance públicos frios sem gastar nada de anúncios, aumentam significativamente sua audiência regional e geram tráfego orgânico contínuo.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir seu primeiro Reels estratégico publicado, conteúdo de descoberta active no perfil e aumento de alcance potencial.",
+    "evolutionMetric": "Alcance orgânico do perfil, Visualizações de vídeo, Compartilhamentos e Novos seguidores regionais.",
+    "commonError": "Começar os vídeos de forma lenta ou monótona. Os primeiros 3 segundos do seu vídeo decidem totalmente a retenção, a entrega do algoritmo e o alcance.",
+    "futureDependencies": "Esses vídeos de alta performance orgânica serão ideais para serem impulsionados em futuras campanhas de tráfego pago de conversão direta.",
+    "estimatedMinutes": 25,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Passo 1 — Escolha um processo interessante para gravar: Foco in transformações antes/depois, bastidores reais de serviços ou dicas rápidas."
+      },
+      {
+        "order": 2,
+        "text": "Passo 2 — Grave cenas muito curtas e dinâmicas: Faça cortes rápidos, movimentos e mude o ângulo da câmera para prender a atenção visual."
+      },
+      {
+        "order": 3,
+        "text": "Passo 3 — Crie um gancho inicial forte nos primeiros segundos, por exemplo: 'O erro que destrói...' ou '3 coisas que você nunca deve fazer'."
+      },
+      {
+        "order": 4,
+        "text": "Passo 4 — Adicione uma legenda simples ou texto na tela: Isso facilita muito a compreensão e o consumo do vídeo sem o áudio ativo."
+      },
+      {
+        "order": 5,
+        "text": "Passo 5 — Finalize com uma chamada para ação (CTA) clara, convidando o leitor a te seguir, salvar o post ou mandar mensagem."
+      }
+    ],
+    "bonusChallenge": "Aproveite o mesmo vídeo curto gravado e publique-o no YouTube Shorts e no TikTok para triplicar seu alcance orgânico.",
+    "reflection": "Seu conteúdo digital hoje está alcançando pessoas novas todos os dias ou apenas circula entre quem já te conhece?",
+    "difficulty": "Intermediário",
+    "actionLabel": "Postar Reels",
+    "actionUrl": "https://www.instagram.com/"
+  },
+  {
+    "slug": "desafio-dia-13",
+    "day": 13,
+    "category": "networking",
+    "phase": "3 — Aquisição & Expansão",
+    "title": "Cresça Através de Parcerias Estratégicas",
+    "subtitle": "Você não precisa crescer sozinho.",
+    "strategicObjective": "Criar alianças comerciais duradouras com negócios e profissionais locais complementares.",
+    "concept": "\"Parcerias multiplicam alcance sem aumentar custo de aquisição.\" O público qualificado do seu parceiro passa a conhecer você organicamente.",
+    "whyItMatters": "Os parceiros corretos geram um fluxo constante de novas indicações qualificadas, compartilham autoridade regional e impulsionam o crescimento das duas marcas.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir uma lista estruturada de parceiros potenciais, primeiros contatos de aproximação iniciados e oportunidades de indicações abertas.",
+    "evolutionMetric": "Parceiros mapeados e contatados, Conversas de alianças iniciadas, Indicações geradas e Parcerias formalizadas.",
+    "commonError": "Buscar parceiros locais apenas no momento em que você está desesperado para vender. Networking forte exige relacionamento contínuo, troca mútua de valor e profunda reciprocidade.",
+    "futureDependencies": "Essas conexões locais servirão de base para a indicação passiva de clientes e construção de uma rede forte de autoridade regional nos próximos meses.",
+    "estimatedMinutes": 25,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Passo 1 — Identifique negócios e profissionais complementares na sua cidade. Pergunte-se: 'Quem atende o mesmo público que eu, sem competir?'."
+      },
+      {
+        "order": 2,
+        "text": "Passo 2 — Liste 5 potenciais parceiros ideais na sua região de atuação (arquitetos, imobiliárias, lojas de materiais, síndicos ou designers)."
+      },
+      {
+        "order": 3,
+        "text": "Passo 3 — Faça o primeiro contato de forma totalmente humanizada e cortês: Foco in construir relacionamento de valor, não in vender imediato."
+      },
+      {
+        "order": 4,
+        "text": "Passo 4 — Proponha uma troca clara e justa de valor (indicação mútua de serviços, divulgação compartilhada ou elaboração de pacote conjunto)."
+      },
+      {
+        "order": 5,
+        "text": "Passo 5 — Organize os contatos e os parceiros in uma lista de networking para manter contato regular de relacionamento comercial."
+      }
+    ],
+    "bonusChallenge": "Agende um almoço ou café rápido com pelo menos um desses potenciais parceiros locais para estreitar os laços comerciais.",
+    "reflection": "O seu negócio possui hoje allies comerciais estratégicos gerando indicações qualificadas de forma recorrente?",
+    "difficulty": "Intermediário",
+    "actionLabel": "Iniciar Parcerias",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "desafio-dia-14",
+    "day": 14,
+    "category": "conteudo",
+    "phase": "3 — Aquisição & Expansão",
+    "title": "Antecipe as Dúvidas do Cliente",
+    "subtitle": "Quem elimina as objeções do cliente de forma clara e transparente fecha muito mais rápido.",
+    "strategicObjective": "Reduzir a insegurança do potencial cliente e quebrar objeções comerciais antes da negociação direta.",
+    "concept": "\"Clientes compram mais rápido quando possuem clareza total.\" A ausência de dúvidas diminui consideravelmente a fricção de compra.",
+    "whyItMatters": "A maior parte dos orçamentos locais trava por dúvidas não respondidas, medo de errar na contratação ou falta de informações claras sobre o processo de entrega.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir um FAQ inicial de dúvidas criado, conteúdos de quebra de objeções publicados e redução de barreiras comerciais.",
+    "evolutionMetric": "Perguntas frequentes mapeadas, Conteúdos educativos publicados e Velocidade de fechamento comercial.",
+    "commonError": "Esconder ou dificultar o acesso a informações importantes e básicas (como prazos, garantias e formas de pagamento). A transparência total aumenta muito a confiança.",
+    "futureDependencies": "Essas respostas serão a base do roteiro de vendas do seu WhatsApp, scripts comerciais de prospecção e futuras landing pages de alta conversão.",
+    "estimatedMinutes": 20,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Passo 1 — Liste as 3 principais objeções e dúvidas que você ouve dos clientes (prazo de entrega, garantia técnica, preço vs valor ou materiais)."
+      },
+      {
+        "order": 2,
+        "text": "Passo 2 — Crie respostas extremamente claras, profissionais e diretas para cada uma das objeções listadas anteriormente."
+      },
+      {
+        "order": 3,
+        "text": "Passo 3 — Transforme essas respostas in conteúdo útil para as redes sociais (sequência de Stories explicativos, post in carrossel ou vídeo de bastidor)."
+      },
+      {
+        "order": 4,
+        "text": "Passo 4 — Salve esses conteúdos in uma pasta de Destaques principais do seu Instagram intitulada 'Como Funciona' ou 'Dúvidas Frequentes'."
+      },
+      {
+        "order": 5,
+        "text": "Passo 5 — Monitore novas perguntas para continuar expandindo seu banco de respostas e aprimorar seu FAQ de atendimento."
+      }
+    ],
+    "bonusChallenge": "Grave um vídeo curto (Stories ou Reels) explicando de forma simples a garantia técnica ou o diferencial do seu serviço.",
+    "reflection": "Seu potencial cliente hoje entende de forma totalmente clara por que ele deve contratar você e não os seus concorrentes?",
+    "difficulty": "Intermediário",
+    "actionLabel": "Criar FAQ",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "desafio-dia-15",
+    "day": 15,
+    "category": "networking",
+    "phase": "3 — Aquisição & Expansão",
+    "title": "Negócios Crescem em Ambientes de Relacionamento",
+    "subtitle": "Quem aparece constantemente e gera valor é lembrado constantemente na hora de contratar.",
+    "strategicObjective": "Inserir o profissional in grupos, comunidades locais e ambientes estratégicos de tomada de decisão.",
+    "concept": "\"Visibilidade qualificada gera oportunidades comerciais invisíveis.\" Estar presente onde os potenciais clientes de alto padrão estão.",
+    "whyItMatters": "Muitos dos melhores e maiores orçamentos e contratos corporativos surgem através de indicações informais in grupos de empresários, eventos locais e associações de bairro.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir entrada in comunidades estratégicas locais, novas conexões iniciadas e aumento de visibilidade profissional.",
+    "evolutionMetric": "Grupos e comunidades acessadas, Novos contatos qualificados adicionados e Oportunidades comerciais abertas.",
+    "commonError": "Entrar in grupos ou associações apenas para fazer panfletagem digital fria e propaganda agressiva de vendas. O foco deve ser in ajudar, interagir e se conectar.",
+    "futureDependencies": "Essas conexões de alta qualidade abrirão portas comerciais estratégicas para novos contratos, parcerias recorrentes e autoridade local consolidada.",
+    "estimatedMinutes": 30,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Passo 1 — Procure por grupos e comunidades relevantes na sua região (grupos de networking, associações comerciais ou fóruns de empresários locais)."
+      },
+      {
+        "order": 2,
+        "text": "Passo 2 — Entre nas comunidades como um observador atento para entender a dinâmica de conversas e o comportamento dos membros."
+      },
+      {
+        "order": 3,
+        "text": "Passo 3 — Faça uma apresentação profissional concisa, amigável e útil, destacando como você resolve problemas locais sem fazer spam comercial."
+      },
+      {
+        "order": 4,
+        "text": "Passo 4 — Interaja ativamente nas discussões, comente nas publicações, ajude tirando dúvidas técnicas e contribua genuinamente."
+      },
+      {
+        "order": 5,
+        "text": "Passo 5 — Construa sua presença de forma consistente e repetitiva. O networking eficiente é fruto de presença regular."
+      }
+    ],
+    "bonusChallenge": "Inscreva-se e participe de pelo menos um evento presencial corporativo ou palestra local na sua cidade nos próximos 15 dias.",
+    "reflection": "A sua empresa hoje está visível e presente nos ambientes e grupos onde seus clientes ideais estão discutindo negócios?",
+    "difficulty": "Intermediário",
+    "actionLabel": "Entrar in Grupos",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "desafio-dia-16",
+    "day": 16,
+    "category": "prospeccao",
+    "phase": "4 — Conversão & Fechamento",
+    "title": "Pare de Perder Leads por Desorganização",
+    "subtitle": "Quem não acompanha oportunidades ativas perde vendas valiosas silenciosamente todos os dias.",
+    "strategicObjective": "Criar um processo comercial simples e extremamente eficiente de acompanhamento de leads.",
+    "concept": "\"A maioria das vendas acontece no acompanhamento, não no primeiro contato.\" Organização comercial evita perda de receita.",
+    "whyItMatters": "Muitos pequenos negócios perdem clientes simplesmente porque esquecem de retornar contatos, não realizam follow-up de orçamentos, não catalogam interesses e deixam o pipeline abandonado.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir um mini funil comercial organizado, categorias de leads definidas e uma rotina de acompanhamento estruturada.",
+    "evolutionMetric": "Leads organizados no pipeline, Acompanhamentos ativos realizados, Conversas comerciais retomadas e Orçamentos recuperados.",
+    "commonError": "Confiar apenas na memória ou em anotações soltas no papel para gerenciar seus potenciais clientes. A desorganização comercial custa caro.",
+    "futureDependencies": "Esse processo estruturado de funil será crucial para receber a demanda de futuros anúncios pagos, automações no WhatsApp e campanhas de vendas diretas.",
+    "estimatedMinutes": 25,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Passo 1 — Liste todos os seus potenciais clientes atuais: Inclua contatos recentes, orçamentos antigos enviados e clientes indecisos."
+      },
+      {
+        "order": 2,
+        "text": "Passo 2 — Crie categorias comerciais claras para organizar os contatos: Novo Lead, Em Negociação, Orçamento Enviado, Aguardando Retorno."
+      },
+      {
+        "order": 3,
+        "text": "Passo 3 — Organize tudo in uma planilha ou CRM simples: Registre o histórico de conversas e os valores estimados de cada oportunidade."
+      },
+      {
+        "order": 4,
+        "text": "Passo 4 — Defina as próximas ações necessárias para cada contato: Identifique quem precisa de retorno, quem precisa de proposta e quem precisa de contato."
+      },
+      {
+        "order": 5,
+        "text": "Passo 5 — Crie a rotina diária de revisar seu pipeline comercial: Faça da gestão de leads parte do início ou final do seu dia de trabalho."
+      }
+    ],
+    "bonusChallenge": "Adicione a data da última interação realizada e crie um lembrete automático no seu calendário para realizar o acompanhamento de cada lead.",
+    "reflection": "Você possui controle total sobre cada uma das suas oportunidades comerciais abertas hoje ou apenas reage de forma passiva quando um novo cliente aparece?",
+    "difficulty": "Intermediário",
+    "actionLabel": "Organizar Leads",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "desafio-dia-17",
+    "day": 17,
+    "category": "whatsapp",
+    "phase": "4 — Conversão & Fechamento",
+    "title": "Urgência Bem Utilizada Acelera Decisões",
+    "subtitle": "Clientes indecisos e mornos precisam de um motivo forte e justificável para agir agora.",
+    "strategicObjective": "Criar uma oferta limitada ética, irresistível e estratégica para acelerar fechamentos.",
+    "concept": "\"Sem urgência, o cliente adia a decisão comercial por tempo indeterminado.\" Criar escassez legítima estimula a ação rápida.",
+    "whyItMatters": "A urgência ética reduz a procrastinação natural do comprador, acelera o ciclo de fechamento comercial de propostas pendentes e movimenta contatos mornos na sua base de dados.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir uma oferta de tempo limitado estruturada, campanha rápida formatada e reativação comercial de leads iniciada.",
+    "evolutionMetric": "Mensagens de campanha enviadas, Taxa de respostas comerciais recebidas, Conversões geradas e Leads indecisos fechados.",
+    "commonError": "Criar mentiras ou falsas urgências de forma apelativa. A credibilidade do seu negócio a longo prazo vale infinitamente mais do que uma pressão artificial.",
+    "futureDependencies": "Essa habilidade de criar ofertas oportunas e estruturadas será a base de futuros lançamentos de serviços, campanhas sazonais e promoções rápidas de caixa.",
+    "estimatedMinutes": 20,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Passo 1 — Escolha um benefício estratégico para a oferta: Pode ser um bônus especial, prioridade na agenda, condition facilitada ou entrega rápida."
+      },
+      {
+        "order": 2,
+        "text": "Passo 2 — Defina um limite real e legítimo para a condição: Estabeleça um prazo improrrogável de expiração ou quantidade restrita de vagas na agenda."
+      },
+      {
+        "order": 3,
+        "text": "Passo 3 — Escreva uma mensagem comercial direta e objetiva: Explique com total clareza qual é o benefício, o limite de tempo e a ação a tomar."
+      },
+      {
+        "order": 4,
+        "text": "Passo 4 — Envie a mensagem para seus contatos mornos e leads quentes: Priorize pessoas que solicitaram orçamento nos últimos 30 dias e pararam."
+      },
+      {
+        "order": 5,
+        "text": "Passo 5 — Acompanhe e responda a todas as interações com rapidez máxima: Campanhas de urgência exigem velocidade e presença no WhatsApp."
+      }
+    ],
+    "bonusChallenge": "Crie e publique uma versão visual dessa oferta limitada nos Stories do Instagram, reforçando a contagem regressiva para expirar.",
+    "reflection": "O seu potencial cliente hoje possui um motivo real, prático e urgente para tomar a decisão de contratar você hoje em vez de deixar para o próximo mês?",
+    "difficulty": "Intermediário",
+    "actionLabel": "Enviar Oferta",
+    "actionUrl": "https://web.whatsapp.com/"
+  },
+  {
+    "slug": "desafio-dia-18",
+    "day": 18,
+    "category": "prospeccao",
+    "phase": "4 — Conversão & Fechamento",
+    "title": "A Venda Nem Sempre Morreu",
+    "subtitle": "Muitos clientes que não responderam sua proposta simplesmente foram consumidos pela correria diária.",
+    "strategicObjective": "Recuperar negociações e propostas comerciais antigas através de abordagens de lembrança gentil.",
+    "concept": "\"O follow-up profissional aumenta drasticamente as taxas de conversão de qualquer negócio.\" Lembrança atenta demonstra valor.",
+    "whyItMatters": "Grande parte das vendas locais tidas como perdidas na verdade não foram recusadas; elas foram apenas adiadas por pura falta de tempo do comprador.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir mensagens de follow-up enviadas, negociações comerciais reabertas e oportunidades recuperadas.",
+    "evolutionMetric": "Propostas antigas resgatadas, Respostas positivas de follow-up, Reuniões ou novos orçamentos reabertos e Fechamentos efetuados.",
+    "commonError": "Realizar follow-up pressionando o cliente ou parecendo carente/desesperado por vendas. O contato deve demonstrar cuidado genuíno em ajudar.",
+    "futureDependencies": "Essa habilidade de acompanhamento consultivo será a chave para otimizar o ROI de tráfego pago, gerando receita com leads que não compraram no primeiro dia.",
+    "estimatedMinutes": 20,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Passo 1 — Recupere sua lista de propostas comerciais antigas: Busque orçamentos enviados nos últimos 60 dias que ficaram sem resposta definitiva."
+      },
+      {
+        "order": 2,
+        "text": "Passo 2 — Escreva uma mensagem de follow-up leve, amigável e cortês: Ex: 'Olá! Passando para saber se conseguiu avaliar nossa proposta ou se restou alguma dúvida'."
+      },
+      {
+        "order": 3,
+        "text": "Passo 3 — Evite qualquer tom de cobrança ou pressão comercial: O foco deve ser reabrir a conversa e deixar o cliente confortável em responder."
+      },
+      {
+        "order": 4,
+        "text": "Passo 4 — Ofereça ajuda consultiva genuína para a tomada de decisão: Pergunte se o escopo atende às necessidades dele ou se precisa de ajustes técnicos."
+      },
+      {
+        "order": 5,
+        "text": "Passo 5 — Organize os retornos e atualize o status no seu pipeline: Classifique o lead de acordo com a resposta e defina a próxima data de contato."
+      }
+    ],
+    "bonusChallenge": "Crie 3 modelos padrões diferentes de follow-up (um para 3 dias após enviar proposta, um para 10 dias e um para 30 dias de lembrança final).",
+    "reflection": "Quantas vendas valiosas você já perdeu silenciosamente simplesmente por não ter enviado uma mensagem de lembrança cortês alguns dias depois?",
+    "difficulty": "Intermediário",
+    "actionLabel": "Fazer Follow-up",
+    "actionUrl": "https://web.whatsapp.com/"
+  },
+  {
+    "slug": "desafio-dia-19",
+    "day": 19,
+    "category": "google",
+    "phase": "4 — Conversão & Fechamento",
+    "title": "Seu Google Também Precisa Vender",
+    "subtitle": "O perfil do Google Meu Negócio não serve apenas para presença passiva. Ele é um poderoso canal ativo de conversão.",
+    "strategicObjective": "Manter o perfil comercial do Google constantemente ativo e otimizado para a geração contínua de contatos.",
+    "concept": "\"Perfis atualizados com frequência ganham destaque e relevância na busca local.\" O Google prioriza negócios que demonstram atividade.",
+    "whyItMatters": "Negócios que publicam novidades e fotos atualizadas no perfil do Google Meu Negócio aparecem mais na região, transmitem credibilidade imediata e recebem muito mais contatos de orçamentos.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir uma nova atualização e fotos recentes publicadas no Google, gerando sinal de atividade comercial local.",
+    "evolutionMetric": "Atualizações publicadas no painel do Google, Cliques no botão de contato/chamada, Visualizações de mapa e Mensagens geradas.",
+    "commonError": "Abandonar por completo o perfil do Google Meu Negócio após fazer a configuração inicial. O algoritmo valoriza profundamente a constância e o frescor de dados.",
+    "futureDependencies": "Um perfil forte, ativo e repleto de atualizações será a âncora orgânica da sua empresa, garantindo que o seu nome apareça no topo das buscas regionais.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Passo 1 — Selecione um conteúdo visual recente do seu negócio: Foco in fotos de serviços finalizados, novos materiais ou bastidores de trabalho."
+      },
+      {
+        "order": 2,
+        "text": "Passo 2 — Acesse o painel de gerenciamento do seu Google Meu Negócio: Dirija-se até a opção de adicionar novidades, atualizações ou fotos."
+      },
+      {
+        "order": 3,
+        "text": "Passo 3 — Escreva e publique uma atualização objetiva: Crie um texto curto explicando o serviço realizado e o benefício gerado."
+      },
+      {
+        "order": 4,
+        "text": "Passo 4 — Insira uma chamada de ação direta (CTA): Utilize botões como 'Ligar agora', 'Saiba mais' ou direcione links para o WhatsApp comercial."
+      },
+      {
+        "order": 5,
+        "text": "Passo 5 — Agende no seu calendário um lembrete recorrente quinzenal: Faça da atualização do Google um hábito comercial regular."
+      }
+    ],
+    "bonusChallenge": "Adicione pelo menos 3 fotos novas na galeria do seu perfil comercial, categorizando-as adequadamente (fachada, produtos, equipe).",
+    "reflection": "Se um potencial cliente de alto padrão pesquisar hoje pelo seu serviço no Google Maps, a sua empresa parecerá ativa, viva e em pleno funcionamento?",
+    "difficulty": "Iniciante",
+    "actionLabel": "Postar no Google",
+    "actionUrl": "https://www.google.com/business/"
+  },
+  {
+    "slug": "desafio-dia-20",
+    "day": 20,
+    "category": "anuncio",
+    "phase": "4 — Conversão & Fechamento",
+    "title": "Coloque Sua Marca na Frente das Pessoas Certas",
+    "subtitle": "O tráfego pago local acelera o crescimento de forma previsível e contínua.",
+    "strategicObjective": "Estruturar e iniciar a primeira campanha comercial simples de tráfego pago para atração local.",
+    "concept": "\"Anúncios pagos amplificam e aceleram aquilo que já funciona no seu orgânico.\" Verba local direcionada compra contatos prontos.",
+    "whyItMatters": "Depender apenas de indicações e de crescimento orgânico é lento e arriscado. Anúncios locais de baixo orçamento colocam seu nome diante de quem precisa comprar agora.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir o planejamento estruturado de sua primeira campanha local ativa, criativos definidos e funil de mensagens pronto.",
+    "evolutionMetric": "Cliques no anúncio, Custo por clique (CPC), Mensagens diretas iniciadas no WhatsApp e Vendas geradas.",
+    "commonError": "Investir dinheiro em anúncios pagos antes de ter um perfil do Instagram organizado, um WhatsApp estruturado e provas sociais visíveis no ar.",
+    "futureDependencies": "Esta campanha local estruturada servirá como motor principal de escala, gerando um fluxo previsível de oportunidades comerciais todas as semanas.",
+    "estimatedMinutes": 30,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Passo 1 — Selecione o seu serviço ou produto principal: Priorize aquele que tem maior demanda local, melhor margem de lucro e apelo imediato."
+      },
+      {
+        "order": 2,
+        "text": "Passo 2 — Escolha o seu melhor ativo visual (criativo): Use fotos fortes de antes/depois, vídeos rápidos de processos ou prints de depoimentos excelentes."
+      },
+      {
+        "order": 3,
+        "text": "Passo 3 — Configure a segmentação geográfica local da sua campanha: Direcione os anúncios para a sua cidade ou defina um raio de 5km ao redor da sua sede."
+      },
+      {
+        "order": 4,
+        "text": "Passo 4 — Direcione o destino final dos anúncios para conversas no WhatsApp: Evite sites confusos e leve o lead diretamente para o seu atendimento."
+      },
+      {
+        "order": 5,
+        "text": "Passo 5 — Monitore diariamente a campanha comercial: Acompanhe a quantidade de cliques, as mensagens recebidas e a qualidade dos contatos."
+      }
+    ],
+    "bonusChallenge": "Escreva duas opções diferentes de títulos de cabeçalho (headlines) e teste imagens complementares para ver qual performa melhor.",
+    "reflection": "O seu negócio hoje possui uma estratégia ativa de atração previsível de clientes ocorrendo semanalmente ou você depende apenas da sorte?",
+    "difficulty": "Intermediário",
+    "actionLabel": "Configurar Anúncio",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "desafio-dia-21",
+    "day": 21,
+    "category": "presenca",
+    "phase": "5 — Escala & Retenção",
+    "title": "A Venda Não Termina Quando o Cliente Paga",
+    "subtitle": "Empresas de alto valor continuam presentes na vida do cliente mesmo após a conclusão dos serviços.",
+    "strategicObjective": "Criar um processo de pós-venda estruturado para aumentar drasticamente as taxas de retenção e as indicações orgânicas.",
+    "concept": "\"Clientes que se sentem lembrados e cuidados voltam mais vezes.\" O relacionamento pós-venda é a forma mais barata de gerar receita.",
+    "whyItMatters": "Muitos negócios cometem o erro fatal de desaparecer completamente após receber o pagamento. Um pós-venda atencioso gera fidelização, constrói uma reputação impecável e estimula a indicação espontânea.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir uma rotina básica de pós-venda desenhada, mensagens de acompanhamento formatadas e relacionamento com clientes fortalecido.",
+    "evolutionMetric": "Clientes contatados no pós-venda, Feedbacks positivos recebidos, Novas indicações geradas e Recompras efetuadas.",
+    "commonError": "Tratar a venda como uma transação única e fria, esquecendo o cliente logo após o recebimento. O verdadeiro valor do cliente está no LTV (Lifetime Value).",
+    "futureDependencies": "Esse relacionamento estabelecido será o canal principal para a ativação de planos de manutenção recorrente, campanhas de indicação premiada e novos pacotes VIP.",
+    "estimatedMinutes": 20,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Passo 1 — Mapeie e selecione seus clientes atendidos recentemente que demonstraram alto nível de satisfação."
+      },
+      {
+        "order": 2,
+        "text": "Passo 2 — Redija uma mensagem gentil de acompanhamento pós-venda: Pergunte se o serviço está funcionando perfeitamente ou se precisa de algo."
+      },
+      {
+        "order": 3,
+        "text": "Passo 3 — Demonstre preocupação e atenção genuína: Deixe claro que a satisfação dele é a prioridade número um do seu negócio."
+      },
+      {
+        "order": 4,
+        "text": "Passo 4 — Aproveite a oportunidade para coletar o feedback sincero da experiência: Pergunte sobre pontos fortes e áreas que podem melhorar."
+      },
+      {
+        "order": 5,
+        "text": "Passo 5 — Agende no calendário lembretes de acompanhamento periódicos (Ex: 30, 90 e 180 dias após a entrega do serviço)."
+      }
+    ],
+    "bonusChallenge": "Envie uma dica prática de conservação ou uso inteligente relacionada diretamente ao serviço prestado ao seu cliente.",
+    "reflection": "Seus clientes sentem que a contratação foi uma parceria de valor duradouro ou sentem que foram apenas mais um número de faturamento?",
+    "difficulty": "Iniciante",
+    "actionLabel": "Fazer Pós-venda",
+    "actionUrl": "https://web.whatsapp.com/"
+  },
+  {
+    "slug": "desafio-dia-22",
+    "day": 22,
+    "category": "conteudo",
+    "phase": "5 — Escala & Retenção",
+    "title": "Pare de Criar Conteúdo do Zero o Tempo Todo",
+    "subtitle": "O conteúdo inteligente e estratégico é reaproveitado em múltiplos formatos para economizar tempo.",
+    "strategicObjective": "Estruturar um sistema simples de reciclagem e reaproveitamento dos seus melhores conteúdos digitais.",
+    "concept": "\"A escala do seu marketing acontece quando você multiplica e reutiliza aquilo que já provou funcionar organicamente.\" Produtividade gera consistência.",
+    "whyItMatters": "Criar conteúdos do zero diariamente consome muito tempo e causa exaustão. Reutilizar posts bem-sucedidos em novos formatos (Reels, carrosséis, Stories, etc.) maximiza seu alcance com o mínimo esforço.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir um banco de conteúdos de alto desempenho mapeado, fluxo de reaproveitamento definido e maior economia de tempo.",
+    "evolutionMetric": "Conteúdos antigos reciclados e publicados, Tempo de criação economizado, Alcance acumulado e Engajamento gerado.",
+    "commonError": "Achar que precisa ser um criador de conteúdo em tempo integral e esquecer de focar na gestão e na operação do próprio negócio.",
+    "futureDependencies": "Esse banco de ideias e conteúdos validados será a base para programar suas postagens automáticas e criar anúncios pagos de atração local.",
+    "estimatedMinutes": 25,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Passo 1 — Analise as postagens antigas do seu perfil: Identifique quais posts obtiveram maior número de salvamentos, comentários e compartilhamentos."
+      },
+      {
+        "order": 2,
+        "text": "Passo 2 — Selecione uma publicação antiga de alta performance: Escolha um tema forte que resolva uma dor ou quebre uma grande objeção."
+      },
+      {
+        "order": 3,
+        "text": "Passo 3 — Transforme o tema do post selecionado em um novo formato de consumo rápido (ex: transforme um texto de carrossel em um roteiro de Reels)."
+      },
+      {
+        "order": 4,
+        "text": "Passo 4 — Organize um banco de ideias categorizado: Crie pastas digitais para armazenar dúvidas comuns, bastidores, depoimentos e dicas práticas."
+      },
+      {
+        "order": 5,
+        "text": "Passo 5 — Desenhe um calendário editorial básico semanal: Defina os dias específicos de postagem de conteúdo de captação e de relacionamento."
+      }
+    ],
+    "bonusChallenge": "Pegue uma sequência de Stories explicativos que performou super bem e transforme in um post de carrossel estático ou Reels dinâmico.",
+    "reflection": "Você está criando conteúdos de forma inteligente e estratégica ou está apenas gastando energia postando coisas aleatórias sem direção?",
+    "difficulty": "Intermediário",
+    "actionLabel": "Reciclar Post",
+    "actionUrl": "https://www.instagram.com/"
+  },
+  {
+    "slug": "desafio-dia-23",
+    "day": 23,
+    "category": "networking",
+    "phase": "5 — Escala & Retenção",
+    "title": "Seu Tempo Precisa Parar de Ser Consumido por Repetição",
+    "subtitle": "Negócios que escalam são construídos em cima de processos rápidos, respostas prontas e automações.",
+    "strategicObjective": "Reduzir a carga de trabalho repetitivo através do uso estratégico de atalhos e automações comerciais.",
+    "concept": "\"Automações simples aumentam a capacidade operacional de vendas sem demandar esforço adicional.\" Produtividade gera lucro.",
+    "whyItMatters": "Gastar horas do dia respondendo às mesmas perguntas básicas de clientes (preços, horários, localização) tira você do foco comercial de fechamento de grandes contratos.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir um banco de respostas rápidas configurado, atalhos de WhatsApp ativos e processos de atendimento simplificados.",
+    "evolutionMetric": "Modelos de respostas criados, Redução no tempo médio de resposta de orçamentos e Processos repetitivos automatizados.",
+    "commonError": "Acreditar que usar respostas rápidas tira o tom humano do atendimento. O segredo é escrever atalhos calorosos, atenciosos e que facilitem o diálogo.",
+    "futureDependencies": "Essas mensagens padronizadas e rápidas serão fundamentais para gerenciar o fluxo de mensagens de futuras campanhas de tráfego pago.",
+    "estimatedMinutes": 20,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Passo 1 — Mapeie as 5 interações ou perguntas que você mais responde no WhatsApp durante as negociações diárias."
+      },
+      {
+        "order": 2,
+        "text": "Passo 2 — Redija modelos profissionais de respostas calorosas e completas: Foco in clareza, direcionamento e simpatia comercial."
+      },
+      {
+        "order": 3,
+        "text": "Passo 3 — Configure as respostas rápidas no WhatsApp Business: Crie atalhos práticos utilizando a barra (ex: /orcamento, /endereco, /garantia)."
+      },
+      {
+        "order": 4,
+        "text": "Passo 4 — Organize seus links de contato e arquivos em pastas de rápido acesso: Deixe portfólios, fotos de resultados e termos salvos."
+      },
+      {
+        "order": 5,
+        "text": "Passo 5 — Revise e identifique outros gargalos de tempo no seu dia: Busque formas simples de eliminar ou delegar tarefas operacionais."
+      }
+    ],
+    "bonusChallenge": "Configure uma mensagem de ausência detalhada para quando receber contatos fora do seu horário comercial, garantindo que o lead não fique sem resposta.",
+    "reflection": "O seu negócio hoje depende exclusivamente do seu esforço manual e repetitivo para operar ou você possui processos e atalhos eficientes?",
+    "difficulty": "Intermediário",
+    "actionLabel": "Configurar Atalhos",
+    "actionUrl": "https://web.whatsapp.com/"
+  },
+  {
+    "slug": "desafio-dia-24",
+    "day": 24,
+    "category": "instagram",
+    "phase": "5 — Escala & Retenção",
+    "title": "Crie Um Sistema de Indicações",
+    "subtitle": "As melhores e mais rápidas vendas sempre chegam através de uma indicação de confiança de um terceiro.",
+    "strategicObjective": "Estruturar e incentivar ativamente um fluxo contínuo de indicações voluntárias e qualificadas de clientes.",
+    "concept": "\"Indicações de clientes reduzem a zero o seu custo de atração e herdam a confiança imediata do recomendador.\" O boca a boca inteligente.",
+    "whyItMatters": "Depender apenas da indicação espontânea e passiva é lento. Quando você cria um processo ético que estimula e premia as recomendações, seu negócio cresce previsivelmente.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir um programa básico de indicações formatado, clientes convidados a indicar e fluxo de recomendações ativado.",
+    "evolutionMetric": "Mensagens de solicitação de indicação enviadas, Contatos indicados recebidos e Conversões efetuadas através de recomendações.",
+    "commonError": "Esquecer ou ter vergonha de pedir indicações para os clientes mais satisfeitos. O cliente feliz geralmente adora recomendar o profissional, basta pedir.",
+    "futureDependencies": "Este fluxo contínuo de indicações será o motor de aquisição orgânica mais poderoso da sua marca local, alimentando sua carteira de forma saudável.",
+    "estimatedMinutes": 20,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Passo 1 — Selecione seus clientes mais satisfeitos e recorrentes dos últimos meses com os quais você possui ótima relação comercial."
+      },
+      {
+        "order": 2,
+        "text": "Passo 2 — Faça um convite natural e cortês para indicação: Diga que adorou atendê-lo e pergunte se ele possui vizinhos ou amigos com demandas semelhantes."
+      },
+      {
+        "order": 3,
+        "text": "Passo 3 — Facilite o compartilhamento dos seus dados: Envie um cartão de visita digital interativo ou link direto do seu WhatsApp."
+      },
+      {
+        "order": 4,
+        "text": "Passo 4 — Desenhe e aplique um reconhecimento ou premiação simples para quem indica: Ofereça bônus, prioridade em agendamentos ou descontos futuros."
+      },
+      {
+        "order": 5,
+        "text": "Passo 5 — Acompanhe e registre a origem de cada novo lead: Certifique-se de agradecer calorosamente sempre que alguém te indicar."
+      }
+    ],
+    "bonusChallenge": "Crie um programa estruturado de indicação (ex: 'Indique 1 amigo e ganhe 10% de desconto no seu próximo serviço ou uma manutenção cortesia').",
+    "reflection": "Os seus clientes mais felizes hoje lembram de recomendar ativamente os seus serviços quando conversam com amigos ou familiares?",
+    "difficulty": "Iniciante",
+    "actionLabel": "Pedir Indicações",
+    "actionUrl": "https://web.whatsapp.com/"
+  },
+  {
+    "slug": "desafio-dia-25",
+    "day": 25,
+    "category": "whatsapp",
+    "phase": "5 — Escala & Retenção",
+    "title": "Seu Lucro Cresce Quando Clientes Voltam",
+    "subtitle": "Negócios financeiramente saudáveis e sustentáveis são construídos em cima de compras recorrentes e retenção.",
+    "strategicObjective": "Desenvolver e propor ofertas complementares de recompra de serviços ou produtos para clientes antigos.",
+    "concept": "\"A recorrência comercial reduz a dependência constante de buscar novos clientes frios no mercado.\" Estabilidade gera escala.",
+    "whyItMatters": "Focar apenas em atrair novos clientes novos é extremamente exaustivo e caro. Estimular a recompra, a manutenção preventiva ou a contratação periódica garante caixa previsível.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir oportunidades de recompra identificadas, ofertas complementares criadas e campanhas de reativação iniciadas.",
+    "evolutionMetric": "Clientes antigos reativados na semana, Novas propostas recorrentes fechadas e Receita recorrente gerada.",
+    "commonError": "Prestar o serviço perfeitamente e nunca mais oferecer nenhuma outra solução ou acompanhamento para o cliente. A venda deve ter continuidade.",
+    "futureDependencies": "Essa base de receita recorrente e retenção será o colchão financeiro e a estabilidade necessária para você investir com confiança em expansão local.",
+    "estimatedMinutes": 25,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Passo 1 — Mapeie o histórico de serviços dos seus clientes antigos: Busque identificar necessidades recorrentes ou desgastes naturais de tempo."
+      },
+      {
+        "order": 2,
+        "text": "Passo 2 — Crie uma oferta complementar estratégica para esse público: Foco in revisões periódicas, manutenções preventivas ou upgrades de serviços."
+      },
+      {
+        "order": 3,
+        "text": "Passo 3 — Entre em contato de forma proativa e explicativa com os clientes antigos: Apresente a importância preventiva do acompanhamento."
+      },
+      {
+        "order": 4,
+        "text": "Passo 4 — Organize um cronograma comercial de retornos periódicos automatizado: Defina de quanto em quanto tempo cada lead deve ser contatado."
+      },
+      {
+        "order": 5,
+        "text": "Passo 5 — Registre e analise os números de recompra: Descubra quais serviços e abordagens geram maior recorrência e adesão."
+      }
+    ],
+    "bonusChallenge": "Crie um pacote ou plano de assinatura mensal/trimestral simples para prestação de serviços de manutenção contínua ou reposição recorrente.",
+    "reflection": "O faturamento da sua empresa depende exclusivamente do esforço de caça diária de novos leads ou você possui estabilidade recorrente?",
+    "difficulty": "Intermediário",
+    "actionLabel": "Gerar Recorrência",
+    "actionUrl": "https://web.whatsapp.com/"
+  },
+  {
+    "slug": "desafio-dia-26",
+    "day": 26,
+    "category": "prospeccao",
+    "phase": "6 — Consolidação & Escala",
+    "title": "Pare de Trabalhar Apenas no Operacional",
+    "subtitle": "Empresas crescem e prosperam de verdade quando o dono se dedica à visão e planejamento estratégico.",
+    "strategicObjective": "Realizar uma análise aprofundada dos números comerciais do seu negócio para identificar gargalos e oportunidades.",
+    "concept": "\"Quem não mede o que faz cresce no escuro de forma improvisada.\" A inteligência comercial precede a tomada de decisão estratégica.",
+    "whyItMatters": "Ficar preso exclusivamente na execução operacional do dia a dia impede que você perceba falhas na precificação, vazamentos de leads no atendimento e oportunidades de aumentar sua margem.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir um diagnóstico completo do negócio estruturado, métricas comerciais mapeadas e prioridade estratégica definida.",
+    "evolutionMetric": "Canais de aquisição mapeados, Margens de lucro calculadas, Gargalos operacionais identificados e Prioridade de 90 dias definida.",
+    "commonError": "Ignorar os dados financeiros e comerciais do próprio negócio, administrando a empresa com base no achismo ou apenas olhando o saldo da conta.",
+    "futureDependencies": "Este diagnóstico claro servirá como ponto de partida crucial para traçar o seu plano estratégico de crescimento comercial para os próximos 90 dias.",
+    "estimatedMinutes": 30,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Passo 1 — Liste os pontos fortes e os diferenciais mais elogiados do seu negócio com base nas mensagens de clientes."
+      },
+      {
+        "order": 2,
+        "text": "Passo 2 — Identifique e liste os maiores gargalos de tempo e desperdícios operacionais que atrapalham seu dia."
+      },
+      {
+        "order": 3,
+        "text": "Passo 3 — Mapeie com precisão quais canais de captação geraram as suas melhores vendas nos últimos 3 meses."
+      },
+      {
+        "order": 4,
+        "text": "Passo 4 — Analise em quais etapas do seu atendimento você mais perde propostas comerciais enviadas sem fechamento."
+      },
+      {
+        "order": 5,
+        "text": "Passo 5 — Defina uma meta comercial prioritária única e realista para focar seus esforços nas próximas semanas."
+      }
+    ],
+    "bonusChallenge": "Calcule a sua margem de lucro real por serviço prestado e descubra qual deles é o mais lucrativo e estratégico para focar seus anúncios.",
+    "reflection": "O seu negócio hoje cresce baseado in dados comerciais e planejamento estratégico ou depende da sorte e do improviso operacional?",
+    "difficulty": "Intermediário",
+    "actionLabel": "Fazer Diagnóstico",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "desafio-dia-27",
+    "day": 27,
+    "category": "google",
+    "phase": "6 — Consolidação & Escala",
+    "title": "Marcas Fortes Cobram Mais e São Mais Lembradas",
+    "subtitle": "A percepção de valor que você transmite determina diretamente a margem e o preço que você pode cobrar.",
+    "strategicObjective": "Fortalecer o posicionamento comercial e a identidade da sua marca para escapar da guerra por preços.",
+    "concept": "\"Uma marca forte e reconhecida reduz significativamente a sensibilidade ao preço do comprador.\" Branding é valor percebido.",
+    "whyItMatters": "Profissionais e empresas sem marca forte viram apenas commodities no mercado regional, sendo forçados a dar descontos constantes para concorrer com amadores.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir diferenciais comerciais definidos, linguagem de marca ajustada e melhoria na apresentação de propostas.",
+    "evolutionMetric": "Diferenciais de marca definidos, Apresentação visual aprimorada, Aumento na taxa de aceitação de orçamentos e Valor médio do ticket.",
+    "commonError": "Acreditar que branding é apenas ter um logotipo bonito. Branding é a experiência, a clareza dos diferenciais e o profissionalismo no atendimento.",
+    "futureDependencies": "Esse posicionamento de marca premium e autoridade consolidada será a âncora de todo o seu marketing local, anúncios e parcerias corporativas.",
+    "estimatedMinutes": 25,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Passo 1 — Revise com atenção a sua comunicação visual digital: Instagram, foto de perfil, logo, propostas e apresentações."
+      },
+      {
+        "order": 2,
+        "text": "Passo 2 — Ajuste o tom e a linguagem da sua marca: Garanta uma comunicação extremamente profissional, polida, clara e segura."
+      },
+      {
+        "order": 3,
+        "text": "Passo 3 — Defina pelo menos 3 diferenciais claros e exclusivos do seu negócio (ex: rapidez, garantia estendida, limpeza, materiais premium)."
+      },
+      {
+        "order": 4,
+        "text": "Passo 4 — Mapeie seus concorrentes mais caros da região: Observe como eles se apresentam comerciais, quais diferenciais destacam e como cobram."
+      },
+      {
+        "order": 5,
+        "text": "Passo 5 — Refine a apresentação da sua proposta comercial de serviços no PropostaCerta: Use descrições completas e visual premium."
+      }
+    ],
+    "bonusChallenge": "Escreva uma frase de posicionamento curta e marcante que explique de imediato o seu compromisso de qualidade e diferenciais da empresa.",
+    "reflection": "Se a sua empresa custasse 20% mais caro do que o concorrente direto hoje, o cliente veria motivos claros para pagar a diferença pelo seu valor?",
+    "difficulty": "Intermediário",
+    "actionLabel": "Revisar Branding",
+    "actionUrl": "https://www.google.com/business/"
+  },
+  {
+    "slug": "desafio-dia-28",
+    "day": 28,
+    "category": "anuncio",
+    "phase": "6 — Consolidação & Escala",
+    "title": "Quem Não É Visto Não Lidera Mercado",
+    "subtitle": "A autoridade regional consolidada acelera a atração de novas oportunidades de grandes negócios.",
+    "strategicObjective": "Expandir e consolidar de forma contínua a visibilidade da sua empresa além do seu círculo atual de contatos.",
+    "concept": "\"Visibilidade consistente e intencional gera liderança regional e atração passiva de clientes.\" Ocupar espaço no mercado local.",
+    "whyItMatters": "Ficar limitado apenas ao boca a boca orgânico tradicional restringe o crescimento do seu negócio. Estar visível in múltiplos canais locais atrai grandes contratos.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir canais de visibilidade local fortalecidos, conteúdo regional publicado e novas conexões comerciais regionais.",
+    "evolutionMetric": "Novos leads de outras regiões atendidos, Crescimento nas visualizações do perfil do Google, Contatos corporativos gerados e Presença ampliada.",
+    "commonError": "Acomodar-se com o volume atual de clientes locais e parar de plantar as sementes da visibilidade de marca a médio e longo prazo.",
+    "futureDependencies": "Essa presença de liderança local garantirá o fluxo estável de leads necessário para estruturar futuras expansões operacionais e contratação de equipe.",
+    "estimatedMinutes": 20,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Passo 1 — Mapeie e selecione as regiões ou bairros mais estratégicos e lucrativos da sua cidade onde deseja expandir."
+      },
+      {
+        "order": 2,
+        "text": "Passo 2 — Crie e publique conteúdos direcionados especificamente para a realidade e demandas dessas regiões mapeadas."
+      },
+      {
+        "order": 3,
+        "text": "Passo 3 — Fortaleça o networking local participando de grupos de bairro, associações de síndicos ou fóruns comerciais regionais."
+      },
+      {
+        "order": 4,
+        "text": "Passo 4 — Otimize as tags e palavras-chave de localização no seu perfil do Google Business para captar buscas regionais."
+      },
+      {
+        "order": 5,
+        "text": "Passo 5 — Desenhe uma estratégia contínua de presença: Mantenha todos os seus canais digitais vivos, interativos e consistentes."
+      }
+    ],
+    "bonusChallenge": "Mapeie 5 condomínios residenciais ou edifícios comerciais de alto padrão na região alvo e elabore uma proposta ou oferta focada neles.",
+    "reflection": "Sua marca hoje domina e lidera a mente dos potenciais clientes de alto padrão da sua cidade ou é conhecida apenas em círculos restritos?",
+    "difficulty": "Intermediário",
+    "actionLabel": "Otimizar Presença",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "desafio-dia-29",
+    "day": 29,
+    "category": "presenca",
+    "phase": "6 — Consolidação & Escala",
+    "title": "Crescimento Sustentável Precisa de Direção",
+    "subtitle": "Negócios que operam sem um planejamento estratégico claro vivem no caos apagando incêndios operacionais diários.",
+    "strategicObjective": "Elaborar o planejamento estratégico de marketing e vendas do seu negócio para os próximos 90 dias de crescimento.",
+    "concept": "\"O planejamento direcionado reduz o improviso comercial, economiza recursos e acelera a execução.\" Metas claras geram foco.",
+    "whyItMatters": "Trabalhar sem direção definida faz você gastar energia in ações desconexas de marketing, sem conseguir mensurar o retorno real e sem evoluir a empresa.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir uma meta de faturamento definida, plano de ação comercial de 90 dias estruturado e rotina de métricas.",
+    "evolutionMetric": "Plano de 90 dias finalizado, Cronograma de postagens definido, Canal de anúncios planejado e Metas financeiras estipuladas.",
+    "commonError": "Criar planejamentos longos, complexos e impossíveis de executar. O segredo está in focar in metas simples de faturamento e captação.",
+    "futureDependencies": "Este plano tático de noventa dias será o seu guia comercial diário para manter as campanhas ativas, conteúdos programados e rotina de CRM.",
+    "estimatedMinutes": 25,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Passo 1 — Defina com clareza a sua meta principal de faturamento comercial e a quantidade de clientes necessários para alcançá-la."
+      },
+      {
+        "order": 2,
+        "text": "Passo 2 — Escolha qual serviço ou produto será a ponta de lança e o principal foco comercial das campanhas de 90 dias."
+      },
+      {
+        "order": 3,
+        "text": "Passo 3 — Estipule uma frequência realista de postagem de conteúdos de atração, prova social e humanizados para o seu perfil."
+      },
+      {
+        "order": 4,
+        "text": "Passo 4 — Planeje as ações e canais de aquisição ativa (orçamento diário de anúncios, prospecção e parcerias locais complementares)."
+      },
+      {
+        "order": 5,
+        "text": "Passo 5 — Crie a sua rotina comercial semanal: Defina datas fixas para analisar métricas, gerenciar leads e fazer pós-venda."
+      }
+    ],
+    "bonusChallenge": "Escreva o plano de ação de forma visual in uma folha de papel ou painel de tarefas e coloque-o visível no seu local de trabalho diário.",
+    "reflection": "Você possui uma rota clara de ações comerciais definidas para guiar o seu crescimento comercial nos próximos meses ou opera sem rumo?",
+    "difficulty": "Intermediário",
+    "actionLabel": "Criar Plano",
+    "actionUrl": "#"
+  },
+  {
+    "slug": "desafio-dia-30",
+    "day": 30,
+    "category": "conteudo",
+    "phase": "6 — Consolidação & Escala",
+    "title": "Agora Você Está Construindo Uma Empresa",
+    "subtitle": "A maior transformação dos últimos 30 dias não aconteceu nas suas redes sociais, mas sim na sua mentalidade.",
+    "strategicObjective": "Consolidar a sua identidade empresarial de liderança e assumir o compromisso com o crescimento constante do seu negócio.",
+    "concept": "\"Empresas fortes, lucrativas e sustentáveis são construídas através de constância e consistência diária.\" A jornada empresarial apenas começou.",
+    "whyItMatters": "Deixar para trás a mentalidade informal e reativa de autônomo é o divisor de águas crucial para construir um negócio de valor real, escalável e de alto prestígio.",
+    "expectedResult": "Ao final do desafio o usuário deverá possuir a visão consolidada de sua jornada de 30 dias, conquistas mapeadas e compromisso com o crescimento.",
+    "evolutionMetric": "Programa de 30 dias concluído com sucesso, Taxa de evolução comercial, Novos clientes captados e Visão de longo prazo consolidada.",
+    "commonError": "Parar todas as ações comerciais de marketing e vendas após a conclusão do desafio de 30 dias. A constância comercial deve fazer parte do DNA da empresa.",
+    "futureDependencies": "Essa mentalidade empresarial e a engrenagem de marketing e vendas agora ativa serão a base estrutural para faturar alto e dominar o mercado local.",
+    "estimatedMinutes": 15,
+    "steps": [
+      {
+        "order": 1,
+        "text": "Passo 1 — Revise com orgulho toda a sua jornada de evolução e tarefas concluídas durante os 30 dias do desafio comercial."
+      },
+      {
+        "order": 2,
+        "text": "Passo 2 — Faça uma lista com as 5 principais mudanças estruturais comerciais e de presença digital geradas no seu negócio."
+      },
+      {
+        "order": 3,
+        "text": "Passo 3 — Mapeie e comemore os resultados práticos obtidos (novos clientes, orçamentos, avaliações, parcerias e contatos)."
+      },
+      {
+        "order": 4,
+        "text": "Passo 4 — Selecione os seus próximos 3 grandes objetivos comerciais e de expansão operacional para focar a partir de amanhã."
+      },
+      {
+        "order": 5,
+        "text": "Passo 5 — Firme o compromisso inabalável de manter as boas práticas comerciais de atração e vendas ativas no seu dia a dia."
+      }
+    ],
+    "bonusChallenge": "Publique um Story ou Post sincero comemorando a conclusão do seu desafio comercial de 30 dias, agradecendo a todos que fizeram parte.",
+    "reflection": "Você ainda administra o seu negócio como um profissional improvisado e reativo, ou começou a construir uma empresa sólida e de verdade?",
+    "difficulty": "Intermediário",
+    "actionLabel": "Celebrar Conclusão",
+    "actionUrl": "https://www.instagram.com/"
+  }
+]

@@ -9,9 +9,9 @@ const __dirname = path.dirname(__filename)
 const CHALLENGES_DIR = path.join(__dirname, '../../data/challenges')
 
 function loadChallengeContent(profileType) {
-  const filePath = path.join(CHALLENGES_DIR, `${profileType}.json`)
+  const filePath = path.join(CHALLENGES_DIR, 'challenges.json')
   if (!fs.existsSync(filePath)) {
-    throw new AppError(`Challenge content not found for profile: ${profileType}`, 500)
+    throw new AppError('Challenge content file not found.', 500)
   }
   const raw = fs.readFileSync(filePath, 'utf-8')
   return JSON.parse(raw)
@@ -19,7 +19,30 @@ function loadChallengeContent(profileType) {
 
 function getTaskContent(profileType, taskSlug) {
   const content = loadChallengeContent(profileType)
-  const task = content.find(t => t.slug === taskSlug)
+  
+  // 1. Try finding by direct slug match
+  let task = content.find(t => t.slug === taskSlug)
+  
+  // 2. Fallback for legacy slug formats ('tarefa-servicos-dia-X' or 'tarefa-tecnica-dia-X')
+  if (!task && typeof taskSlug === 'string') {
+    const match = taskSlug.match(/dia-(\d+)/)
+    if (match) {
+      const dayNum = parseInt(match[1], 10)
+      task = content.find(t => t.day === dayNum)
+    }
+  }
+  
+  // 3. Fallback for old custom slugs of days 1-3
+  if (!task && typeof taskSlug === 'string') {
+    if (taskSlug === 'google-meu-negocio-check' || taskSlug === 'bio-instagram-matadora') {
+      task = content.find(t => t.day === 1)
+    } else if (taskSlug === 'whatsapp-business-bio' || taskSlug === 'depoimento-status-whatsapp') {
+      task = content.find(t => t.day === 2)
+    } else if (taskSlug === 'foto-antes-depois' || taskSlug === 'bastidores-video') {
+      task = content.find(t => t.day === 3)
+    }
+  }
+
   if (!task) {
     throw new AppError(`Task not found: ${taskSlug}`, 404)
   }

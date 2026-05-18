@@ -307,7 +307,7 @@ const addFromCatalog = (catItem) => {
                     showCatalogSearch ? 'bg-accent/20 border-accent text-accent2' : 'bg-bg border-border text-muted hover:text-white'
                   }`}
                 >
-                  <Search size={14} className="inline mr-1.5" /> Buscar Catálogo
+                  <Search size={14} className="inline mr-1.5" /> Buscar Produtos
                 </button>
                 <button
                   onClick={() => setShowClientSearch(!showClientSearch)}
@@ -355,7 +355,7 @@ const addFromCatalog = (catItem) => {
             )}
 
             {/* AI Research Widget (inline) */}
-            {showAiSearch && <div className="bg-surface border-2 border-accent/30 rounded-2xl p-4"><AiSuggestionsWidget currentItems={items} onAddItem={(s) => { const nid = `ITEM.${String(items.length + 1).padStart(2, '0')}`; onChangeItems([...items, { id: nid, catalogId: s.id || null, label: s.label, unit: s.unit || 'UNID.', qty: s.qty || 1, price: s.unitPrice || 0, category: s.category || 'SERVICO' }]); }} disabled={!aiEnabled} aiEnabled={aiEnabled} /></div>}
+            {showAiSearch && <div className="bg-surface border-2 border-accent/30 rounded-2xl p-4"><AiSuggestionsWidget currentItems={items} onAddItem={(s) => { const nid = `ITEM.${String(items.length + 1).padStart(2, '0')}`; onChangeItems([...items, { id: nid, catalogId: s.id || null, label: s.label, unit: s.unit || 'UNID.', qty: s.qty || 1, price: s.unitPrice || 0, category: s.category || 'SERVICO', isProduct: s.isProduct || false }]); }} disabled={!aiEnabled} aiEnabled={aiEnabled} /></div>}
 
             {/* Catalog Search with Semantic AI */}
             {showCatalogSearch && (
@@ -472,7 +472,7 @@ const addFromCatalog = (catItem) => {
 
             {/* AI Suggestions */}
             <AiSuggestionsWidget
-              currentItems={items} onAddItem={(s) => { const nid = `ITEM.${String(items.length + 1).padStart(2, '0')}`; onChangeItems([...items, { id: nid, catalogId: s.id || null, label: s.label, unit: s.unit || 'UNID.', qty: s.qty || 1, price: s.unitPrice || 0, category: s.category || 'SERVICO' }]); }}
+              currentItems={items} onAddItem={(s) => { const nid = `ITEM.${String(items.length + 1).padStart(2, '0')}`; onChangeItems([...items, { id: nid, catalogId: s.id || null, label: s.label, unit: s.unit || 'UNID.', qty: s.qty || 1, price: s.unitPrice || 0, category: s.category || 'SERVICO', isProduct: s.isProduct || false }]); }}
               disabled={!aiEnabled} aiEnabled={aiEnabled}
             />
 

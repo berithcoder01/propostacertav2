@@ -241,56 +241,107 @@ export default async function (fastify, opts) {
     const proposalNumber = number || await generateNumber(fastify.prisma, companyId)
     const total = items.reduce((sum, i) => sum + (parseFloat(i.quantity) || 0) * (parseFloat(i.unitPrice) || 0), 0)
 
-    const proposal = await fastify.prisma.proposal.create({
-      data: {
-        companyId,
-        clientId,
-        templateId,
-        number: proposalNumber,
-        title,
-        object,
-        status: status || 'DRAFT',
-        total,
-        clientName,
-        clientContact: clientContact || '',
-        clientRole,
-        clientLocation,
-        clientPhone,
-        segmentData,
-        metadata,
-        items: {
-          create: items.map((item, idx) => ({
-            catalogId: item.catalogId || null,
-            label: item.label || item.description,
-            unit: item.unit,
-            quantity: parseFloat(item.quantity) || 0,
-            unitPrice: parseFloat(item.unitPrice) || parseFloat(item.price) || 0,
-            subtotal: (parseFloat(item.quantity) || 0) * (parseFloat(item.unitPrice) || parseFloat(item.price) || 0),
-            notes: item.notes,
-            category: item.category || 'SERVICO',
-            isProduct: item.isProduct || false,
-            stockReserved: item.isProduct ? (parseInt(item.quantity) || 0) : 0,
-            sortOrder: idx
-          }))
-        },
-        ...(conditions && {
-          conditions: {
-            create: {
-              downPayment: parseFloat(conditions.downPayment) || 0,
-              downPaymentDays: parseInt(conditions.downPaymentDays) || 0,
-              measurementDays: parseInt(conditions.measurementDays) || 0,
-              paymentNfDays: parseInt(conditions.paymentNfDays) || 0,
-              validityDays: parseInt(conditions.validityDays) || 60,
-              executionPeriod: conditions.executionPeriod,
-              paymentTerms: conditions.paymentTerms,
-              observations: conditions.observations,
-              warrantyPeriod: parseInt(conditions.warrantyPeriod) || 5,
-              warrantyType: conditions.warrantyType || 'ANOS',
-            }
+    // Verificar disponibilidade de estoque para produtos
+    const stockErrors = []
+    for (const item of items) {
+      if (item.isProduct && item.catalogId) {
+        const catalogItem = await fastify.prisma.catalogItem.findUnique({ where: { id: item.catalogId } })
+        if (catalogItem) {
+          const available = catalogItem.stockQuantity - catalogItem.stockReserved
+          const requested = parseInt(item.quantity) || 0
+          if (requested > available) {
+            stockErrors.push({
+              itemId: item.catalogId,
+              description: catalogItem.description,
+              available,
+              requested
+            })
           }
-        })
-      },
-      include: { items: true, conditions: true }
+        }
+      }
+    }
+    if (stockErrors.length > 0) {
+      return reply.code(400).send({ error: 'Estoque insuficiente', details: stockErrors })
+    }
+
+    // Se status é APPROVED, decrementar estoque imediatamente
+    const isApproved = status === 'APPROVED'
+    const stockUpdates = []
+    if (isApproved) {
+      for (const item of items) {
+        if (item.isProduct && item.catalogId) {
+          const qty = parseInt(item.quantity) || 0
+          if (qty > 0) {
+            stockUpdates.push(
+              fastify.prisma.catalogItem.update({
+                where: { id: item.catalogId },
+                data: { stockQuantity: { decrement: qty } }
+              })
+            )
+          }
+        }
+      }
+    }
+
+    const proposal = await fastify.prisma.$transaction(async (tx) => {
+      const created = await tx.proposal.create({
+        data: {
+          companyId,
+          clientId,
+          templateId,
+          number: proposalNumber,
+          title,
+          object,
+          status: status || 'DRAFT',
+          total,
+          clientName,
+          clientContact: clientContact || '',
+          clientRole,
+          clientLocation,
+          clientPhone,
+          segmentData,
+          metadata,
+          items: {
+            create: items.map((item, idx) => ({
+              catalogId: item.catalogId || null,
+              label: item.label || item.description,
+              unit: item.unit,
+              quantity: parseFloat(item.quantity) || 0,
+              unitPrice: parseFloat(item.unitPrice) || parseFloat(item.price) || 0,
+              subtotal: (parseFloat(item.quantity) || 0) * (parseFloat(item.unitPrice) || parseFloat(item.price) || 0),
+              notes: item.notes,
+              category: item.category || 'SERVICO',
+              isProduct: item.isProduct || false,
+              stockReserved: item.isProduct ? (parseInt(item.quantity) || 0) : 0,
+              sortOrder: idx
+            }))
+          },
+          ...(conditions && {
+            conditions: {
+              create: {
+                downPayment: parseFloat(conditions.downPayment) || 0,
+                downPaymentDays: parseInt(conditions.downPaymentDays) || 0,
+                measurementDays: parseInt(conditions.measurementDays) || 0,
+                paymentNfDays: parseInt(conditions.paymentNfDays) || 0,
+                validityDays: parseInt(conditions.validityDays) || 60,
+                executionPeriod: conditions.executionPeriod,
+                paymentTerms: conditions.paymentTerms,
+                observations: conditions.observations,
+                warrantyPeriod: parseInt(conditions.warrantyPeriod) || 5,
+                warrantyType: conditions.warrantyType || 'ANOS',
+              }
+            }
+          })
+        },
+        include: { items: true, conditions: true }
+      })
+
+      // Executar atualizações de estoque se aprovado
+      if (stockUpdates.length > 0) {
+        await Promise.all(stockUpdates.map(update => update))
+      }
+
+      return created
     })
 
     return reply.code(201).send(proposal)
@@ -301,7 +352,7 @@ export default async function (fastify, opts) {
     const { companyId } = request.user
     const { id } = request.params
 
-    const exists = await fastify.prisma.proposal.findFirst({ where: { id, companyId } })
+    const exists = await fastify.prisma.proposal.findFirst({ where: { id, companyId }, include: { items: true } })
     if (!exists) return reply.notFound()
 
     const {
@@ -320,6 +371,38 @@ export default async function (fastify, opts) {
       ? items.reduce((sum, i) => sum + (parseFloat(i.quantity) || 0) * (parseFloat(i.unitPrice) || parseFloat(i.price) || 0), 0)
       : exists.total
 
+    // Calcular diferença de estoque se items mudaram e proposta estava aprovada
+    const stockAdjustments = []
+    if (items !== undefined && exists.status === 'APPROVED') {
+      // Liberar estoque dos items antigos
+      for (const oldItem of exists.items) {
+        if (oldItem.isProduct && oldItem.catalogId && oldItem.stockReserved > 0) {
+          stockAdjustments.push(
+            fastify.prisma.catalogItem.update({
+              where: { id: oldItem.catalogId },
+              data: { stockQuantity: { increment: oldItem.stockReserved } }
+            })
+          )
+        }
+      }
+      // Reservar estoque dos novos items
+      if (items) {
+        for (const item of items) {
+          if (item.isProduct && item.catalogId) {
+            const qty = parseInt(item.quantity) || 0
+            if (qty > 0) {
+              stockAdjustments.push(
+                fastify.prisma.catalogItem.update({
+                  where: { id: item.catalogId },
+                  data: { stockQuantity: { decrement: qty } }
+                })
+              )
+            }
+          }
+        }
+      }
+    }
+
     if (items !== undefined) {
       await fastify.prisma.proposalItem.deleteMany({ where: { proposalId: id } })
     }
@@ -327,58 +410,66 @@ export default async function (fastify, opts) {
       await fastify.prisma.commercialConditions.deleteMany({ where: { proposalId: id } })
     }
 
-    const proposal = await fastify.prisma.proposal.update({
-      where: { id },
-      data: {
-        clientId,
-        templateId,
-        number,
-        title,
-        object,
-        total,
-        status,
-        clientName,
-        clientContact,
-        clientRole,
-        clientLocation,
-        clientPhone,
-        segmentData,
-        metadata,
-        ...(items && {
-          items: {
-            create: items.map((item, idx) => ({
-              catalogId: item.catalogId || null,
-              label: item.label || item.description,
-              unit: item.unit,
-              quantity: parseFloat(item.quantity) || 0,
-              unitPrice: parseFloat(item.unitPrice) || parseFloat(item.price) || 0,
-              subtotal: (parseFloat(item.quantity) || 0) * (parseFloat(item.unitPrice) || parseFloat(item.price) || 0),
-              notes: item.notes,
-              category: item.category || 'SERVICO',
-              isProduct: item.isProduct || false,
-              stockReserved: item.isProduct ? (parseInt(item.quantity) || 0) : 0,
-              sortOrder: idx
-            }))
-          }
-        }),
-        ...(conditions && {
-          conditions: {
-            create: {
-              downPayment: parseFloat(conditions.downPayment) || 0,
-              downPaymentDays: parseInt(conditions.downPaymentDays) || 0,
-              measurementDays: parseInt(conditions.measurementDays) || 0,
-              paymentNfDays: parseInt(conditions.paymentNfDays) || 0,
-              validityDays: parseInt(conditions.validityDays) || 60,
-              executionPeriod: conditions.executionPeriod,
-              paymentTerms: conditions.paymentTerms,
-              observations: conditions.observations,
-              warrantyPeriod: parseInt(conditions.warrantyPeriod) || 5,
-              warrantyType: conditions.warrantyType || 'ANOS',
+    const proposal = await fastify.prisma.$transaction(async (tx) => {
+      const updated = await tx.proposal.update({
+        where: { id },
+        data: {
+          clientId,
+          templateId,
+          number,
+          title,
+          object,
+          total,
+          status,
+          clientName,
+          clientContact,
+          clientRole,
+          clientLocation,
+          clientPhone,
+          segmentData,
+          metadata,
+          ...(items && {
+            items: {
+              create: items.map((item, idx) => ({
+                catalogId: item.catalogId || null,
+                label: item.label || item.description,
+                unit: item.unit,
+                quantity: parseFloat(item.quantity) || 0,
+                unitPrice: parseFloat(item.unitPrice) || parseFloat(item.price) || 0,
+                subtotal: (parseFloat(item.quantity) || 0) * (parseFloat(item.unitPrice) || parseFloat(item.price) || 0),
+                notes: item.notes,
+                category: item.category || 'SERVICO',
+                isProduct: item.isProduct || false,
+                stockReserved: item.isProduct ? (parseInt(item.quantity) || 0) : 0,
+                sortOrder: idx
+              }))
             }
-          }
-        })
-      },
-      include: { items: { orderBy: { sortOrder: 'asc' } }, conditions: true }
+          }),
+          ...(conditions && {
+            conditions: {
+              create: {
+                downPayment: parseFloat(conditions.downPayment) || 0,
+                downPaymentDays: parseInt(conditions.downPaymentDays) || 0,
+                measurementDays: parseInt(conditions.measurementDays) || 0,
+                paymentNfDays: parseInt(conditions.paymentNfDays) || 0,
+                validityDays: parseInt(conditions.validityDays) || 60,
+                executionPeriod: conditions.executionPeriod,
+                paymentTerms: conditions.paymentTerms,
+                observations: conditions.observations,
+                warrantyPeriod: parseInt(conditions.warrantyPeriod) || 5,
+                warrantyType: conditions.warrantyType || 'ANOS',
+              }
+            }
+          })
+        },
+        include: { items: { orderBy: { sortOrder: 'asc' } }, conditions: true }
+      })
+
+      if (stockAdjustments.length > 0) {
+        await Promise.all(stockAdjustments.map(adj => adj))
+      }
+
+      return updated
     })
 
     return proposal
@@ -467,16 +558,73 @@ export default async function (fastify, opts) {
       return reply.code(400).send({ error: `Status inválido. Valores aceitos: ${VALID.join(', ')}` })
     }
 
-    const exists = await fastify.prisma.proposal.findFirst({ where: { id, companyId } })
+    const exists = await fastify.prisma.proposal.findFirst({ where: { id, companyId }, include: { items: true } })
     if (!exists) return reply.notFound()
 
     if (exists.status !== status) {
-      const [updated] = await fastify.prisma.$transaction([
-        fastify.prisma.proposal.update({ where: { id }, data: { status } }),
-        fastify.prisma.proposalStatusLog.create({
+      const stockAdjustments = []
+
+      // Se mudando para APPROVED: validar e decrementar estoque dos produtos
+      if (status === 'APPROVED' && exists.status !== 'APPROVED') {
+        // Re-validar disponibilidade de estoque antes de aprovar
+        const stockErrors = []
+        for (const item of exists.items) {
+          if (item.isProduct && item.catalogId && item.stockReserved > 0) {
+            const catalogItem = await fastify.prisma.catalogItem.findUnique({ where: { id: item.catalogId } })
+            if (catalogItem) {
+              const available = catalogItem.stockQuantity
+              const requested = item.stockReserved
+              if (requested > available) {
+                stockErrors.push({
+                  itemId: item.catalogId,
+                  description: catalogItem.description,
+                  available,
+                  requested
+                })
+              }
+            }
+          }
+        }
+        if (stockErrors.length > 0) {
+          return reply.code(400).send({ error: 'Estoque insuficiente para aprovação', details: stockErrors })
+        }
+
+        for (const item of exists.items) {
+          if (item.isProduct && item.catalogId && item.stockReserved > 0) {
+            stockAdjustments.push(
+              fastify.prisma.catalogItem.update({
+                where: { id: item.catalogId },
+                data: { stockQuantity: { decrement: item.stockReserved } }
+              })
+            )
+          }
+        }
+      }
+
+      // Se mudando de APPROVED para REJECTED/EXPIRED: liberar estoque
+      if (exists.status === 'APPROVED' && (status === 'REJECTED' || status === 'EXPIRED')) {
+        for (const item of exists.items) {
+          if (item.isProduct && item.catalogId && item.stockReserved > 0) {
+            stockAdjustments.push(
+              fastify.prisma.catalogItem.update({
+                where: { id: item.catalogId },
+                data: { stockQuantity: { increment: item.stockReserved } }
+              })
+            )
+          }
+        }
+      }
+
+      const [updated] = await fastify.prisma.$transaction(async (tx) => {
+        const result = await tx.proposal.update({ where: { id }, data: { status } })
+        await tx.proposalStatusLog.create({
           data: { proposalId: id, fromStatus: exists.status, toStatus: status }
         })
-      ])
+        if (stockAdjustments.length > 0) {
+          await Promise.all(stockAdjustments.map(adj => adj))
+        }
+        return [result]
+      })
       return updated
     }
     return exists
@@ -602,8 +750,27 @@ export default async function (fastify, opts) {
   fastify.delete('/:id', async (request, reply) => {
     const { companyId } = request.user
     const { id } = request.params
-    const exists = await fastify.prisma.proposal.findFirst({ where: { id, companyId } })
+    const exists = await fastify.prisma.proposal.findFirst({ where: { id, companyId }, include: { items: true } })
     if (!exists) return reply.notFound()
+
+    // Se proposta estava aprovada, liberar estoque
+    if (exists.status === 'APPROVED') {
+      const stockReleases = []
+      for (const item of exists.items) {
+        if (item.isProduct && item.catalogId && item.stockReserved > 0) {
+          stockReleases.push(
+            fastify.prisma.catalogItem.update({
+              where: { id: item.catalogId },
+              data: { stockQuantity: { increment: item.stockReserved } }
+            })
+          )
+        }
+      }
+      if (stockReleases.length > 0) {
+        await Promise.all(stockReleases.map(rel => rel))
+      }
+    }
+
     await fastify.prisma.proposal.delete({ where: { id } })
     return reply.code(204).send()
   })

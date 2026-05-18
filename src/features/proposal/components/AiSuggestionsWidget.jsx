@@ -64,10 +64,10 @@ const AiSuggestionsWidget = ({ currentItems = [], onAddItem, disabled = false, a
         unit: suggestion.unit || 'UNID.',
         qty: suggestion.quantity || 1,
         price: suggestion.unitPrice || 0,
-        category: 'SERVICO',
+        category: suggestion.category || 'SERVICO',
+        isProduct: suggestion.isProduct || false,
       });
     }
-    // Marcar como usada
     setSuggestions(prev => prev.filter(s => s !== suggestion));
   };
 
