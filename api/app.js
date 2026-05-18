@@ -97,7 +97,7 @@ fastify.register(multipartPlugin, {
   // Rotas
   fastify.register(AutoLoad, {
     dir: path.join(__dirname, 'routes'),
-    options: Object.assign({}, opts)
+    options: Object.assign({ prefix: '/api' }, opts)
   })
 }
 
