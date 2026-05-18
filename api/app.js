@@ -2,12 +2,21 @@ import path from 'node:path'
 import fs from 'node:fs'
 import AutoLoad from '@fastify/autoload'
 import fjwt from '@fastify/jwt'
+import cors from '@fastify/cors'
 import { fileURLToPath } from 'node:url'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 export default async function (fastify, opts) {
+  // CORS
+  await fastify.register(cors, {
+    origin: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'Accept', 'X-Requested-With'],
+    credentials: true
+  })
+
   // JWT
   fastify.register(fjwt, {
     secret: process.env.JWT_SECRET || 'orcapro-secret-change-in-production'
