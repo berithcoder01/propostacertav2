@@ -8,9 +8,7 @@ const getApiBase = () => {
 };
 
 const API_BASE = getApiBase();
-const API_URL = isNative
-  ? (API_BASE ? `${API_BASE}/api` : '/api')
-  : '/api';
+const API_URL = API_BASE ? `${API_BASE}/api` : '/api';
 
 export { API_URL };
 
