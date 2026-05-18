@@ -1,0 +1,2 @@
+# Ignorar o diretório do backend para evitar que a Vercel tente criar funções serverless (limite de 12 no plano Hobby)
+api/
