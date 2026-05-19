@@ -134,11 +134,8 @@ export default async function (fastify, opts) {
           specialConditionText: specialConditionText || null,
           defaultDownPaymentPct: parseFloat(defaultDownPaymentPct) || 20,
           defaultDownPaymentDays: parseInt(defaultDownPaymentDays) || 45,
-          defaultMeasurementDays: parseInt(defaultMeasurementDays) || 10,
-          defaultPaymentNfDays: parseInt(defaultPaymentNfDays) || 60,
           defaultValidityDays: parseInt(defaultValidityDays) || 60,
           defaultPaymentMethod: defaultPaymentMethod || 'depósito bancário',
-          defaultSafetyMargin: parseFloat(defaultSafetyMargin) || 1.15,
 
         }
       })
