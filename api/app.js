@@ -28,7 +28,8 @@ export default async function (fastify, opts) {
     'http://localhost:5173', // Dev local
     'https://berithcoder01.github.io', // Produção no GitHub Pages
     'https://narogestor.berithpro01.workers.dev', // Produção no Cloudflare
-    'https://propostacertav2.vercel.app' // Backend/Frontend no Vercel
+    'https://propostacertav2.vercel.app', // Backend/Frontend no Vercel
+    'https://propostacertav2-propostacerta-s-projects.vercel.app' // Domínio Vercel com sufixo do projeto
   ]
 
   // Permite origens customizadas via variável de ambiente (separadas por vírgula)
