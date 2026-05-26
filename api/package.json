@@ -8,9 +8,9 @@
     "dev": "fastify start -w -l info -P app.js",
     "start": "fastify start -l info app.js",
     "test": "node --test test/**/*.test.js",
-    "postinstall": "prisma generate",
-    "db:push": "prisma db push",
-    "db:seed": "node seed.js",
+    "postinstall": "prisma generate --schema=../api-src/prisma/schema.prisma",
+    "db:push": "prisma db push --schema=../api-src/prisma/schema.prisma",
+    "db:seed": "node ../api-src/seed.js",
     "db:studio": "prisma studio"
   },
   "dependencies": {
