@@ -9,9 +9,34 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 export default async function (fastify, opts) {
-  // CORS
+  // Proteção 1: Rate Limiting (Proteção contra DDoS e Brute Force)
+  const rateLimit = (await import('@fastify/rate-limit')).default
+  await fastify.register(rateLimit, {
+    max: 100, // limite de 100 requisições
+    timeWindow: '1 minute', // por minuto, por IP
+    errorResponseBuilder: function (request, context) {
+      return {
+        statusCode: 429,
+        error: 'Too Many Requests',
+        message: 'Limite de requisições excedido. Tente novamente em 1 minuto.'
+      }
+    }
+  })
+
+  // Proteção 2: CORS Restrito (Proteção de acesso à API)
+  const allowedOrigins = [
+    'http://localhost:5173', // Dev local
+    'https://berithcoder01.github.io' // Produção no GitHub Pages
+  ]
   await fastify.register(cors, {
-    origin: true,
+    origin: (origin, cb) => {
+      // Permite requisições sem origin (como REST clients e o mobile nativo) ou origens na lista permitida
+      if (!origin || allowedOrigins.includes(origin)) {
+        cb(null, true)
+        return
+      }
+      cb(new Error('Bloqueado pelo CORS - Origem não autorizada'), false)
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'Accept', 'X-Requested-With'],
     credentials: true

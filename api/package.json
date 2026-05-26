@@ -18,6 +18,7 @@
     "@fastify/cors": "^11.2.0",
     "@fastify/jwt": "^10.0.0",
     "@fastify/multipart": "^10.0.0",
+    "@fastify/rate-limit": "^10.3.0",
     "@fastify/sensible": "^6.0.4",
     "@google/generative-ai": "^0.24.1",
     "@prisma/client": "5.22.0",
