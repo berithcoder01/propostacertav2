@@ -139,7 +139,6 @@ fastify.register(multipartPlugin, {
   }
 })
 
-  const isServerless = process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME
   const pluginsDir = isServerless
     ? path.join(process.cwd(), 'api-src', 'plugins')
     : path.join(__dirname, 'plugins')
