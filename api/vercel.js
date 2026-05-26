@@ -13,12 +13,6 @@ async function getFastify() {
 }
 
 export default async function handler(req, res) {
-  if (req.method === 'OPTIONS') {
-    res.statusCode = 204
-    res.end()
-    return
-  }
-
   try {
     const fastify = await getFastify()
     if (req.url && req.url.startsWith('/api')) {

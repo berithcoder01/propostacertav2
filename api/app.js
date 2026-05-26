@@ -26,15 +26,42 @@ export default async function (fastify, opts) {
   // Proteção 2: CORS Restrito (Proteção de acesso à API)
   const allowedOrigins = [
     'http://localhost:5173', // Dev local
-    'https://berithcoder01.github.io' // Produção no GitHub Pages
+    'https://berithcoder01.github.io', // Produção no GitHub Pages
+    'https://narogestor.berithpro01.workers.dev', // Produção no Cloudflare
+    'https://propostacertav2.vercel.app' // Backend/Frontend no Vercel
   ]
+
+  // Permite origens customizadas via variável de ambiente (separadas por vírgula)
+  if (process.env.ALLOWED_ORIGINS) {
+    const envOrigins = process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim())
+    allowedOrigins.push(...envOrigins)
+  }
+
   await fastify.register(cors, {
     origin: (origin, cb) => {
       // Permite requisições sem origin (como REST clients e o mobile nativo) ou origens na lista permitida
-      if (!origin || allowedOrigins.includes(origin)) {
+      if (!origin) {
         cb(null, true)
         return
       }
+
+      if (allowedOrigins.includes(origin)) {
+        cb(null, true)
+        return
+      }
+
+      // Permite subdomínios do Vercel para deploys de preview (ex: propostacertav2-xxx.vercel.app)
+      if (origin.startsWith('https://propostacertav2') && origin.endsWith('.vercel.app')) {
+        cb(null, true)
+        return
+      }
+
+      // Permite localhost em qualquer porta para desenvolvimento local
+      if (/^http:\/\/localhost(:\d+)?$/.test(origin)) {
+        cb(null, true)
+        return
+      }
+
       cb(new Error('Bloqueado pelo CORS - Origem não autorizada'), false)
     },
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
