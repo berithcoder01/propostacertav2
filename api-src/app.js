@@ -139,9 +139,18 @@ fastify.register(multipartPlugin, {
   }
 })
 
+  const isServerless = process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME
+  const pluginsDir = isServerless
+    ? path.join(process.cwd(), 'api-src', 'plugins')
+    : path.join(__dirname, 'plugins')
+
+  const routesDir = isServerless
+    ? path.join(process.cwd(), 'api-src', 'routes')
+    : path.join(__dirname, 'routes')
+
   // Plugins
   fastify.register(AutoLoad, {
-    dir: path.join(__dirname, 'plugins'),
+    dir: pluginsDir,
     options: Object.assign({}, opts)
   })
 
@@ -149,7 +158,7 @@ fastify.register(multipartPlugin, {
 
   // Rotas
   fastify.register(AutoLoad, {
-    dir: path.join(__dirname, 'routes'),
+    dir: routesDir,
     options: Object.assign({ prefix: '/api' }, opts)
   })
 }
