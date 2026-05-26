@@ -45,12 +45,10 @@ export default async function handler(req, res) {
     res.end()
     return
   }
-
   try {
     const fastify = await getFastify()
-    if (req.url && req.url.startsWith('/api')) {
-      req.url = req.url.slice(4) || '/'
-    }
+    // Não fatiamos o prefixo '/api' porque o Fastify registra suas rotas com o prefixo '/api'.
+    // Mantendo a URL original, o roteador interno do Fastify encontra a rota correspondente.
     
     // Retorna uma Promise para garantir que o Vercel espere a resposta do Fastify terminar
     return new Promise((resolve, reject) => {
