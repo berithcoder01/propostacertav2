@@ -1,5 +1,5 @@
 import Fastify from 'fastify'
-import app from './app.js'
+import app from '../api-src/app.js'
 
 let fastifyInstance = null
 

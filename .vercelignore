@@ -1,16 +1,18 @@
-# Ignorar subdiretórios da API que NÃO devem virar funções serverless separadas
-# O entry point api/index.js DEVE ser deployado como serverless function
+# Ignorar dependências locais e arquivos de configuração da pasta api/
 api/node_modules
-api/data
-api/scratch
-api/uploads
-api/scripts
-api/prisma/migrations
 api/.env
 api/.vercel
-api/test-db.cjs
-api/seed.js
-api/start-api.ps1
-api/railway.toml
-api/README.md
+api/eslint.config.js
+api/{prisma,plugins,routes
 
+# Ignorar pastas desnecessárias para o build em api-src/
+api-src/data
+api-src/scratch
+api-src/uploads
+api-src/scripts
+api-src/prisma/migrations
+api-src/test-db.cjs
+api-src/seed.js
+api-src/start-api.ps1
+api-src/railway.toml
+api-src/README.md

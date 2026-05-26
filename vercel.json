@@ -3,7 +3,7 @@
   "outputDirectory": "dist",
   "functions": {
     "api/index.js": {
-      "includeFiles": "api/**",
+      "includeFiles": "api-src/**",
       "maxDuration": 30
     }
   },
