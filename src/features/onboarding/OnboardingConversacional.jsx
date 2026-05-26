@@ -1,24 +1,24 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Loader, ArrowRight, Building2, CheckCircle } from 'lucide-react';
+import { Send, Loader, ArrowRight, Building2, CheckCircle, MapPin, Users, Wrench } from 'lucide-react';
 import Button from '../../shared/Button';
 
+const STEPS = [
+  { id: 'segment', question: 'Qual é o segmento principal da sua empresa?', icon: '🏗️', options: ['Elétrica', 'Construção Civil', 'Hidráulica', 'Pintura', 'Ar Condicionado', 'Outro'] },
+  { id: 'idealCustomer', question: 'Quem é seu cliente ideal? (Selecione todos que se aplicam)', icon: '🎯', options: ['Residencial (Casas/Apartamentos)', 'Comercial (Lojas/Escritórios)', 'Condomínios', 'Indústrias', 'Imobiliárias'] },
+  { id: 'radius', question: 'Qual é o raio de atuação da sua empresa?', icon: '📍', placeholder: 'Ex.: 10, 20, 50 km' },
+  { id: 'services', question: 'Quais serviços você oferece? (Selecione os principais)', icon: '🔧', options: ['Instalação', 'Manutenção Preventiva', 'Reforma/Reparo', 'Projetos', 'Consultoria', 'Emergência 24h'] },
+  { id: 'audience', question: 'Descreva brevemente seu público-alvo (opcional)', icon: '👥', placeholder: 'Ex.: Condomínios de médio porte em Maringá...' },
+];
+
 const OnboardingConversacional = ({ onNext, onBack, formData, update }) => {
-  const [turn, setTurn] = useState('name'); // 'name' | 'done'
+  const [currentStep, setCurrentStep] = useState(0);
   const [messages, setMessages] = useState([
-    {
-      id: 1,
-      role: 'assistant',
-      content: 'Olá! 👋 Bem-vindo ao PropostaCerta.',
-    },
-    {
-      id: 2,
-      role: 'assistant',
-      content: '**Qual é o nome da sua empresa?**',
-    },
+    { id: 1, role: 'assistant', content: 'Olá!  Bem-vindo ao PropostaCerta.\n\nPara eu encontrar os **melhores leads** para você, preciso entender seu negócio. Vamos fazer uma rápida entrevista?' },
   ]);
 
   const [userInput, setUserInput] = useState('');
+  const [selectedOptions, setSelectedOptions] = useState([]);
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
@@ -28,38 +28,66 @@ const OnboardingConversacional = ({ onNext, onBack, formData, update }) => {
   }, [messages]);
 
   useEffect(() => {
-    if (turn === 'name') {
-      inputRef.current?.focus();
-    }
-  }, [turn]);
+    if (!loading) inputRef.current?.focus();
+  }, [currentStep, loading]);
 
   const addMessage = (role, content) => {
     setMessages(prev => [...prev, { id: prev.length + 1, role, content }]);
   };
 
+  const handleOptionSelect = (option) => {
+    const step = STEPS[currentStep];
+    if (step.options) {
+      // Multi-select
+      setSelectedOptions(prev => 
+        prev.includes(option) ? prev.filter(o => o !== option) : [...prev, option]
+      );
+    } else {
+      // Single select (radio style)
+      setSelectedOptions([option]);
+    }
+  };
+
   const handleSend = async () => {
     const text = userInput.trim();
-    if (!text || loading) return;
+    const step = STEPS[currentStep];
+    
+    // Validation
+    if (step.options && selectedOptions.length === 0 && !text) return;
+    if (!step.options && !text) return;
 
+    const answer = step.options ? selectedOptions.join(', ') : text;
     setUserInput('');
-    addMessage('user', text);
+    setSelectedOptions([]);
+    addMessage('user', answer);
 
-    if (turn === 'name') {
-      update('name', text);
-      update('segment', 'GERAL'); // Define segmento padrão já que unificamos a plataforma
-      
-      setLoading(true);
-      await new Promise(r => setTimeout(r, 600)); // pequeno delay para simular processamento
-      setLoading(false);
-      
-      addMessage('assistant', `Excelente, **${text}** registrada com sucesso! 🏢\n\nSua plataforma está pronta. Pode continuar para personalizar as cores da sua marca. 🎨`);
-      setTurn('done');
+    // Save to formData
+    if (step.id === 'segment') update('segment', answer);
+    if (step.id === 'idealCustomer') update('idealCustomerTypes', answer);
+    if (step.id === 'radius') update('serviceRadiusKm', parseInt(text) || 10);
+    if (step.id === 'services') update('serviceTypes', answer);
+    if (step.id === 'audience') update('targetAudienceDesc', answer);
+
+    setLoading(true);
+    await new Promise(r => setTimeout(r, 800));
+    setLoading(false);
+
+    if (currentStep < STEPS.length - 1) {
+      const nextStep = STEPS[currentStep + 1];
+      addMessage('assistant', `Entendi! ${nextStep.icon} **${nextStep.question}**`);
+      setCurrentStep(prev => prev + 1);
+    } else {
+      addMessage('assistant', 'Perfeito! 🎉 Coletamos todas as informações necessárias.\n\nAgora vou gerar seu **Perfil de Prospecção** para encontrar leads que realmente combinam com seu negócio. Pode continuar para personalizar sua marca! 🎨');
+      setCurrentStep(prev => prev + 1); // Done state
     }
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter' && !loading) handleSend();
+    if (e.key === 'Enter' && !loading && !STEPS[currentStep]?.options) handleSend();
   };
+
+  const isDone = currentStep >= STEPS.length;
+  const currentStepData = STEPS[currentStep];
 
   return (
     <motion.div
@@ -69,16 +97,16 @@ const OnboardingConversacional = ({ onNext, onBack, formData, update }) => {
     >
       {/* Header */}
       <div className="space-y-1">
-        <h2 className="text-xl font-bold font-display text-text-primary">Seu Negócio</h2>
+        <h2 className="text-xl font-bold font-display text-text-primary">Perfil de Prospecção</h2>
         <p className="text-xs text-text-secondary">
-          {turn === 'name' ? 'Passo único — Nome da empresa' : 'Configuração concluída ✅'}
+          {isDone ? 'Entrevista concluída ✅' : `Passo ${currentStep + 1} de ${STEPS.length}`}
         </p>
         <div className="h-1 bg-overlay rounded-full overflow-hidden">
           <motion.div
             className="h-full rounded-full"
             style={{ background: 'var(--primary)' }}
             initial={{ width: '0%' }}
-            animate={{ width: turn === 'name' ? '50%' : '100%' }}
+            animate={{ width: `${(currentStep / STEPS.length) * 100}%` }}
             transition={{ duration: 0.4 }}
           />
         </div>
@@ -100,7 +128,7 @@ const OnboardingConversacional = ({ onNext, onBack, formData, update }) => {
                   P
                 </div>
               )}
-              <div className={`max-w-[80%] px-3 py-2 rounded-2xl text-sm leading-relaxed ${msg.role === 'user'
+              <div className={`max-w-[85%] px-3 py-2 rounded-2xl text-sm leading-relaxed ${msg.role === 'user'
                 ? 'text-white rounded-br-none'
                 : 'bg-overlay text-text-primary rounded-bl-none'
                 }`}
@@ -136,8 +164,30 @@ const OnboardingConversacional = ({ onNext, onBack, formData, update }) => {
         <div ref={messagesEndRef} />
       </div>
 
+      {/* Options Grid (if applicable) */}
+      {currentStepData?.options && !isDone && (
+        <div className="grid grid-cols-2 gap-2">
+          {currentStepData.options.map((opt) => {
+            const isSelected = selectedOptions.includes(opt);
+            return (
+              <button
+                key={opt}
+                onClick={() => handleOptionSelect(opt)}
+                className={`p-2.5 rounded-xl text-xs font-medium border transition-all ${
+                  isSelected 
+                    ? 'border-accent bg-accent/10 text-accent' 
+                    : 'border-border bg-surface text-text-secondary hover:border-border-strong'
+                }`}
+              >
+                {opt}
+              </button>
+            );
+          })}
+        </div>
+      )}
+
       {/* Input */}
-      {turn !== 'done' && (
+      {!isDone && !currentStepData?.options && (
         <div className="flex gap-2 bg-overlay border border-border rounded-2xl p-2.5">
           <input
             ref={inputRef}
@@ -145,7 +195,7 @@ const OnboardingConversacional = ({ onNext, onBack, formData, update }) => {
             value={userInput}
             onChange={e => setUserInput(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder="Ex.: Auto Peças São João..."
+            placeholder={currentStepData?.placeholder || 'Digite sua resposta...'}
             className="flex-1 bg-transparent text-text-primary placeholder-muted outline-none text-sm px-1"
             disabled={loading}
           />
@@ -166,7 +216,7 @@ const OnboardingConversacional = ({ onNext, onBack, formData, update }) => {
           Voltar
         </Button>
         <div className="flex gap-2">
-          {turn === 'done' && (
+          {isDone && (
             <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}>
               <Button onClick={onNext} className="flex items-center gap-2">
                 Continuar <ArrowRight size={16} />

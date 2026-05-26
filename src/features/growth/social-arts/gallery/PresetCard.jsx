@@ -30,15 +30,11 @@ export default function PresetCard({ preset, onClick, index }) {
       onMouseLeave={() => setHovered(false)}
       whileTap={{ scale: 0.97 }}
       className="group relative flex flex-col rounded-2xl overflow-hidden text-left w-full
-                 border border-[rgba(255,255,255,0.06)]
-                 bg-[#15151c]
-                 hover:border-[rgba(255,255,255,0.15)]
-                 transition-colors duration-200"
-      style={{
-        boxShadow: hovered
-          ? '0 0 0 1px rgba(255,255,255,0.1), 0 8px 32px rgba(0,0,0,0.4)'
-          : 'none',
-      }}
+                 border border-border dark:border-[rgba(255,255,255,0.06)]
+                 bg-surface dark:bg-[#15151c]
+                 hover:border-border-strong dark:hover:border-[rgba(255,255,255,0.15)]
+                 shadow-none hover:shadow-[0_8px_24px_rgba(110,88,69,0.12)] dark:hover:shadow-[0_8px_32px_rgba(0,0,0,0.4)]
+                 transition-all duration-200"
     >
       {/* Color block */}
       <div
@@ -72,10 +68,10 @@ export default function PresetCard({ preset, onClick, index }) {
 
       {/* Info */}
       <div className="px-3 py-2.5">
-        <p className="text-white text-xs font-semibold leading-tight">
+        <p className="text-text-primary dark:text-white text-xs font-semibold leading-tight">
           {preset.name}
         </p>
-        <p className="text-white/40 text-[10px] mt-1 leading-snug line-clamp-2">
+        <p className="text-text-secondary dark:text-white/40 text-[10px] mt-1 leading-snug line-clamp-2">
           {preset.description}
         </p>
       </div>

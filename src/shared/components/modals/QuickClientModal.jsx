@@ -1,17 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Building2, X, CheckCircle } from 'lucide-react';
 import Input from '../../Input';
 import Button from '../../Button';
 import { createClient } from '../../../shared/services/api';
 
-const QuickClientModal = ({ isOpen, onClose, onSuccess }) => {
+const QuickClientModal = ({ isOpen, onClose, onSuccess, initialName = '' }) => {
   const [formData, setFormData] = useState({
-    name: '',
+    name: initialName,
     contact: '',
     location: '',
     phone: ''
   });
+
+  useEffect(() => {
+    if (isOpen) {
+      setFormData({
+        name: initialName,
+        contact: '',
+        location: '',
+        phone: ''
+      });
+      setError('');
+    }
+  }, [isOpen, initialName]);
 
   const maskPhone = (v) => {
     const d = v.replace(/\D/g, '').slice(0, 11);
@@ -42,10 +54,10 @@ const QuickClientModal = ({ isOpen, onClose, onSuccess }) => {
         location: formData.location,
         phone: formData.phone
       };
-      await createClient(clientData);
+      const created = await createClient(clientData);
       setLoading(false);
       onClose();
-      onSuccess && onSuccess();
+      onSuccess && onSuccess(created);
     } catch (err) {
       setLoading(false);
       setError(err.message || 'Erro ao criar cliente');

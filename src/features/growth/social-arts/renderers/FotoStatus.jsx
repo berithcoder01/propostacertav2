@@ -1,10 +1,10 @@
 import { Camera } from 'lucide-react'
-import { RectBlocks, DecorativeShapes, LogoOrInitial, PhoneDisplay, CTAButton } from '../components/shared'
+import { RectBlocks, DecorativeShapes, LogoOrInitial, PhoneDisplay, CTAButton, ExtraTextsRenderer } from '../components/shared'
 import { resolveBackground, resolveOverlay } from '../utils/background'
 
 const SEGMENT_LABELS = { ELETRICA: 'Elétrica', HIDRAULICA: 'Hidráulica', PINTURA: 'Pintura', CONSTRUCAO_CIVIL: 'Construção Civil', AR_CONDICIONADO: 'Ar Condicionado', SERVICOS: 'Serviços', OUTRO: 'Serviços' }
 
-export default function FotoStatus({ company, fields, background, uploadedPhoto, elementOffset, decorativeShapes, layoutSpacing, rectBlocks, ctaButton }) {
+export default function FotoStatus({ company, fields, background, uploadedPhoto, elementOffset, decorativeShapes, decorationItems = [], layoutSpacing, rectBlocks, ctaButton, extraTexts = [] }) {
   const name = company?.name || 'Sua Empresa'
   const phone = company?.phone || '(00) 00000-0000'
   const segment = SEGMENT_LABELS[company?.segment] || 'Serviços'
@@ -20,7 +20,7 @@ export default function FotoStatus({ company, fields, background, uploadedPhoto,
       {overlayStyle && <div style={overlayStyle} />}
 
       <RectBlocks rectBlocks={rectBlocks} primary={primary} />
-      <DecorativeShapes shapes={decorativeShapes} primary={primary} secondary={secondary} />
+      <DecorativeShapes shapes={decorativeShapes} items={decorationItems} primary={primary} secondary={secondary} />
 
       <div
         className="relative z-10 flex-1 flex flex-col justify-end p-8 pb-10"
@@ -45,6 +45,8 @@ export default function FotoStatus({ company, fields, background, uploadedPhoto,
 
         <div className="pt-2 space-y-3" style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}>
           <PhoneDisplay phone={phone} className="block" />
+          <ExtraTextsRenderer extraTexts={extraTexts} />
+
           <CTAButton ctaButton={ctaButton} alignment={ctaButton.alignment} />
         </div>
       </div>

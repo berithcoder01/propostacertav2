@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, FileText, Users, Settings, LogOut, Plus, ImageIcon, MapPin, Package, TrendingUp } from 'lucide-react';
+import { LayoutDashboard, FileText, Users, Settings, LogOut, Plus, ImageIcon, MapPin, Package, TrendingUp, Menu, X } from 'lucide-react';
 import { useAuth } from './context/AuthContext';
 import { useTheme } from '../hooks/useTheme';
 import { useThemeMode } from './context/ThemeContext';
@@ -12,6 +12,7 @@ const Layout = () => {
   const { theme } = useTheme();
   const { isDark } = useThemeMode();
   const navigate = useNavigate();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const companyName = company?.name || 'PropostaCerta';
   const companyInitial = companyName.charAt(0).toUpperCase();
 
@@ -33,6 +34,11 @@ const Layout = () => {
     );
   };
 
+  // Fechar menu mobile ao navegar
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [navigate]);
+
   return (
     <div className={`flex flex-col md:flex-row h-screen ${isDark ? 'bg-dark-bg text-white' : 'bg-bg text-text-primary'} font-body overflow-hidden selection:bg-accent/30`}
          style={{ '--brand-primary': primaryColor }}>
@@ -40,6 +46,55 @@ const Layout = () => {
       {/* Ambient Glow com cor da marca */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--brand-primary)]/20 to-transparent" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[300px] bg-ambient-glow opacity-50 pointer-events-none" />
+
+      {/* Mobile Menu Overlay */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 bg-black/50 z-40 md:hidden" onClick={() => setMobileMenuOpen(false)} />
+      )}
+
+      {/* Mobile Drawer Menu */}
+      <div className={`fixed top-0 left-0 h-full w-64 z-50 transform transition-transform duration-300 md:hidden ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className={`w-full h-full flex flex-col ${isDark ? 'bg-dark-surface' : 'bg-white'} shadow-2xl`}>
+          <div className="flex items-center justify-between px-4 py-6 border-b border-border">
+            <div className="flex items-center gap-3">
+              {getInitialsLogo()}
+              <span className="font-display font-black text-sm uppercase tracking-tighter" style={{ color: primaryColor }}>
+                {companyName}
+              </span>
+            </div>
+            <button onClick={() => setMobileMenuOpen(false)} className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+              <X size={20} />
+            </button>
+          </div>
+          
+          <nav className="flex-1 flex flex-col gap-1 p-4">
+            <MobileNavLink to="/" icon={<LayoutDashboard size={20}/>} label="Dashboard" />
+            <MobileNavLink to="/propostas" icon={<FileText size={20}/>} label="Propostas" />
+            <MobileNavLink to="/clientes" icon={<Users size={20}/>} label="Clientes" />
+            <MobileNavLink to="/produtos" icon={<Package size={20}/>} label="Produtos e Serviços" />
+            <MobileNavLink to="/meu-negocio" icon={<TrendingUp size={20}/>} label="Meu Negócio" />
+            {subscription?.plan?.hasAi ? (
+              <MobileNavLink to="/prospeccao" icon={<MapPin size={20}/>} label="Prospecção" />
+            ) : (
+              <div className="flex items-center gap-3 px-3 py-3 rounded-lg text-muted/40 cursor-not-allowed">
+                <MapPin size={20} />
+                <span className="font-medium text-sm">Prospecção <span className="text-[9px] bg-muted/20 px-1.5 py-0.5 rounded-full">PRO</span></span>
+              </div>
+            )}
+          </nav>
+
+          <div className="p-4 border-t border-border">
+            <ThemeToggle size={18} />
+            <MobileNavLink to="/configuracoes" icon={<Settings size={20}/>} label="Configurações" />
+            <button
+              onClick={signOut}
+              className="flex items-center gap-3 w-full px-3 py-3 rounded-lg transition-all text-muted hover:text-danger hover:bg-danger/10">
+              <LogOut size={20} />
+              <span className="font-medium text-sm">Sair</span>
+            </button>
+          </div>
+        </div>
+      </div>
 
       {/* Sidebar Desktop */}
       <div className="hidden md:flex w-20 hover:w-64 group flex-col transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] z-50 shadow-sm overflow-hidden"
@@ -104,7 +159,10 @@ const Layout = () => {
       <div className="flex-1 flex flex-col overflow-hidden relative">
 
         {/* Mobile Header */}
-        <header className="flex md:hidden items-center justify-between px-6 py-4 bg-bg border-b border-border z-30">
+        <header className="flex md:hidden items-center justify-between px-4 py-3 bg-bg border-b border-border z-30">
+          <button onClick={() => setMobileMenuOpen(true)} className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+            <Menu size={24} />
+          </button>
           <div className="flex items-center gap-3">
             {getInitialsLogo()}
             <span className="font-display font-black text-xs uppercase tracking-tighter">
@@ -113,7 +171,7 @@ const Layout = () => {
           </div>
           <button
             onClick={() => navigate('/propostas/nova')}
-            className="w-10 h-10 rounded-sm flex items-center justify-center active:scale-95 transition-transform shadow-glow"
+            className="w-10 h-10 rounded-lg flex items-center justify-center active:scale-95 transition-transform shadow-glow"
             style={{ background: primaryColor }}>
             <Plus size={20} className="text-black" />
           </button>
@@ -121,13 +179,13 @@ const Layout = () => {
 
         {/* Content Area */}
         <main className={`flex-1 overflow-auto custom-scrollbar ${isDark ? 'bg-dark-bg' : 'bg-bg'}`}>
-          <div className="w-full p-6 md:p-8 lg:p-10 pb-32 md:pb-10">
+          <div className="w-full p-4 md:p-6 lg:p-8 pb-32 md:pb-10">
             <Outlet context={{ company }} />
           </div>
         </main>
 
 {/* Mobile Bottom Bar */}
-<nav className="flex md:hidden fixed bottom-6 left-6 right-6 z-40 bg-card/80 backdrop-blur-2xl border border-white/10 rounded-xl shadow-2xl h-16 px-2">
+<nav className="flex md:hidden fixed bottom-4 left-4 right-4 z-40 bg-card/90 backdrop-blur-2xl border border-border rounded-2xl shadow-2xl h-16 px-2">
   <div className="flex items-center justify-around w-full relative">
     <BottomNavLink to="/"          icon={<LayoutDashboard size={20}/>} />
     <BottomNavLink to="/propostas" icon={<FileText size={20}/>}        />
@@ -168,6 +226,22 @@ const SideNavLink = ({ to, icon, label }) => (
     <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap font-bold text-sm uppercase tracking-widest">
       {label}
     </span>
+  </NavLink>
+);
+
+const MobileNavLink = ({ to, icon, label }) => (
+  <NavLink
+    to={to}
+    end={to === '/'}
+    className={({ isActive }) =>
+      `flex items-center gap-3 px-3 py-3 rounded-lg transition-all
+       ${isActive
+          ? 'bg-accent/10 text-accent'
+          : 'text-muted hover:text-text-primary hover:bg-gray-50 dark:hover:bg-gray-800'
+       }`
+    }>
+    <div className="flex-shrink-0">{icon}</div>
+    <span className="font-medium text-sm">{label}</span>
   </NavLink>
 );
 

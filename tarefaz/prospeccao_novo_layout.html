@@ -1,0 +1,167 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.root{display:grid;grid-template-columns:300px 1fr;min-height:620px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden;background:var(--color-background-primary)}
+.sidebar{border-right:0.5px solid var(--color-border-tertiary);display:flex;flex-direction:column;background:var(--color-background-secondary)}
+.sidebar-header{padding:16px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.sidebar-header p{font-size:11px;color:var(--color-text-tertiary);margin-top:4px;line-height:1.4}
+.chat-msgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px;max-height:430px}
+.msg{font-size:12px;line-height:1.5;padding:10px 12px;border-radius:10px;max-width:90%}
+.msg-ai{background:var(--color-background-info);color:var(--color-text-info);border-bottom-left-radius:3px;align-self:flex-start}
+.msg-user{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary);border-bottom-right-radius:3px;align-self:flex-end}
+.chat-input-area{padding:12px;border-top:0.5px solid var(--color-border-tertiary);display:flex;gap:8px;align-items:center}
+.chat-input-area input{flex:1;font-size:12px;padding:8px 10px;border-radius:8px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary)}
+.chat-input-area button{background:var(--color-background-info);color:var(--color-text-info);border:none;border-radius:8px;padding:8px 10px;font-size:12px;cursor:pointer;font-weight:500;white-space:nowrap}
+.main{display:flex;flex-direction:column}
+.main-header{padding:16px 20px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;justify-content:space-between}
+.main-header-left h2{font-size:15px;font-weight:500;color:var(--color-text-primary)}
+.main-header-left p{font-size:12px;color:var(--color-text-secondary);margin-top:2px}
+.badge{display:inline-block;background:var(--color-background-success);color:var(--color-text-success);font-size:11px;padding:3px 8px;border-radius:20px;font-weight:500}
+.leads-list{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.lead-card{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px;cursor:pointer;transition:border-color .15s;display:flex;flex-direction:column;gap:6px}
+.lead-card:hover{border-color:var(--color-border-info)}
+.lead-card.selected{border-color:var(--color-border-info);border-width:1px;background:var(--color-background-info)}
+.lead-top{display:flex;align-items:center;justify-content:space-between}
+.lead-name{font-size:13px;font-weight:500;color:var(--color-text-primary)}
+.score-pill{font-size:11px;padding:2px 8px;border-radius:20px;font-weight:500}
+.score-high{background:var(--color-background-success);color:var(--color-text-success)}
+.score-med{background:var(--color-background-warning);color:var(--color-text-warning)}
+.lead-biz{font-size:12px;color:var(--color-text-secondary)}
+.lead-contact{display:flex;gap:12px;font-size:11px;color:var(--color-text-tertiary)}
+.lead-contact i{font-size:13px;vertical-align:-2px;margin-right:3px}
+.lead-desc{font-size:11px;color:var(--color-text-secondary);line-height:1.4;border-top:0.5px solid var(--color-border-tertiary);padding-top:6px;margin-top:2px}
+.overlay{display:none;position:absolute;inset:0;background:rgba(0,0,0,.35);z-index:10;align-items:flex-start;justify-content:flex-end}
+.overlay.open{display:flex}
+.panel{width:380px;height:100%;background:var(--color-background-primary);border-left:0.5px solid var(--color-border-tertiary);display:flex;flex-direction:column;overflow-y:auto}
+.panel-header{padding:16px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;justify-content:space-between}
+.panel-header h3{font-size:14px;font-weight:500}
+.close-btn{background:none;border:none;cursor:pointer;color:var(--color-text-secondary);font-size:18px;line-height:1}
+.panel-body{padding:16px;display:flex;flex-direction:column;gap:14px}
+.field-row{display:flex;flex-direction:column;gap:3px}
+.field-label{font-size:11px;color:var(--color-text-tertiary);font-weight:500;text-transform:uppercase;letter-spacing:.04em}
+.field-val{font-size:13px;color:var(--color-text-primary)}
+.msg-box{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:12px;font-size:12px;color:var(--color-text-primary);line-height:1.6}
+.action-btns{display:flex;gap:8px;margin-top:4px}
+.btn-wpp{background:#25D366;color:#fff;border:none;border-radius:8px;padding:9px 14px;font-size:12px;font-weight:500;cursor:pointer;flex:1;display:flex;align-items:center;justify-content:center;gap:6px}
+.btn-email{background:var(--color-background-secondary);color:var(--color-text-primary);border:0.5px solid var(--color-border-secondary);border-radius:8px;padding:9px 14px;font-size:12px;font-weight:500;cursor:pointer;flex:1;display:flex;align-items:center;justify-content:center;gap:6px}
+.wrapper{position:relative;overflow:hidden;border-radius:var(--border-radius-lg)}
+</style>
+<h2 class="sr-only">Mockup da nova tela de prospecção com chat de IA lateral e lista de 10 leads curados à direita</h2>
+<div class="wrapper">
+<div class="root">
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <div style="display:flex;align-items:center;gap:8px">
+        <i class="ti ti-brand-hipchat" style="font-size:18px;color:var(--color-text-info)" aria-hidden="true"></i>
+        <span style="font-size:13px;font-weight:500;color:var(--color-text-primary)">Assistente de prospecção</span>
+      </div>
+      <p>Baseado no seu perfil: <strong>instalações elétricas residenciais · Maringá PR</strong></p>
+    </div>
+    <div class="chat-msgs" id="chat">
+      <div class="msg msg-ai">Olá! Analisei seu perfil e preparei 10 leads curados na sua região. São empresas e condomínios que costumam contratar elétrica residencial e ainda não têm fornecedor fixo.</div>
+      <div class="msg msg-user">Como você escolheu esses contatos?</div>
+      <div class="msg msg-ai">Cruzei dados do Google Maps com o segmento que você atende, filtrei por empresas abertas há menos de 3 anos (maior chance de precisar de reforma elétrica) e dei prioridade a quem não tem site — sinal de que ainda buscam fornecedores localmente.</div>
+      <div class="msg msg-user">Tem mais algum perfil que eu deveria atacar?</div>
+      <div class="msg msg-ai">Sim! Imobiliárias de médio porte costumam terceirizar vistorias elétricas em imóveis usados. Quer que eu cuide disso na próxima rodada?</div>
+    </div>
+    <div class="chat-input-area">
+      <input placeholder="Pergunte sobre os leads..." id="chat-in" onkeydown="if(event.key==='Enter')sendMsg()">
+      <button onclick="sendMsg()">Enviar</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="main-header">
+      <div class="main-header-left">
+        <h2>Leads curados para você</h2>
+        <p>Atualizados hoje às 06h14 · próxima rodada amanhã</p>
+      </div>
+      <span class="badge"><i class="ti ti-sparkles" aria-hidden="true"></i> 10 prontos</span>
+    </div>
+    <div class="leads-list" id="leads-list"></div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="panel" id="panel">
+    <div class="panel-header">
+      <h3 id="panel-name">—</h3>
+      <button class="close-btn" onclick="closePanel()" aria-label="Fechar painel">×</button>
+    </div>
+    <div class="panel-body" id="panel-body"></div>
+  </div>
+</div>
+</div>
+
+<script>
+const leads=[
+  {name:"Condomínio Jardim Alvorada",biz:"Condomínio residencial · 48 aptos",phone:"(44) 99201-3847",email:"adm@jalvorada.com.br",score:97,desc:"Sem contrato de manutenção elétrica ativo. Último serviço registrado há 2 anos.",msg:"Olá, Cláudio! Sou o João, eletricista em Maringá. Vi que o Jardim Alvorada não tem manutenção preventiva — posso fazer uma vistoria gratuita e apresentar um plano de manutenção mensal. Quando seria um bom momento?"},
+  {name:"Imobiliária Nova Lar",biz:"Imobiliária · 12 funcionários",phone:"(44) 3221-0049",email:"contato@imobnovamar.com.br",score:91,desc:"Anuncia imóveis usados sem laudo elétrico. Alta rotatividade de locação.",msg:"Oi! Vi os imóveis da Nova Lar no OLX. Ofereço laudos elétricos para imóveis usados com entrega em 48h — pode agilizar muito os aluguéis. Posso mandar uma tabela de preços?"},
+  {name:"Clínica Odonto Sorriso",biz:"Clínica odontológica · 3 consultórios",phone:"(44) 99312-7654",email:"recepcao@odontosorriso.com.br",score:88,desc:"Aberta há 8 meses. Equipamentos odontológicos exigem instalação específica.",msg:"Olá! Parabéns pela abertura da clínica. Equipamentos odontológicos precisam de circuitos dedicados para funcionar bem. Faço adequações elétricas para clínicas — posso passar para uma avaliação sem compromisso?"},
+  {name:"Academia Corpo em Forma",biz:"Academia · recém-inaugurada",phone:"(44) 99455-2210",email:"academia@corpoforma.com.br",score:85,desc:"Inaugurou há 4 meses. Aparelhos de musculação demandam carga elétrica alta.",msg:"Oi! Vi a inauguração da Corpo em Forma — parabéns! Academias costumam ter problemas com a carga dos equipamentos. Faço um diagnóstico elétrico e, se precisar, dimensiono o quadro de distribuição corretamente. Interesse?"},
+  {name:"Pousada Recanto Verde",biz:"Pousada · 14 chalés",phone:"(44) 99601-0033",email:"reservas@recantoverde.com.br",score:82,desc:"Sem sistema de energia emergencial. Alta ocupação em temporada.",msg:"Olá! A Pousada Recanto Verde tem chalés — uma queda de energia em temporada é um problema sério. Instalo sistemas de backup e faço manutenção preventiva. Posso visitar numa boa semana?"},
+  {name:"Mercado Bom Preço",biz:"Supermercado de bairro",phone:"(44) 3225-9901",email:"gerencia@bompreco.com.br",score:79,desc:"Câmeras frias e compressores com sobrecarga frequente relatada em avaliações.",msg:"Oi, tudo bem? Vi relatos de instabilidade elétrica no Bom Preço. Câmeras frias com sobrecarga podem estragar mercadoria e custar caro. Faço revisão completa com laudo — quer marcar?"},
+  {name:"Escola de Idiomas Ling",biz:"Escola · 6 salas de aula",phone:"(44) 99788-4412",email:"ling@escolaling.com.br",score:76,desc:"Ar-condicionado em todas as salas. Sem instalação de SPDA (para-raios).",msg:"Olá! A Escola Ling usa muitos ares-condicionados, mas sem para-raios a instalação fica em risco. Faço instalação de SPDA com ART — equipamento e documento em dia. Posso passar para uma visita técnica?"},
+  {name:"Pet Shop Mundo Animal",biz:"Pet shop · aquários e iluminação especial",phone:"(44) 99244-8831",email:"mundoanimal@gmail.com",score:72,desc:"Iluminação e aquários exigem circuito estabilizado.",msg:"Oi! Pet shops com aquários precisam de circuito estabilizado para proteger os animais. Faço a adequação elétrica e instalo no-break para o setor de aquários. Tem interesse em conversar?"},
+  {name:"Escritório Advocacia Melo",biz:"Escritório de advocacia · 3 salas",phone:"(44) 3224-7712",email:"adm@advocaciamelo.com.br",score:68,desc:"Sem aterramento adequado — risco para servidores e documentos digitais.",msg:"Olá! Escritórios com servidores e computadores precisam de aterramento adequado para evitar perda de dados. Faço a revisão do aterramento com laudo. Posso marcar uma visita rápida?"},
+  {name:"Barbearia Corte & Estilo",biz:"Barbearia · 4 cadeiras",phone:"(44) 99100-5523",email:"corteeestilo@gmail.com",score:63,desc:"Aberta há 6 meses. Equipamentos de precisão ligados em tomadas comuns.",msg:"Oi! Barbearias com equipamentos de precisão merecem tomadas dedicadas — evita queimar motor de máquina cara. Faço a adequação em meio período sem precisar fechar. Interesse?"}
+];
+
+function renderLeads(){
+  const el=document.getElementById('leads-list');
+  el.innerHTML='';
+  leads.forEach((l,i)=>{
+    const sc=l.score>=85?'score-high':'score-med';
+    const card=document.createElement('div');
+    card.className='lead-card';
+    card.setAttribute('role','button');
+    card.setAttribute('tabindex','0');
+    card.innerHTML=`<div class="lead-top"><span class="lead-name">${l.name}</span><span class="score-pill ${sc}">${l.score}% match</span></div><div class="lead-biz">${l.biz}</div><div class="lead-contact"><span><i class="ti ti-phone" aria-hidden="true"></i>${l.phone}</span><span><i class="ti ti-mail" aria-hidden="true"></i>${l.email}</span></div><div class="lead-desc">${l.desc}</div>`;
+    card.onclick=()=>openPanel(i);
+    el.appendChild(card);
+  });
+}
+
+function openPanel(i){
+  const l=leads[i];
+  document.getElementById('panel-name').textContent=l.name;
+  document.getElementById('panel-body').innerHTML=`
+    <div class="field-row"><span class="field-label">Segmento</span><span class="field-val">${l.biz}</span></div>
+    <div class="field-row"><span class="field-label">Telefone</span><span class="field-val">${l.phone}</span></div>
+    <div class="field-row"><span class="field-label">E-mail</span><span class="field-val">${l.email}</span></div>
+    <div class="field-row"><span class="field-label">Por que este lead?</span><span class="field-val" style="font-size:12px;color:var(--color-text-secondary)">${l.desc}</span></div>
+    <div class="field-row">
+      <span class="field-label"><i class="ti ti-sparkles" aria-hidden="true"></i> Mensagem gerada pela IA</span>
+      <div class="msg-box">${l.msg}</div>
+    </div>
+    <div class="action-btns">
+      <button class="btn-wpp"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i> WhatsApp</button>
+      <button class="btn-email"><i class="ti ti-mail" aria-hidden="true"></i> E-mail</button>
+    </div>`;
+  document.getElementById('overlay').classList.add('open');
+}
+
+function closePanel(){document.getElementById('overlay').classList.remove('open')}
+
+function sendMsg(){
+  const inp=document.getElementById('chat-in');
+  const val=inp.value.trim();
+  if(!val)return;
+  const chat=document.getElementById('chat');
+  const m=document.createElement('div');
+  m.className='msg msg-user';
+  m.textContent=val;
+  chat.appendChild(m);
+  inp.value='';
+  chat.scrollTop=chat.scrollHeight;
+  setTimeout(()=>{
+    const r=document.createElement('div');
+    r.className='msg msg-ai';
+    r.textContent='Boa pergunta! Vou considerar isso na próxima curadoria de leads.';
+    chat.appendChild(r);
+    chat.scrollTop=chat.scrollHeight;
+  },700);
+}
+
+renderLeads();
+</script>

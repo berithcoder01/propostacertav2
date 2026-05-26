@@ -29,12 +29,18 @@ const initialState = {
   },
   cta: {
     enabled: true,
+    type: 'button',          // legado
+    activeTypes: ['button'], // novo: array multi-seleção
     text: 'Peça seu orçamento!',
+    phone: '',
+    address: '',
     color: '#E87722',
     textColor: '#ffffff',
     borderRadius: 9999,
     alignment: 'center',
   },
+
+  extraTexts: [], // blocos de texto extra adicionados pelo usuário
 }
 
 function editorReducer(state, action) {
@@ -101,6 +107,26 @@ function editorReducer(state, action) {
       return { ...state, layout: { ...state.layout, rectBlocks: state.layout.rectBlocks.filter(b => b.id !== action.payload) } }
     case 'UPDATE_RECT_BLOCK':
       return { ...state, layout: { ...state.layout, rectBlocks: state.layout.rectBlocks.map(b => b.id === action.payload.id ? { ...b, ...action.payload.updates } : b) } }
+    case 'ADD_EXTRA_TEXT': {
+      const newText = {
+        id: Date.now(),
+        text: action.payload || 'Texto adicional',
+        fontSize: 14,
+        bold: false,
+        align: 'center',
+        color: '#ffffff',
+      }
+      return { ...state, extraTexts: [...state.extraTexts, newText] }
+    }
+    case 'UPDATE_EXTRA_TEXT':
+      return {
+        ...state,
+        extraTexts: state.extraTexts.map(t =>
+          t.id === action.payload.id ? { ...t, ...action.payload.updates } : t
+        ),
+      }
+    case 'REMOVE_EXTRA_TEXT':
+      return { ...state, extraTexts: state.extraTexts.filter(t => t.id !== action.payload) }
     default:
       return state
   }
@@ -130,6 +156,9 @@ export function EditorProvider({ children }) {
   const addRectBlock = useCallback((position) => dispatch({ type: 'ADD_RECT_BLOCK', payload: position }), [])
   const removeRectBlock = useCallback((id) => dispatch({ type: 'REMOVE_RECT_BLOCK', payload: id }), [])
   const updateRectBlock = useCallback((id, updates) => dispatch({ type: 'UPDATE_RECT_BLOCK', payload: { id, updates } }), [])
+  const addExtraText = useCallback((text) => dispatch({ type: 'ADD_EXTRA_TEXT', payload: text }), [])
+  const updateExtraText = useCallback((id, updates) => dispatch({ type: 'UPDATE_EXTRA_TEXT', payload: { id, updates } }), [])
+  const removeExtraText = useCallback((id) => dispatch({ type: 'REMOVE_EXTRA_TEXT', payload: id }), [])
 
   return (
     <EditorContext.Provider value={{
@@ -140,6 +169,7 @@ export function EditorProvider({ children }) {
         setBackground, resetBackground, setLayout, setDecoration, setCta, toggleShape,
         addDecoration, removeDecoration, updateDecoration,
         addRectBlock, removeRectBlock, updateRectBlock,
+        addExtraText, updateExtraText, removeExtraText,
       },
     }}>
       {children}

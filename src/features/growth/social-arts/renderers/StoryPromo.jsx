@@ -1,7 +1,7 @@
-import { RectBlocks, LogoOrInitial, CTAButton, DecorativeShapes } from '../components/shared'
+import { RectBlocks, LogoOrInitial, CTAButton, DecorativeShapes, ExtraTextsRenderer } from '../components/shared'
 import { resolveBackground, resolveOverlay } from '../utils/background'
 
-export default function StoryPromo({ company, fields, background, uploadedPhoto, elementOffset, decorativeShapes, layoutSpacing, rectBlocks, ctaButton }) {
+export default function StoryPromo({ company, fields, background, uploadedPhoto, elementOffset, decorativeShapes, decorationItems = [], layoutSpacing, rectBlocks, ctaButton, extraTexts = [] }) {
   const name = company?.name || 'Sua Empresa'
   const phone = company?.phone || '(00) 00000-0000'
   const primary = company?.primaryColor || '#1A5276'
@@ -19,7 +19,7 @@ export default function StoryPromo({ company, fields, background, uploadedPhoto,
       {overlayStyle && <div style={overlayStyle} />}
 
       <RectBlocks rectBlocks={rectBlocks} primary={primary} />
-      <DecorativeShapes shapes={decorativeShapes} primary={primary} secondary={secondary} />
+      <DecorativeShapes shapes={decorativeShapes} items={decorationItems} primary={primary} secondary={secondary} />
 
       <div
         className="relative z-10 flex flex-col h-full"
@@ -43,6 +43,8 @@ export default function StoryPromo({ company, fields, background, uploadedPhoto,
         </div>
         
         <div className={`p-8 pb-10 ${ctaButton.alignment === 'left' ? 'text-left' : ctaButton.alignment === 'right' ? 'text-right' : 'text-center'}`}>
+          <ExtraTextsRenderer extraTexts={extraTexts} />
+
           <CTAButton ctaButton={ctaButton} alignment={ctaButton.alignment} className="inline-block" />
         </div>
       </div>

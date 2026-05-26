@@ -31,24 +31,26 @@ export default function PresetGallery() {
 
       <div className="flex flex-col gap-3">
         <div>
-          <h3 className="text-lg font-bold text-white">Escolha um modelo</h3>
-          <p className="text-white/40 text-sm mt-0.5">
+          <h3 className="text-lg font-bold text-text-primary dark:text-white">Escolha um modelo</h3>
+          <p className="text-text-secondary dark:text-white/40 text-sm mt-0.5">
             {bannerPresets.length} templates · PNG em alta resolução
           </p>
         </div>
 
         <div className="relative">
-          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
+          <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary/40 dark:text-white/30" />
           <input
             type="text"
             value={query}
             onChange={e => setQuery(e.target.value)}
             placeholder="Buscar por nome, estilo ou formato..."
-            className="w-full pl-9 pr-3 py-2 rounded-lg
-                       bg-[#1f1f2a] border border-[rgba(255,255,255,0.08)]
-                       text-white text-sm placeholder-white/25
-                       focus:outline-none focus:border-blue-500/50
-                       focus:ring-1 focus:ring-blue-500/20
+            className="w-full pl-9 pr-3 py-2.5 rounded-xl
+                       bg-surface dark:bg-[#1f1f2a]
+                       border border-border dark:border-[rgba(255,255,255,0.08)]
+                       text-text-primary dark:text-white
+                       text-sm placeholder-text-secondary/50 dark:placeholder-white/25
+                       focus:outline-none focus:border-accent dark:focus:border-blue-500/50
+                       focus:ring-1 focus:ring-accent/20 dark:focus:ring-blue-500/20
                        transition-all"
           />
         </div>
@@ -59,11 +61,11 @@ export default function PresetGallery() {
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap
-                        flex-shrink-0 transition-all
+            className={`px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap
+                        flex-shrink-0 transition-all border
               ${activeCategory === cat
-                ? 'bg-blue-600 text-white'
-                : 'bg-[#1f1f2a] text-white/50 hover:text-white/80 border border-[rgba(255,255,255,0.08)]'
+                ? 'bg-accent text-white border-accent shadow-sm'
+                : 'bg-surface dark:bg-[#1f1f2a] text-text-secondary dark:text-white/50 hover:text-text-primary dark:hover:text-white/80 border-border dark:border-[rgba(255,255,255,0.08)]'
               }`}
           >
             {cat}
@@ -77,7 +79,7 @@ export default function PresetGallery() {
             key="empty"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="py-16 text-center text-white/30 text-sm"
+            className="py-16 text-center text-text-secondary/40 dark:text-white/30 text-sm"
           >
             Nenhum template encontrado para "{query}"
           </motion.div>

@@ -61,7 +61,7 @@ const StepCliente = ({ data, onChange, onNext }) => {
       className="space-y-8"
     >
       <div>
-        <h2 className="text-2xl font-extrabold font-display mb-2 text-white">Dados do Cliente</h2>
+        <h2 className="text-2xl font-extrabold font-display mb-2 text-text-primary dark:text-white">Dados do Cliente</h2>
         <p className="text-muted text-sm">Selecione um cliente cadastrado ou preencha manualmente.</p>
       </div>
 
@@ -85,7 +85,7 @@ const StepCliente = ({ data, onChange, onNext }) => {
            </button>
          </div>
          {showSuggestions && filteredClients.length > 0 && (
-           <div className="absolute z-50 w-full mt-1 bg-surface border-2 border-border rounded-xl shadow-2xl max-h-48 overflow-y-auto overflow-hidden">
+           <div className="absolute z-50 w-full mt-1 bg-surface border border-border rounded-xl shadow-2xl max-h-48 overflow-y-auto overflow-hidden">
              {filteredClients.map(client => (
                <button
                  key={client.id}
@@ -94,7 +94,7 @@ const StepCliente = ({ data, onChange, onNext }) => {
                >
                  <Building2 size={16} className="text-muted" />
                  <div className="flex flex-col">
-                   <span className="text-sm font-bold text-white">{client.name}</span>
+                   <span className="text-sm font-bold text-text-primary dark:text-white">{client.name}</span>
                    <span className="text-[10px] text-muted uppercase tracking-wider">{client.location}</span>
                  </div>
                </button>
@@ -138,7 +138,7 @@ const StepCliente = ({ data, onChange, onNext }) => {
           <textarea 
             rows={3} 
             placeholder="Ex.: Execução de serviços de engenharia e instalação..." 
-            className="w-full bg-bg/50 border-2 border-border rounded-xl px-4 py-3 text-white font-bold outline-none focus:border-accent transition-colors h-24 resize-none text-sm"
+            className="input-base border-2 border-border h-24 resize-none"
             value={data.objeto || ''} 
             onChange={e => onChange({ ...data, objeto: e.target.value })} 
           />
@@ -155,16 +155,26 @@ const StepCliente = ({ data, onChange, onNext }) => {
          </Button>
        </div>
      </motion.div>
-     
-     {/* Quick Client Modal */}
-     <QuickClientModal
-       isOpen={showQuickClientModal}
-       onClose={() => setShowQuickClientModal(false)}
-       onSuccess={() => {
-         // Optionally refresh client list or select the newly created client
-         // For now, we'll just close the modal and let the user search for the new client
-       }}
-     />
+          {/* Quick Client Modal */}
+      <QuickClientModal
+        isOpen={showQuickClientModal}
+        onClose={() => setShowQuickClientModal(false)}
+        initialName={data.nome || ''}
+        onSuccess={(newClient) => {
+          if (newClient) {
+            onChange({
+              ...data,
+              nome: newClient.name,
+              contato: newClient.contact || '',
+              cargo: newClient.role || '',
+              local: newClient.location || '',
+              tel: newClient.phone || ''
+            });
+            setClients(prev => [newClient, ...prev]);
+          }
+          setShowQuickClientModal(false);
+        }}
+      />
     </>
   );
 };

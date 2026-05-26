@@ -38,7 +38,7 @@ export default function TaskDetailPage({ task, dayNumber, onBack, onMarkDone, on
   const categoryIcon = getCategoryIcon(content?.category || 'presenca')
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-4 py-6">
+    <div className="w-full px-4 py-6">
       <AnimatePresence>
         {showConfetti && (
           <motion.div

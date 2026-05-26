@@ -1,8 +1,8 @@
-import { LogoOrInitial, CTAButton, RectBlocks, DecorativeShapes } from '../components/shared'
+import { LogoOrInitial, CTAButton, RectBlocks, DecorativeShapes, ExtraTextsRenderer } from '../components/shared'
 import { getSegmentLabel } from '../utils/segments'
 import { resolveBackground, resolveOverlay } from '../utils/background'
 
-export default function ServiceGrid({ company, fields, background, uploadedPhoto, elementOffset, decorativeShapes, layoutSpacing, rectBlocks, ctaButton }) {
+export default function ServiceGrid({ company, fields, background, uploadedPhoto, elementOffset, decorativeShapes, decorationItems = [], layoutSpacing, rectBlocks, ctaButton, extraTexts = [] }) {
   const name = company?.name || 'Sua Empresa'
   const phone = company?.phone || '(00) 00000-0000'
   const segment = getSegmentLabel(company?.segment)
@@ -21,7 +21,7 @@ export default function ServiceGrid({ company, fields, background, uploadedPhoto
       {overlayStyle && <div style={overlayStyle} />}
 
       <RectBlocks rectBlocks={rectBlocks} primary={primary} />
-      <DecorativeShapes shapes={decorativeShapes} primary={primary} secondary={secondary} />
+      <DecorativeShapes shapes={decorativeShapes} items={decorationItems} primary={primary} secondary={secondary} />
 
       <div
         className="relative z-10 flex flex-col p-10"
@@ -51,6 +51,8 @@ export default function ServiceGrid({ company, fields, background, uploadedPhoto
         
         <div className="pt-4 border-t-2 border-white/20">
           <p className="text-white/70 text-xs font-semibold mb-3 break-words" style={{ wordBreak: 'break-word' }}>{tagline}</p>
+          <ExtraTextsRenderer extraTexts={extraTexts} />
+
           <CTAButton ctaButton={ctaButton} alignment="center" />
         </div>
       </div>

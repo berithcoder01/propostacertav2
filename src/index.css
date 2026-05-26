@@ -12,20 +12,41 @@
     --gold: #F59E0B;
     --accent2: #94A3B8;
 
-    /* Editor theme — Light Mode */
-    --editor-bg: #e8e8e6;
-    --editor-panel-bg: #f5f5f3;
-    --editor-panel-border: #d4d4d2;
+    /* Light Mode */
+    --bg:              #F7F3EF;
+    --surface:         #E9DFD1;
+    --card:            #E9DFD1;
+    --overlay:         #F7F3EF;
+    --border:          #D4BFAA;
+    --border-strong:   #C4A88A;
+    --text-primary:    #6E5845;
+    --text-secondary:  #8C735A;
+    --muted:           #A89582;
+
+    /* Editor theme — Light Mode (Creme) */
+    --editor-bg: #E9DFD1;
+    --editor-panel-bg: #F7F3EF;
+    --editor-panel-border: #D4BFAA;
     --editor-panel-radius: 12px;
-    --editor-panel-shadow: 0 2px 12px rgba(0,0,0,0.08);
-    --editor-header-bg: #ebebea;
-    --editor-input-bg: #ffffff;
-    --editor-input-border: #d4d4d2;
-    --editor-text: #111111;
+    --editor-panel-shadow: 0 2px 12px rgba(110,88,69,0.08);
+    --editor-header-bg: #F7F3EF;
+    --editor-input-bg: #FFFFFF;
+    --editor-input-border: #D4BFAA;
+    --editor-text: #6E5845;
   }
 
   /* Dark Mode */
   .dark {
+    --bg:              #0a0a0a;
+    --surface:         #141414;
+    --card:            #1a1a1a;
+    --overlay:         #1a1a1a;
+    --border:          #2a2a2a;
+    --border-strong:   #3a3a3a;
+    --text-primary:    #e5e5e5;
+    --text-secondary:  #a3a3a3;
+    --muted:           #737373;
+
     --editor-bg: #0f0f0f;
     --editor-panel-bg: #151515;
     --editor-panel-border: #242424;
@@ -43,26 +64,20 @@
   body {
     @apply font-body antialiased;
     min-height: 100vh;
-    background: linear-gradient(160deg, #E3DDD3 0%, #F7F5F3 50%, #C0D5CA 100%);
-    background-attachment: fixed;
-  }
-
-  .dark body {
-    background-color: #0a0a0a;
-    color: #e5e5e5;
+    background-color: var(--bg);
+    color: var(--text-primary);
   }
 
   /* Scrollbar discreta */
   ::-webkit-scrollbar       { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 99px; }
-
-  .dark ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); }
+  ::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 99px; opacity: 0.4; }
 
   /* Seleção de texto */
   ::selection {
-    background: rgba(16,185,129,0.20);
-    color: #111827;
+    background: var(--muted);
+    opacity: 0.3;
+    color: var(--text-primary);
   }
 }
 
@@ -72,20 +87,10 @@
     @apply bg-surface border border-border rounded-2xl;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.1);
   }
-  .dark .card {
-    background-color: #141414;
-    border-color: #2a2a2a;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,0.2);
-  }
 
   .card-elevated {
     @apply bg-card border border-border-strong rounded-2xl;
     box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.025);
-  }
-  .dark .card-elevated {
-    background-color: #1a1a1a;
-    border-color: #2a2a2a;
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -2px rgba(0,0,0,0.2);
   }
 
   /* Botão primário — Light Mode */
@@ -103,18 +108,13 @@
   /* Input */
   .input-base {
     @apply border rounded-xl px-4 py-3 text-sm transition-all outline-none w-full;
+    background-color: var(--overlay);
+    border-color: var(--border);
+    color: var(--text-primary);
   }
-  .dark .input-base {
-    background-color: #1f1f1f;
-    border-color: #333333;
-    color: #e5e5e5;
-  }
-  .dark .input-base:focus {
-    border-color: #10B981;
+  .input-base:focus {
+    border-color: var(--primary);
     box-shadow: 0 0 0 1px rgba(16,185,129,0.3);
-  }
-  .input-base:not(.dark .input-base) {
-    @apply bg-white border border-border hover:border-border-strong focus:border-accent focus:ring-1 focus:ring-accent/30 text-text-primary placeholder-muted;
   }
 
   /* Badge de status */
@@ -123,9 +123,9 @@
            text-xs font-semibold uppercase tracking-wide;
   }
 
-  /* Texto com gradiente - Light Mode */
+  /* Texto com gradiente */
   .text-gradient {
-    background: linear-gradient(135deg, #111827 0%, #4B5563 100%);
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

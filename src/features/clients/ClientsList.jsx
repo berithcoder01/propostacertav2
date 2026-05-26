@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Plus, Search, Trash2, MapPin, Phone, Building2, Edit2, X, Check, MessageSquare } from 'lucide-react';
+import { Plus, Search, Trash2, MapPin, Phone, Building2, Edit2, X, Check, MessageSquare, Download } from 'lucide-react';
 import { fetchClients, createClient, updateClient, deleteClient } from '../../shared/services/api';
 import Button from '../../shared/Button';
 import Input from '../../shared/Input';
@@ -100,6 +100,38 @@ const ClientsList = () => {
     }
   };
 
+  const exportToExcel = () => {
+    if (clients.length === 0) {
+      toast({ message: 'Não há clientes para exportar.', type: 'warning' });
+      return;
+    }
+
+    // Usamos delimitador ";" e BOM UTF-8 para compatibilidade perfeita com Excel em português
+    const headers = ['Empresa / Cliente', 'Nome do Contato', 'Telefone / WhatsApp', 'Localidade / Cidade'];
+    const rows = clients.map(c => [
+      `"${(c.name || '').replace(/"/g, '""')}"`,
+      `"${(c.contact || '').replace(/"/g, '""')}"`,
+      `"${(c.phone || '').replace(/"/g, '""')}"`,
+      `"${(c.location || '').replace(/"/g, '""')}"`
+    ]);
+
+    const csvContent = [
+      headers.join(';'),
+      ...rows.map(row => row.join(';'))
+    ].join('\n');
+
+    const blob = new Blob([`\uFEFF${csvContent}`], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `clientes-${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    toast({ message: 'Planilha de clientes exportada com sucesso!', type: 'success' });
+  };
+
   const filteredClients = clients.filter(c =>
     (c.name || '').toLowerCase().includes(search.toLowerCase()) ||
     (c.contact || '').toLowerCase().includes(search.toLowerCase())
@@ -116,12 +148,17 @@ const ClientsList = () => {
           <h1 className="text-3xl font-black font-display text-text-primary dark:text-white mb-2">Clientes</h1>
           <p className="text-muted dark:text-gray-500">Gerencie sua base de clientes e contatos.</p>
         </div>
-        {!isFormOpen && !editingId && (
-          <Button onClick={() => setIsFormOpen(true)} className="flex items-center gap-2 px-6">
-            <Plus size={18} />
-            Novo Cliente
+        <div className="flex gap-2">
+          <Button variant="ghost" onClick={exportToExcel} className="flex items-center gap-2 px-4">
+            <Download size={16} /> Planilha
           </Button>
-        )}
+          {!isFormOpen && !editingId && (
+            <Button onClick={() => setIsFormOpen(true)} className="flex items-center gap-2 px-6">
+              <Plus size={18} />
+              Novo Cliente
+            </Button>
+          )}
+        </div>
       </div>
 
       {isFormOpen && (

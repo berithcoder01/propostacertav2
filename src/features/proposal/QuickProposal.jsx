@@ -25,8 +25,8 @@ const maskPhone = (v) => {
 };
 
 // ─── NewClientModal ───────────────────────────────────────────────────────────
-const NewClientModal = ({ onClose, onCreate }) => {
-  const [name, setName] = useState('');
+const NewClientModal = ({ onClose, onCreate, initialName = '' }) => {
+  const [name, setName] = useState(initialName);
   const [phone, setPhone] = useState('');
   return (
     <motion.div
@@ -222,7 +222,7 @@ const QuickProposal = () => {
     <>
       <AnimatePresence>
         {showNewClient && (
-          <NewClientModal onClose={() => setShowNewClient(false)} onCreate={handleCreateClient} />
+          <NewClientModal onClose={() => setShowNewClient(false)} onCreate={handleCreateClient} initialName={clientQuery} />
         )}
       </AnimatePresence>
 

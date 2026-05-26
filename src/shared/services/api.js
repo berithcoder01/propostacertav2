@@ -487,3 +487,23 @@ export const setDefaultTemplate = async (id) => {
    if (!response.ok) throw new Error('Falha ao definir modelo padrão');
    return response.json();
  };
+
+// ─── Perfil de Prospecção (Fase 12) ─────────────────────────────────────────
+export const fetchProspectingProfile = async () => {
+   const response = await fetch(`${API_URL}/company/prospecting-profile`, { headers: getAuthHeaders() });
+   if (!response.ok) {
+     const err = await response.json().catch(() => ({ error: 'Falha ao buscar perfil' }));
+     return { configured: false, error: err.error };
+   }
+   return response.json();
+ };
+
+export const saveProspectingProfile = async (profileData) => {
+   const response = await fetch(`${API_URL}/company/prospecting-profile`, {
+     method: 'POST', headers: getAuthHeaders(true), body: JSON.stringify(profileData)
+   });
+   if (!response.ok) { const err = await response.json().catch(() => ({ error: 'Falha ao salvar perfil' }));
+     throw new Error(err.error || 'Falha ao salvar perfil de prospecção');
+   }
+   return response.json();
+ };

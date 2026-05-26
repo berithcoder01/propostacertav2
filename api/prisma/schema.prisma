@@ -5,8 +5,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  directUrl  = env("DIRECT_DATABASE_URL")
   extensions = [vector]
 }
 
@@ -103,6 +104,7 @@ model Company {
     subscription   Subscription?
     marketingProfile   MarketingProfile?
     marketingChallenges MarketingChallenge[]
+    prospectingProfile ProspectingProfile?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -413,6 +415,15 @@ model Lead {
   metadata    Json?
   notes       String?
   contactHistory Json?
+  
+  // Campos de IA e Prospecção (FASE 12)
+  score                 Int      @default(0)    // Score de compatibilidade (0-100)
+  mensagemPersonalizada String?  // Mensagem de abordagem gerada pela IA
+  motivoMatch           String?  // Por que este lead é bom para esta empresa
+  processedByAI         Boolean  @default(false)
+  aiProcessingMethod    String?  // 'gemini' | 'keyword-fallback' | 'ollama'
+  nomeLimpo             String?  // Nome tratado pela IA
+  segmentoDetectado     String?  // Segmento detectado pela IA
 
   proposals   Proposal[]
 
@@ -593,4 +604,36 @@ enum TaskStatus {
   PENDING
   DONE
   SKIPPED
+}
+
+// ─────────────────────────────────────────────
+// PERFIL DE PROSPECÇÃO (FASE 12)
+// ────────────────────────────────────────────
+
+model ProspectingProfile {
+  id                String             @id @default(uuid())
+  companyId         String             @unique
+  company           Company            @relation(fields: [companyId], references: [id])
+  
+  // Dados do Perfil de Cliente Ideal
+  idealCustomerTypes String[]          // ['RESIDENCIAL', 'COMERCIAL', 'CONDOMINIO', 'INDUSTRIAL']
+  businessScope       String           @default("LOCAL")  // LOCAL ou NACIONAL
+  baseCity            String?          // Cidade base para busca (ex: Maringá)
+  baseState           String?          // Estado base (ex: PR)
+  serviceRadiusKm     Int              @default(50)   // Raio para cidades próximas (km)
+  serviceTypes        String[]         // Tipos de serviço oferecidos
+  targetAudienceDesc String?           // Descrição livre do público-alvo
+  buyerPersona      Json?              // Persona gerada pela IA: {name, painPoints, needs, objections}
+  
+  // Preferências de Matching
+  preferredSegments String[]           // Segmentos prioritários
+  excludedSegments  String[]           // Segmentos a ignorar
+  keywords          String[]           // Palavras-chave que indicam bons leads
+  
+  // Configurações de Prospecção
+  autoProspecting   Boolean            @default(false) // Habilitar prospecção automática
+  dailyLeadLimit    Int                @default(10)    // Limite de leads por dia
+  
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
 }

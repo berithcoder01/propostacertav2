@@ -341,7 +341,7 @@ const addFromCatalog = (catItem) => {
               <div className="bg-surface border-2 border-accent/30 rounded-2xl p-4">
                 <div className="flex items-center gap-3 mb-3">
                   <Building2 size={16} className="text-accent" />
-                  <input type="text" placeholder="Buscar cliente..." value={clientSearch} onChange={e => setClientSearch(e.target.value)} className="flex-1 bg-bg border border-border rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-accent" />
+                  <input type="text" placeholder="Buscar cliente..." value={clientSearch} onChange={e => setClientSearch(e.target.value)} className="flex-1 input-base rounded-lg px-3 py-2 text-sm" />
                 </div>
                 <div className="max-h-40 overflow-y-auto space-y-1">
                   {clients.filter(c => (c.name || '').toLowerCase().includes(clientSearch.toLowerCase())).slice(0, 8).map(c => (
@@ -362,7 +362,7 @@ const addFromCatalog = (catItem) => {
               <div className="bg-surface border-2 border-accent/30 rounded-2xl p-4">
                 <div className="flex items-center gap-3 mb-3">
                   <Search size={16} className="text-accent flex-shrink-0" />
-                  <input type="text" placeholder="Buscar no catálogo ou descrever o que precisa..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && searchQuery.trim() && aiEnabled) handleSemanticSearch(searchQuery); }} className="flex-1 bg-bg border border-border rounded-lg px-3 py-2 text-sm text-white outline-none focus:border-accent" />
+                  <input type="text" placeholder="Buscar no catálogo ou descrever o que precisa..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} onKeyDown={e => { if (e.key === 'Enter' && searchQuery.trim() && aiEnabled) handleSemanticSearch(searchQuery); }} className="flex-1 input-base rounded-lg px-3 py-2 text-sm" />
                   {aiEnabled && <button onClick={() => searchQuery.trim() && handleSemanticSearch(searchQuery)} className={`p-2 rounded-lg transition-colors flex-shrink-0 ${semanticLoading ? 'animate-pulse text-accent' : 'text-muted hover:text-accent hover:bg-accent/10'}`} title="Buscar com IA"><RefreshCw size={16} className={semanticLoading ? 'animate-spin' : ''} /></button>}
                 </div>
 
@@ -383,7 +383,7 @@ const addFromCatalog = (catItem) => {
                           <div>
                             <div className="flex items-center gap-2">
                               {item.isProduct ? <Package size={12} className="text-accent2" /> : <Wrench size={12} className="text-gold" />}
-                              <span className="text-sm font-bold text-white">{item.description}</span>
+                              <span className="text-sm font-bold text-text-primary dark:text-white">{item.description}</span>
                             </div>
                             <div className="text-[10px] text-muted">{item.category || 'SERVICO'} · {item.unit || 'UNID.'} · {typeof item.defaultPrice === 'number' ? fmt(item.defaultPrice) : '—'}</div>
                           </div>
@@ -400,7 +400,7 @@ const addFromCatalog = (catItem) => {
                       const alreadyAdded = items.some(i => i.catalogId === item.id);
                       const isLowStock = item.isProduct && item.stockQuantity <= item.minStock;
                       return (
-                        <button key={item.id} onClick={() => !alreadyAdded && addFromCatalog(item)} disabled={alreadyAdded} className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-left transition-all ${alreadyAdded ? 'bg-bg/50 text-muted cursor-not-allowed opacity-50' : 'hover:bg-accent/10 text-white'}`} type="button">
+                        <button key={item.id} onClick={() => !alreadyAdded && addFromCatalog(item)} disabled={alreadyAdded} className={`w-full flex items-center justify-between px-4 py-3 rounded-xl text-left transition-all ${alreadyAdded ? 'bg-bg/50 text-muted cursor-not-allowed opacity-50' : 'hover:bg-accent/10 text-text-primary dark:text-white'}`} type="button">
                           <div>
                             <div className="flex items-center gap-2">
                               {item.isProduct ? <Package size={12} className="text-accent2" /> : <Wrench size={12} className="text-gold" />}
@@ -507,10 +507,10 @@ const addFromCatalog = (catItem) => {
           <motion.div key="condicoes" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} className="space-y-6">
             <div className="flex justify-between items-center mb-4">
               <div>
-                <h2 className="text-2xl font-bold font-display text-white">Condições Comerciais</h2>
+                <h2 className="text-2xl font-bold font-display text-text-primary dark:text-white">Condições Comerciais</h2>
                 <p className="text-muted text-sm mt-1">Configure pagamento, garantias e prazos.</p>
               </div>
-              <button onClick={() => setActiveTab('servicos')} className="text-sm text-muted hover:text-white transition-colors">← Voltar para Serviços</button>
+              <button onClick={() => setActiveTab('servicos')} className="text-sm text-muted hover:text-text-primary dark:hover:text-white transition-colors">← Voltar para Serviços</button>
             </div>
 
             {/* Tipo de Proposta */}
@@ -518,11 +518,11 @@ const addFromCatalog = (catItem) => {
               <label className="text-[10px] font-bold uppercase tracking-widest text-muted">Modelo de Precificação</label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <button type="button" onClick={() => onTipoChange('valor_fechado')} className={`p-4 rounded-xl border-2 transition-all text-left ${tipoProposta === 'valor_fechado' ? 'border-accent bg-accent/10' : 'border-border bg-bg hover:border-accent/30'}`}>
-                  <div className={`font-bold text-sm mb-1 ${tipoProposta === 'valor_fechado' ? 'text-white' : 'text-muted'}`}>Valor Fechado</div>
+                  <div className={`font-bold text-sm mb-1 ${tipoProposta === 'valor_fechado' ? 'text-text-primary dark:text-white' : 'text-text-secondary dark:text-muted'}`}>Valor Fechado</div>
                   <div className="text-[11px] text-muted">Escopo e quantidades fixas.</div>
                 </button>
                 <button type="button" onClick={() => onTipoChange('servico_continuo')} className={`p-4 rounded-xl border-2 transition-all text-left ${tipoProposta === 'servico_continuo' ? 'border-accent bg-accent/10' : 'border-border bg-bg hover:border-accent/30'}`}>
-                  <div className={`font-bold text-sm mb-1 ${tipoProposta === 'servico_continuo' ? 'text-white' : 'text-muted'}`}>Medição / Contínuo</div>
+                  <div className={`font-bold text-sm mb-1 ${tipoProposta === 'servico_continuo' ? 'text-text-primary dark:text-white' : 'text-text-secondary dark:text-muted'}`}>Medição / Contínuo</div>
                   <div className="text-[11px] text-muted">Faturamento baseado na execução real.</div>
                 </button>
               </div>
@@ -533,7 +533,7 @@ const addFromCatalog = (catItem) => {
               <div className="space-y-4">
                 <div className={`bg-surface border-2 rounded-2xl transition-all duration-300 overflow-hidden ${cond.showPagamento !== false ? 'border-accent/40 shadow-lg shadow-accent/5' : 'border-border opacity-70'}`}>
                   <div className="p-4 flex items-center justify-between cursor-pointer hover:bg-white/5 transition-colors" onClick={() => update('showPagamento', cond.showPagamento === false)}>
-                    <div className="flex items-center gap-3"><input type="checkbox" checked={cond.showPagamento !== false} readOnly className="w-5 h-5 rounded border-border text-accent focus:ring-accent bg-bg" /><div><h3 className="font-bold text-white text-sm">Condições de Pagamento</h3><p className="text-[10px] text-muted uppercase tracking-wider">Entrada, Medição e Prazos</p></div></div>
+                    <div className="flex items-center gap-3"><input type="checkbox" checked={cond.showPagamento !== false} readOnly className="w-5 h-5 rounded border-border text-accent focus:ring-accent bg-bg" /><div><h3 className="font-bold text-text-primary dark:text-white text-sm">Condições de Pagamento</h3><p className="text-[10px] text-muted uppercase tracking-wider">Entrada, Medição e Prazos</p></div></div>
                     <div className={`transition-transform duration-300 ${cond.showPagamento !== false ? 'rotate-90' : ''}`}><Wallet size={18} className="text-muted" /></div>
                   </div>
                   {cond.showPagamento !== false && (
@@ -546,7 +546,7 @@ const addFromCatalog = (catItem) => {
                         )}
                         <Input label="Prazo Pagto NF" inputMode="decimal" pattern="[0-9]*" value={cond.prazoNF} onChange={e => update('prazoNF', e.target.value)} onFocus={e => e.target.select()} suffix="dias" />
                       </div>
-                      <div className="flex flex-col gap-1.5"><label className="text-[10px] font-bold uppercase tracking-widest text-muted ml-1">Detalhes da Forma de Pagamento</label><textarea rows={2} value={cond.formaPagamento} onChange={e => update('formaPagamento', e.target.value)} placeholder="Ex.: Depósito bancário, PIX, boleto..." className="bg-bg border-2 border-border rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-accent transition-all h-24 resize-none" /></div>
+                      <div className="flex flex-col gap-1.5"><label className="text-[10px] font-bold uppercase tracking-widest text-muted ml-1">Detalhes da Forma de Pagamento</label><textarea rows={2} value={cond.formaPagamento} onChange={e => update('formaPagamento', e.target.value)} placeholder="Ex.: Depósito bancário, PIX, boleto..." className="input-base border-2 border-border h-24 resize-none" /></div>
                     </div>
                   )}
                 </div>
@@ -560,8 +560,8 @@ const addFromCatalog = (catItem) => {
                   </div>
                   {cond.showGarantias !== false && (
                     <div className="p-6 pt-2 border-t border-border bg-black/10 grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div><Input label={`Período de ${config.wording.warrantyLabel}`} inputMode="decimal" pattern="[0-9]*" value={cond.warrantyPeriod || ''} onChange={e => update('warrantyPeriod', e.target.value)} suffix="períodos" /><select value={cond.warrantyType || 'ANOS'} onChange={e => update('warrantyType', e.target.value)} className="mt-2 w-full bg-bg border-2 border-border rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-accent"><option value="DIAS">Dias</option><option value="MESES">Meses</option><option value="ANOS">Anos</option></select></div>
-                      <div className="flex flex-col gap-1.5"><label className="text-[10px] font-bold uppercase tracking-widest text-muted ml-1">Detalhes (Opcional)</label><textarea rows={2} value={cond.warrantyDetails || ''} onChange={e => update('warrantyDetails', e.target.value)} placeholder={config.wording.warrantyDetailsPlaceholder} className="bg-bg border-2 border-border rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-accent transition-all h-24 resize-none" /></div>
+                      <div><Input label={`Período de ${config.wording.warrantyLabel}`} inputMode="decimal" pattern="[0-9]*" value={cond.warrantyPeriod || ''} onChange={e => update('warrantyPeriod', e.target.value)} suffix="períodos" /><select value={cond.warrantyType || 'ANOS'} onChange={e => update('warrantyType', e.target.value)} className="mt-2 input-base border-2 border-border"><option value="DIAS">Dias</option><option value="MESES">Meses</option><option value="ANOS">Anos</option></select></div>
+                      <div className="flex flex-col gap-1.5"><label className="text-[10px] font-bold uppercase tracking-widest text-muted ml-1">Detalhes (Opcional)</label><textarea rows={2} value={cond.warrantyDetails || ''} onChange={e => update('warrantyDetails', e.target.value)} placeholder={config.wording.warrantyDetailsPlaceholder} className="input-base border-2 border-border h-24 resize-none" /></div>
                     </div>
                   )}
                 </div>
@@ -578,7 +578,7 @@ const addFromCatalog = (catItem) => {
                     <Input label="Faturamento a cada" inputMode="decimal" pattern="[0-9]*" value={cond.medicao} onChange={e => update('medicao', e.target.value)} placeholder="Ex.: 15" suffix="dias" />
                     <Input label="Prazo Pagto NF" inputMode="decimal" pattern="[0-9]*" value={cond.prazoNF} onChange={e => update('prazoNF', e.target.value)} placeholder="Ex.: 30" suffix="dias" />
                   </div>
-                  <div className="flex flex-col gap-1.5"><label className="text-[10px] font-bold uppercase tracking-widest text-muted ml-1">Forma de Pagamento</label><textarea rows={2} value={cond.formaPagamento} onChange={e => update('formaPagamento', e.target.value)} placeholder="Ex.: PIX mensal, boleto, transferência..." className="bg-bg border-2 border-border rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-accent transition-all h-20 resize-none" /></div>
+                  <div className="flex flex-col gap-1.5"><label className="text-[10px] font-bold uppercase tracking-widest text-muted ml-1">Forma de Pagamento</label><textarea rows={2} value={cond.formaPagamento} onChange={e => update('formaPagamento', e.target.value)} placeholder="Ex.: PIX mensal, boleto, transferência..." className="input-base border-2 border-border h-20 resize-none" /></div>
                 </div>
               </div>
             )}
@@ -591,7 +591,7 @@ const addFromCatalog = (catItem) => {
                 <Input label={config.wording.executionPeriodLabel} value={cond.prazoExec} onChange={e => update('prazoExec', e.target.value)} placeholder="Ex.: 30 dias úteis" />
                 <Input label="Validade da Proposta" inputMode="decimal" pattern="[0-9]*" value={cond.validade} onChange={e => update('validade', e.target.value)} onFocus={e => e.target.select()} suffix="dias" />
               </div>
-              <div className="flex flex-col gap-1.5"><label className="text-[10px] font-bold uppercase tracking-widest text-muted ml-1">Observações Gerais</label><textarea rows={3} value={cond.obs} onChange={e => update('obs', e.target.value)} placeholder="Notas adicionais..." className="bg-bg border-2 border-border rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-accent transition-all h-32 resize-none" /></div>
+              <div className="flex flex-col gap-1.5"><label className="text-[10px] font-bold uppercase tracking-widest text-muted ml-1">Observações Gerais</label><textarea rows={3} value={cond.obs} onChange={e => update('obs', e.target.value)} placeholder="Notas adicionais..." className="input-base border-2 border-border h-32 resize-none" /></div>
             </div>
             )}
 
@@ -610,12 +610,12 @@ const addFromCatalog = (catItem) => {
               {showCustomFields && (
                 <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="bg-surface border-2 border-accent/20 rounded-2xl p-5 space-y-4">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-sm font-bold text-white flex items-center gap-2">
-                      <Settings2 size={16} className="text-accent" />
+                    <h3 className="text-sm font-bold text-text-primary dark:text-white flex items-center gap-2">
+                      <Building2 size={16} className="text-accent" />
                       Campos Personalizados
                     </h3>
                     {customFields.length === 0 && (
-                      <button onClick={() => setShowCustomFields(false)} className="text-muted hover:text-white transition-colors">
+                      <button onClick={() => setShowCustomFields(false)} className="text-muted hover:text-text-primary dark:hover:text-white transition-colors">
                         <X size={16} />
                       </button>
                     )}

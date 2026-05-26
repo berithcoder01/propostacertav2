@@ -14,7 +14,7 @@ const StepCondicoes = ({ data, onChange, onNext, onBack }) => {
       className="space-y-8 pb-20"
     >
       <div className="mb-4">
-        <h2 className="text-2xl font-bold font-display text-white">Condições Comerciais</h2>
+        <h2 className="text-2xl font-bold font-display text-text-primary dark:text-white">Condições Comerciais</h2>
         <p className="text-muted text-sm mt-1">Configure o modelo de contrato, faturamento e visibilidade.</p>
       </div>
 
@@ -29,7 +29,7 @@ const StepCondicoes = ({ data, onChange, onNext, onBack }) => {
               data.tipoProposta === 'valor_fechado' ? 'border-accent bg-accent/10' : 'border-border bg-bg hover:border-accent/30'
             }`}
           >
-            <div className={`font-bold text-sm mb-1 ${data.tipoProposta === 'valor_fechado' ? 'text-white' : 'text-muted'}`}>Valor Fechado</div>
+            <div className={`font-bold text-sm mb-1 ${data.tipoProposta === 'valor_fechado' ? 'text-text-primary dark:text-white' : 'text-text-secondary dark:text-muted'}`}>Valor Fechado</div>
             <div className="text-[11px] text-muted">Escopo e quantidades fixas.</div>
           </button>
           <button 
@@ -39,7 +39,7 @@ const StepCondicoes = ({ data, onChange, onNext, onBack }) => {
               data.tipoProposta === 'servico_continuo' ? 'border-accent bg-accent/10' : 'border-border bg-bg hover:border-accent/30'
             }`}
           >
-            <div className={`font-bold text-sm mb-1 ${data.tipoProposta === 'servico_continuo' ? 'text-white' : 'text-muted'}`}>Medição / Contínuo</div>
+            <div className={`font-bold text-sm mb-1 ${data.tipoProposta === 'servico_continuo' ? 'text-text-primary dark:text-white' : 'text-text-secondary dark:text-muted'}`}>Medição / Contínuo</div>
             <div className="text-[11px] text-muted">Faturamento baseado na execução real.</div>
           </button>
         </div>
@@ -60,7 +60,7 @@ const StepCondicoes = ({ data, onChange, onNext, onBack }) => {
                 className="w-5 h-5 rounded border-border text-accent focus:ring-accent bg-bg"
               />
               <div>
-                <h3 className="font-bold text-white text-sm">Condições de Pagamento</h3>
+                <h3 className="font-bold text-text-primary dark:text-white text-sm">Condições de Pagamento</h3>
                 <p className="text-[10px] text-muted uppercase tracking-wider">Entrada, Medição e Prazos</p>
               </div>
             </div>
@@ -84,7 +84,7 @@ const StepCondicoes = ({ data, onChange, onNext, onBack }) => {
                   value={data.formaPagamento} 
                   onChange={e => update('formaPagamento', e.target.value)}
                   placeholder="Ex.: Depósito bancário, PIX, boleto..." 
-                  className="bg-bg border-2 border-border rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-accent transition-all h-24 resize-none"
+                  className="input-base border-2 border-border h-24 resize-none"
                 />
               </div>
             </div>
@@ -105,7 +105,7 @@ const StepCondicoes = ({ data, onChange, onNext, onBack }) => {
                 className="w-5 h-5 rounded border-border text-accent focus:ring-accent bg-bg"
               />
               <div>
-                <h3 className="font-bold text-white text-sm">Garantias</h3>
+                <h3 className="font-bold text-text-primary dark:text-white text-sm">Garantias</h3>
                 <p className="text-[10px] text-muted uppercase tracking-wider">Prazos contra defeitos e acidentes</p>
               </div>
             </div>
@@ -121,7 +121,7 @@ const StepCondicoes = ({ data, onChange, onNext, onBack }) => {
                 <select
                   value={data.warrantyType || 'ANOS'}
                   onChange={e => update('warrantyType', e.target.value)}
-                  className="mt-2 w-full bg-bg border-2 border-border rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-accent"
+                  className="mt-2 input-base border-2 border-border"
                 >
                   <option value="DIAS">Dias</option>
                   <option value="MESES">Meses</option>
@@ -150,7 +150,7 @@ const StepCondicoes = ({ data, onChange, onNext, onBack }) => {
               value={data.obs} 
               onChange={e => update('obs', e.target.value)}
               placeholder="Notas adicionais..." 
-              className="bg-bg border-2 border-border rounded-xl px-4 py-3 text-sm text-white outline-none focus:border-accent transition-all h-32 resize-none"
+              className="input-base border-2 border-border h-32 resize-none"
             />
           </div>
         </div>

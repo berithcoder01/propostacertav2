@@ -16,21 +16,15 @@ export default {
         dmSans:  ['DM Sans', 'sans-serif'],
       },
       colors: {
-        // Fundos - Light Mode (Cursor/Notion style)
-        bg:      '#F7F7F5',
-        surface: '#FFFFFF',
-        card:    '#FFFFFF',
-        overlay: '#F3F4F6',
+        // Fundos
+        bg:      'var(--bg)',
+        surface: 'var(--surface)',
+        card:    'var(--card)',
+        overlay: 'var(--overlay)',
 
-        // Dark Mode
-        'dark-bg':      '#0a0a0a',
-        'dark-surface': '#141414',
-        'dark-card':    '#1a1a1a',
-        'dark-border':  '#2a2a2a',
-
-        // Bordas - Subtis
-        border:         '#E5E7EB',
-        'border-strong':'#D1D5DB',
+        // Bordas
+        border:         'var(--border)',
+        'border-strong':'var(--border-strong)',
 
         // Acento principal — Emerald
         accent:        '#10B981',
@@ -38,16 +32,16 @@ export default {
         'accent-muted':'rgba(16,185,129,0.10)',
 
         // Acento secundário
-        accent2: '#64748B',
+        accent2: '#8C735A',
 
         // Especial armazém - Amber
         gold:        '#F59E0B',
         'gold-muted':'rgba(245,158,11,0.10)',
 
-        // Textos - Alto Contraste
-        'text-primary':   '#111827',
-        'text-secondary': '#6B7280',
-        muted:            '#9CA3AF',
+        // Textos
+        'text-primary':   'var(--text-primary)',
+        'text-secondary': 'var(--text-secondary)',
+        muted:            'var(--muted)',
 
         // Semânticas
         success: '#10B981',

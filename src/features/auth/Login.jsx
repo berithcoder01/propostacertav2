@@ -32,9 +32,8 @@ const Login = () => {
         navigate('/');
       } else {
         await signUp(name, email, password);
-        setIsLogin(true);
-        setError('');
-        alert('Conta criada com sucesso! Faça login para continuar.');
+        // Redireciona direto para o onboarding após criar a conta
+        navigate('/onboarding');
       }
     } catch (err) {
       setError(err.message || (isLogin ? 'Erro ao fazer login' : 'Erro ao criar conta'));

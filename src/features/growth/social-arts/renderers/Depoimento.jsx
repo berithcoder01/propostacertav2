@@ -1,7 +1,7 @@
-import { LogoOrInitial, CTAButton, RectBlocks, DecorativeShapes } from '../components/shared'
+import { LogoOrInitial, CTAButton, RectBlocks, DecorativeShapes, ExtraTextsRenderer } from '../components/shared'
 import { resolveBackground, resolveOverlay } from '../utils/background'
 
-export default function Depoimento({ company, fields, background, uploadedPhoto, elementOffset, decorativeShapes, layoutSpacing, rectBlocks, ctaButton }) {
+export default function Depoimento({ company, fields, background, uploadedPhoto, elementOffset, decorativeShapes, decorationItems = [], layoutSpacing, rectBlocks, ctaButton, extraTexts = [] }) {
   const name = company?.name || 'Sua Empresa'
   const phone = company?.phone || '(00) 00000-0000'
   const primary = company?.primaryColor || '#1A5276'
@@ -19,7 +19,7 @@ export default function Depoimento({ company, fields, background, uploadedPhoto,
       {overlayStyle && <div style={overlayStyle} />}
 
       <RectBlocks rectBlocks={rectBlocks} primary={primary} />
-      <DecorativeShapes shapes={decorativeShapes} primary={primary} secondary={secondary} />
+      <DecorativeShapes shapes={decorativeShapes} items={decorationItems} primary={primary} secondary={secondary} />
 
       <div
         className="relative z-10 flex-1 flex flex-col justify-between p-10"
@@ -37,6 +37,9 @@ export default function Depoimento({ company, fields, background, uploadedPhoto,
           <p className="text-white text-lg italic leading-relaxed break-words" style={{ wordBreak: 'break-word' }}>{mainText}</p>
           <div className="text-5xl text-right mt-4 opacity-20 text-white font-serif leading-none">"</div>
         </div>
+        
+        <ExtraTextsRenderer extraTexts={extraTexts} />
+
         
         <CTAButton ctaButton={ctaButton} alignment="center" />
 

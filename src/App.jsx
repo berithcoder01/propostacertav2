@@ -20,7 +20,7 @@ const Onboarding = lazy(() => import('./features/onboarding/Onboarding'));
 const Company = lazy(() => import('./features/company/Company'));
 const PublicProposal = lazy(() => import('./features/proposal/PublicProposal'));
 const PlansPage = lazy(() => import('./features/billing/PlansPage'));
-const ProspectionDashboard = lazy(() => import('./features/leads/ProspeccaoAI'));
+const ProspeccaoAI = lazy(() => import('./features/leads/ProspeccaoAI'));
 const ProductsPage = lazy(() => import('./features/products/ProductsPage'));
 const GrowthPage = lazy(() => import('./features/growth/GrowthPage'));
 
@@ -59,7 +59,7 @@ function App() {
                     <Route path="clientes" element={<ClientsList />} />
                     <Route path="configuracoes" element={<Company />} />
                     <Route path="plans" element={<PlansPage />} />
-                     <Route path="prospeccao" element={<ProspectionDashboard />} />
+                     <Route path="prospeccao" element={<ProspeccaoAI />} />
                      <Route path="produtos" element={<ProductsPage />} />
                      <Route path="meu-negocio" element={<GrowthPage />} />
                   </Route>

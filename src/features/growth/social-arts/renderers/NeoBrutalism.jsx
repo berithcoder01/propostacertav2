@@ -1,8 +1,8 @@
-import { LogoOrInitial, CTAButton, RectBlocks, DecorativeShapes } from '../components/shared'
+import { LogoOrInitial, CTAButton, RectBlocks, DecorativeShapes, ExtraTextsRenderer } from '../components/shared'
 import { getSegmentLabel } from '../utils/segments'
 import { resolveBackground, resolveOverlay } from '../utils/background'
 
-export default function NeoBrutalism({ company, fields, background, uploadedPhoto, elementOffset, decorativeShapes, layoutSpacing, rectBlocks, ctaButton }) {
+export default function NeoBrutalism({ company, fields, background, uploadedPhoto, elementOffset, decorativeShapes, decorationItems = [], layoutSpacing, rectBlocks, ctaButton, extraTexts = [] }) {
   const name = company?.name || 'Sua Empresa'
   const phone = company?.phone || '(00) 00000-0000'
   const segment = getSegmentLabel(company?.segment)
@@ -21,7 +21,7 @@ export default function NeoBrutalism({ company, fields, background, uploadedPhot
       {overlayStyle && <div style={overlayStyle} />}
 
       <RectBlocks rectBlocks={rectBlocks} primary={primary} />
-      <DecorativeShapes shapes={decorativeShapes} primary={primary} secondary={secondary} />
+      <DecorativeShapes shapes={decorativeShapes} items={decorationItems} primary={primary} secondary={secondary} />
 
       <div
         className="relative z-10 flex flex-col h-full"
@@ -45,6 +45,8 @@ export default function NeoBrutalism({ company, fields, background, uploadedPhot
         </div>
         
         <div className={`pt-4 border-t-4 space-y-3 ${ctaButton.alignment === 'left' ? 'text-left' : ctaButton.alignment === 'right' ? 'text-right' : 'text-center'}`} style={{ borderColor: secondary }}>
+          <ExtraTextsRenderer extraTexts={extraTexts} />
+
           <CTAButton ctaButton={ctaButton} alignment={ctaButton.alignment} className="inline-block" />
         </div>
       </div>

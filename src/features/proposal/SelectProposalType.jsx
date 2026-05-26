@@ -16,8 +16,8 @@ const SelectProposalType = () => {
       className="max-w-4xl mx-auto space-y-8"
     >
       <div className="text-center space-y-4 mb-12">
-        <h1 className="text-4xl font-black font-display text-white">Selecione o Tipo de Orçamento</h1>
-        <p className="text-muted text-lg max-w-2xl mx-auto">
+        <h1 className="text-4xl font-black font-display text-text-primary">Selecione o Tipo de Orçamento</h1>
+        <p className="text-text-secondary text-lg max-w-2xl mx-auto">
           Escolha o modelo adequado para iniciar a estruturação da sua proposta comercial.
         </p>
       </div>
@@ -32,8 +32,8 @@ const SelectProposalType = () => {
           <div className="w-16 h-16 bg-bg dark:bg-dark-bg border-2 border-border dark:border-dark-border rounded-2xl flex items-center justify-center mb-6 group-hover:border-accent transition-colors">
             <Settings className="text-accent2" size={32} />
           </div>
-          <h2 className="text-xl font-bold font-display text-white mb-3">Geral / Padrão</h2>
-          <p className="text-muted text-sm mb-6 leading-relaxed">Orçamento flexível com mão de obra e materiais.</p>
+          <h2 className="text-xl font-bold font-display text-text-primary mb-3">Geral / Padrão</h2>
+          <p className="text-text-secondary text-sm mb-6 leading-relaxed">Orçamento flexível com mão de obra e materiais.</p>
           <div className="flex items-center gap-2 font-bold text-accent2 text-[10px] uppercase tracking-widest group-hover:translate-x-2 transition-transform">
             Iniciar Geral <ArrowRight size={14} />
           </div>
@@ -48,8 +48,8 @@ const SelectProposalType = () => {
           <div className="w-16 h-16 bg-bg dark:bg-dark-bg border-2 border-border dark:border-dark-border rounded-2xl flex items-center justify-center mb-6 group-hover:border-gold transition-colors">
             <Calendar className="text-gold" size={32} />
           </div>
-          <h2 className="text-xl font-bold font-display text-white mb-3">Serviço Contínuo</h2>
-          <p className="text-muted text-sm mb-6 leading-relaxed">Manutenção ou serviços recorrentes.</p>
+          <h2 className="text-xl font-bold font-display text-text-primary mb-3">Serviço Contínuo</h2>
+          <p className="text-text-secondary text-sm mb-6 leading-relaxed">Manutenção ou serviços recorrentes.</p>
           <div className="flex items-center gap-2 font-bold text-gold text-[10px] uppercase tracking-widest group-hover:translate-x-2 transition-transform">
             Iniciar Contínuo <ArrowRight size={14} />
           </div>
@@ -72,13 +72,13 @@ const SelectProposalType = () => {
               : <Lock className="text-muted" size={32} />}
           </div>
           <div className="flex items-center gap-2 mb-3">
-            <h2 className="text-xl font-bold font-display text-white">Gerar com IA</h2>
+            <h2 className="text-xl font-bold font-display text-text-primary">Gerar com IA</h2>
             <span className={`text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-tighter
               ${aiEnabled ? 'bg-accent/20 text-accent' : 'bg-muted/20 text-muted'}`}>
               {aiEnabled ? 'ENTERPRISE' : 'PRO'}
             </span>
           </div>
-          <p className="text-muted text-sm mb-6 leading-relaxed">
+          <p className="text-text-secondary text-sm mb-6 leading-relaxed">
             {aiEnabled
               ? 'Descreva o projeto e a IA montará tudo para você.'
               : 'Disponível nos planos PRO e ENTERPRISE.'}

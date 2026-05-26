@@ -237,25 +237,31 @@ const ProposalsList = () => {
     return matchSearch && matchStatus;
   });
 
-  const exportToCSV = () => {
+  const exportToExcel = () => {
     if (proposals.length === 0) {
       toast({ message: 'Não há propostas para exportar.', type: 'warning' });
       return;
     }
 
-    const headers = ['Número', 'Cliente', 'Objeto', 'Valor', 'Status', 'Data de Criação'];
-    const rows = proposals.map(p => [
-      p.number || '',
-      `"${p.clientName || ''}"`,
-      `"${p.object || ''}"`,
-      p.total || 0,
-      STATUS_LABELS[p.status] || p.status,
-      new Date(p.createdAt).toLocaleDateString('pt-BR')
-    ]);
+    // Usamos delimitador ";" e BOM UTF-8 para compatibilidade perfeita com Excel em português
+    const headers = ['Número', 'Empresa / Cliente', 'Objeto / Descrição', 'Valor Total (R$)', 'Status', 'Data de Criação'];
+    
+    const rows = proposals.map(p => {
+      // Formata o valor total substituindo ponto por vírgula para o Excel reconhecer como número
+      const formattedTotal = String(p.total || 0).replace('.', ',');
+      return [
+        `"${(p.number || '').replace(/"/g, '""')}"`,
+        `"${(p.clientName || '').replace(/"/g, '""')}"`,
+        `"${(p.object || '').replace(/"/g, '""').replace(/\n/g, ' ')}"`, // remove quebras de linha para não quebrar o layout
+        `"${formattedTotal}"`,
+        `"${STATUS_LABELS[p.status] || p.status}"`,
+        `"${new Date(p.createdAt).toLocaleDateString('pt-BR')}"`
+      ];
+    });
 
     const csvContent = [
-      headers.join(','),
-      ...rows.map(row => row.join(','))
+      headers.join(';'),
+      ...rows.map(row => row.join(';'))
     ].join('\n');
 
     const blob = new Blob([`\uFEFF${csvContent}`], { type: 'text/csv;charset=utf-8;' });
@@ -267,6 +273,7 @@ const ProposalsList = () => {
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
+    toast({ message: 'Planilha de propostas exportada com sucesso!', type: 'success' });
   };
 
   return (
@@ -288,8 +295,8 @@ const ProposalsList = () => {
           <p className="text-muted dark:text-gray-500 text-sm">{proposals.length} no total</p>
         </div>
         <div className="hidden md:flex gap-2">
-          <Button variant="ghost" onClick={exportToCSV} className="flex items-center gap-2 px-4">
-            <Download size={16} /> Exportar CSV
+          <Button variant="ghost" onClick={exportToExcel} className="flex items-center gap-2 px-4">
+            <Download size={16} /> Planilha
           </Button>
           <Button onClick={() => navigate('/propostas/nova')} className="flex items-center gap-2 px-5">
             <Plus size={16} /> Nova

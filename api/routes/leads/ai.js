@@ -213,4 +213,98 @@ Responda APENAS o JSON.`
       return reply.code(500).send({ error: 'Erro na busca de lugares', results: [] })
     }
   })
+
+  // POST /leads/ai/chat — chat assistente para filtrar leads
+  fastify.post('/chat', async (request, reply) => {
+    const { companyId } = request.user
+    if (!companyId) return reply.code(400).send({ error: 'Empresa não configurada' })
+
+    const { message, companySegment, companyCity } = request.body
+    if (!message) return reply.code(400).send({ error: 'Mensagem é obrigatória' })
+
+    try {
+      const model = fastify.geminiFlashModel || null
+      
+      // If no AI model, use keyword-based filtering
+      if (!model) {
+        const lowerMsg = message.toLowerCase()
+        const filters = {}
+        
+        // Detect segment intent
+        const segmentKeywords = {
+          'condominio': 'CONDOMINIO',
+          'condomínio': 'CONDOMINIO',
+          'apartamento': 'CONDOMINIO',
+          'prédio': 'CONDOMINIO',
+          'comercial': 'COMERCIAL',
+          'loja': 'COMERCIAL',
+          'empresa': 'COMERCIAL',
+          'escritório': 'COMERCIAL',
+          'industrial': 'INDUSTRIAL',
+          'fábrica': 'INDUSTRIAL',
+          'residencial': 'RESIDENCIAL',
+          'casa': 'RESIDENCIAL'
+        }
+        
+        for (const [keyword, segment] of Object.entries(segmentKeywords)) {
+          if (lowerMsg.includes(keyword)) {
+            filters.segment = segment
+            break
+          }
+        }
+        
+        // Detect city intent
+        const cityMatch = message.match(/em\s+([A-ZÀ-Ú][a-zà-ú]+(?:\s+[A-ZÀ-Ú][a-zà-ú]+)*)/i)
+        if (cityMatch) {
+          filters.city = cityMatch[1]
+        }
+        
+        // Generate contextual response
+        let response = 'Entendi! '
+        if (filters.segment) {
+          response += `Vou filtrar leads do segmento ${filters.segment}. `
+        }
+        if (filters.city) {
+          response += `Focando na região de ${filters.city}. `
+        }
+        if (!filters.segment && !filters.city) {
+          response += 'Vou considerar isso na próxima curadoria de leads.'
+        }
+        
+        return { 
+          message: response,
+          filters: Object.keys(filters).length > 0 ? filters : null
+        }
+      }
+
+      // With AI model
+      const prompt = `Você é um assistente de prospecção comercial. O usuário está buscando leads para sua empresa.
+
+Perfil da empresa:
+- Segmento: ${companySegment || 'não informado'}
+- Cidade: ${companyCity || 'não informada'}
+
+Mensagem do usuário: "${message}"
+
+Analise a mensagem e retorne:
+1. Uma resposta contextual e útil (máx 2 frases)
+2. Filtros que podem ser aplicados na busca de leads (segment, city, minScore)
+
+Responda APENAS JSON: {"message": "resposta ao usuário", "filters": {"segment": "RESIDENCIAL|COMERCIAL|INDUSTRIAL|CONDOMINIO" ou null, "city": "nome da cidade" ou null, "minScore": 0-100 ou null}}`
+
+      const result = await model.generateContent(prompt)
+      const text = typeof result.response.text === 'function' ? result.response.text() : String(result.response)
+      const jsonMatch = text.match(/\{[\s\S]*\}/)
+
+      if (jsonMatch) {
+        const parsed = JSON.parse(jsonMatch[0])
+        return { message: parsed.message, filters: parsed.filters }
+      }
+
+      return { message: 'Vou considerar isso na próxima curadoria de leads.', filters: null }
+    } catch (err) {
+      fastify.log.error({ err }, 'Erro no chat de prospecção')
+      return { message: 'Entendi! Vou considerar isso na próxima rodada de prospecção.', filters: null }
+    }
+  })
 }

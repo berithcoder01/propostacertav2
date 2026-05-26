@@ -5,7 +5,7 @@ const TOOLS = [
   { id: 'background', icon: '🎨', label: 'Fundo' },
   { id: 'layout', icon: '⬛', label: 'Layout' },
   { id: 'decoration', icon: '✨', label: 'Deco' },
-  { id: 'cta', icon: '📞', label: 'CTA' },
+  { id: 'cta', icon: '📞', label: 'Contato' },
 ]
 
 export default function ToolsPanel() {
@@ -20,14 +20,14 @@ export default function ToolsPanel() {
           <button
             key={tool.id}
             onClick={() => actions.setActiveTool(tool.id)}
-            className={`w-full flex flex-col items-center gap-0.5 py-2 rounded-lg transition-all ${
+            className={`w-full flex flex-col items-center gap-1.5 py-2.5 rounded-lg transition-all ${
               isActive
-                ? 'bg-blue-600 text-white'
-                : 'opacity-45 hover:opacity-70'
+                ? 'bg-accent text-white font-bold shadow-sm'
+                : 'text-text-secondary dark:text-white/50 hover:text-text-primary dark:hover:text-white/80 hover:bg-surface/50 dark:hover:bg-[#1a1a24]/50'
             }`}
           >
-            <span className="text-lg">{tool.icon}</span>
-            <span className={`text-[10px] font-medium ${isActive ? 'text-white' : ''}`}>{tool.label}</span>
+            <span className="text-lg leading-none">{tool.icon}</span>
+            <span className="text-[10px] font-bold tracking-wide">{tool.label}</span>
           </button>
         )
       })}

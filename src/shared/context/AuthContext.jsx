@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
-import { getCurrentUser, login, register, fetchCompany, fetchCatalog, createCompany } from '../services/api';
+import { getCurrentUser, login, register, fetchCompany, fetchCatalog, createCompany, fetchProspectingProfile } from '../services/api';
 
 const AuthContext = createContext(null);
 
@@ -8,6 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [company, setCompany] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [subscription, setSubscription] = useState(null);
+  const [prospectingProfileConfigured, setProspectingProfileConfigured] = useState(null);
 
   const hasCompany = !!company;
 
@@ -40,18 +41,19 @@ export const AuthProvider = ({ children }) => {
           if (userData.companyId) {
             return Promise.all([
               fetchCompany().catch(() => null),
-              fetchCatalog().catch(() => [])
+              fetchCatalog().catch(() => []),
+              fetchProspectingProfile().catch(() => ({ configured: false }))
             ]);
           }
-          return [null, []];
+          return [null, [], { configured: false }];
         })
-        .then(([co, catalog]) => {
+        .then(([co, catalog, profile]) => {
           if (co) {
             setCompany(co);
             applyTheme(co);
-            // Carregar subscription
             if (co.subscription) setSubscription(co.subscription);
           }
+          setProspectingProfileConfigured(profile?.configured ?? false);
         })
         .catch(() => {
           localStorage.removeItem('@propostacerta:token');
@@ -60,7 +62,6 @@ export const AuthProvider = ({ children }) => {
           setIsLoading(false);
         });
     } else {
-      // Carregar tema do localStorage para transições suaves
       const savedPrimary = localStorage.getItem('@propostacerta:primaryColor');
       if (savedPrimary) {
         document.documentElement.style.setProperty('--primary', savedPrimary);
@@ -74,15 +75,17 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('@propostacerta:token', data.token);
     setUser(data.user);
     if (data.user.companyId) {
-      const [co, catalog] = await Promise.all([
+      const [co, catalog, profile] = await Promise.all([
         fetchCompany().catch(() => null),
-        fetchCatalog().catch(() => [])
+        fetchCatalog().catch(() => []),
+        fetchProspectingProfile().catch(() => ({ configured: false }))
       ]);
       setCompany(co);
       if (co) {
         applyTheme(co);
         if (co.subscription) setSubscription(co.subscription);
       }
+      setProspectingProfileConfigured(profile?.configured ?? false);
     }
   };
 
@@ -122,18 +125,21 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     setCompany(null);
     setSubscription(null);
+    setProspectingProfileConfigured(null);
   };
 
   const refreshCompany = async () => {
-    const [co, catalog] = await Promise.all([
+    const [co, catalog, profile] = await Promise.all([
       fetchCompany().catch(() => null),
-      fetchCatalog().catch(() => [])
+      fetchCatalog().catch(() => []),
+      fetchProspectingProfile().catch(() => ({ configured: false }))
     ]);
     if (co) {
       setCompany(co);
       applyTheme(co);
       if (co.subscription) setSubscription(co.subscription);
     }
+    setProspectingProfileConfigured(profile?.configured ?? false);
     return co;
   };
 
@@ -167,9 +173,10 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{
-      user, company, hasCompany, isLoading, subscription,
+      user, company, hasCompany, isLoading, subscription, prospectingProfileConfigured,
       signIn, signUp, signOut, refreshCompany, updateCompanyTheme,
-      applyTheme, checkPlanLimit, getPlanLimits, createCompany: createCompanyAccount
+      applyTheme, checkPlanLimit, getPlanLimits, createCompany: createCompanyAccount,
+      setProspectingProfileConfigured
     }}>
       {children}
     </AuthContext.Provider>

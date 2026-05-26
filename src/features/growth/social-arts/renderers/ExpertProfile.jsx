@@ -1,9 +1,9 @@
 import { Users } from 'lucide-react'
-import { LogoOrInitial, CTAButton, RectBlocks, DecorativeShapes } from '../components/shared'
+import { LogoOrInitial, CTAButton, RectBlocks, DecorativeShapes, ExtraTextsRenderer } from '../components/shared'
 import { getSegmentLabel } from '../utils/segments'
 import { resolveBackground, resolveOverlay } from '../utils/background'
 
-export default function ExpertProfile({ company, fields, background, uploadedPhoto, elementOffset, decorativeShapes, layoutSpacing, rectBlocks, ctaButton }) {
+export default function ExpertProfile({ company, fields, background, uploadedPhoto, elementOffset, decorativeShapes, decorationItems = [], layoutSpacing, rectBlocks, ctaButton, extraTexts = [] }) {
   const name = company?.name || 'Sua Empresa'
   const phone = company?.phone || '(00) 00000-0000'
   const segment = getSegmentLabel(company?.segment)
@@ -22,7 +22,7 @@ export default function ExpertProfile({ company, fields, background, uploadedPho
       {overlayStyle && <div style={overlayStyle} />}
 
       <RectBlocks rectBlocks={rectBlocks} primary={primary} />
-      <DecorativeShapes shapes={decorativeShapes} primary={primary} secondary={secondary} />
+      <DecorativeShapes shapes={decorativeShapes} items={decorationItems} primary={primary} secondary={secondary} />
 
       <div
         className="relative z-10 flex flex-col justify-between h-full p-10"
@@ -39,6 +39,9 @@ export default function ExpertProfile({ company, fields, background, uploadedPho
         <div>
           <h2 className="text-white font-black text-3xl mb-2 break-words" style={{ wordBreak: 'break-word' }}>{mainText}</h2>
           <p className="text-white/60 text-sm mb-4">{segment}</p>
+          
+          <ExtraTextsRenderer extraTexts={extraTexts} />
+
           
           <CTAButton ctaButton={ctaButton} alignment="left" />
 

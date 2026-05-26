@@ -210,4 +210,171 @@ export default async function (fastify, opts) {
 
     return reply.code(201).send({ created: created.length, leads: created })
   })
+
+  // GET /leads/curated — leads processados pela IA com mensagem personalizada
+  // Retorna leads com status NEW ou CONTACTED, ordenados por relevância
+  fastify.get('/curated', async (request, reply) => {
+    let { companyId } = request.user
+    if (!companyId) {
+      const user = await fastify.prisma.user.findUnique({ where: { id: request.user.id } })
+      companyId = user?.companyId
+    }
+    if (!companyId) return reply.code(400).send({ error: 'Empresa não configurada' })
+
+    const { segment, city, minScore = 0 } = request.query
+    
+    const where = { 
+      companyId,
+      status: { in: ['NEW', 'CONTACTED'] },
+      processedByAI: true
+    }
+    if (segment) where.segment = segment
+    if (city) where.city = { contains: city, mode: 'insensitive' }
+
+    const leads = await fastify.prisma.lead.findMany({
+      where,
+      orderBy: [
+        { score: 'desc' },
+        { createdAt: 'desc' }
+      ],
+      take: 50
+    })
+
+    // Formata os leads para o frontend
+    const curatedLeads = leads
+      .filter(l => l.score >= parseInt(minScore))
+      .map(lead => ({
+        ...lead,
+        nome_limpo: lead.nomeLimpo || lead.name,
+        nome: lead.name,
+        segmento: lead.segmentoDetectado || lead.segment,
+        mensagem_personalizada: lead.mensagemPersonalizada,
+        descricao: lead.motivoMatch || lead.notes,
+        motivo_match: lead.motivoMatch
+      }))
+
+    return { leads: curatedLeads, total: curatedLeads.length }
+  })
+
+  // POST /leads/sync — Sincroniza leads do LeadsOn para PropostaCerta
+  fastify.post('/sync', async (request, reply) => {
+    let { companyId } = request.user
+    if (!companyId) {
+      const user = await fastify.prisma.user.findUnique({ where: { id: request.user.id } })
+      companyId = user?.companyId
+    }
+    if (!companyId) return reply.code(400).send({ error: 'Empresa não configurada' })
+
+    try {
+      // Busca perfil de prospecção para calcular scores
+      const profile = await fastify.prisma.prospectingProfile.findUnique({
+        where: { companyId }
+      })
+
+      // URL do LeadsOn (configurável via env)
+      const leadsonUrl = process.env.LEADSON_API_URL || 'http://localhost:3001'
+      const lastSyncAt = request.body.lastSyncAt || null
+      
+      const response = await fetch(`${leadsonUrl}/api/leads/sync?limit=100${lastSyncAt ? `&lastSyncAt=${lastSyncAt}` : ''}`)
+      
+      if (!response.ok) {
+        return reply.code(502).send({ error: 'Falha ao conectar com LeadsOn' })
+      }
+
+      const data = await response.json()
+      let imported = 0
+      let skipped = 0
+
+      for (const leadOnLead of data.leads) {
+        // Verifica se já existe (por whatsapp ou nome+cidade)
+        const existing = await fastify.prisma.lead.findFirst({
+          where: {
+            companyId,
+            OR: [
+              leadOnLead.whatsapp ? { whatsapp: leadOnLead.whatsapp } : {},
+              { name: leadOnLead.nome_limpo_ia || leadOnLead.nome_original, city: leadOnLead.cidade }
+            ].filter(Boolean)
+          }
+        })
+
+        if (existing) {
+          skipped++
+          continue
+        }
+
+        // Calcula score baseado no perfil de prospecção
+        let score = 50 // Base score
+        if (profile) {
+          // Match de segmento
+          const idealTypes = profile.idealCustomerTypes || []
+          const leadSegment = leadOnLead.segmento?.toUpperCase() || 'RESIDENCIAL'
+          
+          // Mapeia segmentos do LeadsOn para tipos ideais
+          const segmentMap = {
+            'PINTOR': 'RESIDENCIAL',
+            'ELETRICISTA': 'RESIDENCIAL',
+            'CONDOMÍNIO': 'CONDOMINIO',
+            'CONDOMINIO': 'CONDOMINIO',
+            'COMÉRCIO': 'COMERCIAL',
+            'INDÚSTRIA': 'INDUSTRIAL'
+          }
+          
+          const mappedSegment = segmentMap[leadSegment] || leadSegment
+          if (idealTypes.includes(mappedSegment)) {
+            score += 20
+          }
+          
+          // Match de cidade
+          if (profile.targetAudienceDesc && leadOnLead.cidade) {
+            const cityMatch = profile.targetAudienceDesc.toLowerCase().includes(leadOnLead.cidade.toLowerCase())
+            if (cityMatch) score += 15
+          }
+          
+          // Bonus por ter mensagem personalizada da IA
+          if (leadOnLead.mensagem_personalizada) score += 15
+        }
+
+        // Cria o lead no PropostaCerta
+        await fastify.prisma.lead.create({
+          data: {
+            companyId,
+            name: leadOnLead.nome_limpo_ia || leadOnLead.nome_original,
+            whatsapp: leadOnLead.whatsapp || null,
+            city: leadOnLead.cidade || null,
+            state: leadOnLead.estado || null,
+            segment: (leadOnLead.segmento || 'RESIDENCIAL').toUpperCase(),
+            source: 'GOOGLE_PLACES',
+            status: 'NEW',
+            score: Math.min(99, score),
+            mensagemPersonalizada: leadOnLead.mensagem_personalizada || null,
+            motivoMatch: profile?.targetAudienceDesc ? `Compatível com: ${profile.targetAudienceDesc}` : null,
+            processedByAI: true,
+            aiProcessingMethod: 'ollama',
+            nomeLimpo: leadOnLead.nome_limpo_ia || null,
+            segmentoDetectado: leadOnLead.segmento || null,
+            notes: leadOnLead.conteudo_markdown || null,
+            metadata: {
+              instagram: leadOnLead.instagram,
+              website: leadOnLead.website,
+              leadsonId: leadOnLead.id,
+              syncedAt: new Date().toISOString()
+            }
+          }
+        })
+
+        imported++
+      }
+
+      return {
+        synced: true,
+        imported,
+        skipped,
+        total: data.total,
+        syncedAt: data.syncedAt
+      }
+    } catch (err) {
+      fastify.log.error({ err }, 'Erro no sync com LeadsOn')
+      return reply.code(500).send({ error: 'Erro ao sincronizar leads', details: err.message })
+    }
+  })
 }

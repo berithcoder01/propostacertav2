@@ -1,8 +1,8 @@
-import { LogoOrInitial, CTAButton, RectBlocks, DecorativeShapes } from '../components/shared'
+import { LogoOrInitial, CTAButton, RectBlocks, DecorativeShapes, ExtraTextsRenderer } from '../components/shared'
 import { getSegmentLabel } from '../utils/segments'
 import { resolveBackground, resolveOverlay } from '../utils/background'
 
-export default function Servicos({ company, fields, background, uploadedPhoto, elementOffset, decorativeShapes, layoutSpacing, rectBlocks, ctaButton }) {
+export default function Servicos({ company, fields, background, uploadedPhoto, elementOffset, decorativeShapes, decorationItems = [], layoutSpacing, rectBlocks, ctaButton, extraTexts = [] }) {
   const name = company?.name || 'Sua Empresa'
   const phone = company?.phone || '(00) 00000-0000'
   const segment = getSegmentLabel(company?.segment)
@@ -21,7 +21,7 @@ export default function Servicos({ company, fields, background, uploadedPhoto, e
       {overlayStyle && <div style={overlayStyle} />}
 
       <RectBlocks rectBlocks={rectBlocks} primary={primary} />
-      <DecorativeShapes shapes={decorativeShapes} primary={primary} secondary={secondary} />
+      <DecorativeShapes shapes={decorativeShapes} items={decorationItems} primary={primary} secondary={secondary} />
 
       <div
         className="relative z-10 flex-1 flex flex-col p-10"
@@ -51,6 +51,9 @@ export default function Servicos({ company, fields, background, uploadedPhoto, e
             </div>
           ))}
         </div>
+        
+        <ExtraTextsRenderer extraTexts={extraTexts} />
+
         
         <CTAButton ctaButton={ctaButton} alignment="center" />
 

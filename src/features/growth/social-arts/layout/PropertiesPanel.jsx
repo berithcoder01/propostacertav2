@@ -15,13 +15,13 @@ const PANEL_TITLES = {
   background: 'Fundo',
   layout: 'Layout',
   decoration: 'Decoração',
-  cta: 'CTA',
+  cta: 'Contato',
 }
 
 function DownloadButton() {
   const { state, canvasRef } = useEditor()
   const { preset } = state
-  const { generating, downloaded, handleDownload } = useExport()
+  const { generating, downloaded, error, handleDownload } = useExport()
 
   if (!preset) return null
 
@@ -53,9 +53,14 @@ function DownloadButton() {
           </>
         )}
       </button>
-      <p className="text-[10px] text-text-muted text-center">
-        PNG · 2x resolução · Pronto para publicar
-      </p>
+      {error && (
+        <p className="text-[10px] text-red-400 text-center font-medium">{error}</p>
+      )}
+      {!error && (
+        <p className="text-[10px] text-text-muted text-center">
+          PNG · 2x resolução · Pronto para publicar
+        </p>
+      )}
     </div>
   )
 }

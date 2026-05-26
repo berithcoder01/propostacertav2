@@ -17,6 +17,30 @@ const UPLOAD_DIR = isServerless
 const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
 const ALLOWED_TYPES = ['image/png', 'image/jpeg', 'image/jpg', 'image/svg+xml', 'image/webp']
 
+// Trigger do Scraper (on-demand)
+import http from 'http';
+const TRIGGER_URL = process.env.SCRAPER_TRIGGER_URL || 'http://localhost:3001/trigger';
+
+function triggerScraper(companyId) {
+  return new Promise((resolve) => {
+    const data = JSON.stringify({ companyId });
+    const req = http.request(TRIGGER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Content-Length': data.length }
+    }, (res) => {
+      let body = '';
+      res.on('data', chunk => { body += chunk; });
+      res.on('end', () => {
+        try { resolve(JSON.parse(body)); }
+        catch { resolve({ success: false, error: 'Resposta inválida' }); }
+      });
+    });
+    req.on('error', () => resolve({ success: false, error: 'Scraper indisponível' }));
+    req.write(data);
+    req.end();
+  });
+}
+
 // Garante que o diretório de uploads existe (ignora erro em serverless read-only)
 try {
   if (!fs.existsSync(UPLOAD_DIR)) {
@@ -96,7 +120,9 @@ export default async function (fastify, opts) {
         defaultMeasurementDays, defaultPaymentNfDays,
         defaultValidityDays, defaultPaymentMethod, defaultSafetyMargin,
 
-        businessType
+        businessType,
+        // Novos campos de Prospecção (FASE 12)
+        idealCustomerTypes, serviceRadiusKm, serviceTypes, targetAudienceDesc
       } = request.body
 
       if (!name || !name.trim()) {
@@ -177,6 +203,27 @@ export default async function (fastify, opts) {
       } catch (catalogErr) {
         // Catálogo é opcional — não falha o onboarding por isso
         fastify.log.warn('Aviso: falha ao popular catálogo:', catalogErr.message)
+      }
+
+      // Cria Perfil de Prospecção (FASE 12)
+      try {
+        const parseArray = (val) => {
+          if (!val) return [];
+          if (Array.isArray(val)) return val;
+          return val.split(',').map(s => s.trim()).filter(Boolean);
+        };
+
+        await fastify.prisma.prospectingProfile.create({
+          data: {
+            companyId: company.id,
+            idealCustomerTypes: parseArray(idealCustomerTypes),
+            serviceRadiusKm: parseInt(serviceRadiusKm) || 10,
+            serviceTypes: parseArray(serviceTypes),
+            targetAudienceDesc: targetAudienceDesc || null,
+          }
+        });
+      } catch (profileErr) {
+        fastify.log.warn('Aviso: falha ao criar perfil de prospecção:', profileErr.message)
       }
 
       // Busca a empresa atualizada com a assinatura recém-criada
@@ -427,5 +474,89 @@ export default async function (fastify, opts) {
       fastify.log.error({ err }, 'Erro ao remover logo')
       return reply.code(500).send({ error: 'Erro ao remover logo' })
     }
+  })
+
+  // ── ROTAS DE PERFIL DE PROSPECÇÃO (FASE 12) ──────────────────────────────
+
+  // GET /company/prospecting-profile — verifica se o perfil existe
+  fastify.get('/prospecting-profile', async (request, reply) => {
+    let { companyId } = request.user
+    if (!companyId) {
+      const user = await fastify.prisma.user.findUnique({ where: { id: request.user.id } })
+      companyId = user?.companyId
+    }
+    if (!companyId) return reply.code(404).send({ error: 'Empresa não encontrada' })
+
+    const profile = await fastify.prisma.prospectingProfile.findUnique({
+      where: { companyId }
+    })
+
+    if (!profile) {
+      return reply.code(404).send({ error: 'Perfil de prospecção não configurado', configured: false })
+    }
+
+    return { ...profile, configured: true }
+  })
+
+  // POST /company/prospecting-profile — cria ou atualiza o perfil
+  fastify.post('/prospecting-profile', async (request, reply) => {
+    let { companyId } = request.user
+    if (!companyId) {
+      const user = await fastify.prisma.user.findUnique({ where: { id: request.user.id } })
+      companyId = user?.companyId
+    }
+    if (!companyId) return reply.code(404).send({ error: 'Empresa não encontrada' })
+
+    const {
+      idealCustomerTypes,
+      businessScope,
+      baseCity,
+      serviceTypes,
+      targetAudienceDesc,
+      autoProspecting = true
+    } = request.body
+
+    const parseArray = (val) => {
+      if (!val) return [];
+      if (Array.isArray(val)) return val;
+      return val.split(',').map(s => s.trim()).filter(Boolean);
+    };
+
+    const profileData = {
+      idealCustomerTypes: parseArray(idealCustomerTypes),
+      businessScope: businessScope || 'LOCAL',
+      baseCity: baseCity || null,
+      serviceTypes: parseArray(serviceTypes),
+      targetAudienceDesc: targetAudienceDesc || null,
+      autoProspecting
+    };
+
+    // Upsert: cria se não existir, atualiza se existir
+    const profile = await fastify.prisma.prospectingProfile.upsert({
+      where: { companyId },
+      update: profileData,
+      create: {
+        companyId,
+        ...profileData
+      }
+    });
+
+    // Dispara scraper on-demand para o primeiro setup (entra na fila sequencial)
+    const isInitialSetup = !request.body.existingProfile;
+    if (isInitialSetup) {
+      fastify.log.info(`⚡ Enfileirando scraper para companyId: ${companyId}`);
+      triggerScraper(companyId).then(result => {
+        fastify.log.info(`📊 Scraper enfileirado: ${JSON.stringify(result)}`);
+      }).catch(err => {
+        fastify.log.warn(`⚠️ Falha ao enfileirar scraper: ${err.message}`);
+      });
+    }
+
+    return { 
+      ...profile, 
+      configured: true, 
+      scraperTriggered: isInitialSetup,
+      scraperStatus: isInitialSetup ? 'queued' : 'idle'
+    };
   })
 }

@@ -81,7 +81,7 @@ export default function DashboardChallengeBlock({ onNavigate }) {
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-white dark:bg-dark-surface border border-border dark:border-dark-border rounded-2xl overflow-hidden shadow-sm"
+      className="bg-surface dark:bg-dark-surface border border-border dark:border-dark-border rounded-2xl overflow-hidden shadow-sm"
     >
       <div className="p-5">
         <div className="flex items-center justify-between mb-3">

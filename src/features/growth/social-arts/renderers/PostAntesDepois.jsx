@@ -1,7 +1,7 @@
-import { CTAButton, RectBlocks, DecorativeShapes } from '../components/shared'
+import { CTAButton, RectBlocks, DecorativeShapes, ExtraTextsRenderer } from '../components/shared'
 import { resolveBackground, resolveOverlay } from '../utils/background'
 
-export default function PostAntesDepois({ company, fields, background, uploadedPhoto, uploadedPhotoAlt, elementOffset, decorativeShapes, layoutSpacing, rectBlocks, ctaButton }) {
+export default function PostAntesDepois({ company, fields, background, uploadedPhoto, uploadedPhotoAlt, elementOffset, decorativeShapes, decorationItems = [], layoutSpacing, rectBlocks, ctaButton, extraTexts = [] }) {
   const name = company?.name || 'Sua Empresa'
   const phone = company?.phone || '(00) 00000-0000'
   const primary = company?.primaryColor || '#1A5276'
@@ -21,7 +21,7 @@ export default function PostAntesDepois({ company, fields, background, uploadedP
       {overlayStyle && <div style={overlayStyle} />}
 
       <RectBlocks rectBlocks={rectBlocks} primary={primary} />
-      <DecorativeShapes shapes={decorativeShapes} primary={primary} secondary={secondary} />
+      <DecorativeShapes shapes={decorativeShapes} items={decorationItems} primary={primary} secondary={secondary} />
 
       <div
         className="relative z-10 flex flex-col h-full"
@@ -68,6 +68,9 @@ export default function PostAntesDepois({ company, fields, background, uploadedP
           <h3 className="text-white font-black text-lg">{name}</h3>
           <p className="text-white/80 text-sm mt-1 break-words" style={{ wordBreak: 'break-word' }}>{mainText}</p>
           {subtitle && <p className="text-white/60 text-xs mt-1 break-words" style={{ wordBreak: 'break-word' }}>{subtitle}</p>}
+
+          <ExtraTextsRenderer extraTexts={extraTexts} />
+
 
           <CTAButton ctaButton={ctaButton} alignment="center" />
 

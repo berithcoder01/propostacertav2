@@ -668,6 +668,11 @@ const Onboarding = () => {
     proposalFont: 'sans',
     logoStyle: 'minimalista',
     logoIcon: '',
+    // Novos campos de Prospecção (FASE 12)
+    idealCustomerTypes: '',
+    serviceRadiusKm: 10,
+    serviceTypes: '',
+    targetAudienceDesc: '',
   });
 
   useEffect(() => {
