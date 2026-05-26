@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './shared/context/AuthContext';
 import { UpgradeProvider } from './shared/context/UpgradeContext';
 import { ThemeProvider } from './shared/context/ThemeContext';
@@ -20,7 +20,7 @@ const Onboarding = lazy(() => import('./features/onboarding/Onboarding'));
 const Company = lazy(() => import('./features/company/Company'));
 const PublicProposal = lazy(() => import('./features/proposal/PublicProposal'));
 const PlansPage = lazy(() => import('./features/billing/PlansPage'));
-const ProspectionDashboard = lazy(() => import('./features/leads/ProspectionDashboard'));
+const ProspectionDashboard = lazy(() => import('./features/leads/ProspeccaoAI'));
 const ProductsPage = lazy(() => import('./features/products/ProductsPage'));
 const GrowthPage = lazy(() => import('./features/growth/GrowthPage'));
 
@@ -40,7 +40,7 @@ function App() {
       <ToastProvider>
         <AuthProvider>
           <UpgradeProvider>
-            <BrowserRouter>
+            <Router>
               <Suspense fallback={<PageLoading />}>
                 <Routes>
                 <Route path="/login" element={<Login />} />
@@ -66,7 +66,7 @@ function App() {
                 </Route>
               </Routes>
             </Suspense>
-          </BrowserRouter>
+            </Router>
         </UpgradeProvider>
       </AuthProvider>
     </ToastProvider>
