@@ -1,4 +1,4 @@
-// PropostaCerta - Onboarding com Design System v2
+// NaroGestor - Onboarding com Design System v2
 import React, { useState, useEffect, useCallback, Suspense, lazy } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -107,7 +107,7 @@ const EtapaPlano = ({ onNext }) => {
             <Building2 size={20} className="text-white" />
           </div>
           <span className="font-display font-bold text-lg text-gray-800 tracking-tight">
-            PropostaCerta
+            NaroGestor
           </span>
         </div>
 
@@ -211,7 +211,7 @@ const EtapaPlano = ({ onNext }) => {
 
           {/* Footer */}
           <p className="text-center text-xs text-gray-400 mt-6">
-            PropostaCerta © {new Date().getFullYear()}
+            NaroGestor © {new Date().getFullYear()}
           </p>
         </div>
       </div>
@@ -236,7 +236,7 @@ const EtapaBemVindo = ({ onNext }) => (
     </motion.div>
     <div className="space-y-3">
       <h1 className="text-3xl font-bold font-display text-text-primary">
-        Bem-vindo ao <span className="text-gradient-brand">PropostaCerta</span>
+        Bem-vindo ao <span className="text-gradient-brand">NaroGestor</span>
       </h1>
       <p className="text-text-secondary text-lg">Sua jornada para propostas mais profissionais começa aqui!</p>
     </div>
@@ -676,13 +676,13 @@ const Onboarding = () => {
   });
 
   useEffect(() => {
-    localStorage.setItem('@propostacerta:onboarding-data', JSON.stringify(formData));
-    localStorage.setItem('@propostacerta:onboarding-step', step.toString());
+    localStorage.setItem('@narogestor:onboarding-data', JSON.stringify(formData));
+    localStorage.setItem('@narogestor:onboarding-step', step.toString());
   }, [formData, step]);
 
   useEffect(() => {
-    const saved = localStorage.getItem('@propostacerta:onboarding-data');
-    const savedStep = localStorage.getItem('@propostacerta:onboarding-step');
+    const saved = localStorage.getItem('@narogestor:onboarding-data');
+    const savedStep = localStorage.getItem('@narogestor:onboarding-step');
     if (saved) {
       try {
         setFormData((prev) => ({ ...prev, ...JSON.parse(saved) }));
@@ -731,10 +731,10 @@ const Onboarding = () => {
       }
 
       const data = await refreshToken();
-      localStorage.setItem('@propostacerta:token', data.token);
+      localStorage.setItem('@narogestor:token', data.token);
       await refreshCompany();
-      localStorage.removeItem('@propostacerta:onboarding-data');
-      localStorage.removeItem('@propostacerta:onboarding-step');
+      localStorage.removeItem('@narogestor:onboarding-data');
+      localStorage.removeItem('@narogestor:onboarding-step');
       
       // Mostrar tela de sucesso antes de navegar
       // (A EtapaFinal já cuida do redirecionamento se showSuccess for true)
@@ -825,7 +825,7 @@ const Onboarding = () => {
               <Building2 size={24} className="text-white" />
             </div>
             <span className="font-display font-bold text-xl text-text-primary tracking-tight">
-              PropostaCerta
+              NaroGestor
             </span>
           </div>
         </div>
@@ -838,7 +838,7 @@ const Onboarding = () => {
           </div>
         </div>
         <p className="text-center text-[10px] text-muted mt-6">
-          PropostaCerta
+          NaroGestor
           {' '}
           ©
           {' '}

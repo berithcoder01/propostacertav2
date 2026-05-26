@@ -24,16 +24,16 @@ export const AuthProvider = ({ children }) => {
     root.style.setProperty('--brand-logo', `url(${companyData.logoUrl || ''})`);
 
     // Persistir no localStorage para uso offline
-    localStorage.setItem('@propostacerta:primaryColor', companyData.primaryColor || '#10B981');
-    localStorage.setItem('@propostacerta:secondaryColor', companyData.secondaryColor || '#1A5276');
-    localStorage.setItem('@propostacerta:companyName', companyData.name || '');
-    localStorage.setItem('@propostacerta:logoUrl', companyData.logoUrl || '');
-    localStorage.setItem('@propostacerta:logoType', companyData.logoType || '');
-    localStorage.setItem('@propostacerta:slogan', companyData.slogan || '');
+    localStorage.setItem('@narogestor:primaryColor', companyData.primaryColor || '#10B981');
+    localStorage.setItem('@narogestor:secondaryColor', companyData.secondaryColor || '#1A5276');
+    localStorage.setItem('@narogestor:companyName', companyData.name || '');
+    localStorage.setItem('@narogestor:logoUrl', companyData.logoUrl || '');
+    localStorage.setItem('@narogestor:logoType', companyData.logoType || '');
+    localStorage.setItem('@narogestor:slogan', companyData.slogan || '');
   }, []);
 
   useEffect(() => {
-    const token = localStorage.getItem('@propostacerta:token');
+    const token = localStorage.getItem('@narogestor:token');
     if (token) {
       getCurrentUser()
         .then(userData => {
@@ -56,13 +56,13 @@ export const AuthProvider = ({ children }) => {
           setProspectingProfileConfigured(profile?.configured ?? false);
         })
         .catch(() => {
-          localStorage.removeItem('@propostacerta:token');
+          localStorage.removeItem('@narogestor:token');
         })
         .finally(() => {
           setIsLoading(false);
         });
     } else {
-      const savedPrimary = localStorage.getItem('@propostacerta:primaryColor');
+      const savedPrimary = localStorage.getItem('@narogestor:primaryColor');
       if (savedPrimary) {
         document.documentElement.style.setProperty('--primary', savedPrimary);
       }
@@ -72,7 +72,7 @@ export const AuthProvider = ({ children }) => {
 
   const signIn = async (email, password) => {
     const data = await login(email, password);
-    localStorage.setItem('@propostacerta:token', data.token);
+    localStorage.setItem('@narogestor:token', data.token);
     setUser(data.user);
     if (data.user.companyId) {
       const [co, catalog, profile] = await Promise.all([
@@ -91,7 +91,7 @@ export const AuthProvider = ({ children }) => {
 
   const signUp = async (name, email, password) => {
     // Limpa QUALQUER sessão anterior antes de criar a nova conta
-    localStorage.removeItem('@propostacerta:token');
+    localStorage.removeItem('@narogestor:token');
     setUser(null);
     setCompany(null);
     setSubscription(null);
@@ -100,7 +100,7 @@ export const AuthProvider = ({ children }) => {
 
     // Persiste imediatamente o token do novo usuário
     if (data.token) {
-      localStorage.setItem('@propostacerta:token', data.token);
+      localStorage.setItem('@narogestor:token', data.token);
       setUser(data.user);
     }
 
@@ -116,12 +116,12 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signOut = () => {
-    localStorage.removeItem('@propostacerta:token');
-    localStorage.removeItem('@propostacerta:primaryColor');
-    localStorage.removeItem('@propostacerta:secondaryColor');
-    localStorage.removeItem('@propostacerta:companyName');
-    localStorage.removeItem('@propostacerta:logoUrl');
-    localStorage.removeItem('@propostacerta:slogan');
+    localStorage.removeItem('@narogestor:token');
+    localStorage.removeItem('@narogestor:primaryColor');
+    localStorage.removeItem('@narogestor:secondaryColor');
+    localStorage.removeItem('@narogestor:companyName');
+    localStorage.removeItem('@narogestor:logoUrl');
+    localStorage.removeItem('@narogestor:slogan');
     setUser(null);
     setCompany(null);
     setSubscription(null);

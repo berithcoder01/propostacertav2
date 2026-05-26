@@ -58,7 +58,7 @@ const ProposalFromAi = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('@propostacerta:token')}`
+          'Authorization': `Bearer ${localStorage.getItem('@narogestor:token')}`
         },
         body: JSON.stringify({ description, ...clientData })
       }).then(r => r.json());

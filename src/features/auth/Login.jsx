@@ -19,8 +19,8 @@ const Login = () => {
 
   useEffect(() => { setLight(); }, [setLight]);
 
-  const companyName    = localStorage.getItem('@propostacerta:companyName') || 'PropostaCerta';
-  const companySlogan  = localStorage.getItem('@propostacerta:companySlogan') || 'Propostas Comerciais';
+  const companyName    = localStorage.getItem('@narogestor:companyName') || 'NaroGestor';
+  const companySlogan  = localStorage.getItem('@narogestor:companySlogan') || 'Propostas Comerciais';
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -5,10 +5,10 @@ export const useTheme = () => {
     primary: getComputedStyle(document.documentElement).getPropertyValue('--primary').trim() || '#10B981',
     primaryHover: getComputedStyle(document.documentElement).getPropertyValue('--primary-hover').trim() || '#059669',
     secondary: getComputedStyle(document.documentElement).getPropertyValue('--secondary').trim() || '#1A5276',
-    brandName: localStorage.getItem('@propostacerta:companyName') || '',
-    logoUrl: localStorage.getItem('@propostacerta:logoUrl') || '',
-    logoType: localStorage.getItem('@propostacerta:logoType') || '',
-    slogan: localStorage.getItem('@propostacerta:slogan') || '',
+    brandName: localStorage.getItem('@narogestor:companyName') || '',
+    logoUrl: localStorage.getItem('@narogestor:logoUrl') || '',
+    logoType: localStorage.getItem('@narogestor:logoType') || '',
+    slogan: localStorage.getItem('@narogestor:slogan') || '',
   });
 
   useEffect(() => {
@@ -18,10 +18,10 @@ export const useTheme = () => {
         primary: root.getPropertyValue('--primary').trim() || '#10B981',
         primaryHover: root.getPropertyValue('--primary-hover').trim() || '#059669',
         secondary: root.getPropertyValue('--secondary').trim() || '#1A5276',
-        brandName: localStorage.getItem('@propostacerta:companyName') || '',
-        logoUrl: localStorage.getItem('@propostacerta:logoUrl') || '',
-        logoType: localStorage.getItem('@propostacerta:logoType') || '',
-        slogan: localStorage.getItem('@propostacerta:slogan') || '',
+        brandName: localStorage.getItem('@narogestor:companyName') || '',
+        logoUrl: localStorage.getItem('@narogestor:logoUrl') || '',
+        logoType: localStorage.getItem('@narogestor:logoType') || '',
+        slogan: localStorage.getItem('@narogestor:slogan') || '',
       });
     };
 
@@ -46,12 +46,12 @@ export const useTheme = () => {
     root.style.setProperty('--primary-hover', companyData.primaryColor ? adjustBrightness(companyData.primaryColor, -20) : '#059669');
     root.style.setProperty('--secondary', companyData.secondaryColor || '#1A5276');
 
-    localStorage.setItem('@propostacerta:primaryColor', companyData.primaryColor || '#10B981');
-    localStorage.setItem('@propostacerta:secondaryColor', companyData.secondaryColor || '#1A5276');
-    if (companyData.logoUrl) localStorage.setItem('@propostacerta:logoUrl', companyData.logoUrl);
-    if (companyData.logoType) localStorage.setItem('@propostacerta:logoType', companyData.logoType);
-    if (companyData.name) localStorage.setItem('@propostacerta:companyName', companyData.name);
-    if (companyData.slogan) localStorage.setItem('@propostacerta:slogan', companyData.slogan);
+    localStorage.setItem('@narogestor:primaryColor', companyData.primaryColor || '#10B981');
+    localStorage.setItem('@narogestor:secondaryColor', companyData.secondaryColor || '#1A5276');
+    if (companyData.logoUrl) localStorage.setItem('@narogestor:logoUrl', companyData.logoUrl);
+    if (companyData.logoType) localStorage.setItem('@narogestor:logoType', companyData.logoType);
+    if (companyData.name) localStorage.setItem('@narogestor:companyName', companyData.name);
+    if (companyData.slogan) localStorage.setItem('@narogestor:slogan', companyData.slogan);
 
     setThemeState({
       primary: companyData.primaryColor || '#10B981',

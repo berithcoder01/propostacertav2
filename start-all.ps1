@@ -1,8 +1,8 @@
-# Script Mestre - Inicia todo o ecossistema PropostaCerta
+# Script Mestre - Inicia todo o ecossistema NaroGestor
 # Execute: .\start-all.ps1
 
 Write-Host "========================================" -ForegroundColor Cyan
-Write-Host "  Iniciando PropostaCerta Completo" -ForegroundColor Cyan
+Write-Host "  Iniciando NaroGestor Completo" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 
 # 1. Iniciar API (Backend)

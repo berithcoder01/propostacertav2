@@ -1,4 +1,4 @@
-# 🚀 Scripts de Execução - PropostaCerta
+# 🚀 Scripts de Execução - NaroGestor
 
 Este projeto utiliza scripts PowerShell (`.ps1`) para facilitar o início de cada serviço.
 

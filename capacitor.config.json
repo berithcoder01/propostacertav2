@@ -1,6 +1,6 @@
 {
-  "appId": "com.berithcode.propostacerta",
-  "appName": "PropostaCerta",
+  "appId": "com.berithcode.narogestor",
+  "appName": "NaroGestor",
   "webDir": "dist",
   "server": {
     "androidScheme": "https",

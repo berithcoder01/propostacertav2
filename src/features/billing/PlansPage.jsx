@@ -113,7 +113,7 @@ const PLANS_PAGE = () => {
                 <Building2 size={20} className="text-white" />
               </div>
               <span className="font-display font-bold text-lg text-text-primary tracking-tight">
-                PropostaCerta
+                NaroGestor
               </span>
             </div>
 
@@ -269,7 +269,7 @@ const PLANS_PAGE = () => {
         {/* Footer */}
         <div className="text-center mt-8">
           <p className="text-xs text-muted">
-            PropostaCerta © {new Date().getFullYear()} — Sua marca, sua autoridade.
+            NaroGestor © {new Date().getFullYear()} — Sua marca, sua autoridade.
           </p>
         </div>
       </div>

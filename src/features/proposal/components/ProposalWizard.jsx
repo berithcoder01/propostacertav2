@@ -21,7 +21,7 @@ const ShareButton = React.lazy(() => import('./ShareButton'));
 const AiChatWidget = React.lazy(() => import('./AiChatWidget'));
 
 const STEPS = ['Cliente', 'Serviços & Condições', 'Revisão'];
-const DRAFT_KEY = '@propostacerta:draft';
+const DRAFT_KEY = '@narogestor:draft';
 
 const timeAgo = (iso) => {
   const diff = Math.floor((Date.now() - new Date(iso)) / 1000);
@@ -452,8 +452,8 @@ const ProposalWizard = () => {
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-accent rounded-xl flex items-center justify-center font-black text-xl">P</div>
             <div>
-              <div className="font-display font-black text-lg leading-none">Proposta<span className="text-accent2">Certa</span></div>
-              <div className="text-[9px] text-muted font-bold uppercase tracking-widest mt-1">Propostas Comerciais</div>
+              <div className="font-display font-black text-lg leading-none">Naro<span className="text-accent2">Gestor</span></div>
+              <div className="text-[9px] text-muted font-bold uppercase tracking-widest mt-1">Gestão e Propostas Comerciais</div>
             </div>
           </div>
           <div className="flex items-center gap-3">

@@ -14,7 +14,7 @@ const STEPS = [
 const OnboardingConversacional = ({ onNext, onBack, formData, update }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [messages, setMessages] = useState([
-    { id: 1, role: 'assistant', content: 'Olá!  Bem-vindo ao PropostaCerta.\n\nPara eu encontrar os **melhores leads** para você, preciso entender seu negócio. Vamos fazer uma rápida entrevista?' },
+    { id: 1, role: 'assistant', content: 'Olá!  Bem-vindo ao NaroGestor.\n\nPara eu encontrar os **melhores leads** para você, preciso entender seu negócio. Vamos fazer uma rápida entrevista?' },
   ]);
 
   const [userInput, setUserInput] = useState('');

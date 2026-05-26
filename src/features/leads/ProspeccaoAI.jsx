@@ -11,7 +11,7 @@ import { fetchProspectingProfile, saveProspectingProfile, API_URL } from '../../
 
 // Service functions
 const getAuthHeaders = () => {
-  const token = localStorage.getItem('@propostacerta:token')
+  const token = localStorage.getItem('@narogestor:token')
   return {
     'Content-Type': 'application/json',
     ...(token ? { 'Authorization': `Bearer ${token}` } : {})

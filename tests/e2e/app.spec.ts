@@ -1,6 +1,6 @@
-﻿import { test, expect } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 
-test.describe('PropostaCerta - E2E Tests', () => {
+test.describe('NaroGestor - E2E Tests', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
   });
@@ -10,7 +10,7 @@ test.describe('PropostaCerta - E2E Tests', () => {
   // ============================================================
   test('Login page carrega e exibe formulário', async ({ page }) => {
     await page.goto('/login');
-    await expect(page).toHaveTitle(/PropostaCerta|Login/);
+    await expect(page).toHaveTitle(/NaroGestor|Login/);
     await expect(page.locator('input[type="email"]')).toBeVisible();
     await expect(page.locator('input[type="password"]')).toBeVisible();
     await expect(page.locator('button[type="submit"]')).toBeVisible();
@@ -21,7 +21,7 @@ test.describe('PropostaCerta - E2E Tests', () => {
   // ============================================================
   test('Dashboard carrega com cards principais', async ({ page }) => {
     await page.addInitScript(() => {
-      localStorage.setItem('@propostacerta:token', 'mock-token');
+      localStorage.setItem('@narogestor:token', 'mock-token');
     });
     await page.goto('/');
     await expect(page.locator('h1, h2')).toContainText(/Dashboard|Resumo/i);
@@ -29,7 +29,7 @@ test.describe('PropostaCerta - E2E Tests', () => {
 
   test('Navegação para propostas', async ({ page }) => {
     await page.addInitScript(() => {
-      localStorage.setItem('@propostacerta:token', 'mock-token');
+      localStorage.setItem('@narogestor:token', 'mock-token');
     });
     await page.goto('/');
     await page.getByRole('link', { name: /propostas/i }).click();
@@ -38,7 +38,7 @@ test.describe('PropostaCerta - E2E Tests', () => {
 
   test('Navegação para clientes', async ({ page }) => {
     await page.addInitScript(() => {
-      localStorage.setItem('@propostacerta:token', 'mock-token');
+      localStorage.setItem('@narogestor:token', 'mock-token');
     });
     await page.goto('/');
     await page.getByRole('link', { name: /clientes/i }).click();
@@ -50,7 +50,7 @@ test.describe('PropostaCerta - E2E Tests', () => {
   // ============================================================
   test('Página de planos exibe 3 cards', async ({ page }) => {
     await page.addInitScript(() => {
-      localStorage.setItem('@propostacerta:token', 'mock-token');
+      localStorage.setItem('@narogestor:token', 'mock-token');
     });
     await page.goto('/plans');
 
@@ -63,7 +63,7 @@ test.describe('PropostaCerta - E2E Tests', () => {
 
   test('Plano PRO é destacado como recomendado', async ({ page }) => {
     await page.addInitScript(() => {
-      localStorage.setItem('@propostacerta:token', 'mock-token');
+      localStorage.setItem('@narogestor:token', 'mock-token');
     });
     await page.goto('/plans');
     await expect(page.locator('text=Recomendado')).toBeVisible();
@@ -71,7 +71,7 @@ test.describe('PropostaCerta - E2E Tests', () => {
 
   test('FAQ se expande ao clicar', async ({ page }) => {
     await page.addInitScript(() => {
-      localStorage.setItem('@propostacerta:token', 'mock-token');
+      localStorage.setItem('@narogestor:token', 'mock-token');
     });
     await page.goto('/plans');
 
@@ -82,7 +82,7 @@ test.describe('PropostaCerta - E2E Tests', () => {
 
   test('Botões de upgrade navegam para /plans', async ({ page }) => {
     await page.addInitScript(() => {
-      localStorage.setItem('@propostacerta:token', 'mock-token');
+      localStorage.setItem('@narogestor:token', 'mock-token');
     });
     await page.goto('/plans');
 
@@ -98,7 +98,7 @@ test.describe('PropostaCerta - E2E Tests', () => {
     await context.clearCookies();
     await page.goto('/onboarding');
 
-    await expect(page.locator('text=Bem-vindo ao PropostaCerta')).toBeVisible();
+    await expect(page.locator('text=Bem-vindo ao NaroGestor')).toBeVisible();
     await page.getByRole('button', { name: /Começar/i }).click();
 
     await expect(page.locator('text=Crie sua Marca')).toBeVisible();
@@ -131,7 +131,7 @@ test.describe('PropostaCerta - E2E Tests', () => {
   // ============================================================
   test('Assistente IA mostra bloqueio para plano FREE', async ({ page }) => {
     await page.addInitScript(() => {
-      localStorage.setItem('@propostacerta:token', 'mock-token');
+      localStorage.setItem('@narogestor:token', 'mock-token');
     });
     await page.goto('/propostas/nova/geral');
 
@@ -141,7 +141,7 @@ test.describe('PropostaCerta - E2E Tests', () => {
 
   test('Clicar em IA no plano FREE abre modal de upgrade', async ({ page }) => {
     await page.addInitScript(() => {
-      localStorage.setItem('@propostacerta:token', 'mock-token');
+      localStorage.setItem('@narogestor:token', 'mock-token');
     });
     await page.goto('/propostas/nova/geral');
 
@@ -186,7 +186,7 @@ test.describe('PropostaCerta - E2E Tests', () => {
   // ============================================================
   test('Nova proposta - wizard carrega', async ({ page }) => {
     await page.addInitScript(() => {
-      localStorage.setItem('@propostacerta:token', 'mock-token');
+      localStorage.setItem('@narogestor:token', 'mock-token');
     });
     await page.goto('/propostas/nova/geral');
     await expect(page).toContainText(/Escopo de Fornecimento|Valor Fechado|Serviço Contínuo/i);
@@ -194,7 +194,7 @@ test.describe('PropostaCerta - E2E Tests', () => {
 
   test('Wizard navega entre etapas', async ({ page }) => {
     await page.addInitScript(() => {
-      localStorage.setItem('@propostacerta:token', 'mock-token');
+      localStorage.setItem('@narogestor:token', 'mock-token');
     });
     await page.goto('/propostas/nova/geral');
 
@@ -215,7 +215,7 @@ test.describe('PropostaCerta - E2E Tests', () => {
   test('Layout responsivo - visualização mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.addInitScript(() => {
-      localStorage.setItem('@propostacerta:token', 'mock-token');
+      localStorage.setItem('@narogestor:token', 'mock-token');
     });
     await page.goto('/');
 
@@ -225,7 +225,7 @@ test.describe('PropostaCerta - E2E Tests', () => {
   test('Layout responsivo - planos em mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.addInitScript(() => {
-      localStorage.setItem('@propostacerta:token', 'mock-token');
+      localStorage.setItem('@narogestor:token', 'mock-token');
     });
     await page.goto('/plans');
 
@@ -247,7 +247,7 @@ test.describe('PropostaCerta - E2E Tests', () => {
   // ============================================================
   test('Navegação para configurações carrega módulo lazy', async ({ page }) => {
     await page.addInitScript(() => {
-      localStorage.setItem('@propostacerta:token', 'mock-token');
+      localStorage.setItem('@narogestor:token', 'mock-token');
     });
     await page.goto('/');
 

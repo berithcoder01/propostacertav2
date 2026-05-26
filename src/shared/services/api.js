@@ -19,7 +19,7 @@ if (isNative && !API_BASE) {
 }
 
 const getAuthHeaders = (hasBody = false) => {
-  const token = localStorage.getItem('@propostacerta:token');
+  const token = localStorage.getItem('@narogestor:token');
   return {
     ...(hasBody ? { 'Content-Type': 'application/json' } : {}),
     ...(token ? { 'Authorization': `Bearer ${token}` } : {})
@@ -351,7 +351,7 @@ export const uploadLogo = async (file) => {
   const formData = new FormData();
   formData.append('logo', file);
   const response = await fetch(`${API_URL}/company/logo`, {
-    method: 'POST', headers: { 'Authorization': `Bearer ${localStorage.getItem('@propostacerta:token')}` },
+    method: 'POST', headers: { 'Authorization': `Bearer ${localStorage.getItem('@narogestor:token')}` },
     body: formData
   });
   if (!response.ok) throw new Error('Falha no upload da logo');

@@ -13,7 +13,7 @@ const Layout = () => {
   const { isDark } = useThemeMode();
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const companyName = company?.name || 'PropostaCerta';
+  const companyName = company?.name || 'NaroGestor';
   const companyInitial = companyName.charAt(0).toUpperCase();
 
   // White Label: cor primária da empresa

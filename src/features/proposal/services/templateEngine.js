@@ -1,6 +1,6 @@
 // templateEngine.js
 /**
- * Motor de Template PropostaCerta v2.0
+ * Motor de Template NaroGestor v2.0
  * Suporta placeholders dinâmicos, lógica condicional e injeção de estilo.
  */
 

@@ -1,7 +1,7 @@
-# Script para iniciar o Frontend (PropostaCerta)
+# Script para iniciar o Frontend (NaroGestor)
 # Execute: .\start-frontend.ps1
 
-Write-Host "Iniciando Frontend do PropostaCerta..." -ForegroundColor Green
+Write-Host "Iniciando Frontend do NaroGestor..." -ForegroundColor Green
 
 # Verifica se node_modules existe
 if (-Not (Test-Path "node_modules")) {

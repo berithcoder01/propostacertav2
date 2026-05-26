@@ -1,7 +1,7 @@
 import { API_URL } from '../../../../shared/services/api'
 
 const getAuthHeaders = (hasBody = false) => {
-  const token = localStorage.getItem('@propostacerta:token')
+  const token = localStorage.getItem('@narogestor:token')
   return {
     ...(hasBody ? { 'Content-Type': 'application/json' } : {}),
     ...(token ? { 'Authorization': `Bearer ${token}` } : {})

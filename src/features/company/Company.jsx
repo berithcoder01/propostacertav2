@@ -338,7 +338,7 @@ const Company = () => {
                       const res = await fetch(`${API_URL}/dev-upgrade`, {
                         method: 'GET',
                         headers: { 
-                          'Authorization': `Bearer ${localStorage.getItem('@propostacerta:token')}`
+                          'Authorization': `Bearer ${localStorage.getItem('@narogestor:token')}`
                         }
                       });
                       if (res.ok) {

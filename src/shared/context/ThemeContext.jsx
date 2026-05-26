@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect, useCallback } from 'rea
 
 const ThemeContext = createContext(null)
 
-const STORAGE_KEY = '@propostacerta:theme'
+const STORAGE_KEY = '@narogestor:theme'
 
 export function ThemeProvider({ children }) {
   const [isDark, setIsDark] = useState(() => {
