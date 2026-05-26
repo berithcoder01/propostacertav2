@@ -1,2 +1,16 @@
-# Ignorar o diretório do backend para evitar que a Vercel tente criar funções serverless (limite de 12 no plano Hobby)
-api/
+# Ignorar subdiretórios da API que NÃO devem virar funções serverless separadas
+# O entry point api/index.js DEVE ser deployado como serverless function
+api/node_modules
+api/data
+api/scratch
+api/uploads
+api/scripts
+api/prisma/migrations
+api/.env
+api/.vercel
+api/test-db.cjs
+api/seed.js
+api/start-api.ps1
+api/railway.toml
+api/README.md
+
